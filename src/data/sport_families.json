@@ -1,0 +1,726 @@
+{
+  "colors": {
+    "Aquatic": "#2d5f7f",
+    "Team Ball": "#8b5a2b",
+    "Combat": "#722f37",
+    "Track & Field": "#c63d2f",
+    "Endurance": "#5a7a3f",
+    "Gymnastics": "#c89837",
+    "Winter": "#4a5d7e",
+    "Precision": "#6b5d3f",
+    "Equestrian": "#3d2817",
+    "Racket": "#8a7c3d",
+    "Strength": "#2e4a3a",
+    "Other": "#555050"
+  },
+  "counts": {
+    "Team Ball": 972,
+    "Winter": 913,
+    "Aquatic": 887,
+    "Other": 808,
+    "Track & Field": 478,
+    "Combat": 446,
+    "Endurance": 252,
+    "Precision": 154,
+    "Racket": 125,
+    "Gymnastics": 94,
+    "Equestrian": 37,
+    "Strength": 35
+  },
+  "sports": {
+    "3x3 Basketball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "ALP": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "ARC": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "ART": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "ATH": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "Alpine Skiing": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "American Football": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Archery": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Art Competitions": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "Artistic Gymnastics": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "Artistic Swimming": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Athletics": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "BMX": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "BOB": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "BOX": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Badminton": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Baseball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Basketball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Basque pelota": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Beach Volleyball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Biathlon": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Bobsled": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Bobsleigh": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Boccia": {
+      "family": "Precision",
+      "is_paralympic": true
+    },
+    "Bowling": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Boxing": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Breaking": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "CCS": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "CRD": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "CSP": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "CUR": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Canoe Slalom": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Canoe Sprint": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Canoe/Kayak": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Canoeing": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Cross Country": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cross Country Skiing": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cross-Country Skiing": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Curling": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Cycling": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cycling BMX Freestyle": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cycling BMX Racing": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cycling Mountain Bike": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cycling Road": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Cycling Track": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "DIV": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Diving": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Dogsled Racing": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "EDR": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "EJP": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "EVE": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "Equestrian": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "Equestrian Dressage": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "Equestrian Eventing": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "Equestrian Jumping": {
+      "family": "Equestrian",
+      "is_paralympic": false
+    },
+    "FBL": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "FEN": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "FSK": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Fencing": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Field Hockey": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Figure Skating": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Firefighting": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "Football": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Freestyle Skiing": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "GAR": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "Goalball": {
+      "family": "Team Ball",
+      "is_paralympic": true
+    },
+    "Golf": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Gymnastics": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "HOC": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Handball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Hockey": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Hurling": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "IHO": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Ice Hockey": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Jeu De Paume": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Judo": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Karate": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Kendo": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "LUG": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Lacrosse": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Lawn Bowls": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Luge": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Marathon Swimming": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Military Ski Patrol": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Modern Pentathlon": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "Nordic Combined": {
+      "family": "Endurance",
+      "is_paralympic": false
+    },
+    "Para Alpine Skiing": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Para Alpine Skiing; Para Biathlon": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Para Archery": {
+      "family": "Precision",
+      "is_paralympic": true
+    },
+    "Para Badminton": {
+      "family": "Racket",
+      "is_paralympic": true
+    },
+    "Para Judo": {
+      "family": "Combat",
+      "is_paralympic": true
+    },
+    "Para Nordic Skiing": {
+      "family": "Endurance",
+      "is_paralympic": true
+    },
+    "Para Nordic Skiing; Para Biathlon": {
+      "family": "Endurance",
+      "is_paralympic": true
+    },
+    "Para Nordic Skiing; Para Track and Field": {
+      "family": "Endurance",
+      "is_paralympic": true
+    },
+    "Para Powerlifting": {
+      "family": "Strength",
+      "is_paralympic": true
+    },
+    "Para Shooting": {
+      "family": "Precision",
+      "is_paralympic": true
+    },
+    "Para Snowboarding": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Para Swimming": {
+      "family": "Aquatic",
+      "is_paralympic": true
+    },
+    "Para Table Tennis": {
+      "family": "Racket",
+      "is_paralympic": true
+    },
+    "Para Taekwondo": {
+      "family": "Combat",
+      "is_paralympic": true
+    },
+    "Para Track and Field": {
+      "family": "Other",
+      "is_paralympic": true
+    },
+    "Para-Cycling": {
+      "family": "Endurance",
+      "is_paralympic": true
+    },
+    "Para-Equestrian": {
+      "family": "Equestrian",
+      "is_paralympic": true
+    },
+    "Para-Rowing": {
+      "family": "Aquatic",
+      "is_paralympic": true
+    },
+    "Paracanoe": {
+      "family": "Aquatic",
+      "is_paralympic": true
+    },
+    "Paratriathlon": {
+      "family": "Track & Field",
+      "is_paralympic": true
+    },
+    "Polo": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Powerlifting": {
+      "family": "Strength",
+      "is_paralympic": true
+    },
+    "ROW": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Racquetball": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Rhythmic Gymnastics": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "Roller Hockey": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Roque": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Rowing": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Rugby": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Rugby Sevens": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "SBD": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "SBL": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "SHO": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "SSK": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "STK": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "SWM": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Sailing": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Shooting": {
+      "family": "Precision",
+      "is_paralympic": false
+    },
+    "Short Track Speed Skating": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Sitting Volleyball": {
+      "family": "Team Ball",
+      "is_paralympic": true
+    },
+    "Skateboarding": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "Skeleton": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Ski Jumping": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Ski Mountaineering": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Sled Hockey": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Sled Hockey; Para Nordic Skiing": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Sled Hockey; Paracanoe": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Snowboard": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Snowboarding": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Soccer": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Soccer 7-A-Side": {
+      "family": "Team Ball",
+      "is_paralympic": true
+    },
+    "Softball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Speed Skating": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Speed Skiing": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "Sport Climbing": {
+      "family": "Other",
+      "is_paralympic": false
+    },
+    "Surfing": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Swimming": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "TEN": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "TRI": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "TTE": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Table Tennis": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Taekwondo": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Team Handball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Tennis": {
+      "family": "Racket",
+      "is_paralympic": false
+    },
+    "Track and Field": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "Trampolining": {
+      "family": "Gymnastics",
+      "is_paralympic": false
+    },
+    "Triathlon": {
+      "family": "Track & Field",
+      "is_paralympic": false
+    },
+    "Tug-Of-War": {
+      "family": "Strength",
+      "is_paralympic": false
+    },
+    "USF": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "VBV": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "VVO": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Volleyball": {
+      "family": "Team Ball",
+      "is_paralympic": false
+    },
+    "Water Polo": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Waterski/Wakeboard": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Waterskiing": {
+      "family": "Aquatic",
+      "is_paralympic": false
+    },
+    "Weightlifting": {
+      "family": "Strength",
+      "is_paralympic": false
+    },
+    "Wheelchair Basketball": {
+      "family": "Team Ball",
+      "is_paralympic": true
+    },
+    "Wheelchair Curling": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Wheelchair Curling; Sitting Volleyball": {
+      "family": "Winter",
+      "is_paralympic": true
+    },
+    "Wheelchair Fencing": {
+      "family": "Combat",
+      "is_paralympic": true
+    },
+    "Wheelchair Rugby": {
+      "family": "Team Ball",
+      "is_paralympic": true
+    },
+    "Wheelchair Tennis": {
+      "family": "Racket",
+      "is_paralympic": true
+    },
+    "Wrestling": {
+      "family": "Combat",
+      "is_paralympic": false
+    },
+    "Wushu": {
+      "family": "Combat",
+      "is_paralympic": false
+    }
+  },
+  "families": [
+    "Aquatic",
+    "Combat",
+    "Endurance",
+    "Equestrian",
+    "Gymnastics",
+    "Other",
+    "Precision",
+    "Racket",
+    "Strength",
+    "Team Ball",
+    "Track & Field",
+    "Winter"
+  ]
+}

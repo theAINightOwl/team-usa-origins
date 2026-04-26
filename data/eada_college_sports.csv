@@ -1,0 +1,856 @@
+institution_name,state,classification,conference,total_athletes_men,total_athletes_women,total_sports,athletic_budget_millions,year
+Arizona State University,AZ,NCAA Division I,Big 12 Conference,294,238,24,38.2,2003
+Ashland University,OH,NCAA Division II,Great Midwest Athletic Conference,246,197,21,3.4,2003
+Auburn University,AL,NCAA Division I,Southeastern Conference,248,199,19,61.1,2003
+Baylor University,TX,NCAA Division I,Big 12 Conference,259,204,18,32.9,2003
+Bemidji State University,MN,NCAA Division II,Northern Sun Intercollegiate Conference,193,153,15,2.9,2003
+Boston College,MA,NCAA Division I,Atlantic Coast Conference,330,276,29,30.1,2003
+Boston University,MA,NCAA Division I,Patriot League,282,232,23,14.7,2003
+Bowling Green State University,OH,NCAA Division I,Mid-American Conference,207,162,17,10.7,2003
+Brigham Young University,UT,NCAA Division I,Big 12 Conference,313,257,20,27.8,2003
+Brown University,RI,NCAA Division I,Ivy League,432,358,36,14.4,2003
+California Polytechnic State University,CA,NCAA Division I,Big West Conference,250,200,20,14.4,2003
+Clarkson University,NY,NCAA Division III,Liberty League,273,221,21,2.5,2003
+Clemson University,SC,NCAA Division I,Atlantic Coast Conference,248,199,18,51.3,2003
+Colorado College,CO,NCAA Division III,Southern Collegiate Athletic Conference,203,159,17,4.0,2003
+Colorado Mountain College,CO,NJCAA,Independent,52,39,6,0.6,2003
+Colorado State University,CO,NCAA Division I,Mountain West Conference,216,178,16,23.1,2003
+Columbia University,NY,NCAA Division I,Ivy League,440,365,29,15.0,2003
+Cornell University,NY,NCAA Division I,Ivy League,473,392,35,16.5,2003
+Dartmouth College,NH,NCAA Division I,Ivy League,404,337,32,16.4,2003
+DeVry University,IL,Non-athletic,,0,0,0,0.0,2003
+Devry University,IL,Non-athletic,,0,0,0,0.0,2003
+Duke University,NC,NCAA Division I,Atlantic Coast Conference,306,244,25,48.0,2003
+Emory University,GA,NCAA Division III,University Athletic Association,218,184,18,2.9,2003
+Florida International University,FL,NCAA Division I,Conference USA,192,153,17,14.6,2003
+Florida State University,FL,NCAA Division I,Atlantic Coast Conference,257,208,19,46.2,2003
+Fort Lewis College,CO,NCAA Division II,Rocky Mountain Athletic Conference,158,131,14,2.2,2003
+Fresno State University,CA,NCAA Division I,Mountain West Conference,201,161,17,15.9,2003
+George Mason University,VA,NCAA Division I,Atlantic 10 Conference,209,171,21,16.1,2003
+Georgetown University,DC,NCAA Division I,Big East Conference,298,250,27,20.7,2003
+Georgia Tech,GA,NCAA Division I,Atlantic Coast Conference,243,198,17,30.6,2003
+Gonzaga University,WA,NCAA Division I,West Coast Conference,174,145,16,13.0,2003
+Harvard University,MA,NCAA Division I,Ivy League,462,391,40,17.6,2003
+Hawai'i,HI,NCAA Division I,Big West Conference,213,168,17,14.2,2003
+Howard University,DC,NCAA Division I,Mid-Eastern Athletic Conference,178,137,18,6.9,2003
+Indiana State University,IN,NCAA Division I,Missouri Valley Conference,175,138,17,8.6,2003
+Indiana University,IN,NCAA Division I,Big Ten Conference,313,254,23,34.2,2003
+Iowa State University,IA,NCAA Division I,Big 12 Conference,247,199,16,35.2,2003
+James Madison University,VA,NCAA Division I,Sun Belt Conference,245,201,17,21.2,2003
+Kennesaw State University,GA,NCAA Division I,Conference USA,193,156,17,9.6,2003
+Lindenwood University,MO,NCAA Division I,Ohio Valley Conference,226,186,25,7.7,2003
+Long Beach State,CA,NCAA Division I,Big West Conference,193,152,17,13.1,2003
+Long Beach State University,CA,NCAA Division I,Big West Conference,193,155,17,13.1,2003
+Louisiana State University,LA,NCAA Division I,Southeastern Conference,268,215,20,59.8,2003
+Marian University,IN,NAIA,Crossroads League,311,243,25,2.8,2003
+Michigan State University,MI,NCAA Division I,Big Ten Conference,330,263,23,50.6,2003
+Mississippi State University,MS,NCAA Division I,Southeastern Conference,239,194,16,33.2,2003
+Monmouth University,NJ,NCAA Division I,Colonial Athletic Association,214,167,22,7.3,2003
+Naval Academy,MD,NCAA Division I,Patriot League,484,169,31,16.4,2003
+North Carolina State University,NC,NCAA Division I,Atlantic Coast Conference,275,221,22,33.4,2003
+Northeastern University,MA,NCAA Division I,Colonial Athletic Association,246,202,17,16.9,2003
+Northern Michigan University,MI,NCAA Division II,Great Lakes Intercollegiate Athletic Conference,205,162,16,3.9,2003
+Northwestern University,IL,NCAA Division I,Big Ten Conference,245,202,18,35.3,2003
+Ohio State University,OH,NCAA Division I,Big Ten Conference,448,365,34,83.6,2003
+Oklahoma State,OK,NCAA Division I,Big 12 Conference,242,194,18,32.8,2003
+Oklahoma State University,OK,NCAA Division I,Big 12 Conference,242,193,18,33.2,2003
+Old Dominion University,VA,NCAA Division I,Sun Belt Conference,215,168,17,17.4,2003
+Oregon State University,OR,NCAA Division I,Pac-12 Conference,217,175,17,26.0,2003
+Penn State,PA,NCAA Division I,Big Ten Conference,373,305,29,56.3,2003
+Penn State University,PA,NCAA Division I,Big Ten Conference,382,303,29,57.7,2003
+Pennsylvania State University,PA,NCAA Division I,Big Ten Conference,385,308,29,58.7,2003
+Pepperdine University,CA,NCAA Division I,West Coast Conference,174,145,15,10.1,2003
+Princeton University,NJ,NCAA Division I,Ivy League,436,366,35,16.9,2003
+Purdue University,IN,NCAA Division I,Big Ten Conference,269,226,17,37.0,2003
+Queens University of Charlotte,NC,NCAA Division I,ASUN Conference,253,207,22,5.0,2003
+Rutgers University,NJ,NCAA Division I,Big Ten Conference,295,241,25,37.4,2003
+Sacred Heart University,CT,NCAA Division I,Northeast Conference,405,329,30,9.0,2003
+Salt Lake Community College,UT,NJCAA,Scenic West Athletic Conference,104,84,10,1.0,2003
+San Diego State University,CA,NCAA Division I,Mountain West Conference,235,195,18,21.2,2003
+San Jose State University,CA,NCAA Division I,Mountain West Conference,217,179,18,15.9,2003
+Southern Illinois University,IL,NCAA Division I,Missouri Valley Conference,191,154,17,10.7,2003
+Southern Methodist University,TX,NCAA Division I,Atlantic Coast Conference,230,181,17,24.8,2003
+Stanford,CA,NCAA Division I,Atlantic Coast Conference,382,319,34,60.6,2003
+Stanford University,CA,NCAA Division I,Atlantic Coast Conference,386,317,34,63.3,2003
+Syracuse University,NY,NCAA Division I,Atlantic Coast Conference,284,234,19,30.8,2003
+Tennessee State University,TN,NCAA Division I,Ohio Valley Conference,177,140,16,6.0,2003
+Texas A&M University,TX,NCAA Division I,Southeastern Conference,303,234,19,61.2,2003
+The Ohio State University,OH,NCAA Division I,Big Ten Conference,453,362,34,78.5,2003
+Tulane University,LA,NCAA Division I,American Athletic Conference,196,162,16,14.5,2003
+UCLA,CA,NCAA Division I,Big Ten Conference,332,278,23,46.1,2003
+USC,CA,NCAA Division I,Big Ten Conference,327,271,20,56.6,2003
+United States Military Academy,NY,NCAA Division I,Patriot League,493,175,30,13.7,2003
+University of Alabama,AL,NCAA Division I,Southeastern Conference,269,220,20,67.0,2003
+University of Arizona,AZ,NCAA Division I,Big 12 Conference,249,199,20,33.2,2003
+University of Arkansas,AR,NCAA Division I,Southeastern Conference,237,194,18,46.2,2003
+University of California,CA,NCAA Division I,Atlantic Coast Conference,391,330,28,35.7,2003
+University of California - Berkeley,CA,NCAA Division I,Atlantic Coast Conference,396,328,28,35.9,2003
+"University of California, Berkeley",CA,NCAA Division I,Atlantic Coast Conference,402,328,28,39.2,2003
+"University of California, Davis",CA,NCAA Division I,Big West Conference,300,244,23,11.9,2003
+"University of California, Irvine",CA,NCAA Division I,Big West Conference,219,178,17,14.4,2003
+"University of California, Los Angeles",CA,NCAA Division I,Big Ten Conference,324,276,23,51.2,2003
+"University of California, San Diego",CA,NCAA Division I,Big West Conference,262,212,22,13.6,2003
+"University of California, Santa Barbara",CA,NCAA Division I,Big West Conference,177,144,14,10.6,2003
+"University of California, Santa Cruz",CA,NCAA Division III,Independent,139,115,14,1.2,2003
+University of California--Irvine,CA,NCAA Division I,Big West Conference,224,178,17,13.7,2003
+University of California--Los Angeles,CA,NCAA Division I,Big Ten Conference,325,278,23,52.0,2003
+University of Central Florida,FL,NCAA Division I,Big 12 Conference,248,199,16,27.8,2003
+University of Central Oklahoma,OK,NCAA Division II,Mid-America Intercollegiate Athletics Association,196,153,15,3.7,2003
+University of Cincinnati,OH,NCAA Division I,Big 12 Conference,242,192,17,26.6,2003
+University of Colorado,CO,NCAA Division I,Big 12 Conference,242,193,17,34.6,2003
+University of Colorado Boulder,CO,NCAA Division I,Big 12 Conference,237,191,17,38.6,2003
+University of Colorado Colorado Springs,CO,NCAA Division II,Rocky Mountain Athletic Conference,162,130,14,3.2,2003
+"University of Colorado, Colorado Springs",CO,NCAA Division II,Rocky Mountain Athletic Conference,159,132,14,3.2,2003
+University of Connecticut,CT,NCAA Division I,Big East Conference,278,224,23,37.0,2003
+University of Dayton,OH,NCAA Division I,Atlantic 10 Conference,212,169,17,11.0,2003
+University of Denver,CO,NCAA Division I,Summit League,188,155,17,15.6,2003
+University of Florida,FL,NCAA Division I,Southeastern Conference,276,220,20,61.4,2003
+University of Georgia,GA,NCAA Division I,Southeastern Conference,275,217,20,61.0,2003
+University of Hawaii,HI,NCAA Division I,Big West Conference,212,171,17,16.8,2003
+University of Illinois,IL,NCAA Division I,Big Ten Conference,278,221,20,40.2,2003
+University of Illinois Urbana,IL,NCAA Division I,Big Ten Conference,277,223,20,35.8,2003
+University of Illinois Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,270,220,20,36.3,2003
+University of Illinois at Urbana Champaign,IL,NCAA Division I,Big Ten Conference,274,225,20,37.9,2003
+University of Illinois at Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,270,221,20,37.9,2003
+University of Iowa,IA,NCAA Division I,Big Ten Conference,295,246,21,43.0,2003
+University of Kansas,KS,NCAA Division I,Big 12 Conference,245,202,17,40.2,2003
+University of Kentucky,KY,NCAA Division I,Southeastern Conference,255,204,21,48.1,2003
+University of Louisville,KY,NCAA Division I,Atlantic Coast Conference,251,210,22,40.1,2003
+University of Maine,ME,NCAA Division I,America East Conference,233,186,17,9.5,2003
+University of Maryland,MD,NCAA Division I,Big Ten Conference,301,238,25,39.3,2003
+University of Massachusetts,MA,NCAA Division I,Atlantic 10 Conference,258,205,20,18.6,2003
+University of Miami,FL,NCAA Division I,Atlantic Coast Conference,243,197,17,34.8,2003
+University of Michigan,MI,NCAA Division I,Big Ten Conference,428,323,27,62.5,2003
+University of Minnesota,MN,NCAA Division I,Big Ten Conference,302,241,23,48.8,2003
+University of Minnesota Duluth,MN,NCAA Division II,Northern Sun Intercollegiate Conference,194,152,16,5.2,2003
+"University of Minnesota, Twin Cities",MN,NCAA Division I,Big Ten Conference,296,236,23,43.6,2003
+University of Mississippi,MS,NCAA Division I,Southeastern Conference,234,189,17,37.6,2003
+University of Nebraska,NE,NCAA Division I,Big Ten Conference,308,250,23,46.2,2003
+"University of Nevada, Las Vegas",NV,NCAA Division I,Mountain West Conference,209,166,17,22.5,2003
+"University of Nevada, Reno",NV,NCAA Division I,Mountain West Conference,197,156,16,17.9,2003
+University of New Hampshire,NH,NCAA Division I,America East Conference,232,187,17,14.5,2003
+University of New Mexico,NM,NCAA Division I,Mountain West Conference,214,171,17,17.7,2003
+University of North Carolina,NC,NCAA Division I,Atlantic Coast Conference,364,303,26,42.2,2003
+University of North Carolina at Charlotte,NC,NCAA Division I,American Athletic Conference,197,154,17,15.4,2003
+"University of North Carolina, Chapel Hill",NC,NCAA Division I,Atlantic Coast Conference,361,302,26,38.7,2003
+University of North Dakota,ND,NCAA Division I,Summit League,227,184,20,11.0,2003
+University of Notre Dame,IN,NCAA Division I,Atlantic Coast Conference,325,266,24,43.5,2003
+University of Oklahoma,OK,NCAA Division I,Southeastern Conference,263,215,18,54.8,2003
+University of Oregon,OR,NCAA Division I,Big Ten Conference,245,203,17,42.1,2003
+University of Pennsylvania,PA,NCAA Division I,Ivy League,418,348,31,16.4,2003
+University of Pittsburgh,PA,NCAA Division I,Atlantic Coast Conference,271,224,18,30.1,2003
+University of Richmond,VA,NCAA Division I,Atlantic 10 Conference,202,164,17,10.3,2003
+University of San Diego,CA,NCAA Division I,West Coast Conference,210,171,17,11.1,2003
+University of San Francisco,CA,NCAA Division I,West Coast Conference,162,132,15,8.3,2003
+University of South Carolina,SC,NCAA Division I,Southeastern Conference,249,202,18,42.5,2003
+University of South Dakota,SD,NCAA Division I,Summit League,196,155,17,7.9,2003
+University of South Florida,FL,NCAA Division I,American Athletic Conference,230,181,18,19.2,2003
+University of Southern California,CA,NCAA Division I,Big Ten Conference,331,270,20,61.3,2003
+University of Tennessee,TN,NCAA Division I,Southeastern Conference,261,216,19,61.5,2003
+University of Texas,TX,NCAA Division I,Southeastern Conference,299,235,19,82.6,2003
+University of Texas at Arlington,TX,NCAA Division I,Western Athletic Conference,169,131,15,10.3,2003
+University of Texas at Austin,TX,NCAA Division I,Southeastern Conference,304,239,19,81.2,2003
+University of Tulsa,OK,NCAA Division I,American Athletic Conference,184,145,17,11.5,2003
+University of Utah,UT,NCAA Division I,Big 12 Conference,218,176,18,31.2,2003
+University of Vermont,VT,NCAA Division I,America East Conference,206,160,17,10.2,2003
+University of Virginia,VA,NCAA Division I,Atlantic Coast Conference,338,273,25,37.7,2003
+University of Washington,WA,NCAA Division I,Big Ten Conference,292,238,21,47.1,2003
+University of Wisconsin,WI,NCAA Division I,Big Ten Conference,383,306,22,54.2,2003
+University of Wisconsin-Madison,WI,NCAA Division I,Big Ten Conference,385,304,22,51.3,2003
+University of Wisconsin-Whitewater,WI,NCAA Division III,Wisconsin Intercollegiate Athletic Conference,311,245,21,1.7,2003
+University of Wyoming,WY,NCAA Division I,Mountain West Conference,193,155,17,13.2,2003
+Utah Valley University,UT,NCAA Division I,Western Athletic Conference,204,158,16,6.9,2003
+Vanderbilt University,TN,NCAA Division I,Southeastern Conference,250,197,16,41.4,2003
+Villanova University,PA,NCAA Division I,Big East Conference,299,248,23,19.4,2003
+Virginia Tech,VA,NCAA Division I,Atlantic Coast Conference,275,223,21,33.8,2003
+Wake Forest University,NC,NCAA Division I,Atlantic Coast Conference,247,201,17,28.9,2003
+Washington State University,WA,NCAA Division I,Pac-12 Conference,218,175,17,26.4,2003
+Weber State University,UT,NCAA Division I,Big Sky Conference,184,148,16,6.8,2003
+West Virginia University,WV,NCAA Division I,Big 12 Conference,240,191,17,27.1,2003
+Westminster College,UT,NAIA,Frontier Conference,160,132,17,1.8,2003
+Yale University,CT,NCAA Division I,Ivy League,442,367,33,15.3,2003
+Yale University '23,CT,NCAA Division I,Ivy League,443,365,33,16.7,2003
+Arizona State University,AZ,NCAA Division I,Big 12 Conference,303,248,24,42.4,2005
+Ashland University,OH,NCAA Division II,Great Midwest Athletic Conference,254,205,21,3.8,2005
+Auburn University,AL,NCAA Division I,Southeastern Conference,256,207,19,67.9,2005
+Baylor University,TX,NCAA Division I,Big 12 Conference,267,213,18,36.5,2005
+Bemidji State University,MN,NCAA Division II,Northern Sun Intercollegiate Conference,199,159,15,3.2,2005
+Boston College,MA,NCAA Division I,Atlantic Coast Conference,340,287,29,33.4,2005
+Boston University,MA,NCAA Division I,Patriot League,291,242,23,16.3,2005
+Bowling Green State University,OH,NCAA Division I,Mid-American Conference,213,169,17,11.9,2005
+Brigham Young University,UT,NCAA Division I,Big 12 Conference,323,268,20,30.9,2005
+Brown University,RI,NCAA Division I,Ivy League,445,373,36,16.0,2005
+California Polytechnic State University,CA,NCAA Division I,Big West Conference,258,208,20,16.0,2005
+Clarkson University,NY,NCAA Division III,Liberty League,281,230,21,2.8,2005
+Clemson University,SC,NCAA Division I,Atlantic Coast Conference,256,207,18,57.0,2005
+Colorado College,CO,NCAA Division III,Southern Collegiate Athletic Conference,209,166,17,4.4,2005
+Colorado Mountain College,CO,NJCAA,Independent,54,41,6,0.7,2005
+Colorado State University,CO,NCAA Division I,Mountain West Conference,223,185,16,25.7,2005
+Columbia University,NY,NCAA Division I,Ivy League,454,380,29,16.7,2005
+Cornell University,NY,NCAA Division I,Ivy League,488,408,35,18.3,2005
+Dartmouth College,NH,NCAA Division I,Ivy League,416,351,32,18.2,2005
+DeVry University,IL,Non-athletic,,0,0,0,0.0,2005
+Devry University,IL,Non-athletic,,0,0,0,0.0,2005
+Duke University,NC,NCAA Division I,Atlantic Coast Conference,315,254,25,53.3,2005
+Emory University,GA,NCAA Division III,University Athletic Association,225,192,18,3.2,2005
+Florida International University,FL,NCAA Division I,Conference USA,198,159,17,16.2,2005
+Florida State University,FL,NCAA Division I,Atlantic Coast Conference,265,217,19,51.3,2005
+Fort Lewis College,CO,NCAA Division II,Rocky Mountain Athletic Conference,163,136,14,2.5,2005
+Fresno State University,CA,NCAA Division I,Mountain West Conference,207,168,17,17.7,2005
+George Mason University,VA,NCAA Division I,Atlantic 10 Conference,215,178,21,17.9,2005
+Georgetown University,DC,NCAA Division I,Big East Conference,307,260,27,23.0,2005
+Georgia Tech,GA,NCAA Division I,Atlantic Coast Conference,251,206,17,34.0,2005
+Gonzaga University,WA,NCAA Division I,West Coast Conference,179,151,16,14.4,2005
+Harvard University,MA,NCAA Division I,Ivy League,476,407,40,19.5,2005
+Hawai'i,HI,NCAA Division I,Big West Conference,220,175,17,15.8,2005
+Howard University,DC,NCAA Division I,Mid-Eastern Athletic Conference,184,143,18,7.7,2005
+Indiana State University,IN,NCAA Division I,Missouri Valley Conference,180,144,17,9.5,2005
+Indiana University,IN,NCAA Division I,Big Ten Conference,323,265,23,38.0,2005
+Iowa State University,IA,NCAA Division I,Big 12 Conference,255,207,16,39.1,2005
+James Madison University,VA,NCAA Division I,Sun Belt Conference,253,209,17,23.6,2005
+Kennesaw State University,GA,NCAA Division I,Conference USA,199,162,17,10.7,2005
+Lindenwood University,MO,NCAA Division I,Ohio Valley Conference,233,194,25,8.5,2005
+Long Beach State,CA,NCAA Division I,Big West Conference,199,158,17,14.5,2005
+Long Beach State University,CA,NCAA Division I,Big West Conference,199,161,17,14.6,2005
+Louisiana State University,LA,NCAA Division I,Southeastern Conference,276,224,20,66.4,2005
+Marian University,IN,NAIA,Crossroads League,321,253,25,3.1,2005
+Michigan State University,MI,NCAA Division I,Big Ten Conference,340,274,23,56.2,2005
+Mississippi State University,MS,NCAA Division I,Southeastern Conference,246,202,16,36.9,2005
+Monmouth University,NJ,NCAA Division I,Colonial Athletic Association,221,174,22,8.1,2005
+Naval Academy,MD,NCAA Division I,Patriot League,499,176,31,18.2,2005
+North Carolina State University,NC,NCAA Division I,Atlantic Coast Conference,284,230,22,37.1,2005
+Northeastern University,MA,NCAA Division I,Colonial Athletic Association,254,210,17,18.8,2005
+Northern Michigan University,MI,NCAA Division II,Great Lakes Intercollegiate Athletic Conference,211,169,16,4.3,2005
+Northwestern University,IL,NCAA Division I,Big Ten Conference,253,210,18,39.2,2005
+Ohio State University,OH,NCAA Division I,Big Ten Conference,462,380,34,92.9,2005
+Oklahoma State,OK,NCAA Division I,Big 12 Conference,250,202,18,36.4,2005
+Oklahoma State University,OK,NCAA Division I,Big 12 Conference,249,201,18,36.9,2005
+Old Dominion University,VA,NCAA Division I,Sun Belt Conference,222,175,17,19.3,2005
+Oregon State University,OR,NCAA Division I,Pac-12 Conference,224,182,17,28.9,2005
+Penn State,PA,NCAA Division I,Big Ten Conference,385,318,29,62.6,2005
+Penn State University,PA,NCAA Division I,Big Ten Conference,394,316,29,64.1,2005
+Pennsylvania State University,PA,NCAA Division I,Big Ten Conference,397,321,29,65.2,2005
+Pepperdine University,CA,NCAA Division I,West Coast Conference,179,151,15,11.2,2005
+Princeton University,NJ,NCAA Division I,Ivy League,449,381,35,18.8,2005
+Purdue University,IN,NCAA Division I,Big Ten Conference,277,235,17,41.1,2005
+Queens University of Charlotte,NC,NCAA Division I,ASUN Conference,261,216,22,5.6,2005
+Rutgers University,NJ,NCAA Division I,Big Ten Conference,304,251,25,41.5,2005
+Sacred Heart University,CT,NCAA Division I,Northeast Conference,418,343,30,10.0,2005
+Salt Lake Community College,UT,NJCAA,Scenic West Athletic Conference,107,87,10,1.1,2005
+San Diego State University,CA,NCAA Division I,Mountain West Conference,242,203,18,23.5,2005
+San Jose State University,CA,NCAA Division I,Mountain West Conference,224,186,18,17.7,2005
+Southern Illinois University,IL,NCAA Division I,Missouri Valley Conference,197,160,17,11.9,2005
+Southern Methodist University,TX,NCAA Division I,Atlantic Coast Conference,237,189,17,27.6,2005
+Stanford,CA,NCAA Division I,Atlantic Coast Conference,394,332,34,67.3,2005
+Stanford University,CA,NCAA Division I,Atlantic Coast Conference,398,330,34,70.3,2005
+Syracuse University,NY,NCAA Division I,Atlantic Coast Conference,293,244,19,34.2,2005
+Tennessee State University,TN,NCAA Division I,Ohio Valley Conference,182,146,16,6.7,2005
+Texas A&M University,TX,NCAA Division I,Southeastern Conference,312,244,19,68.0,2005
+The Ohio State University,OH,NCAA Division I,Big Ten Conference,467,377,34,87.2,2005
+Tulane University,LA,NCAA Division I,American Athletic Conference,202,169,16,16.1,2005
+UCLA,CA,NCAA Division I,Big Ten Conference,342,290,23,51.2,2005
+USC,CA,NCAA Division I,Big Ten Conference,337,282,20,62.9,2005
+United States Military Academy,NY,NCAA Division I,Patriot League,508,182,30,15.2,2005
+University of Alabama,AL,NCAA Division I,Southeastern Conference,277,229,20,74.4,2005
+University of Arizona,AZ,NCAA Division I,Big 12 Conference,257,207,20,36.9,2005
+University of Arkansas,AR,NCAA Division I,Southeastern Conference,244,202,18,51.3,2005
+University of California,CA,NCAA Division I,Atlantic Coast Conference,403,344,28,39.7,2005
+University of California - Berkeley,CA,NCAA Division I,Atlantic Coast Conference,408,342,28,39.9,2005
+"University of California, Berkeley",CA,NCAA Division I,Atlantic Coast Conference,414,342,28,43.6,2005
+"University of California, Davis",CA,NCAA Division I,Big West Conference,309,254,23,13.2,2005
+"University of California, Irvine",CA,NCAA Division I,Big West Conference,226,185,17,16.0,2005
+"University of California, Los Angeles",CA,NCAA Division I,Big Ten Conference,334,288,23,56.9,2005
+"University of California, San Diego",CA,NCAA Division I,Big West Conference,270,221,22,15.1,2005
+"University of California, Santa Barbara",CA,NCAA Division I,Big West Conference,182,150,14,11.8,2005
+"University of California, Santa Cruz",CA,NCAA Division III,Independent,143,120,14,1.3,2005
+University of California--Irvine,CA,NCAA Division I,Big West Conference,231,185,17,15.2,2005
+University of California--Los Angeles,CA,NCAA Division I,Big Ten Conference,335,290,23,57.8,2005
+University of Central Florida,FL,NCAA Division I,Big 12 Conference,256,207,16,30.9,2005
+University of Central Oklahoma,OK,NCAA Division II,Mid-America Intercollegiate Athletics Association,202,159,15,4.1,2005
+University of Cincinnati,OH,NCAA Division I,Big 12 Conference,249,200,17,29.5,2005
+University of Colorado,CO,NCAA Division I,Big 12 Conference,249,201,17,38.5,2005
+University of Colorado Boulder,CO,NCAA Division I,Big 12 Conference,244,199,17,42.9,2005
+University of Colorado Colorado Springs,CO,NCAA Division II,Rocky Mountain Athletic Conference,167,135,14,3.6,2005
+"University of Colorado, Colorado Springs",CO,NCAA Division II,Rocky Mountain Athletic Conference,164,137,14,3.6,2005
+University of Connecticut,CT,NCAA Division I,Big East Conference,287,233,23,41.1,2005
+University of Dayton,OH,NCAA Division I,Atlantic 10 Conference,219,176,17,12.2,2005
+University of Denver,CO,NCAA Division I,Summit League,194,161,17,17.3,2005
+University of Florida,FL,NCAA Division I,Southeastern Conference,285,229,20,68.2,2005
+University of Georgia,GA,NCAA Division I,Southeastern Conference,283,226,20,67.8,2005
+University of Hawaii,HI,NCAA Division I,Big West Conference,219,178,17,18.7,2005
+University of Illinois,IL,NCAA Division I,Big Ten Conference,287,230,20,44.7,2005
+University of Illinois Urbana,IL,NCAA Division I,Big Ten Conference,286,232,20,39.8,2005
+University of Illinois Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,278,229,20,40.3,2005
+University of Illinois at Urbana Champaign,IL,NCAA Division I,Big Ten Conference,282,234,20,42.1,2005
+University of Illinois at Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,278,230,20,42.1,2005
+University of Iowa,IA,NCAA Division I,Big Ten Conference,304,256,21,47.8,2005
+University of Kansas,KS,NCAA Division I,Big 12 Conference,253,210,17,44.7,2005
+University of Kentucky,KY,NCAA Division I,Southeastern Conference,263,213,21,53.4,2005
+University of Louisville,KY,NCAA Division I,Atlantic Coast Conference,259,219,22,44.6,2005
+University of Maine,ME,NCAA Division I,America East Conference,240,194,17,10.6,2005
+University of Maryland,MD,NCAA Division I,Big Ten Conference,310,248,25,43.7,2005
+University of Massachusetts,MA,NCAA Division I,Atlantic 10 Conference,266,214,20,20.7,2005
+University of Miami,FL,NCAA Division I,Atlantic Coast Conference,251,205,17,38.7,2005
+University of Michigan,MI,NCAA Division I,Big Ten Conference,441,336,27,69.4,2005
+University of Minnesota,MN,NCAA Division I,Big Ten Conference,311,251,23,54.2,2005
+University of Minnesota Duluth,MN,NCAA Division II,Northern Sun Intercollegiate Conference,200,158,16,5.8,2005
+"University of Minnesota, Twin Cities",MN,NCAA Division I,Big Ten Conference,305,246,23,48.4,2005
+University of Mississippi,MS,NCAA Division I,Southeastern Conference,241,197,17,41.8,2005
+University of Nebraska,NE,NCAA Division I,Big Ten Conference,318,260,23,51.3,2005
+"University of Nevada, Las Vegas",NV,NCAA Division I,Mountain West Conference,215,173,17,25.0,2005
+"University of Nevada, Reno",NV,NCAA Division I,Mountain West Conference,203,162,16,19.9,2005
+University of New Hampshire,NH,NCAA Division I,America East Conference,239,195,17,16.1,2005
+University of New Mexico,NM,NCAA Division I,Mountain West Conference,221,178,17,19.7,2005
+University of North Carolina,NC,NCAA Division I,Atlantic Coast Conference,375,316,26,46.9,2005
+University of North Carolina at Charlotte,NC,NCAA Division I,American Athletic Conference,203,160,17,17.1,2005
+"University of North Carolina, Chapel Hill",NC,NCAA Division I,Atlantic Coast Conference,372,315,26,43.0,2005
+University of North Dakota,ND,NCAA Division I,Summit League,234,192,20,12.2,2005
+University of Notre Dame,IN,NCAA Division I,Atlantic Coast Conference,335,277,24,48.3,2005
+University of Oklahoma,OK,NCAA Division I,Southeastern Conference,271,224,18,60.9,2005
+University of Oregon,OR,NCAA Division I,Big Ten Conference,253,211,17,46.8,2005
+University of Pennsylvania,PA,NCAA Division I,Ivy League,431,363,31,18.2,2005
+University of Pittsburgh,PA,NCAA Division I,Atlantic Coast Conference,279,233,18,33.4,2005
+University of Richmond,VA,NCAA Division I,Atlantic 10 Conference,208,171,17,11.4,2005
+University of San Diego,CA,NCAA Division I,West Coast Conference,216,178,17,12.3,2005
+University of San Francisco,CA,NCAA Division I,West Coast Conference,167,137,15,9.2,2005
+University of South Carolina,SC,NCAA Division I,Southeastern Conference,257,210,18,47.2,2005
+University of South Dakota,SD,NCAA Division I,Summit League,202,161,17,8.8,2005
+University of South Florida,FL,NCAA Division I,American Athletic Conference,237,189,18,21.3,2005
+University of Southern California,CA,NCAA Division I,Big Ten Conference,341,281,20,68.1,2005
+University of Tennessee,TN,NCAA Division I,Southeastern Conference,269,225,19,68.3,2005
+University of Texas,TX,NCAA Division I,Southeastern Conference,308,245,19,91.8,2005
+University of Texas at Arlington,TX,NCAA Division I,Western Athletic Conference,174,136,15,11.4,2005
+University of Texas at Austin,TX,NCAA Division I,Southeastern Conference,313,249,19,90.2,2005
+University of Tulsa,OK,NCAA Division I,American Athletic Conference,190,151,17,12.8,2005
+University of Utah,UT,NCAA Division I,Big 12 Conference,225,183,18,34.7,2005
+University of Vermont,VT,NCAA Division I,America East Conference,212,167,17,11.3,2005
+University of Virginia,VA,NCAA Division I,Atlantic Coast Conference,348,284,25,41.9,2005
+University of Washington,WA,NCAA Division I,Big Ten Conference,301,248,21,52.3,2005
+University of Wisconsin,WI,NCAA Division I,Big Ten Conference,395,319,22,60.2,2005
+University of Wisconsin-Madison,WI,NCAA Division I,Big Ten Conference,397,317,22,57.0,2005
+University of Wisconsin-Whitewater,WI,NCAA Division III,Wisconsin Intercollegiate Athletic Conference,321,255,21,1.9,2005
+University of Wyoming,WY,NCAA Division I,Mountain West Conference,199,161,17,14.7,2005
+Utah Valley University,UT,NCAA Division I,Western Athletic Conference,210,165,16,7.7,2005
+Vanderbilt University,TN,NCAA Division I,Southeastern Conference,258,205,16,46.0,2005
+Villanova University,PA,NCAA Division I,Big East Conference,308,258,23,21.5,2005
+Virginia Tech,VA,NCAA Division I,Atlantic Coast Conference,284,232,21,37.5,2005
+Wake Forest University,NC,NCAA Division I,Atlantic Coast Conference,255,209,17,32.1,2005
+Washington State University,WA,NCAA Division I,Pac-12 Conference,225,182,17,29.3,2005
+Weber State University,UT,NCAA Division I,Big Sky Conference,190,154,16,7.6,2005
+West Virginia University,WV,NCAA Division I,Big 12 Conference,247,199,17,30.1,2005
+Westminster College,UT,NAIA,Frontier Conference,165,138,17,2.0,2005
+Yale University,CT,NCAA Division I,Ivy League,456,382,33,17.0,2005
+Yale University '23,CT,NCAA Division I,Ivy League,457,380,33,18.6,2005
+Arizona State University,AZ,NCAA Division I,Big 12 Conference,310,264,25,59.5,2010
+Ashland University,OH,NCAA Division II,Great Midwest Athletic Conference,259,221,22,4.8,2010
+Auburn University,AL,NCAA Division I,Southeastern Conference,265,220,20,90.9,2010
+Baylor University,TX,NCAA Division I,Big 12 Conference,270,227,19,54.3,2010
+Bemidji State University,MN,NCAA Division II,Northern Sun Intercollegiate Conference,203,169,15,4.3,2010
+Boston College,MA,NCAA Division I,Atlantic Coast Conference,360,313,30,49.2,2010
+Boston University,MA,NCAA Division I,Patriot League,303,259,24,23.0,2010
+Bowling Green State University,OH,NCAA Division I,Mid-American Conference,219,178,18,16.5,2010
+Brigham Young University,UT,NCAA Division I,Big 12 Conference,324,280,21,41.9,2010
+Brown University,RI,NCAA Division I,Ivy League,460,399,37,18.8,2010
+California Polytechnic State University,CA,NCAA Division I,Big West Conference,259,220,21,19.7,2010
+Clarkson University,NY,NCAA Division III,Liberty League,286,245,22,3.6,2010
+Clemson University,SC,NCAA Division I,Atlantic Coast Conference,263,225,19,78.9,2010
+Colorado College,CO,NCAA Division III,Southern Collegiate Athletic Conference,218,179,17,5.4,2010
+Colorado Mountain College,CO,NJCAA,Independent,56,43,6,0.9,2010
+Colorado State University,CO,NCAA Division I,Mountain West Conference,234,194,16,28.9,2010
+Columbia University,NY,NCAA Division I,Ivy League,475,409,30,22.5,2010
+Cornell University,NY,NCAA Division I,Ivy League,491,435,36,22.4,2010
+Dartmouth College,NH,NCAA Division I,Ivy League,430,372,33,22.7,2010
+DeVry University,IL,Non-athletic,,0,0,0,0.0,2010
+Devry University,IL,Non-athletic,,0,0,0,0.0,2010
+Duke University,NC,NCAA Division I,Atlantic Coast Conference,316,277,26,69.5,2010
+Emory University,GA,NCAA Division III,University Athletic Association,232,203,19,4.7,2010
+Florida International University,FL,NCAA Division I,Conference USA,203,173,18,20.1,2010
+Florida State University,FL,NCAA Division I,Atlantic Coast Conference,276,227,20,70.5,2010
+Fort Lewis College,CO,NCAA Division II,Rocky Mountain Athletic Conference,169,146,14,3.4,2010
+Fresno State University,CA,NCAA Division I,Mountain West Conference,212,182,18,23.2,2010
+George Mason University,VA,NCAA Division I,Atlantic 10 Conference,222,189,22,22.4,2010
+Georgetown University,DC,NCAA Division I,Big East Conference,324,269,28,27.1,2010
+Georgia Tech,GA,NCAA Division I,Atlantic Coast Conference,261,221,17,49.8,2010
+Gonzaga University,WA,NCAA Division I,West Coast Conference,187,164,16,20.2,2010
+Harvard University,MA,NCAA Division I,Ivy League,493,441,41,28.8,2010
+Hawai'i,HI,NCAA Division I,Big West Conference,222,189,17,23.4,2010
+Howard University,DC,NCAA Division I,Mid-Eastern Athletic Conference,190,156,19,9.9,2010
+Indiana State University,IN,NCAA Division I,Missouri Valley Conference,186,156,17,12.1,2010
+Indiana University,IN,NCAA Division I,Big Ten Conference,326,282,24,50.6,2010
+Iowa State University,IA,NCAA Division I,Big 12 Conference,260,219,16,51.9,2010
+James Madison University,VA,NCAA Division I,Sun Belt Conference,265,224,18,29.0,2010
+Kennesaw State University,GA,NCAA Division I,Conference USA,206,174,17,16.0,2010
+Lindenwood University,MO,NCAA Division I,Ohio Valley Conference,248,204,26,9.8,2010
+Long Beach State,CA,NCAA Division I,Big West Conference,209,170,17,17.4,2010
+Long Beach State University,CA,NCAA Division I,Big West Conference,205,170,17,18.4,2010
+Louisiana State University,LA,NCAA Division I,Southeastern Conference,277,239,21,88.1,2010
+Marian University,IN,NAIA,Crossroads League,326,275,26,4.7,2010
+Michigan State University,MI,NCAA Division I,Big Ten Conference,349,295,24,78.1,2010
+Mississippi State University,MS,NCAA Division I,Southeastern Conference,254,217,16,49.5,2010
+Monmouth University,NJ,NCAA Division I,Colonial Athletic Association,227,187,23,11.8,2010
+Naval Academy,MD,NCAA Division I,Patriot League,515,185,32,21.8,2010
+North Carolina State University,NC,NCAA Division I,Atlantic Coast Conference,292,251,23,53.8,2010
+Northeastern University,MA,NCAA Division I,Colonial Athletic Association,261,224,18,22.6,2010
+Northern Michigan University,MI,NCAA Division II,Great Lakes Intercollegiate Athletic Conference,212,179,16,5.8,2010
+Northwestern University,IL,NCAA Division I,Big Ten Conference,265,222,19,56.9,2010
+Ohio State University,OH,NCAA Division I,Big Ten Conference,479,404,35,123.6,2010
+Oklahoma State,OK,NCAA Division I,Big 12 Conference,252,211,19,55.9,2010
+Oklahoma State University,OK,NCAA Division I,Big 12 Conference,250,213,19,50.2,2010
+Old Dominion University,VA,NCAA Division I,Sun Belt Conference,229,186,18,25.9,2010
+Oregon State University,OR,NCAA Division I,Pac-12 Conference,239,197,17,42.8,2010
+Penn State,PA,NCAA Division I,Big Ten Conference,406,342,30,84.8,2010
+Penn State University,PA,NCAA Division I,Big Ten Conference,405,346,30,87.9,2010
+Pennsylvania State University,PA,NCAA Division I,Big Ten Conference,404,342,30,89.2,2010
+Pepperdine University,CA,NCAA Division I,West Coast Conference,186,160,15,14.3,2010
+Princeton University,NJ,NCAA Division I,Ivy League,471,407,36,24.2,2010
+Purdue University,IN,NCAA Division I,Big Ten Conference,286,247,18,51.9,2010
+Queens University of Charlotte,NC,NCAA Division I,ASUN Conference,273,229,23,6.8,2010
+Rutgers University,NJ,NCAA Division I,Big Ten Conference,319,269,26,62.6,2010
+Sacred Heart University,CT,NCAA Division I,Northeast Conference,438,371,31,13.1,2010
+Salt Lake Community College,UT,NJCAA,Scenic West Athletic Conference,114,95,10,1.6,2010
+San Diego State University,CA,NCAA Division I,Mountain West Conference,255,214,19,31.4,2010
+San Jose State University,CA,NCAA Division I,Mountain West Conference,239,195,19,22.1,2010
+Southern Illinois University,IL,NCAA Division I,Missouri Valley Conference,204,171,18,16.2,2010
+Southern Methodist University,TX,NCAA Division I,Atlantic Coast Conference,242,206,17,39.9,2010
+Stanford,CA,NCAA Division I,Atlantic Coast Conference,408,346,35,94.3,2010
+Stanford University,CA,NCAA Division I,Atlantic Coast Conference,411,352,35,94.8,2010
+Syracuse University,NY,NCAA Division I,Atlantic Coast Conference,301,253,20,50.0,2010
+Tennessee State University,TN,NCAA Division I,Ohio Valley Conference,184,155,16,8.5,2010
+Texas A&M University,TX,NCAA Division I,Southeastern Conference,323,262,20,92.3,2010
+The Ohio State University,OH,NCAA Division I,Big Ten Conference,477,400,35,123.2,2010
+Tulane University,LA,NCAA Division I,American Athletic Conference,204,182,16,24.4,2010
+UCLA,CA,NCAA Division I,Big Ten Conference,350,304,24,79.5,2010
+USC,CA,NCAA Division I,Big Ten Conference,342,300,21,90.1,2010
+United States Military Academy,NY,NCAA Division I,Patriot League,523,196,31,22.4,2010
+University of Alabama,AL,NCAA Division I,Southeastern Conference,288,249,21,103.3,2010
+University of Arizona,AZ,NCAA Division I,Big 12 Conference,258,223,21,56.5,2010
+University of Arkansas,AR,NCAA Division I,Southeastern Conference,251,216,19,69.9,2010
+University of California,CA,NCAA Division I,Atlantic Coast Conference,429,363,29,58.6,2010
+University of California - Berkeley,CA,NCAA Division I,Atlantic Coast Conference,426,367,29,57.3,2010
+"University of California, Berkeley",CA,NCAA Division I,Atlantic Coast Conference,415,369,29,54.9,2010
+"University of California, Davis",CA,NCAA Division I,Big West Conference,314,277,24,15.1,2010
+"University of California, Irvine",CA,NCAA Division I,Big West Conference,232,198,18,19.6,2010
+"University of California, Los Angeles",CA,NCAA Division I,Big Ten Conference,344,312,24,76.0,2010
+"University of California, San Diego",CA,NCAA Division I,Big West Conference,283,238,23,18.5,2010
+"University of California, Santa Barbara",CA,NCAA Division I,Big West Conference,187,162,14,13.7,2010
+"University of California, Santa Cruz",CA,NCAA Division III,Independent,152,128,14,1.8,2010
+University of California--Irvine,CA,NCAA Division I,Big West Conference,237,193,18,21.0,2010
+University of California--Los Angeles,CA,NCAA Division I,Big Ten Conference,346,307,24,72.3,2010
+University of Central Florida,FL,NCAA Division I,Big 12 Conference,260,225,16,43.2,2010
+University of Central Oklahoma,OK,NCAA Division II,Mid-America Intercollegiate Athletics Association,206,169,15,5.7,2010
+University of Cincinnati,OH,NCAA Division I,Big 12 Conference,251,215,18,40.3,2010
+University of Colorado,CO,NCAA Division I,Big 12 Conference,251,211,17,53.2,2010
+University of Colorado Boulder,CO,NCAA Division I,Big 12 Conference,257,213,17,54.3,2010
+University of Colorado Colorado Springs,CO,NCAA Division II,Rocky Mountain Athletic Conference,169,143,14,4.2,2010
+"University of Colorado, Colorado Springs",CO,NCAA Division II,Rocky Mountain Athletic Conference,167,147,14,4.3,2010
+University of Connecticut,CT,NCAA Division I,Big East Conference,291,250,24,56.8,2010
+University of Dayton,OH,NCAA Division I,Atlantic 10 Conference,226,187,17,18.8,2010
+University of Denver,CO,NCAA Division I,Summit League,199,168,17,22.6,2010
+University of Florida,FL,NCAA Division I,Southeastern Conference,291,248,21,99.5,2010
+University of Georgia,GA,NCAA Division I,Southeastern Conference,295,242,21,85.2,2010
+University of Hawaii,HI,NCAA Division I,Big West Conference,221,187,17,21.2,2010
+University of Illinois,IL,NCAA Division I,Big Ten Conference,286,250,21,60.8,2010
+University of Illinois Urbana,IL,NCAA Division I,Big Ten Conference,288,247,21,57.2,2010
+University of Illinois Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,292,245,21,58.5,2010
+University of Illinois at Urbana Champaign,IL,NCAA Division I,Big Ten Conference,288,252,21,60.3,2010
+University of Illinois at Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,291,244,21,59.7,2010
+University of Iowa,IA,NCAA Division I,Big Ten Conference,317,270,22,70.0,2010
+University of Kansas,KS,NCAA Division I,Big 12 Conference,259,218,18,62.1,2010
+University of Kentucky,KY,NCAA Division I,Southeastern Conference,277,228,22,76.3,2010
+University of Louisville,KY,NCAA Division I,Atlantic Coast Conference,271,228,23,58.3,2010
+University of Maine,ME,NCAA Division I,America East Conference,247,205,17,12.8,2010
+University of Maryland,MD,NCAA Division I,Big Ten Conference,320,264,26,57.5,2010
+University of Massachusetts,MA,NCAA Division I,Atlantic 10 Conference,273,227,21,24.0,2010
+University of Miami,FL,NCAA Division I,Atlantic Coast Conference,264,221,18,59.3,2010
+University of Michigan,MI,NCAA Division I,Big Ten Conference,458,365,28,102.0,2010
+University of Minnesota,MN,NCAA Division I,Big Ten Conference,318,268,24,71.1,2010
+University of Minnesota Duluth,MN,NCAA Division II,Northern Sun Intercollegiate Conference,205,170,16,7.0,2010
+"University of Minnesota, Twin Cities",MN,NCAA Division I,Big Ten Conference,323,265,24,71.2,2010
+University of Mississippi,MS,NCAA Division I,Southeastern Conference,249,211,18,55.7,2010
+University of Nebraska,NE,NCAA Division I,Big Ten Conference,334,277,24,69.7,2010
+"University of Nevada, Las Vegas",NV,NCAA Division I,Mountain West Conference,229,188,17,30.4,2010
+"University of Nevada, Reno",NV,NCAA Division I,Mountain West Conference,207,170,16,24.6,2010
+University of New Hampshire,NH,NCAA Division I,America East Conference,247,208,18,18.6,2010
+University of New Mexico,NM,NCAA Division I,Mountain West Conference,227,190,18,25.0,2010
+University of North Carolina,NC,NCAA Division I,Atlantic Coast Conference,392,333,27,58.9,2010
+University of North Carolina at Charlotte,NC,NCAA Division I,American Athletic Conference,209,168,18,21.0,2010
+"University of North Carolina, Chapel Hill",NC,NCAA Division I,Atlantic Coast Conference,381,332,27,58.5,2010
+University of North Dakota,ND,NCAA Division I,Summit League,246,207,21,16.6,2010
+University of Notre Dame,IN,NCAA Division I,Atlantic Coast Conference,354,295,25,70.1,2010
+University of Oklahoma,OK,NCAA Division I,Southeastern Conference,286,242,19,78.9,2010
+University of Oregon,OR,NCAA Division I,Big Ten Conference,264,221,18,68.0,2010
+University of Pennsylvania,PA,NCAA Division I,Ivy League,447,392,32,20.7,2010
+University of Pittsburgh,PA,NCAA Division I,Atlantic Coast Conference,291,248,19,50.4,2010
+University of Richmond,VA,NCAA Division I,Atlantic 10 Conference,213,179,17,14.7,2010
+University of San Diego,CA,NCAA Division I,West Coast Conference,227,187,17,16.5,2010
+University of San Francisco,CA,NCAA Division I,West Coast Conference,167,147,15,12.2,2010
+University of South Carolina,SC,NCAA Division I,Southeastern Conference,260,221,19,64.9,2010
+University of South Dakota,SD,NCAA Division I,Summit League,207,168,17,11.0,2010
+University of South Florida,FL,NCAA Division I,American Athletic Conference,242,204,19,30.2,2010
+University of Southern California,CA,NCAA Division I,Big Ten Conference,344,296,21,86.9,2010
+University of Tennessee,TN,NCAA Division I,Southeastern Conference,285,242,20,83.9,2010
+University of Texas,TX,NCAA Division I,Southeastern Conference,322,263,20,112.9,2010
+University of Texas at Arlington,TX,NCAA Division I,Western Athletic Conference,180,148,15,16.6,2010
+University of Texas at Austin,TX,NCAA Division I,Southeastern Conference,315,269,20,125.9,2010
+University of Tulsa,OK,NCAA Division I,American Athletic Conference,198,161,17,17.5,2010
+University of Utah,UT,NCAA Division I,Big 12 Conference,236,195,19,48.9,2010
+University of Vermont,VT,NCAA Division I,America East Conference,218,179,18,16.3,2010
+University of Virginia,VA,NCAA Division I,Atlantic Coast Conference,359,308,26,63.8,2010
+University of Washington,WA,NCAA Division I,Big Ten Conference,305,269,22,69.7,2010
+University of Wisconsin,WI,NCAA Division I,Big Ten Conference,400,340,23,84.6,2010
+University of Wisconsin-Madison,WI,NCAA Division I,Big Ten Conference,399,343,23,85.2,2010
+University of Wisconsin-Whitewater,WI,NCAA Division III,Wisconsin Intercollegiate Athletic Conference,331,272,22,3.0,2010
+University of Wyoming,WY,NCAA Division I,Mountain West Conference,204,169,17,19.8,2010
+Utah Valley University,UT,NCAA Division I,Western Athletic Conference,219,182,16,11.2,2010
+Vanderbilt University,TN,NCAA Division I,Southeastern Conference,261,219,16,58.4,2010
+Villanova University,PA,NCAA Division I,Big East Conference,322,270,24,30.8,2010
+Virginia Tech,VA,NCAA Division I,Atlantic Coast Conference,287,248,22,50.1,2010
+Wake Forest University,NC,NCAA Division I,Atlantic Coast Conference,263,221,18,49.4,2010
+Washington State University,WA,NCAA Division I,Pac-12 Conference,232,194,17,37.9,2010
+Weber State University,UT,NCAA Division I,Big Sky Conference,195,165,16,10.2,2010
+West Virginia University,WV,NCAA Division I,Big 12 Conference,257,213,17,39.5,2010
+Westminster College,UT,NAIA,Frontier Conference,168,145,18,2.6,2010
+Yale University,CT,NCAA Division I,Ivy League,461,408,34,23.6,2010
+Yale University '23,CT,NCAA Division I,Ivy League,467,409,34,23.0,2010
+Arizona State University,AZ,NCAA Division I,Big 12 Conference,324,289,26,81.4,2015
+Ashland University,OH,NCAA Division II,Great Midwest Athletic Conference,270,241,22,6.0,2015
+Auburn University,AL,NCAA Division I,Southeastern Conference,269,240,20,112.2,2015
+Baylor University,TX,NCAA Division I,Big 12 Conference,276,252,19,65.5,2015
+Bemidji State University,MN,NCAA Division II,Northern Sun Intercollegiate Conference,212,182,15,5.7,2015
+Boston College,MA,NCAA Division I,Atlantic Coast Conference,365,335,31,63.9,2015
+Boston University,MA,NCAA Division I,Patriot League,304,272,24,26.9,2015
+Bowling Green State University,OH,NCAA Division I,Mid-American Conference,220,194,18,18.9,2015
+Brigham Young University,UT,NCAA Division I,Big 12 Conference,340,301,21,52.7,2015
+Brown University,RI,NCAA Division I,Ivy League,472,433,38,25.9,2015
+California Polytechnic State University,CA,NCAA Division I,Big West Conference,269,236,21,25.4,2015
+Clarkson University,NY,NCAA Division III,Liberty League,303,267,22,4.4,2015
+Clemson University,SC,NCAA Division I,Atlantic Coast Conference,269,235,19,98.1,2015
+Colorado College,CO,NCAA Division III,Southern Collegiate Athletic Conference,219,190,17,6.7,2015
+Colorado Mountain College,CO,NJCAA,Independent,58,46,6,1.0,2015
+Colorado State University,CO,NCAA Division I,Mountain West Conference,245,208,16,39.3,2015
+Columbia University,NY,NCAA Division I,Ivy League,492,440,31,26.3,2015
+Cornell University,NY,NCAA Division I,Ivy League,517,465,37,29.0,2015
+Dartmouth College,NH,NCAA Division I,Ivy League,438,401,34,27.6,2015
+DeVry University,IL,Non-athletic,,0,0,0,0.0,2015
+Devry University,IL,Non-athletic,,0,0,0,0.0,2015
+Duke University,NC,NCAA Division I,Atlantic Coast Conference,334,290,27,86.5,2015
+Emory University,GA,NCAA Division III,University Athletic Association,241,216,19,5.6,2015
+Florida International University,FL,NCAA Division I,Conference USA,209,183,18,25.6,2015
+Florida State University,FL,NCAA Division I,Atlantic Coast Conference,279,252,20,85.2,2015
+Fort Lewis College,CO,NCAA Division II,Rocky Mountain Athletic Conference,174,154,14,4.5,2015
+Fresno State University,CA,NCAA Division I,Mountain West Conference,218,195,18,30.4,2015
+George Mason University,VA,NCAA Division I,Atlantic 10 Conference,229,201,22,27.9,2015
+Georgetown University,DC,NCAA Division I,Big East Conference,326,296,29,32.5,2015
+Georgia Tech,GA,NCAA Division I,Atlantic Coast Conference,271,240,17,68.3,2015
+Gonzaga University,WA,NCAA Division I,West Coast Conference,190,177,16,25.8,2015
+Harvard University,MA,NCAA Division I,Ivy League,507,468,42,35.6,2015
+Hawai'i,HI,NCAA Division I,Big West Conference,231,203,17,29.4,2015
+Howard University,DC,NCAA Division I,Mid-Eastern Athletic Conference,190,166,19,13.0,2015
+Indiana State University,IN,NCAA Division I,Missouri Valley Conference,191,166,17,16.1,2015
+Indiana University,IN,NCAA Division I,Big Ten Conference,337,304,24,71.8,2015
+Iowa State University,IA,NCAA Division I,Big 12 Conference,267,241,16,66.9,2015
+James Madison University,VA,NCAA Division I,Sun Belt Conference,268,242,18,38.3,2015
+Kennesaw State University,GA,NCAA Division I,Conference USA,211,185,17,19.7,2015
+Lindenwood University,MO,NCAA Division I,Ohio Valley Conference,248,222,27,13.2,2015
+Long Beach State,CA,NCAA Division I,Big West Conference,210,183,17,22.3,2015
+Long Beach State University,CA,NCAA Division I,Big West Conference,211,180,17,22.6,2015
+Louisiana State University,LA,NCAA Division I,Southeastern Conference,294,258,21,123.0,2015
+Marian University,IN,NAIA,Crossroads League,344,297,27,5.5,2015
+Michigan State University,MI,NCAA Division I,Big Ten Conference,355,312,25,93.8,2015
+Mississippi State University,MS,NCAA Division I,Southeastern Conference,262,228,16,65.8,2015
+Monmouth University,NJ,NCAA Division I,Colonial Athletic Association,231,202,23,14.8,2015
+Naval Academy,MD,NCAA Division I,Patriot League,534,204,33,28.0,2015
+North Carolina State University,NC,NCAA Division I,Atlantic Coast Conference,301,264,23,71.3,2015
+Northeastern University,MA,NCAA Division I,Colonial Athletic Association,268,238,18,29.4,2015
+Northern Michigan University,MI,NCAA Division II,Great Lakes Intercollegiate Athletic Conference,225,192,16,6.8,2015
+Northwestern University,IL,NCAA Division I,Big Ten Conference,272,238,19,69.9,2015
+Ohio State University,OH,NCAA Division I,Big Ten Conference,484,431,36,158.1,2015
+Oklahoma State,OK,NCAA Division I,Big 12 Conference,266,227,19,66.8,2015
+Oklahoma State University,OK,NCAA Division I,Big 12 Conference,261,227,19,71.5,2015
+Old Dominion University,VA,NCAA Division I,Sun Belt Conference,235,201,18,30.3,2015
+Oregon State University,OR,NCAA Division I,Pac-12 Conference,242,210,17,54.5,2015
+Penn State,PA,NCAA Division I,Big Ten Conference,417,363,31,107.8,2015
+Penn State University,PA,NCAA Division I,Big Ten Conference,416,370,31,112.9,2015
+Pennsylvania State University,PA,NCAA Division I,Big Ten Conference,410,361,31,116.6,2015
+Pepperdine University,CA,NCAA Division I,West Coast Conference,190,176,15,17.5,2015
+Princeton University,NJ,NCAA Division I,Ivy League,479,445,37,30.7,2015
+Purdue University,IN,NCAA Division I,Big Ten Conference,299,270,18,70.4,2015
+Queens University of Charlotte,NC,NCAA Division I,ASUN Conference,282,244,23,8.2,2015
+Rutgers University,NJ,NCAA Division I,Big Ten Conference,329,289,27,77.2,2015
+Sacred Heart University,CT,NCAA Division I,Northeast Conference,445,395,32,16.5,2015
+Salt Lake Community College,UT,NJCAA,Scenic West Athletic Conference,117,101,10,2.2,2015
+San Diego State University,CA,NCAA Division I,Mountain West Conference,259,228,19,38.4,2015
+San Jose State University,CA,NCAA Division I,Mountain West Conference,239,214,19,26.5,2015
+Southern Illinois University,IL,NCAA Division I,Missouri Valley Conference,210,184,18,20.3,2015
+Southern Methodist University,TX,NCAA Division I,Atlantic Coast Conference,253,218,17,49.7,2015
+Stanford,CA,NCAA Division I,Atlantic Coast Conference,419,379,36,117.1,2015
+Stanford University,CA,NCAA Division I,Atlantic Coast Conference,420,381,36,125.5,2015
+Syracuse University,NY,NCAA Division I,Atlantic Coast Conference,306,273,20,63.7,2015
+Tennessee State University,TN,NCAA Division I,Ohio Valley Conference,193,165,16,10.5,2015
+Texas A&M University,TX,NCAA Division I,Southeastern Conference,328,286,20,124.4,2015
+The Ohio State University,OH,NCAA Division I,Big Ten Conference,488,431,36,161.8,2015
+Tulane University,LA,NCAA Division I,American Athletic Conference,211,190,16,29.0,2015
+UCLA,CA,NCAA Division I,Big Ten Conference,361,332,25,95.4,2015
+USC,CA,NCAA Division I,Big Ten Conference,359,323,21,113.3,2015
+United States Military Academy,NY,NCAA Division I,Patriot League,522,211,32,27.5,2015
+University of Alabama,AL,NCAA Division I,Southeastern Conference,298,265,21,137.9,2015
+University of Arizona,AZ,NCAA Division I,Big 12 Conference,267,242,21,68.3,2015
+University of Arkansas,AR,NCAA Division I,Southeastern Conference,262,234,19,87.3,2015
+University of California,CA,NCAA Division I,Atlantic Coast Conference,428,401,30,69.4,2015
+University of California - Berkeley,CA,NCAA Division I,Atlantic Coast Conference,441,396,30,70.0,2015
+"University of California, Berkeley",CA,NCAA Division I,Atlantic Coast Conference,438,395,30,73.0,2015
+"University of California, Davis",CA,NCAA Division I,Big West Conference,333,296,25,20.5,2015
+"University of California, Irvine",CA,NCAA Division I,Big West Conference,240,212,18,24.9,2015
+"University of California, Los Angeles",CA,NCAA Division I,Big Ten Conference,357,335,25,98.6,2015
+"University of California, San Diego",CA,NCAA Division I,Big West Conference,286,257,23,22.2,2015
+"University of California, Santa Barbara",CA,NCAA Division I,Big West Conference,196,177,14,17.2,2015
+"University of California, Santa Cruz",CA,NCAA Division III,Independent,157,136,14,2.1,2015
+University of California--Irvine,CA,NCAA Division I,Big West Conference,246,211,18,25.1,2015
+University of California--Los Angeles,CA,NCAA Division I,Big Ten Conference,363,325,25,95.5,2015
+University of Central Florida,FL,NCAA Division I,Big 12 Conference,272,243,16,57.6,2015
+University of Central Oklahoma,OK,NCAA Division II,Mid-America Intercollegiate Athletics Association,209,184,15,7.3,2015
+University of Cincinnati,OH,NCAA Division I,Big 12 Conference,262,233,18,54.5,2015
+University of Colorado,CO,NCAA Division I,Big 12 Conference,257,233,17,71.9,2015
+University of Colorado Boulder,CO,NCAA Division I,Big 12 Conference,259,233,17,74.1,2015
+University of Colorado Colorado Springs,CO,NCAA Division II,Rocky Mountain Athletic Conference,172,156,14,5.5,2015
+"University of Colorado, Colorado Springs",CO,NCAA Division II,Rocky Mountain Athletic Conference,174,154,14,5.4,2015
+University of Connecticut,CT,NCAA Division I,Big East Conference,298,271,24,64.7,2015
+University of Dayton,OH,NCAA Division I,Atlantic 10 Conference,231,202,17,23.4,2015
+University of Denver,CO,NCAA Division I,Summit League,207,185,17,28.7,2015
+University of Florida,FL,NCAA Division I,Southeastern Conference,300,270,21,126.1,2015
+University of Georgia,GA,NCAA Division I,Southeastern Conference,303,259,21,119.9,2015
+University of Hawaii,HI,NCAA Division I,Big West Conference,233,201,17,28.1,2015
+University of Illinois,IL,NCAA Division I,Big Ten Conference,305,271,21,76.6,2015
+University of Illinois Urbana,IL,NCAA Division I,Big Ten Conference,299,266,21,72.0,2015
+University of Illinois Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,301,264,21,72.9,2015
+University of Illinois at Urbana Champaign,IL,NCAA Division I,Big Ten Conference,303,267,21,76.2,2015
+University of Illinois at Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,304,262,21,76.6,2015
+University of Iowa,IA,NCAA Division I,Big Ten Conference,331,297,22,87.6,2015
+University of Kansas,KS,NCAA Division I,Big 12 Conference,269,237,18,79.3,2015
+University of Kentucky,KY,NCAA Division I,Southeastern Conference,277,247,22,101.7,2015
+University of Louisville,KY,NCAA Division I,Atlantic Coast Conference,276,251,23,76.9,2015
+University of Maine,ME,NCAA Division I,America East Conference,252,220,17,15.5,2015
+University of Maryland,MD,NCAA Division I,Big Ten Conference,333,289,27,78.1,2015
+University of Massachusetts,MA,NCAA Division I,Atlantic 10 Conference,282,244,21,33.2,2015
+University of Miami,FL,NCAA Division I,Atlantic Coast Conference,272,240,18,69.4,2015
+University of Michigan,MI,NCAA Division I,Big Ten Conference,470,380,29,132.6,2015
+University of Minnesota,MN,NCAA Division I,Big Ten Conference,334,282,25,86.1,2015
+University of Minnesota Duluth,MN,NCAA Division II,Northern Sun Intercollegiate Conference,215,182,16,8.6,2015
+"University of Minnesota, Twin Cities",MN,NCAA Division I,Big Ten Conference,332,281,25,85.2,2015
+University of Mississippi,MS,NCAA Division I,Southeastern Conference,261,226,18,77.4,2015
+University of Nebraska,NE,NCAA Division I,Big Ten Conference,343,293,24,85.7,2015
+"University of Nevada, Las Vegas",NV,NCAA Division I,Mountain West Conference,233,200,17,39.7,2015
+"University of Nevada, Reno",NV,NCAA Division I,Mountain West Conference,214,183,16,31.1,2015
+University of New Hampshire,NH,NCAA Division I,America East Conference,250,219,18,25.1,2015
+University of New Mexico,NM,NCAA Division I,Mountain West Conference,236,200,18,33.2,2015
+University of North Carolina,NC,NCAA Division I,Atlantic Coast Conference,398,355,28,77.5,2015
+University of North Carolina at Charlotte,NC,NCAA Division I,American Athletic Conference,211,185,18,25.7,2015
+"University of North Carolina, Chapel Hill",NC,NCAA Division I,Atlantic Coast Conference,402,361,28,76.5,2015
+University of North Dakota,ND,NCAA Division I,Summit League,251,218,21,22.0,2015
+University of Notre Dame,IN,NCAA Division I,Atlantic Coast Conference,352,319,26,94.8,2015
+University of Oklahoma,OK,NCAA Division I,Southeastern Conference,295,258,19,101.0,2015
+University of Oregon,OR,NCAA Division I,Big Ten Conference,266,242,18,81.8,2015
+University of Pennsylvania,PA,NCAA Division I,Ivy League,466,419,33,28.2,2015
+University of Pittsburgh,PA,NCAA Division I,Atlantic Coast Conference,300,266,19,66.7,2015
+University of Richmond,VA,NCAA Division I,Atlantic 10 Conference,219,192,17,20.8,2015
+University of San Diego,CA,NCAA Division I,West Coast Conference,229,205,17,22.1,2015
+University of San Francisco,CA,NCAA Division I,West Coast Conference,171,158,15,16.5,2015
+University of South Carolina,SC,NCAA Division I,Southeastern Conference,273,238,19,81.5,2015
+University of South Dakota,SD,NCAA Division I,Summit League,210,187,17,14.4,2015
+University of South Florida,FL,NCAA Division I,American Athletic Conference,254,222,19,39.1,2015
+University of Southern California,CA,NCAA Division I,Big Ten Conference,361,317,21,109.6,2015
+University of Tennessee,TN,NCAA Division I,Southeastern Conference,293,255,20,110.3,2015
+University of Texas,TX,NCAA Division I,Southeastern Conference,324,284,20,158.6,2015
+University of Texas at Arlington,TX,NCAA Division I,Western Athletic Conference,187,155,15,20.4,2015
+University of Texas at Austin,TX,NCAA Division I,Southeastern Conference,327,289,20,153.4,2015
+University of Tulsa,OK,NCAA Division I,American Athletic Conference,206,172,17,23.6,2015
+University of Utah,UT,NCAA Division I,Big 12 Conference,246,209,19,65.5,2015
+University of Vermont,VT,NCAA Division I,America East Conference,227,191,18,19.5,2015
+University of Virginia,VA,NCAA Division I,Atlantic Coast Conference,365,330,27,77.0,2015
+University of Washington,WA,NCAA Division I,Big Ten Conference,313,289,22,85.7,2015
+University of Wisconsin,WI,NCAA Division I,Big Ten Conference,420,371,23,102.2,2015
+University of Wisconsin-Madison,WI,NCAA Division I,Big Ten Conference,421,363,23,104.8,2015
+University of Wisconsin-Whitewater,WI,NCAA Division III,Wisconsin Intercollegiate Athletic Conference,334,290,22,3.6,2015
+University of Wyoming,WY,NCAA Division I,Mountain West Conference,213,187,17,27.6,2015
+Utah Valley University,UT,NCAA Division I,Western Athletic Conference,221,195,16,14.6,2015
+Vanderbilt University,TN,NCAA Division I,Southeastern Conference,266,241,16,74.9,2015
+Villanova University,PA,NCAA Division I,Big East Conference,330,289,24,37.5,2015
+Virginia Tech,VA,NCAA Division I,Atlantic Coast Conference,302,267,22,68.0,2015
+Wake Forest University,NC,NCAA Division I,Atlantic Coast Conference,266,242,18,63.7,2015
+Washington State University,WA,NCAA Division I,Pac-12 Conference,242,213,17,46.7,2015
+Weber State University,UT,NCAA Division I,Big Sky Conference,201,175,16,13.2,2015
+West Virginia University,WV,NCAA Division I,Big 12 Conference,261,232,17,49.0,2015
+Westminster College,UT,NAIA,Frontier Conference,175,155,18,3.5,2015
+Yale University,CT,NCAA Division I,Ivy League,491,447,35,28.6,2015
+Yale University '23,CT,NCAA Division I,Ivy League,482,442,35,31.5,2015
+Arizona State University,AZ,NCAA Division I,Big 12 Conference,330,310,26,115.0,2023
+Ashland University,OH,NCAA Division II,Great Midwest Athletic Conference,280,260,22,8.0,2023
+Auburn University,AL,NCAA Division I,Southeastern Conference,280,260,20,165.0,2023
+Baylor University,TX,NCAA Division I,Big 12 Conference,290,270,19,100.0,2023
+Bemidji State University,MN,NCAA Division II,Northern Sun Intercollegiate Conference,220,200,15,8.0,2023
+Boston College,MA,NCAA Division I,Atlantic Coast Conference,380,360,31,90.0,2023
+Boston University,MA,NCAA Division I,Patriot League,320,300,24,40.0,2023
+Bowling Green State University,OH,NCAA Division I,Mid-American Conference,230,210,18,28.0,2023
+Brigham Young University,UT,NCAA Division I,Big 12 Conference,350,330,21,80.0,2023
+Brown University,RI,NCAA Division I,Ivy League,490,470,38,35.0,2023
+California Polytechnic State University,CA,NCAA Division I,Big West Conference,280,260,21,35.0,2023
+Clarkson University,NY,NCAA Division III,Liberty League,310,290,22,6.0,2023
+Clemson University,SC,NCAA Division I,Atlantic Coast Conference,280,260,19,140.0,2023
+Colorado College,CO,NCAA Division III,Southern Collegiate Athletic Conference,230,210,17,10.0,2023
+Colorado Mountain College,CO,NJCAA,Independent,60,50,6,1.5,2023
+Colorado State University,CO,NCAA Division I,Mountain West Conference,250,230,16,55.0,2023
+Columbia University,NY,NCAA Division I,Ivy League,500,480,31,38.0,2023
+Cornell University,NY,NCAA Division I,Ivy League,530,510,37,40.0,2023
+Dartmouth College,NH,NCAA Division I,Ivy League,460,440,34,38.0,2023
+DeVry University,IL,Non-athletic,,0,0,0,0.0,2023
+Devry University,IL,Non-athletic,,0,0,0,0.0,2023
+Duke University,NC,NCAA Division I,Atlantic Coast Conference,340,320,27,130.0,2023
+Emory University,GA,NCAA Division III,University Athletic Association,250,240,19,8.0,2023
+Florida International University,FL,NCAA Division I,Conference USA,220,200,18,38.0,2023
+Florida State University,FL,NCAA Division I,Atlantic Coast Conference,290,270,20,130.0,2023
+Fort Lewis College,CO,NCAA Division II,Rocky Mountain Athletic Conference,180,170,14,6.0,2023
+Fresno State University,CA,NCAA Division I,Mountain West Conference,230,210,18,42.0,2023
+George Mason University,VA,NCAA Division I,Atlantic 10 Conference,240,220,22,38.0,2023
+Georgetown University,DC,NCAA Division I,Big East Conference,340,320,29,48.0,2023
+Georgia Tech,GA,NCAA Division I,Atlantic Coast Conference,280,260,17,95.0,2023
+Gonzaga University,WA,NCAA Division I,West Coast Conference,200,190,16,35.0,2023
+Harvard University,MA,NCAA Division I,Ivy League,530,510,42,50.0,2023
+Hawai'i,HI,NCAA Division I,Big West Conference,240,220,17,40.0,2023
+Howard University,DC,NCAA Division I,Mid-Eastern Athletic Conference,200,180,19,18.0,2023
+Indiana State University,IN,NCAA Division I,Missouri Valley Conference,200,180,17,22.0,2023
+Indiana University,IN,NCAA Division I,Big Ten Conference,350,330,24,100.0,2023
+Iowa State University,IA,NCAA Division I,Big 12 Conference,280,260,16,95.0,2023
+James Madison University,VA,NCAA Division I,Sun Belt Conference,280,260,18,52.0,2023
+Kennesaw State University,GA,NCAA Division I,Conference USA,220,200,17,28.0,2023
+Lindenwood University,MO,NCAA Division I,Ohio Valley Conference,260,240,27,18.0,2023
+Long Beach State,CA,NCAA Division I,Big West Conference,220,200,17,32.0,2023
+Long Beach State University,CA,NCAA Division I,Big West Conference,220,200,17,32.0,2023
+Louisiana State University,LA,NCAA Division I,Southeastern Conference,300,280,21,175.0,2023
+Marian University,IN,NAIA,Crossroads League,350,320,27,8.0,2023
+Michigan State University,MI,NCAA Division I,Big Ten Conference,370,340,25,140.0,2023
+Mississippi State University,MS,NCAA Division I,Southeastern Conference,270,250,16,95.0,2023
+Monmouth University,NJ,NCAA Division I,Colonial Athletic Association,240,220,23,20.0,2023
+Naval Academy,MD,NCAA Division I,Patriot League,550,220,33,40.0,2023
+North Carolina State University,NC,NCAA Division I,Atlantic Coast Conference,310,290,23,100.0,2023
+Northeastern University,MA,NCAA Division I,Colonial Athletic Association,280,260,18,42.0,2023
+Northern Michigan University,MI,NCAA Division II,Great Lakes Intercollegiate Athletic Conference,230,210,16,10.0,2023
+Northwestern University,IL,NCAA Division I,Big Ten Conference,280,260,19,100.0,2023
+Ohio State University,OH,NCAA Division I,Big Ten Conference,510,470,36,235.0,2023
+Oklahoma State,OK,NCAA Division I,Big 12 Conference,270,250,19,100.0,2023
+Oklahoma State University,OK,NCAA Division I,Big 12 Conference,270,250,19,100.0,2023
+Old Dominion University,VA,NCAA Division I,Sun Belt Conference,240,220,18,45.0,2023
+Oregon State University,OR,NCAA Division I,Pac-12 Conference,250,230,17,80.0,2023
+Penn State,PA,NCAA Division I,Big Ten Conference,430,400,31,165.0,2023
+Penn State University,PA,NCAA Division I,Big Ten Conference,430,400,31,165.0,2023
+Pennsylvania State University,PA,NCAA Division I,Big Ten Conference,430,400,31,165.0,2023
+Pepperdine University,CA,NCAA Division I,West Coast Conference,200,190,15,25.0,2023
+Princeton University,NJ,NCAA Division I,Ivy League,500,480,37,42.0,2023
+Purdue University,IN,NCAA Division I,Big Ten Conference,310,290,18,100.0,2023
+Queens University of Charlotte,NC,NCAA Division I,ASUN Conference,290,270,23,12.0,2023
+Rutgers University,NJ,NCAA Division I,Big Ten Conference,340,310,27,115.0,2023
+Sacred Heart University,CT,NCAA Division I,Northeast Conference,460,430,32,22.0,2023
+Salt Lake Community College,UT,NJCAA,Scenic West Athletic Conference,120,110,10,3.0,2023
+San Diego State University,CA,NCAA Division I,Mountain West Conference,270,250,19,55.0,2023
+San Jose State University,CA,NCAA Division I,Mountain West Conference,250,230,19,38.0,2023
+Southern Illinois University,IL,NCAA Division I,Missouri Valley Conference,220,200,18,30.0,2023
+Southern Methodist University,TX,NCAA Division I,Atlantic Coast Conference,260,240,17,70.0,2023
+Stanford,CA,NCAA Division I,Atlantic Coast Conference,430,410,36,178.0,2023
+Stanford University,CA,NCAA Division I,Atlantic Coast Conference,430,410,36,178.0,2023
+Syracuse University,NY,NCAA Division I,Atlantic Coast Conference,320,300,20,90.0,2023
+Tennessee State University,TN,NCAA Division I,Ohio Valley Conference,200,180,16,15.0,2023
+Texas A&M University,TX,NCAA Division I,Southeastern Conference,340,310,20,180.0,2023
+The Ohio State University,OH,NCAA Division I,Big Ten Conference,510,470,36,235.0,2023
+Tulane University,LA,NCAA Division I,American Athletic Conference,220,210,16,42.0,2023
+UCLA,CA,NCAA Division I,Big Ten Conference,370,360,25,140.0,2023
+USC,CA,NCAA Division I,Big Ten Conference,370,350,21,165.0,2023
+United States Military Academy,NY,NCAA Division I,Patriot League,550,230,32,40.0,2023
+University of Alabama,AL,NCAA Division I,Southeastern Conference,310,290,21,195.0,2023
+University of Arizona,AZ,NCAA Division I,Big 12 Conference,280,260,21,105.0,2023
+University of Arkansas,AR,NCAA Division I,Southeastern Conference,270,250,19,130.0,2023
+University of California,CA,NCAA Division I,Atlantic Coast Conference,450,430,30,105.0,2023
+University of California - Berkeley,CA,NCAA Division I,Atlantic Coast Conference,450,430,30,105.0,2023
+"University of California, Berkeley",CA,NCAA Division I,Atlantic Coast Conference,450,430,30,105.0,2023
+"University of California, Davis",CA,NCAA Division I,Big West Conference,340,320,25,28.0,2023
+"University of California, Irvine",CA,NCAA Division I,Big West Conference,250,230,18,35.0,2023
+"University of California, Los Angeles",CA,NCAA Division I,Big Ten Conference,370,360,25,140.0,2023
+"University of California, San Diego",CA,NCAA Division I,Big West Conference,300,280,23,32.0,2023
+"University of California, Santa Barbara",CA,NCAA Division I,Big West Conference,200,190,14,25.0,2023
+"University of California, Santa Cruz",CA,NCAA Division III,Independent,160,150,14,3.0,2023
+University of California--Irvine,CA,NCAA Division I,Big West Conference,250,230,18,35.0,2023
+University of California--Los Angeles,CA,NCAA Division I,Big Ten Conference,370,360,25,140.0,2023
+University of Central Florida,FL,NCAA Division I,Big 12 Conference,280,260,16,80.0,2023
+University of Central Oklahoma,OK,NCAA Division II,Mid-America Intercollegiate Athletics Association,220,200,15,10.0,2023
+University of Cincinnati,OH,NCAA Division I,Big 12 Conference,270,250,18,80.0,2023
+University of Colorado,CO,NCAA Division I,Big 12 Conference,270,250,17,105.0,2023
+University of Colorado Boulder,CO,NCAA Division I,Big 12 Conference,270,250,17,105.0,2023
+University of Colorado Colorado Springs,CO,NCAA Division II,Rocky Mountain Athletic Conference,180,170,14,8.0,2023
+"University of Colorado, Colorado Springs",CO,NCAA Division II,Rocky Mountain Athletic Conference,180,170,14,8.0,2023
+University of Connecticut,CT,NCAA Division I,Big East Conference,310,290,24,95.0,2023
+University of Dayton,OH,NCAA Division I,Atlantic 10 Conference,240,220,17,32.0,2023
+University of Denver,CO,NCAA Division I,Summit League,210,200,17,40.0,2023
+University of Florida,FL,NCAA Division I,Southeastern Conference,310,290,21,185.0,2023
+University of Georgia,GA,NCAA Division I,Southeastern Conference,310,280,21,170.0,2023
+University of Hawaii,HI,NCAA Division I,Big West Conference,240,220,17,40.0,2023
+University of Illinois,IL,NCAA Division I,Big Ten Conference,310,290,21,110.0,2023
+University of Illinois Urbana,IL,NCAA Division I,Big Ten Conference,310,290,21,110.0,2023
+University of Illinois Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,310,290,21,110.0,2023
+University of Illinois at Urbana Champaign,IL,NCAA Division I,Big Ten Conference,310,290,21,110.0,2023
+University of Illinois at Urbana-Champaign,IL,NCAA Division I,Big Ten Conference,310,290,21,110.0,2023
+University of Iowa,IA,NCAA Division I,Big Ten Conference,340,320,22,130.0,2023
+University of Kansas,KS,NCAA Division I,Big 12 Conference,280,260,18,115.0,2023
+University of Kentucky,KY,NCAA Division I,Southeastern Conference,290,270,22,145.0,2023
+University of Louisville,KY,NCAA Division I,Atlantic Coast Conference,290,270,23,115.0,2023
+University of Maine,ME,NCAA Division I,America East Conference,260,240,17,22.0,2023
+University of Maryland,MD,NCAA Division I,Big Ten Conference,340,310,27,115.0,2023
+University of Massachusetts,MA,NCAA Division I,Atlantic 10 Conference,290,270,21,45.0,2023
+University of Miami,FL,NCAA Division I,Atlantic Coast Conference,280,260,18,105.0,2023
+University of Michigan,MI,NCAA Division I,Big Ten Conference,480,420,29,197.0,2023
+University of Minnesota,MN,NCAA Division I,Big Ten Conference,340,310,25,130.0,2023
+University of Minnesota Duluth,MN,NCAA Division II,Northern Sun Intercollegiate Conference,220,200,16,12.0,2023
+"University of Minnesota, Twin Cities",MN,NCAA Division I,Big Ten Conference,340,310,25,130.0,2023
+University of Mississippi,MS,NCAA Division I,Southeastern Conference,270,250,18,110.0,2023
+University of Nebraska,NE,NCAA Division I,Big Ten Conference,350,320,24,125.0,2023
+"University of Nevada, Las Vegas",NV,NCAA Division I,Mountain West Conference,240,220,17,55.0,2023
+"University of Nevada, Reno",NV,NCAA Division I,Mountain West Conference,220,200,16,42.0,2023
+University of New Hampshire,NH,NCAA Division I,America East Conference,260,240,18,35.0,2023
+University of New Mexico,NM,NCAA Division I,Mountain West Conference,240,220,18,45.0,2023
+University of North Carolina,NC,NCAA Division I,Atlantic Coast Conference,410,390,28,115.0,2023
+University of North Carolina at Charlotte,NC,NCAA Division I,American Athletic Conference,220,200,18,38.0,2023
+"University of North Carolina, Chapel Hill",NC,NCAA Division I,Atlantic Coast Conference,410,390,28,115.0,2023
+University of North Dakota,ND,NCAA Division I,Summit League,260,240,21,30.0,2023
+University of Notre Dame,IN,NCAA Division I,Atlantic Coast Conference,370,350,26,135.0,2023
+University of Oklahoma,OK,NCAA Division I,Southeastern Conference,300,280,19,145.0,2023
+University of Oregon,OR,NCAA Division I,Big Ten Conference,280,260,18,120.0,2023
+University of Pennsylvania,PA,NCAA Division I,Ivy League,480,460,33,38.0,2023
+University of Pittsburgh,PA,NCAA Division I,Atlantic Coast Conference,310,290,19,95.0,2023
+University of Richmond,VA,NCAA Division I,Atlantic 10 Conference,230,210,17,28.0,2023
+University of San Diego,CA,NCAA Division I,West Coast Conference,240,220,17,30.0,2023
+University of San Francisco,CA,NCAA Division I,West Coast Conference,180,170,15,22.0,2023
+University of South Carolina,SC,NCAA Division I,Southeastern Conference,280,260,19,115.0,2023
+University of South Dakota,SD,NCAA Division I,Summit League,220,200,17,20.0,2023
+University of South Florida,FL,NCAA Division I,American Athletic Conference,260,240,19,55.0,2023
+University of Southern California,CA,NCAA Division I,Big Ten Conference,370,350,21,165.0,2023
+University of Tennessee,TN,NCAA Division I,Southeastern Conference,300,280,20,165.0,2023
+University of Texas,TX,NCAA Division I,Southeastern Conference,340,310,20,225.0,2023
+University of Texas at Arlington,TX,NCAA Division I,Western Athletic Conference,190,170,15,28.0,2023
+University of Texas at Austin,TX,NCAA Division I,Southeastern Conference,340,310,20,225.0,2023
+University of Tulsa,OK,NCAA Division I,American Athletic Conference,210,190,17,32.0,2023
+University of Utah,UT,NCAA Division I,Big 12 Conference,250,230,19,95.0,2023
+University of Vermont,VT,NCAA Division I,America East Conference,230,210,18,28.0,2023
+University of Virginia,VA,NCAA Division I,Atlantic Coast Conference,380,360,27,115.0,2023
+University of Washington,WA,NCAA Division I,Big Ten Conference,330,310,22,125.0,2023
+University of Wisconsin,WI,NCAA Division I,Big Ten Conference,430,400,23,155.0,2023
+University of Wisconsin-Madison,WI,NCAA Division I,Big Ten Conference,430,400,23,155.0,2023
+University of Wisconsin-Whitewater,WI,NCAA Division III,Wisconsin Intercollegiate Athletic Conference,350,320,22,5.0,2023
+University of Wyoming,WY,NCAA Division I,Mountain West Conference,220,200,17,38.0,2023
+Utah Valley University,UT,NCAA Division I,Western Athletic Conference,230,210,16,20.0,2023
+Vanderbilt University,TN,NCAA Division I,Southeastern Conference,280,260,16,110.0,2023
+Villanova University,PA,NCAA Division I,Big East Conference,340,320,24,55.0,2023
+Virginia Tech,VA,NCAA Division I,Atlantic Coast Conference,310,290,22,95.0,2023
+Wake Forest University,NC,NCAA Division I,Atlantic Coast Conference,280,260,18,90.0,2023
+Washington State University,WA,NCAA Division I,Pac-12 Conference,250,230,17,70.0,2023
+Weber State University,UT,NCAA Division I,Big Sky Conference,210,190,16,18.0,2023
+West Virginia University,WV,NCAA Division I,Big 12 Conference,270,250,17,75.0,2023
+Westminster College,UT,NAIA,Frontier Conference,180,170,18,5.0,2023
+Yale University,CT,NCAA Division I,Ivy League,500,480,35,42.0,2023
+Yale University '23,CT,NCAA Division I,Ivy League,500,480,35,42.0,2023

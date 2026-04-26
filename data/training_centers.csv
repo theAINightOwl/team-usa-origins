@@ -1,0 +1,11 @@
+name,type,city,state,lat,lng,sports_served,year_opened,paralympic
+U.S. Olympic & Paralympic Training Center - Colorado Springs,OPTC,Colorado Springs,CO,38.8339,-104.8214,Archery;Boxing;Cycling;Fencing;Gymnastics;Judo;Modern Pentathlon;Shooting;Swimming;Taekwondo;Volleyball;Weightlifting;Wrestling,1978,True
+U.S. Olympic & Paralympic Training Center - Lake Placid,OPTC,Lake Placid,NY,44.2795,-73.9799,Biathlon;Bobsled;Cross-Country Skiing;Figure Skating;Freestyle Skiing;Ice Hockey;Luge;Nordic Combined;Skeleton;Ski Jumping;Speed Skating,1982,True
+U.S. Olympic & Paralympic Training Center - Chula Vista,OPTC,Chula Vista,CA,32.6127,-117.0698,Archery;BMX;Canoe/Kayak;Cycling;Field Hockey;Rowing;Rugby;Soccer;Tennis;Track and Field,1995,True
+National Training Center,NTC,Marquette,MI,46.5436,-87.3954,Cycling;Cross-Country Skiing;Biathlon,1985,False
+Utah Olympic Oval,Training Site,Kearns,UT,40.6420,-112.0107,Speed Skating;Short Track Speed Skating,2001,True
+Utah Olympic Park,Training Site,Park City,UT,40.6940,-111.5580,Bobsled;Luge;Skeleton;Ski Jumping;Nordic Combined;Freestyle Skiing;Aerial Skiing,2002,True
+Pettit National Ice Center,Training Site,Milwaukee,WI,43.0280,-87.9700,Speed Skating;Short Track Speed Skating,1993,True
+U.S. Ski Team Training Facility - Center of Excellence,Training Site,Park City,UT,40.6514,-111.5080,Alpine Skiing;Cross-Country Skiing;Freestyle Skiing;Ski Jumping;Snowboarding;Nordic Combined,2009,True
+USA Swimming National Training Center,Training Site,Colorado Springs,CO,38.8339,-104.8214,Swimming;Diving;Artistic Swimming;Water Polo,2000,True
+USA Volleyball Training Center,Training Site,Anaheim,CA,33.8303,-117.9143,Volleyball;Beach Volleyball,2003,True

@@ -1,0 +1,1995 @@
+city,state,lat,lng,canonical_name,strategy,n_athletes
+San Diego,CA,32.81498,-117.13556,San Diego city,direct,59
+Los Angeles,CA,34.01939,-118.41083,Los Angeles city,direct,52
+Colorado Springs,CO,38.86726,-104.76075,Colorado Springs city,direct,43
+Houston,TX,29.78574,-95.38881,Houston city,direct,43
+Park City,UT,40.65733,-111.49376,Park City city,direct,42
+Chicago,IL,41.83705,-87.68494,Chicago city,direct,38
+Seattle,WA,47.61933,-122.35154,Seattle city,direct,34
+Miami,FL,25.77516,-80.20861,Miami city,direct,33
+San Jose,CA,37.29601,-121.81455,San Jose city,direct,31
+Denver,CO,39.76185,-104.88111,Denver city,direct,30
+Las Vegas,NV,36.1699,-115.1398,Las Vegas,override,30
+St. Louis,MO,38.6357,-90.24458,St. Louis city,direct,27
+Portland,OR,45.53695,-122.64997,Portland city,direct,26
+Phoenix,AZ,33.57215,-112.09013,Phoenix city,direct,25
+New York,NY,40.66271,-73.93868,New York city,direct,21
+San Antonio,TX,29.46281,-98.52464,San Antonio city,direct,21
+Long Beach,CA,33.78079,-118.16818,Long Beach city,direct,20
+Honolulu,HI,21.3099,-157.8581,Honolulu,override,20
+Salt Lake City,UT,40.77693,-111.93099,Salt Lake City city,direct,20
+Sacramento,CA,38.56769,-121.46816,Sacramento city,direct,19
+Steamboat Springs,CO,40.47558,-106.82292,Steamboat Springs city,direct,19
+Atlanta,GA,33.76291,-84.42267,Atlanta city,direct,19
+Charlotte,NC,35.20905,-80.83099,Charlotte city,direct,19
+Philadelphia,PA,40.00938,-75.13335,Philadelphia city,direct,19
+Orlando,FL,28.40865,-81.25481,Orlando city,direct,18
+Minneapolis,MN,44.96332,-93.26832,Minneapolis city,direct,18
+St. Paul,MN,44.9489,-93.10406,St. Paul city,direct,18
+Indianapolis,IN,39.77666,-86.14593,Indianapolis city (balance),state-starts,17
+Boston,MA,42.33855,-71.01825,Boston city,direct,17
+Bethesda,MD,38.98729,-77.11861,Bethesda CDP,direct,17
+Cincinnati,OH,39.14018,-84.50583,Cincinnati city,direct,17
+Huntington Beach,CA,33.69801,-118.00383,Huntington Beach city,direct,16
+Ann Arbor,MI,42.27615,-83.73086,Ann Arbor city,direct,16
+Duluth,MN,46.77446,-92.13414,Duluth city,direct,16
+Raleigh,NC,35.83187,-78.64104,Raleigh city,direct,16
+Dallas,TX,32.79333,-96.76651,Dallas city,direct,16
+Anchorage,AK,61.17425,-149.28433,Anchorage municipality,state-starts,15
+San Francisco,CA,37.72724,-123.03223,San Francisco city,direct,15
+Boulder,CO,40.02443,-105.25125,Boulder city,direct,15
+Littleton,CO,39.59038,-105.02008,Littleton city,direct,15
+Tampa,FL,27.96626,-82.47762,Tampa city,direct,15
+Newport Beach,CA,33.59733,-117.89035,Newport Beach city,direct,14
+Bemidji,MN,47.48703,-94.88269,Bemidji city,direct,14
+Brooklyn,NY,40.6782,-73.9442,New York City (Brooklyn),override,14
+Cleveland,OH,41.47846,-81.67943,Cleveland city,direct,14
+Madison,WI,43.08781,-89.42986,Madison city,direct,14
+Baltimore,MD,39.30003,-76.61048,Baltimore city,direct,13
+Tucson,AZ,32.15304,-110.87077,Tucson city,direct,12
+Walnut Creek,CA,37.90267,-122.04048,Walnut Creek city,direct,12
+Marietta,GA,33.95356,-84.54246,Marietta city,direct,12
+Buffalo,NY,42.89249,-78.85969,Buffalo city,direct,12
+Columbus,OH,39.98394,-82.98488,Columbus city,direct,12
+The Woodlands,TX,30.1658,-95.4613,The Woodlands,override,12
+Scottsdale,AZ,33.68427,-111.86145,Scottsdale city,direct,11
+Mammoth Lakes,CA,37.62443,-118.98843,Mammoth Lakes town,direct,11
+Fort Lauderdale,FL,26.14123,-80.14673,Fort Lauderdale city,direct,11
+Rochester,NY,43.16993,-77.61689,Rochester city,direct,11
+Pittsburgh,PA,40.43994,-79.97568,Pittsburgh city,direct,11
+Austin,TX,30.29862,-97.75413,Austin city,direct,11
+Plano,TX,33.05077,-96.74794,Plano city,direct,11
+Fairbanks,AK,64.83653,-147.65175,Fairbanks city,direct,10
+Gilbert,AZ,33.31034,-111.74312,Gilbert town,direct,10
+Fullerton,CA,33.88572,-117.92803,Fullerton city,direct,10
+Manhattan Beach,CA,33.90087,-118.42072,Manhattan Beach city,direct,10
+Santa Barbara,CA,34.40359,-119.71371,Santa Barbara city,direct,10
+Simi Valley,CA,34.26689,-118.74846,Simi Valley city,direct,10
+Aspen,CO,39.19515,-106.83681,Aspen city,direct,10
+Vail,CO,39.63778,-106.36246,Vail town,direct,10
+Rockville,MD,39.08367,-77.15559,Rockville city,direct,10
+Queens,NY,40.7282,-73.7949,New York City (Queens),override,10
+Tacoma,WA,47.2522,-122.45983,Tacoma city,direct,10
+Eau Claire,WI,44.81834,-91.49477,Eau Claire city,direct,10
+Palo Alto,CA,37.39652,-122.14309,Palo Alto city,direct,9
+Rancho Cucamonga,CA,34.13031,-117.56607,Rancho Cucamonga city,direct,9
+Naperville,IL,41.74917,-88.16202,Naperville city,direct,9
+Louisville,KY,38.22473,-85.74061,Louisville city,direct,9
+Plymouth,MN,45.02231,-93.46288,Plymouth city,direct,9
+Omaha,NE,41.2627,-96.05348,Omaha city,direct,9
+Lake Placid,NY,44.28417,-73.98643,Lake Placid village,direct,9
+Southlake,TX,32.95449,-97.14887,Southlake city,direct,9
+Alexandria,VA,38.81925,-77.08367,Alexandria city,direct,9
+Virginia Beach,VA,36.77952,-76.02914,Virginia Beach city,direct,9
+Mesa,AZ,33.40063,-111.71649,Mesa city,direct,8
+Bakersfield,CA,35.35317,-119.03792,Bakersfield city,direct,8
+Carlsbad,CA,33.12928,-117.28418,Carlsbad city,direct,8
+Fremont,CA,37.49446,-121.94115,Fremont city,direct,8
+Irvine,CA,33.6784,-117.77125,Irvine city,direct,8
+San Clemente,CA,33.44914,-117.61312,San Clemente city,direct,8
+Santa Clara,CA,37.36462,-121.96797,Santa Clara city,direct,8
+Santa Monica,CA,34.01091,-118.49824,Santa Monica city,direct,8
+Truckee,CA,39.35055,-120.19394,Truckee town,direct,8
+New Canaan,CT,41.1417,-73.49014,New Canaan CDP,direct,8
+Carmel,IN,39.96548,-86.14837,Carmel city,direct,8
+Fort Wayne,IN,41.08913,-85.1439,Fort Wayne city,direct,8
+Fargo,ND,46.8647,-96.82908,Fargo city,direct,8
+Reno,NV,39.5491,-119.84991,Reno city,direct,8
+Beaverton,OR,45.47783,-122.8169,Beaverton city,direct,8
+Bend,OR,44.05668,-121.30799,Bend city,direct,8
+Nashville,TN,36.1718,-86.785,Nashville-Davidson metropolitan government (balance),state-starts,8
+Coppell,TX,32.96331,-96.99056,Coppell city,direct,8
+Milwaukee,WI,43.06335,-87.9667,Milwaukee city,direct,8
+Portage,WI,43.54895,-89.46587,Portage city,direct,8
+Oakland,CA,37.76985,-122.22569,Oakland city,direct,7
+Redondo Beach,CA,33.84954,-118.40076,Redondo Beach city,direct,7
+Santa Cruz,CA,36.97438,-122.03527,Santa Cruz city,direct,7
+Torrance,CA,33.83045,-118.35662,Torrance city,direct,7
+Boca Raton,FL,26.37269,-80.10371,Boca Raton city,direct,7
+Jacksonville,FL,30.33686,-81.6616,Jacksonville city,direct,7
+Wellington,FL,26.64899,-80.26721,Wellington village,direct,7
+Boise,ID,43.60023,-116.23166,Boise City city,suffix-add:city,7
+Andover,MA,42.65567,-71.14224,Andover CDP,direct,7
+Midland,MI,43.6248,-84.23198,Midland city,direct,7
+Morristown,NJ,40.79656,-74.47732,Morristown town,direct,7
+Toledo,OH,41.66407,-83.58186,Toledo city,direct,7
+Malvern,PA,40.03315,-75.51536,Malvern borough,direct,7
+Fort Worth,TX,32.78195,-97.34857,Fort Worth city,direct,7
+Spring,TX,30.06217,-95.38397,Spring CDP,direct,7
+McLean,VA,38.94355,-77.19291,McLean CDP,direct,7
+Richmond,VA,37.5314,-77.47601,Richmond city,direct,7
+Vienna,VA,38.89858,-77.25832,Vienna town,direct,7
+Birmingham,AL,33.52717,-86.79704,Birmingham city,direct,6
+Glendale,AZ,33.53311,-112.1899,Glendale city,direct,6
+Chino Hills,CA,33.94297,-117.72565,Chino Hills city,direct,6
+Diamond Bar,CA,34.00157,-117.8176,Diamond Bar city,direct,6
+Fresno,CA,36.78268,-119.79336,Fresno city,direct,6
+Hayward,CA,37.62683,-122.10402,Hayward city,direct,6
+Moorpark,CA,34.28594,-118.87704,Moorpark city,direct,6
+Riverside,CA,33.93814,-117.39317,Riverside city,direct,6
+Seal Beach,CA,33.7544,-118.07132,Seal Beach city,direct,6
+Temecula,CA,33.49307,-117.13173,Temecula city,direct,6
+Tustin,CA,33.73092,-117.8106,Tustin city,direct,6
+Durango,CO,37.26539,-107.87818,Durango city,direct,6
+Fort Collins,CO,40.54822,-105.06483,Fort Collins city,direct,6
+Winter Park,CO,39.87847,-105.78284,Winter Park town,direct,6
+Gainesville,FL,29.67954,-82.34679,Gainesville city,direct,6
+Hialeah,FL,25.86994,-80.30286,Hialeah city,direct,6
+Ocala,FL,29.17751,-82.15103,Ocala city,direct,6
+Pembroke Pines,FL,26.01472,-80.34017,Pembroke Pines city,direct,6
+Champaign,IL,40.1141,-88.27462,Champaign city,direct,6
+Wichita,KS,37.69064,-97.34584,Wichita city,direct,6
+Eden Prairie,MN,44.8496,-93.45872,Eden Prairie city,direct,6
+Bozeman,MT,45.68315,-111.05378,Bozeman city,direct,6
+Durham,NC,35.97806,-78.8995,Durham city,direct,6
+Grand Forks,ND,47.9196,-97.08733,Grand Forks city,direct,6
+New York City,NY,40.7128,-74.006,New York City,override,6
+Pittsford,NY,43.09049,-77.51657,Pittsford village,direct,6
+Spokane,WA,47.66694,-117.43332,Spokane city,direct,6
+Tempe,AZ,33.38841,-111.93178,Tempe city,direct,5
+Anaheim,CA,33.8555,-117.75866,Anaheim city,direct,5
+Clovis,CA,36.82897,-119.68492,Clovis city,direct,5
+Costa Mesa,CA,33.66591,-117.91234,Costa Mesa city,direct,5
+Encinitas,CA,33.05063,-117.26362,Encinitas city,direct,5
+Fallbrook,CA,33.37423,-117.22038,Fallbrook CDP,direct,5
+Folsom,CA,38.6666,-121.14163,Folsom city,direct,5
+Fountain Valley,CA,33.71058,-117.95113,Fountain Valley city,direct,5
+Lakeside,CA,35.23467,-119.08286,Lakeside CDP,direct,5
+Menlo Park,CA,37.47973,-122.14805,Menlo Park city,direct,5
+Mission Viejo,CA,33.60934,-117.65647,Mission Viejo city,direct,5
+Murrieta,CA,33.57213,-117.19044,Murrieta city,direct,5
+Orange,CA,33.78697,-117.86127,Orange city,direct,5
+Pasadena,CA,34.1606,-118.13795,Pasadena city,direct,5
+Santa Clarita,CA,34.4165,-118.50069,Santa Clarita city,direct,5
+Thousand Oaks,CA,34.19329,-118.87423,Thousand Oaks city,direct,5
+Aurora,CO,39.70363,-104.72009,Aurora city,direct,5
+Edwards,CO,39.61182,-106.6197,Edwards CDP,direct,5
+Golden,CO,39.74248,-105.21056,Golden city,direct,5
+Greenwich,CT,41.02777,-73.62693,Greenwich CDP,direct,5
+Wilmington,DE,39.73565,-75.5321,Wilmington city,direct,5
+Clearwater,FL,27.97942,-82.77126,Clearwater city,direct,5
+Sarasota,FL,27.33826,-82.54372,Sarasota city,direct,5
+St. Petersburg,FL,27.76273,-82.64413,St. Petersburg city,direct,5
+Winter Garden,FL,28.54122,-81.59124,Winter Garden city,direct,5
+Gainesville,GA,34.2901,-83.82911,Gainesville city,direct,5
+Sun Valley,ID,43.68385,-114.3342,Sun Valley city,direct,5
+Baton Rouge,LA,30.44044,-91.13317,Baton Rouge city,direct,5
+Potomac,MD,39.01333,-77.19358,Potomac CDP,direct,5
+Bethel,ME,44.4038,-70.78635,Bethel CDP,direct,5
+Grand Rapids,MI,42.96116,-85.65557,Grand Rapids city,direct,5
+Eagan,MN,44.81522,-93.16282,Eagan city,direct,5
+Grand Rapids,MN,47.23852,-93.53257,Grand Rapids city,direct,5
+Lakeville,MN,44.67613,-93.25174,Lakeville city,direct,5
+Mankato,MN,44.17112,-93.97638,Mankato city,direct,5
+Minnetonka,MN,44.93256,-93.4567,Minnetonka city,direct,5
+Greensboro,NC,36.09485,-79.82362,Greensboro city,direct,5
+Ridgewood,NJ,40.98159,-74.11351,Ridgewood village,direct,5
+Albuquerque,NM,35.10478,-106.64681,Albuquerque city,direct,5
+Eugene,OR,44.05685,-123.11902,Eugene city,direct,5
+Hershey,PA,40.28001,-76.64433,Hershey CDP,direct,5
+Lancaster,PA,40.04206,-76.30099,Lancaster city,direct,5
+Arlington,TX,32.70071,-97.12469,Arlington city,direct,5
+Cypress,TX,30.17808,-93.75529,Little Cypress CDP,state-contains,5
+Midland,TX,32.02464,-102.11347,Midland city,direct,5
+Arlington,VA,38.87834,-77.1007,Arlington CDP,direct,5
+Fairfax,VA,38.85318,-77.29903,Fairfax city,direct,5
+Springfield,VA,38.78157,-77.18392,Springfield CDP,direct,5
+Winthrop,WA,48.47157,-120.17908,Winthrop town,direct,5
+Huntsville,AL,34.69772,-86.67667,Huntsville city,direct,4
+Fayetteville,AR,36.07146,-94.16656,Fayetteville city,direct,4
+Little Rock,AR,34.72539,-92.35856,Little Rock city,direct,4
+Chandler,AZ,33.28276,-111.85182,Chandler city,direct,4
+Arcadia,CA,34.13269,-118.03635,Arcadia city,direct,4
+Camarillo,CA,34.22182,-119.03215,Camarillo city,direct,4
+Chula Vista,CA,32.62767,-117.01517,Chula Vista city,direct,4
+Dublin,CA,37.71614,-121.89623,Dublin city,direct,4
+Eastvale,CA,33.96327,-117.58237,Eastvale city,direct,4
+Inglewood,CA,33.95607,-118.34427,Inglewood city,direct,4
+Lafayette,CA,37.891,-122.11953,Lafayette city,direct,4
+Laguna Beach,CA,33.54337,-117.7618,Laguna Beach city,direct,4
+Los Gatos,CA,37.22991,-121.95681,Los Gatos town,direct,4
+Milpitas,CA,37.43314,-121.89092,Milpitas city,direct,4
+Oceanside,CA,33.2246,-117.30629,Oceanside city,direct,4
+Rancho Palos Verdes,CA,33.73852,-118.36969,Rancho Palos Verdes city,direct,4
+Rocklin,CA,38.80687,-121.2497,Rocklin city,direct,4
+South Pasadena,CA,34.10896,-118.15662,South Pasadena city,direct,4
+Stockton,CA,37.97724,-121.30886,Stockton city,direct,4
+Ventura,CA,34.26778,-119.25421,San Buenaventura (Ventura) city,state-contains,4
+Woodside,CA,37.42215,-122.25859,Woodside town,direct,4
+Breckenridge,CO,39.49946,-106.04324,Breckenridge town,direct,4
+Crested Butte,CO,38.86779,-106.97726,Crested Butte town,direct,4
+Evergreen,CO,39.63561,-105.33809,Evergreen CDP,direct,4
+Frisco,CO,39.57848,-106.09097,Frisco town,direct,4
+Highlands Ranch,CO,39.54083,-104.97108,Highlands Ranch CDP,direct,4
+Parker,CO,39.50595,-104.77583,Parker town,direct,4
+Madison,CT,41.28022,-72.60227,Madison Center CDP,state-starts,4
+Boynton Beach,FL,26.52833,-80.08072,Boynton Beach city,direct,4
+Coral Springs,FL,26.27072,-80.2593,Coral Springs city,direct,4
+Naples,FL,26.15048,-81.7953,Naples city,direct,4
+Alpharetta,GA,34.07087,-84.27265,Alpharetta city,direct,4
+Deerfield,IL,42.16607,-87.85247,Deerfield village,direct,4
+Libertyville,IL,42.28467,-87.9665,Libertyville village,direct,4
+Northbrook,IL,42.12875,-87.83516,Northbrook village,direct,4
+Greenwood,IN,39.60299,-86.1085,Greenwood city,direct,4
+Noblesville,IN,40.0353,-86.00016,Noblesville city,direct,4
+Kansas City,KS,39.12254,-94.74178,Kansas City city,direct,4
+Concord,MA,42.45186,-71.40318,West Concord CDP,state-contains,4
+Mapleton,MN,43.92714,-93.95528,Mapleton city,direct,4
+Stillwater,MN,45.05861,-92.83041,Stillwater city,direct,4
+Woodbury,MN,44.90628,-92.9237,Woodbury city,direct,4
+Gulfport,MS,30.41949,-89.06902,Gulfport city,direct,4
+Missoula,MT,46.87436,-114.02614,Missoula city,direct,4
+Chapel Hill,NC,35.92833,-79.04138,Chapel Hill town,direct,4
+Henderson,NV,36.00896,-115.0268,Henderson city,direct,4
+Dix Hills,NY,40.80332,-73.33746,Dix Hills CDP,direct,4
+Dayton,OH,39.78474,-84.19963,Dayton city,direct,4
+Edmond,OK,35.67381,-97.41308,Edmond city,direct,4
+Tulsa,OK,36.12795,-95.90232,Tulsa city,direct,4
+Erie,PA,42.11659,-80.0735,Erie city,direct,4
+Murrysville,PA,40.44286,-79.65831,Murrysville municipality,state-starts,4
+Charleston,SC,32.82802,-79.9729,Charleston city,direct,4
+Columbia,SC,34.04052,-80.9061,Columbia city,direct,4
+Greenville,SC,34.8369,-82.363,Greenville city,direct,4
+Knoxville,TN,35.97068,-83.94927,Knoxville city,direct,4
+Laredo,TX,27.56038,-99.48918,Laredo city,direct,4
+Mesquite,TX,32.75955,-96.58416,Mesquite city,direct,4
+Sugar Land,TX,29.59276,-95.6338,Sugar Land city,direct,4
+Orem,UT,40.29807,-111.69944,Orem city,direct,4
+Annandale,VA,38.8328,-77.19623,Annandale CDP,direct,4
+Ashburn,VA,39.0273,-77.47132,Ashburn CDP,direct,4
+Burke,VA,38.77772,-77.26259,Burke CDP,direct,4
+Haymarket,VA,38.81217,-77.63633,Haymarket town,direct,4
+Federal Way,WA,47.3116,-122.33776,Federal Way city,direct,4
+Gig Harbor,WA,47.33838,-122.60075,Gig Harbor city,direct,4
+Lynnwood,WA,47.82898,-122.30067,Lynnwood city,direct,4
+Redmond,WA,47.67792,-122.11534,Redmond city,direct,4
+Renton,WA,47.47919,-122.19461,Renton city,direct,4
+Richland,WA,46.28409,-119.29405,Richland city,direct,4
+Brookfield,WI,43.06432,-88.11779,Brookfield city,direct,4
+McFarland,WI,43.01922,-89.28342,McFarland village,direct,4
+Poynette,WI,43.39216,-89.40479,Poynette village,direct,4
+Prairie du Chien,WI,43.04334,-91.13733,Prairie du Chien city,direct,4
+Juneau,AK,58.37291,-134.17845,Juneau city and borough,state-starts,3
+Mobile,AL,30.66843,-88.10023,Mobile city,direct,3
+Flagstaff,AZ,35.18521,-111.6207,Flagstaff city,direct,3
+Agoura Hills,CA,34.14894,-118.76393,Agoura Hills city,direct,3
+Altadena,CA,34.19221,-118.13559,Altadena CDP,direct,3
+Atherton,CA,37.45707,-122.20106,Atherton town,direct,3
+Carson,CA,33.84037,-118.24957,Carson city,direct,3
+Clayton,CA,37.94032,-121.93008,Clayton city,direct,3
+Concord,CA,37.97218,-122.00159,Concord city,direct,3
+Corona,CA,33.86197,-117.56549,Corona city,direct,3
+Covina,CA,34.09047,-117.88214,Covina city,direct,3
+Cypress,CA,33.81848,-118.03831,Cypress city,direct,3
+Davis,CA,38.55615,-121.73779,Davis city,direct,3
+Fontana,CA,34.10969,-117.46289,Fontana city,direct,3
+Ladera Ranch,CA,33.54915,-117.64174,Ladera Ranch CDP,direct,3
+Malibu,CA,34.02586,-118.75964,Malibu city,direct,3
+Merced,CA,37.30571,-120.47791,Merced city,direct,3
+Moraga,CA,37.84569,-122.12322,Moraga town,direct,3
+Morgan Hill,CA,37.13249,-121.64189,Morgan Hill city,direct,3
+Pacifica,CA,37.6066,-122.47723,Pacifica city,direct,3
+Richmond,CA,37.95228,-122.36061,Richmond city,direct,3
+Roseville,CA,38.7703,-121.31963,Roseville city,direct,3
+San Gabriel,CA,34.09464,-118.09847,San Gabriel city,direct,3
+San Ramon,CA,37.76526,-121.93199,San Ramon city,direct,3
+Saratoga,CA,37.26833,-122.02622,Saratoga city,direct,3
+Sunnyvale,CA,37.3858,-122.02632,Sunnyvale city,direct,3
+Tulare,CA,36.19937,-119.34192,Tulare city,direct,3
+Union City,CA,37.60276,-122.01884,Union City city,direct,3
+Vista,CA,33.18968,-117.23858,Vista city,direct,3
+West Covina,CA,34.05594,-117.90994,West Covina city,direct,3
+Westminster,CA,33.75229,-117.99387,Westminster city,direct,3
+Arvada,CO,39.83373,-105.15031,Arvada city,direct,3
+Centennial,CO,39.59086,-104.86381,Centennial city,direct,3
+Eagle,CO,39.64322,-106.82134,Eagle town,direct,3
+Lakewood,CO,39.69894,-105.11757,Lakewood city,direct,3
+Longmont,CO,40.16985,-105.10184,Longmont city,direct,3
+Silverthorne,CO,39.65991,-106.08911,Silverthorne town,direct,3
+Telluride,CO,37.94023,-107.81815,Telluride town,direct,3
+Darien,CT,41.07674,-73.46967,Darien Downtown CDP,state-starts,3
+Fairfield,CT,41.15895,-73.25706,Fairfield University CDP,state-starts,3
+Ridgefield,CT,41.26969,-73.49261,Ridgefield CDP,direct,3
+Newark,DE,39.67765,-75.75748,Newark city,direct,3
+Bradenton,FL,27.4898,-82.5768,Bradenton city,direct,3
+Davie,FL,26.07917,-80.28301,Davie town,direct,3
+Jupiter,FL,26.91855,-80.11694,Jupiter town,direct,3
+Kissimmee,FL,28.30278,-81.41783,Kissimmee city,direct,3
+Lakeland,FL,28.0555,-81.95477,Lakeland city,direct,3
+Tallahassee,FL,30.45353,-84.25227,Tallahassee city,direct,3
+Weston,FL,26.10039,-80.40206,Weston city,direct,3
+Winter Park,FL,28.59663,-81.34575,Winter Park city,direct,3
+Athens,GA,33.9496,-83.37009,Athens-Clarke County unified government (balance),state-starts,3
+Douglasville,GA,33.73678,-84.70107,Douglasville city,direct,3
+Lawrenceville,GA,33.95287,-83.99223,Lawrenceville city,direct,3
+Moultrie,GA,31.17943,-83.79079,Moultrie city,direct,3
+Woodstock,GA,34.10314,-84.513,Woodstock city,direct,3
+Kailua,HI,19.64558,-155.99775,Kailua CDP,direct,3
+Laie,HI,21.64554,-157.92285,Laie CDP,direct,3
+Ketchum,ID,43.68772,-114.38007,Ketchum city,direct,3
+Aurora,IL,41.76346,-88.2901,Aurora city,direct,3
+Carpentersville,IL,42.12274,-88.2939,Carpentersville village,direct,3
+Crystal Lake,IL,42.23321,-88.33436,Crystal Lake city,direct,3
+Glen Ellyn,IL,41.86671,-88.06271,Glen Ellyn village,direct,3
+Glenview,IL,42.08516,-87.82739,Glenview village,direct,3
+Oak Park,IL,41.88716,-87.78994,Oak Park village,direct,3
+Wheaton,IL,41.85683,-88.10813,Wheaton city,direct,3
+Winnetka,IL,42.10621,-87.74276,Winnetka village,direct,3
+Evansville,IN,37.98774,-87.53471,Evansville city,direct,3
+Fishers,IN,39.96183,-85.96836,Fishers city,direct,3
+Lafayette,IN,40.39941,-86.86281,Lafayette city,direct,3
+Lawrenceburg,IN,39.10739,-84.87577,Lawrenceburg city,direct,3
+Lexington,KY,38.04068,-84.45827,Lexington-Fayette urban county,state-starts,3
+New Orleans,LA,30.05342,-89.9345,New Orleans city,direct,3
+Hingham,MA,42.23314,-70.88953,Hingham CDP,direct,3
+Medfield,MA,42.18701,-71.30041,Medfield CDP,direct,3
+Norwood,MA,42.18736,-71.19597,Norwood CDP,direct,3
+Ellicott City,MD,39.27669,-76.83395,Ellicott City CDP,direct,3
+Frederick,MD,39.43409,-77.41454,Frederick city,direct,3
+Laurel,MD,39.09508,-76.86124,Laurel city,direct,3
+Waldorf,MD,38.60917,-76.91978,Waldorf CDP,direct,3
+Detroit,MI,42.38304,-83.10224,Detroit city,direct,3
+Lansing,MI,42.71434,-84.56089,Lansing city,direct,3
+Muskegon,MI,43.22654,-86.25725,Muskegon city,direct,3
+Plymouth,MI,42.37125,-83.46762,Plymouth city,direct,3
+Blaine,MN,45.17052,-93.20609,Blaine city,direct,3
+Edina,MN,44.89112,-93.35975,Edina city,direct,3
+Elk River,MN,45.33221,-93.56653,Elk River city,direct,3
+Roseville,MN,45.01562,-93.15381,Roseville city,direct,3
+Saint Paul,MN,44.9489,-93.10406,St. Paul city,direct,3
+Shoreview,MN,45.08299,-93.14049,Shoreview city,direct,3
+Warroad,MN,48.9171,-95.32798,Warroad city,direct,3
+White Bear Lake,MN,45.06521,-93.01287,White Bear Lake city,direct,3
+Kansas City,MO,39.12236,-94.55512,Kansas City city,direct,3
+O'Fallon,MO,38.78467,-90.72074,O'Fallon city,direct,3
+St. Charles,MO,38.7957,-90.51536,St. Charles city,direct,3
+Butte,MT,45.89623,-112.66007,Butte-Silver Bow (balance),state-starts,3
+Whitefish,MT,48.43799,-114.34803,Whitefish city,direct,3
+Cary,NC,35.7813,-78.82344,Cary town,direct,3
+Fayetteville,NC,35.08277,-78.97352,Fayetteville city,direct,3
+Huntersville,NC,35.40681,-80.86868,Huntersville town,direct,3
+Bismarck,ND,46.81458,-100.77009,Bismarck city,direct,3
+Devils Lake,ND,48.11258,-98.87476,Devils Lake city,direct,3
+Norfolk,NE,42.02822,-97.42781,Norfolk city,direct,3
+Nashua,NH,42.74907,-71.49054,Nashua city,direct,3
+Cherry Hill,NJ,39.93821,-75.01236,Cherry Hill Mall CDP,state-starts,3
+Newark,NJ,40.72422,-74.17257,Newark city,direct,3
+Plainfield,NJ,40.61544,-74.41577,Plainfield city,direct,3
+Short Hills,NJ,40.73916,-74.32744,Short Hills CDP,direct,3
+Toms River,NJ,39.99486,-74.18775,Toms River CDP,direct,3
+Albany,NY,42.66575,-73.79835,Albany city,direct,3
+Briarcliff Manor,NY,41.14033,-73.8475,Briarcliff Manor village,direct,3
+Bronx,NY,40.8448,-73.8648,New York City (Bronx),override,3
+Fairport,NY,43.09947,-77.44307,Fairport village,direct,3
+Levittown,NY,40.72399,-73.51271,Levittown CDP,direct,3
+Rye,NY,40.94474,-73.68637,Rye city,direct,3
+Syracuse,NY,43.041,-76.14355,Syracuse city,direct,3
+Akron,OH,41.08046,-81.52143,Akron city,direct,3
+Powell,OH,40.16769,-83.08155,Powell city,direct,3
+Shaker Heights,OH,41.47609,-81.5492,Shaker Heights city,direct,3
+Solon,OH,41.38599,-81.44084,Solon city,direct,3
+Oklahoma City,OK,35.46708,-97.51366,Oklahoma City city,direct,3
+Gresham,OR,45.50232,-122.44161,Gresham city,direct,3
+Broomall,PA,39.96882,-75.35413,Broomall CDP,direct,3
+Doylestown,PA,40.3142,-75.1277,Doylestown borough,direct,3
+Mount Joy,PA,40.11061,-76.50572,Mount Joy borough,direct,3
+Perkasie,PA,40.37174,-75.29277,Perkasie borough,direct,3
+Spring City,PA,40.1769,-75.54647,Spring City borough,direct,3
+Yardley,PA,40.24029,-74.83893,Yardley borough,direct,3
+Gallatin,TN,36.38152,-86.46702,Gallatin city,direct,3
+Colleyville,TX,32.89148,-97.14975,Colleyville city,direct,3
+El Paso,TX,31.84778,-106.43111,El Paso city,direct,3
+Grand Prairie,TX,32.68611,-97.0208,Grand Prairie city,direct,3
+Keller,TX,32.93288,-97.22451,Keller city,direct,3
+McKinney,TX,33.20112,-96.66416,McKinney city,direct,3
+New Braunfels,TX,29.69931,-98.11513,New Braunfels city,direct,3
+Pasadena,TX,29.655,-95.15105,Pasadena city,direct,3
+The Colony,TX,33.0896,-96.90337,The Colony city,direct,3
+Bountiful,UT,40.87248,-111.8612,Bountiful city,direct,3
+Herriman,UT,40.49173,-112.02034,Herriman city,direct,3
+Provo,UT,40.24531,-111.64506,Provo city,direct,3
+Chantilly,VA,38.88918,-77.44209,Chantilly CDP,direct,3
+Chesapeake,VA,36.67938,-76.30179,Chesapeake city,direct,3
+Fredericksburg,VA,38.29927,-77.48666,Fredericksburg city,direct,3
+Hampton,VA,37.04796,-76.29729,Hampton city,direct,3
+Norfolk,VA,36.92301,-76.24464,Norfolk city,direct,3
+Oakton,VA,38.88944,-77.30223,Oakton CDP,direct,3
+Norwich,VT,43.71802,-72.30566,Norwich CDP,direct,3
+Auburn,WA,47.30377,-122.21,Auburn city,direct,3
+Bellingham,WA,48.75344,-122.47018,Bellingham city,direct,3
+Vancouver,WA,45.63716,-122.59657,Vancouver city,direct,3
+Yakima,WA,46.59094,-120.5494,Yakima city,direct,3
+Appleton,WI,44.27887,-88.38828,Appleton city,direct,3
+Delafield,WI,43.06742,-88.38883,Delafield city,direct,3
+West Bend,WI,43.41749,-88.18169,West Bend city,direct,3
+Palmer,AK,61.59717,-149.11468,Palmer city,direct,2
+Dothan,AL,31.2337,-85.40682,Dothan city,direct,2
+Morris,AL,33.74622,-86.80075,Morris town,direct,2
+Tuscaloosa,AL,33.2344,-87.5283,Tuscaloosa city,direct,2
+Avondale,AZ,33.31324,-112.32893,Avondale city,direct,2
+Litchfield Park,AZ,33.50176,-112.35947,Litchfield Park city,direct,2
+Alameda,CA,37.74191,-122.25991,Alameda city,direct,2
+Alamo,CA,37.85477,-122.01356,Alamo CDP,direct,2
+Apple Valley,CA,34.53338,-117.21036,Apple Valley town,direct,2
+Campbell,CA,37.28024,-121.9533,Campbell city,direct,2
+Carnelian Bay,CA,39.23517,-120.07821,Carnelian Bay CDP,direct,2
+Cerritos,CA,33.86774,-118.06947,Cerritos city,direct,2
+Claremont,CA,34.12492,-117.71392,Claremont city,direct,2
+Coronado,CA,32.65763,-117.15654,Coronado city,direct,2
+Danville,CA,37.81214,-121.96982,Danville town,direct,2
+Dixon,CA,38.44751,-121.82422,Dixon city,direct,2
+El Monte,CA,34.07463,-118.02914,El Monte city,direct,2
+Elk Grove,CA,38.41462,-121.38496,Elk Grove city,direct,2
+Glendora,CA,34.14496,-117.8478,Glendora city,direct,2
+Hawaiian Gardens,CA,33.83048,-118.07345,Hawaiian Gardens city,direct,2
+Hermosa Beach,CA,33.86982,-118.4053,Hermosa Beach city,direct,2
+Highland,CA,34.11347,-117.16573,Highland city,direct,2
+Isla Vista,CA,34.41218,-119.86066,Isla Vista CDP,direct,2
+La Mirada,CA,33.90205,-118.00896,La Mirada city,direct,2
+Lemoore,CA,36.29436,-119.79825,Lemoore city,direct,2
+Loomis,CA,38.80937,-121.19547,Loomis town,direct,2
+Los Alamitos,CA,33.79691,-118.06124,Los Alamitos city,direct,2
+Marina,CA,36.68026,-121.78937,Marina city,direct,2
+Martinez,CA,37.99812,-122.11442,Martinez city,direct,2
+Modesto,CA,37.63753,-121.00305,Modesto city,direct,2
+Monterey,CA,36.60119,-121.88311,Monterey city,direct,2
+Mountain View,CA,38.00921,-122.11685,Mountain View CDP,direct,2
+Orangevale,CA,38.68936,-121.22308,Orangevale CDP,direct,2
+Orinda,CA,37.88161,-122.16859,Orinda city,direct,2
+Palmdale,CA,34.59104,-118.1054,Palmdale city,direct,2
+Placentia,CA,33.88116,-117.85478,Placentia city,direct,2
+Pleasant Hill,CA,37.95416,-122.07577,Pleasant Hill city,direct,2
+Pleasanton,CA,37.66719,-121.88123,Pleasanton city,direct,2
+Poway,CA,32.98768,-117.02181,Poway city,direct,2
+Rancho Santa Fe,CA,33.02581,-117.19815,Rancho Santa Fe CDP,direct,2
+Redlands,CA,34.05351,-117.17048,Redlands city,direct,2
+Redwood City,CA,37.51527,-122.21367,Redwood City city,direct,2
+San Juan Capistrano,CA,33.50089,-117.65439,San Juan Capistrano city,direct,2
+San Mateo,CA,37.56031,-122.3106,San Mateo city,direct,2
+Santa Ana,CA,33.73633,-117.8829,Santa Ana city,direct,2
+Santa Maria,CA,34.93308,-120.44356,Santa Maria city,direct,2
+Santa Rosa,CA,38.44582,-122.70618,Santa Rosa city,direct,2
+South Lake Tahoe,CA,38.92822,-119.981,South Lake Tahoe city,direct,2
+Spring Valley,CA,39.07605,-122.58451,Spring Valley CDP,direct,2
+Tahoe City,CA,39.14832,-120.17094,Sunnyside-Tahoe City CDP,state-contains,2
+Upland,CA,34.11607,-117.65992,Upland city,direct,2
+Vacaville,CA,38.35862,-121.9686,Vacaville city,direct,2
+Victorville,CA,34.52773,-117.35358,Victorville city,direct,2
+Villa Park,CA,33.81799,-117.81129,Villa Park city,direct,2
+Visalia,CA,36.32803,-119.32852,Visalia city,direct,2
+Yorba Linda,CA,33.88904,-117.77207,Yorba Linda city,direct,2
+Basalt,CO,39.36859,-107.04876,Basalt town,direct,2
+Broomfield,CO,39.95359,-105.05079,Broomfield city,direct,2
+Castle Pines,CO,39.46249,-104.87058,Castle Pines city,direct,2
+Erie,CO,40.04029,-105.03831,Erie town,direct,2
+Granby,CO,40.0648,-105.91939,Granby town,direct,2
+Greenwood Village,CO,39.61593,-104.91169,Greenwood Village city,direct,2
+Louisville,CO,39.96958,-105.14327,Louisville city,direct,2
+Monument,CO,39.07441,-104.84422,Monument town,direct,2
+Westminster,CO,39.88012,-105.06151,Westminster city,direct,2
+Brookfield,CT,41.46236,-73.38753,Brookfield Center CDP,state-starts,2
+Glastonbury,CT,41.70067,-72.59942,Glastonbury Center CDP,state-starts,2
+Milford,CT,41.22364,-73.06456,Milford city (balance),state-starts,2
+Norwalk,CT,41.09274,-73.4198,Norwalk city,direct,2
+Redding,CT,41.30666,-73.38302,Redding Center CDP,state-starts,2
+Stratford,CT,41.19885,-73.12767,Stratford Downtown CDP,state-starts,2
+Westport,CT,41.14335,-73.36025,Westport Village CDP,suffix-add:village,2
+Apopka,FL,28.7017,-81.53182,Apopka city,direct,2
+Cooper City,FL,26.04806,-80.28496,Cooper City city,direct,2
+Daytona Beach,FL,29.19071,-81.09708,Daytona Beach city,direct,2
+Deland,FL,29.02266,-81.2865,DeLand city,direct,2
+Delray Beach,FL,26.4559,-80.09042,Delray Beach city,direct,2
+Land O'Lakes,FL,28.20831,-82.44584,Land O' Lakes CDP,direct,2
+Largo,FL,27.90591,-82.76724,Largo city,direct,2
+Lehigh Acres,FL,26.61269,-81.63885,Lehigh Acres CDP,direct,2
+Lighthouse Point,FL,26.27776,-80.08862,Lighthouse Point city,direct,2
+Loxahatchee,FL,26.72088,-80.2772,Loxahatchee Groves town,state-starts,2
+Melbourne,FL,28.11044,-80.66272,Melbourne city,direct,2
+Oviedo,FL,28.66193,-81.1871,Oviedo city,direct,2
+Palm Bay,FL,27.96489,-80.65828,Palm Bay city,direct,2
+Palm Beach Gardens,FL,26.84879,-80.16712,Palm Beach Gardens city,direct,2
+Plantation,FL,26.12557,-80.26182,Plantation city,direct,2
+Sanford,FL,28.78943,-81.27562,Sanford city,direct,2
+St. Augustine,FL,29.89615,-81.31113,St. Augustine city,direct,2
+Wesley Chapel,FL,28.20525,-82.31711,Wesley Chapel CDP,direct,2
+Bainbridge,GA,30.90621,-84.57265,Bainbridge city,direct,2
+Cedartown,GA,34.02175,-85.24753,Cedartown city,direct,2
+Columbus,GA,32.5102,-84.87495,Columbus city,direct,2
+Dacula,GA,33.98197,-83.90108,Dacula city,direct,2
+Fayetteville,GA,33.4491,-84.47282,Fayetteville city,direct,2
+Hoschton,GA,34.08593,-83.7622,Hoschton city,direct,2
+Kennesaw,GA,34.0272,-84.61709,Kennesaw city,direct,2
+Newnan,GA,33.37967,-84.7712,Newnan city,direct,2
+Peachtree City,GA,33.39189,-84.57066,Peachtree City city,direct,2
+Roswell,GA,34.03945,-84.35095,Roswell city,direct,2
+Suwanee,GA,34.05112,-84.06591,Suwanee city,direct,2
+Ewa Beach,HI,21.31274,-158.00611,Ewa Beach CDP,direct,2
+Haleiwa,HI,21.60238,-158.09564,Haleiwa CDP,direct,2
+Mililani,HI,21.44651,-158.01464,Mililani Town CDP,suffix-add:town,2
+Waianae,HI,21.45182,-158.18204,Waianae CDP,direct,2
+Cedar Rapids,IA,41.96585,-91.6789,Cedar Rapids city,direct,2
+Davenport,IA,41.55682,-90.60395,Davenport city,direct,2
+Des Moines,IA,41.57259,-93.61024,Des Moines city,direct,2
+Urbandale,IA,41.63679,-93.77983,Urbandale city,direct,2
+Pocatello,ID,42.87275,-112.46384,Pocatello city,direct,2
+Addison,IL,41.93078,-88.00899,Addison village,direct,2
+Barrington,IL,42.15154,-88.12853,Barrington village,direct,2
+Bartlett,IL,41.96064,-88.17775,Bartlett village,direct,2
+Buffalo Grove,IL,42.16598,-87.96183,Buffalo Grove village,direct,2
+Des Plaines,IL,42.0344,-87.90114,Des Plaines city,direct,2
+Downers Grove,IL,41.79503,-88.02106,Downers Grove village,direct,2
+Evanston,IL,42.04639,-87.69435,Evanston city,direct,2
+Grayslake,IL,42.34082,-88.03356,Grayslake village,direct,2
+Harwood Heights,IL,41.96632,-87.80559,Harwood Heights village,direct,2
+Highland Park,IL,42.18237,-87.81085,Highland Park city,direct,2
+Lakewood,IL,42.22451,-88.38669,Lakewood village,direct,2
+Lincolnshire,IL,42.19652,-87.91774,Lincolnshire village,direct,2
+Lisle,IL,41.79211,-88.0877,Lisle village,direct,2
+Mount Prospect,IL,42.0642,-87.93736,Mount Prospect village,direct,2
+Oak Lawn,IL,41.71388,-87.75278,Oak Lawn village,direct,2
+Orland Park,IL,41.60815,-87.85929,Orland Park village,direct,2
+Palatine,IL,42.11647,-88.04436,Palatine village,direct,2
+Palos Hills,IL,41.70068,-87.8253,Palos Hills city,direct,2
+Riverside,IL,41.83096,-87.81585,Riverside village,direct,2
+Rock Island,IL,41.47016,-90.58311,Rock Island city,direct,2
+Rockford,IL,42.25884,-89.06455,Rockford city,direct,2
+Bloomington,IN,39.1637,-86.52426,Bloomington city,direct,2
+Brownsburg,IN,39.83444,-86.38569,Brownsburg town,direct,2
+Danville,IN,39.75881,-86.49528,Danville town,direct,2
+Elkhart,IN,41.69154,-85.96225,Elkhart city,direct,2
+Plainfield,IN,39.69319,-86.37198,Plainfield town,direct,2
+South Bend,IN,41.67664,-86.26881,South Bend city,direct,2
+Westfield,IN,40.03601,-86.15221,Westfield city,direct,2
+Zionsville,IN,39.99153,-86.32175,Zionsville town,direct,2
+Overland Park,KS,38.88904,-94.69058,Overland Park city,direct,2
+Salina,KS,38.81309,-97.61448,Salina city,direct,2
+Topeka,KS,39.03468,-95.69482,Topeka city,direct,2
+Shreveport,LA,32.46688,-93.79219,Shreveport city,direct,2
+Beverly,MA,42.55666,-70.84496,Beverly city,direct,2
+Cambridge,MA,42.37604,-71.11868,Cambridge city,direct,2
+Hanson,MA,42.06503,-70.84977,Hanson CDP,direct,2
+Marblehead,MA,42.49563,-70.83582,Marblehead CDP,direct,2
+Methuen,MA,42.74264,-71.17865,Methuen Town city,suffix-add:town,2
+Newton,MA,42.33177,-71.2084,Newton city,direct,2
+Salem,MA,42.49925,-70.8982,Salem city,direct,2
+Scituate,MA,42.18029,-70.73439,Scituate CDP,direct,2
+Topsfield,MA,42.6394,-70.95528,Topsfield CDP,direct,2
+Waltham,MA,42.38892,-71.24227,Waltham city,direct,2
+Wellesley,MA,42.30593,-71.28292,Wellesley CDP,direct,2
+Worcester,MA,42.26948,-71.80778,Worcester city,direct,2
+Annapolis,MD,38.97215,-76.50533,Annapolis city,direct,2
+Bel Air,MD,39.58126,-78.85547,Bel Air CDP,direct,2
+Brookeville,MD,39.18251,-77.05973,Brookeville town,direct,2
+Cabin John,MD,38.97401,-77.16384,Cabin John CDP,direct,2
+Chevy Chase,MD,38.98189,-77.0832,Chevy Chase town,direct,2
+Darnestown,MD,39.08871,-77.31178,Darnestown CDP,direct,2
+Gaithersburg,MD,39.1486,-77.19513,Gaithersburg city,direct,2
+Huntingtown,MD,38.61235,-76.62154,Huntingtown CDP,direct,2
+Mount Airy,MD,39.37469,-77.15381,Mount Airy town,direct,2
+North Potomac,MD,39.09677,-77.2385,North Potomac CDP,direct,2
+Silver Spring,MD,39.00244,-77.02079,Silver Spring CDP,direct,2
+Upper Marlboro,MD,38.8165,-76.75367,Upper Marlboro town,direct,2
+Fort Kent,ME,47.25174,-68.58722,Fort Kent CDP,direct,2
+Yarmouth,ME,43.80382,-70.18858,Yarmouth CDP,direct,2
+Caro,MI,43.4893,-83.40174,Caro city,direct,2
+Dexter,MI,42.33226,-83.88103,Dexter city,direct,2
+Farmington Hills,MI,42.48565,-83.37596,Farmington Hills city,direct,2
+Flint,MI,43.02442,-83.69197,Flint city,direct,2
+Grand Blanc,MI,42.93254,-83.62049,Grand Blanc city,direct,2
+Grosse Pointe Park,MI,42.37395,-82.92344,Grosse Pointe Park city,direct,2
+Grosse Pointe Woods,MI,42.43926,-82.89896,Grosse Pointe Woods city,direct,2
+Harbor Springs,MI,45.43248,-84.9891,Harbor Springs city,direct,2
+Jackson,MI,42.24216,-84.40204,Jackson city,direct,2
+Novi,MI,42.47849,-83.48682,Novi city,direct,2
+Rochester Hills,MI,42.66348,-83.1592,Rochester Hills city,direct,2
+Andover,MN,45.25242,-93.3374,Andover city,direct,2
+Apple Valley,MN,44.7453,-93.19941,Apple Valley city,direct,2
+Arden Hills,MN,45.07116,-93.16547,Arden Hills city,direct,2
+Bloomington,MN,44.82967,-93.31522,Bloomington city,direct,2
+Brooklyn Park,MN,45.11091,-93.34909,Brooklyn Park city,direct,2
+Burnsville,MN,44.76441,-93.27937,Burnsville city,direct,2
+Chisholm,MN,47.48753,-92.8794,Chisholm city,direct,2
+Farmington,MN,44.65916,-93.16871,Farmington city,direct,2
+Maple Grove,MN,45.11276,-93.46298,Maple Grove city,direct,2
+Richfield,MN,44.87435,-93.28244,Richfield city,direct,2
+Savage,MN,44.75906,-93.36421,Savage city,direct,2
+St Paul,MN,44.9489,-93.10406,St. Paul city,direct,2
+St. Francis,MN,45.39403,-93.39412,St. Francis city,direct,2
+Chesterfield,MO,38.65813,-90.57595,Chesterfield city,direct,2
+Lee's Summit,MO,38.9216,-94.38476,Lee's Summit city,direct,2
+Hattiesburg,MS,31.3073,-89.31743,Hattiesburg city,direct,2
+Laurel,MS,31.69508,-89.14495,Laurel city,direct,2
+Billings,MT,45.78854,-108.55248,Billings city,direct,2
+Davidson,NC,35.48066,-80.82091,Davidson town,direct,2
+Holly Springs,NC,35.65328,-78.84076,Holly Springs town,direct,2
+Lewisville,NC,36.10519,-80.42455,Lewisville town,direct,2
+Winston-Salem,NC,36.10286,-80.26083,Winston-Salem city,direct,2
+Rolla,ND,48.84362,-99.60935,Rolla city,direct,2
+Dover,NH,43.18636,-70.88362,Dover city,direct,2
+Berlin,NJ,39.79206,-74.93699,Berlin borough,direct,2
+Boonton,NJ,40.90382,-74.40637,Boonton town,direct,2
+Clifton,NJ,40.86214,-74.16039,Clifton city,direct,2
+Fair Haven,NJ,40.36194,-74.03878,Fair Haven borough,direct,2
+Jersey City,NJ,40.71142,-74.06476,Jersey City city,direct,2
+Livingston,NJ,40.51772,-74.44477,Rutgers University-Livingston Campus CDP,state-contains,2
+Madison,NJ,40.75804,-74.41781,Madison borough,direct,2
+Morganville,NJ,40.37605,-74.23261,Morganville CDP,direct,2
+Princeton,NJ,40.35824,-74.66673,Princeton,direct,2
+Rumson,NJ,40.36207,-74.00451,Rumson borough,direct,2
+Spring Lake,NJ,40.15376,-74.02685,Spring Lake borough,direct,2
+Voorhees,NJ,40.48218,-74.49251,Voorhees CDP,direct,2
+West Long Branch,NJ,40.2879,-74.02002,West Long Branch borough,direct,2
+Las Cruces,NM,32.32644,-106.78969,Las Cruces city,direct,2
+Roswell,NM,33.37344,-104.52939,Roswell city,direct,2
+Carson City,NV,39.15306,-119.74737,Carson City,direct,2
+Gardnerville,NV,38.939,-119.73688,Gardnerville CDP,direct,2
+Glens Falls,NY,43.31116,-73.64529,Glens Falls city,direct,2
+Huntington Station,NY,40.84449,-73.40481,Huntington Station CDP,direct,2
+Lewiston,NY,43.17193,-79.04067,Lewiston village,direct,2
+Massapequa Park,NY,40.68091,-73.44969,Massapequa Park village,direct,2
+Northport,NY,40.90405,-73.34497,Northport village,direct,2
+Nyack,NY,41.09295,-73.91524,Nyack village,direct,2
+Port Jervis,NY,41.37802,-74.6908,Port Jervis city,direct,2
+Poughkeepsie,NY,41.69459,-73.91987,Poughkeepsie city,direct,2
+Rockville Centre,NY,40.66402,-73.63805,Rockville Centre village,direct,2
+Rome,NY,43.226,-75.48952,Rome city,direct,2
+Saranac Lake,NY,44.32594,-74.13093,Saranac Lake village,direct,2
+Staten Island,NY,40.5795,-74.1502,New York City (Staten Island),override,2
+Syosset,NY,40.81568,-73.50203,Syosset CDP,direct,2
+West Nyack,NY,41.09114,-73.96883,West Nyack CDP,direct,2
+Beavercreek,OH,39.73315,-84.05961,Beavercreek city,direct,2
+Blacklick,OH,39.9046,-82.86638,Blacklick Estates CDP,state-starts,2
+Bowling Green,OH,41.37768,-83.64958,Bowling Green city,direct,2
+Canton,OH,40.80765,-81.36723,Canton city,direct,2
+Chagrin Falls,OH,41.43095,-81.38898,Chagrin Falls village,direct,2
+Fremont,OH,41.35302,-83.11559,Fremont city,direct,2
+Massillon,OH,40.78448,-81.52522,Massillon city,direct,2
+New Albany,OH,40.09,-82.77635,New Albany city,direct,2
+North Canton,OH,40.87415,-81.39713,North Canton city,direct,2
+Springfield,OH,39.92891,-83.79424,Springfield city,direct,2
+Tontogany,OH,41.42103,-83.74098,Tontogany village,direct,2
+Upper Arlington,OH,40.02759,-83.07072,Upper Arlington city,direct,2
+West Chester,OH,39.33521,-84.40348,Olde West Chester CDP,state-contains,2
+Norman,OK,35.24057,-97.3453,Norman city,direct,2
+Medford,OR,42.33689,-122.85177,Medford city,direct,2
+Allentown,PA,40.59365,-75.47839,Allentown city,direct,2
+Cochranville,PA,39.88861,-75.92981,Cochranville CDP,direct,2
+Denver,PA,40.23412,-76.14116,Denver borough,direct,2
+Greensburg,PA,40.31115,-79.54443,Greensburg city,direct,2
+Harrisburg,PA,40.27589,-76.88502,Harrisburg city,direct,2
+Honey Brook,PA,40.09358,-75.91075,Honey Brook borough,direct,2
+Lititz,PA,40.154,-76.30431,Lititz borough,direct,2
+Macungie,PA,40.51591,-75.55408,Macungie borough,direct,2
+Millersville,PA,40.00532,-76.35176,Millersville borough,direct,2
+Phoenixville,PA,40.1352,-75.5227,Phoenixville borough,direct,2
+Plymouth Meeting,PA,40.10973,-75.28037,Plymouth Meeting CDP,direct,2
+Reading,PA,40.33922,-75.92628,Reading city,direct,2
+Schwenksville,PA,40.25786,-75.46572,Schwenksville borough,direct,2
+Slippery Rock,PA,41.06949,-80.05793,Slippery Rock borough,direct,2
+Stevens,PA,40.21651,-76.16689,Stevens CDP,direct,2
+Topton,PA,40.50337,-75.70254,Topton borough,direct,2
+York,PA,39.9648,-76.73184,York city,direct,2
+Aiken,SC,33.53159,-81.72507,Aiken city,direct,2
+Beaufort,SC,32.45808,-80.72254,Beaufort city,direct,2
+Irmo,SC,34.10212,-81.19585,Irmo town,direct,2
+Simpsonville,SC,34.72903,-82.25752,Simpsonville city,direct,2
+Sioux Falls,SD,43.5407,-96.73196,Sioux Falls city,direct,2
+Yankton,SD,42.88975,-97.39269,Yankton city,direct,2
+Chattanooga,TN,35.06596,-85.24839,Chattanooga city,direct,2
+Clarksville,TN,36.56643,-87.34522,Clarksville city,direct,2
+Memphis,TN,35.10903,-89.96746,Memphis city,direct,2
+Abilene,TX,32.45451,-99.73815,Abilene city,direct,2
+Burleson,TX,32.51645,-97.32737,Burleson city,direct,2
+Conroe,TX,30.32872,-95.4846,Conroe city,direct,2
+Denton,TX,33.21745,-97.14135,Denton city,direct,2
+Duncanville,TX,32.64595,-96.91387,Duncanville city,direct,2
+Frisco,TX,33.15543,-96.8226,Frisco city,direct,2
+Humble,TX,29.98821,-95.26436,Humble city,direct,2
+Irving,TX,32.85775,-96.97002,Irving city,direct,2
+Katy,TX,29.79091,-95.84071,Katy city,direct,2
+Killeen,TX,31.07767,-97.73195,Killeen city,direct,2
+Mansfield,TX,32.56919,-97.12053,Mansfield city,direct,2
+Missouri City,TX,29.56294,-95.536,Missouri City city,direct,2
+Port Arthur,TX,29.90001,-93.89442,Port Arthur city,direct,2
+Richardson,TX,32.97229,-96.70807,Richardson city,direct,2
+Tomball,TX,30.09508,-95.61968,Tomball city,direct,2
+Waco,TX,31.55799,-97.18975,Waco city,direct,2
+Weatherford,TX,32.75319,-97.77194,Weatherford city,direct,2
+Wylie,TX,33.03583,-96.52019,Wylie city,direct,2
+Alpine,UT,40.46295,-111.77244,Alpine city,direct,2
+American Fork,UT,40.37788,-111.79507,American Fork city,direct,2
+Herndon,VA,38.97041,-77.38707,Herndon town,direct,2
+Manassas,VA,38.74681,-77.48263,Manassas city,direct,2
+Palmyra,VA,37.86637,-78.25759,Palmyra CDP,direct,2
+Reston,VA,38.94976,-77.34624,Reston CDP,direct,2
+Winchester,VA,39.17387,-78.17636,Winchester city,direct,2
+Burlington,VT,44.49193,-73.23888,Burlington city,direct,2
+Morrisville,VT,44.55723,-72.58997,Morrisville village,direct,2
+Putney,VT,42.97132,-72.5277,Putney CDP,direct,2
+Rutland,VT,43.60967,-72.97779,Rutland city,direct,2
+Westford,VT,44.60332,-73.01599,Westford CDP,direct,2
+Bellevue,WA,47.59784,-122.15648,Bellevue city,direct,2
+Burien,WA,47.47561,-122.34466,Burien city,direct,2
+Everett,WA,47.96541,-122.1899,Everett city,direct,2
+Issaquah,WA,47.54449,-122.04909,Issaquah city,direct,2
+Kent,WA,47.38797,-122.21273,Kent city,direct,2
+Kirkland,WA,47.69666,-122.20417,Kirkland city,direct,2
+Lake Stevens,WA,48.00341,-122.09683,Lake Stevens city,direct,2
+Sammamish,WA,47.59427,-122.03808,Sammamish city,direct,2
+Spokane Valley,WA,47.66335,-117.23278,Spokane Valley city,direct,2
+University Place,WA,47.21537,-122.54726,University Place city,direct,2
+Wenatchee,WA,47.43599,-120.32927,Wenatchee city,direct,2
+Woodinville,WA,47.75769,-122.14679,Woodinville city,direct,2
+East Troy,WI,42.78518,-88.39557,East Troy village,direct,2
+Fond du Lac,WI,43.77218,-88.44026,Fond du Lac city,direct,2
+Hartland,WI,43.10235,-88.33559,Hartland village,direct,2
+Kenosha,WI,42.58753,-87.88,Kenosha city,direct,2
+Kewaunee,WI,44.46357,-87.5217,Kewaunee city,direct,2
+Medford,WI,45.13563,-90.34247,Medford city,direct,2
+Oshkosh,WI,44.02317,-88.56226,Oshkosh city,direct,2
+Stevens Point,WI,44.5253,-89.55038,Stevens Point city,direct,2
+Verona,WI,42.99006,-89.53887,Verona city,direct,2
+Wausau,WI,44.96177,-89.64654,Wausau city,direct,2
+Alta,WY,43.77362,-111.03126,Alta CDP,direct,2
+Homer,AK,59.6475,-151.51309,Homer city,direct,1
+Kenai,AK,60.56224,-151.20806,Kenai city,direct,1
+Kotzebue,AK,66.87709,-162.50348,Kotzebue city,direct,1
+Seward,AK,60.12479,-149.39158,Seward city,direct,1
+Wasilla,AK,61.58114,-149.46079,Wasilla city,direct,1
+Anniston,AL,33.67347,-85.81089,Anniston city,direct,1
+Auburn,AL,32.60781,-85.49475,Auburn city,direct,1
+Eclectic,AL,32.64022,-86.04106,Eclectic town,direct,1
+Gadsden,AL,34.0066,-86.01608,Gadsden city,direct,1
+Homewood,AL,33.45855,-86.80965,Homewood city,direct,1
+Lanett,AL,32.85865,-85.20779,Lanett city,direct,1
+Madison,AL,34.71053,-86.76228,Madison city,direct,1
+Opelika,AL,32.66074,-85.37889,Opelika city,direct,1
+Phenix City,AL,32.45371,-85.03102,Phenix City city,direct,1
+Prattville,AL,32.44904,-86.4494,Prattville city,direct,1
+Riverside,AL,33.61639,-86.20436,Riverside city,direct,1
+Trussville,AL,33.65523,-86.56324,Trussville city,direct,1
+Cabot,AR,34.97511,-92.02829,Cabot city,direct,1
+Mayflower,AR,34.9662,-92.42673,Mayflower city,direct,1
+North Little Rock,AR,34.78175,-92.23506,North Little Rock city,direct,1
+Oakland,AR,36.46042,-92.57177,Oakland CDP,direct,1
+Russellville,AR,35.27633,-93.13874,Russellville city,direct,1
+Searcy,AR,35.24113,-91.73522,Searcy city,direct,1
+Wooster,AR,35.19992,-92.4502,Wooster town,direct,1
+Fountain Hills,AZ,33.6078,-111.7384,Fountain Hills town,direct,1
+Maricopa,AZ,33.04194,-111.99926,Maricopa city,direct,1
+Peoria,AZ,33.78619,-112.30804,Peoria city,direct,1
+Prescott,AZ,34.59224,-112.44673,Prescott city,direct,1
+Prescott Valley,AZ,34.59793,-112.3185,Prescott Valley town,direct,1
+Snowflake,AZ,34.52146,-110.09118,Snowflake town,direct,1
+Surprise,AZ,33.6708,-112.45255,Surprise city,direct,1
+Albany,CA,37.89065,-122.31812,Albany city,direct,1
+Alhambra,CA,34.08357,-118.13644,Alhambra city,direct,1
+Aliso Viejo,CA,33.57921,-117.7289,Aliso Viejo city,direct,1
+Anderson,CA,40.44976,-122.29507,Anderson city,direct,1
+Antelope,CA,38.71533,-121.36096,Antelope CDP,direct,1
+Antioch,CA,37.97834,-121.79606,Antioch city,direct,1
+Arroyo Grande,CA,35.12415,-120.58453,Arroyo Grande city,direct,1
+Auburn,CA,38.89507,-121.07674,Auburn city,direct,1
+Barstow,CA,34.86699,-117.04304,Barstow city,direct,1
+Bellflower,CA,33.88782,-118.12725,Bellflower city,direct,1
+Belmont,CA,37.5144,-122.29448,Belmont city,direct,1
+Berkeley,CA,37.86567,-122.29873,Berkeley city,direct,1
+Big Bear Lake,CA,34.24289,-116.89389,Big Bear Lake city,direct,1
+Boulder Creek,CA,37.1341,-122.12721,Boulder Creek CDP,direct,1
+Brea,CA,33.92518,-117.86511,Brea city,direct,1
+Brentwood,CA,37.93558,-121.71897,Brentwood city,direct,1
+Brisbane,CA,37.67575,-122.3833,Brisbane city,direct,1
+Buena Park,CA,33.85735,-118.00737,Buena Park city,direct,1
+Burbank,CA,34.19008,-118.3264,Burbank city,direct,1
+Castaic,CA,34.47744,-118.63268,Castaic CDP,direct,1
+Castro Valley,CA,37.70828,-122.06277,Castro Valley CDP,direct,1
+Ceres,CA,37.59879,-120.96808,Ceres city,direct,1
+Chico,CA,39.75895,-121.81772,Chico city,direct,1
+China,CA,35.64002,-117.76646,China Lake Acres CDP,state-starts,1
+Chino,CA,33.97804,-117.65772,Chino city,direct,1
+Coachella,CA,33.69038,-116.14313,Coachella city,direct,1
+Colton,CA,34.05452,-117.32503,Colton city,direct,1
+Compton,CA,33.89405,-118.22747,Compton city,direct,1
+Coto De Caza,CA,33.59704,-117.58648,Coto de Caza CDP,direct,1
+Coto de Caza,CA,33.59704,-117.58648,Coto de Caza CDP,direct,1
+Culver City,CA,34.00582,-118.39678,Culver City city,direct,1
+Cupertino,CA,37.3194,-122.04496,Cupertino city,direct,1
+Dana Point,CA,33.47545,-117.69309,Dana Point city,direct,1
+Del Mar,CA,32.96395,-117.2598,Del Mar city,direct,1
+Delano,CA,35.76643,-119.26422,Delano city,direct,1
+Desert Hot Springs,CA,33.95759,-116.54228,Desert Hot Springs city,direct,1
+East Los Angeles,CA,34.03151,-118.16857,East Los Angeles CDP,direct,1
+East Palo Alto,CA,37.46778,-122.13255,East Palo Alto city,direct,1
+El Cerrito,CA,37.91957,-122.30252,El Cerrito city,direct,1
+El Dorado Hills,CA,38.67608,-121.0477,El Dorado Hills CDP,direct,1
+Escondido,CA,33.13305,-117.07404,Escondido city,direct,1
+Fairfield,CA,38.26206,-122.03239,Fairfield city,direct,1
+Garden Grove,CA,33.77878,-117.96047,Garden Grove city,direct,1
+Gilroy,CA,37.00641,-121.58532,Gilroy city,direct,1
+Glendale,CA,34.18139,-118.24583,Glendale city,direct,1
+Goleta,CA,34.43544,-119.85895,Goleta city,direct,1
+Granite Bay,CA,38.76044,-121.1682,Granite Bay CDP,direct,1
+Grass Valley,CA,39.22031,-121.05265,Grass Valley city,direct,1
+Groveland,CA,37.83197,-120.24158,Groveland CDP,direct,1
+Hesperia,CA,34.39704,-117.3152,Hesperia city,direct,1
+Kentfield,CA,37.93587,-122.559,Kentfield CDP,direct,1
+La Puente,CA,34.03233,-117.95352,La Puente city,direct,1
+Laguna Niguel,CA,33.52865,-117.70125,Laguna Niguel city,direct,1
+Lakewood,CA,33.84714,-118.12189,Lakewood city,direct,1
+Lancaster,CA,34.69356,-118.1753,Lancaster city,direct,1
+Lemon Grove,CA,32.73307,-117.03441,Lemon Grove city,direct,1
+Los Altos,CA,37.36843,-122.09657,Los Altos city,direct,1
+Menifee,CA,33.68986,-117.18438,Menifee city,direct,1
+Miranda,CA,40.22869,-123.81758,Miranda CDP,direct,1
+Monrovia,CA,34.16398,-117.98465,Monrovia city,direct,1
+Monte Sereno,CA,37.24041,-121.98824,Monte Sereno city,direct,1
+Mount Shasta,CA,41.32088,-122.31548,Mount Shasta city,direct,1
+Napa,CA,38.29787,-122.30074,Napa city,direct,1
+National City,CA,32.66586,-117.09736,National City city,direct,1
+Nevada City,CA,39.25961,-121.03333,Nevada City city,direct,1
+Newark,CA,37.50425,-122.03191,Newark city,direct,1
+Norco,CA,33.92552,-117.55196,Norco city,direct,1
+North Tustin,CA,33.76354,-117.79472,North Tustin CDP,direct,1
+Ontario,CA,34.03765,-117.60443,Ontario city,direct,1
+Palm Desert,CA,33.73763,-116.36414,Palm Desert city,direct,1
+Palm Springs,CA,33.80336,-116.53828,Palm Springs city,direct,1
+Palos Verdes,CA,33.77427,-118.42575,Palos Verdes Estates city,state-starts,1
+Palos Verdes Estates,CA,33.77427,-118.42575,Palos Verdes Estates city,direct,1
+Patterson,CA,37.47588,-121.15388,Patterson city,direct,1
+Perris,CA,33.78985,-117.22217,Perris city,direct,1
+Petaluma,CA,38.24225,-122.62877,Petaluma city,direct,1
+Phelan,CA,34.43982,-117.52483,Phelan CDP,direct,1
+Placerville,CA,38.73112,-120.79768,Placerville city,direct,1
+Ramona,CA,33.04581,-116.87755,Ramona CDP,direct,1
+Rancho Mirage,CA,33.76384,-116.43039,Rancho Mirage city,direct,1
+Red Bluff,CA,40.17352,-122.24152,Red Bluff city,direct,1
+Redding,CA,40.57028,-122.36677,Redding city,direct,1
+Rolling Hills Estates,CA,33.77844,-118.32743,Rolling Hills Estates city,direct,1
+Rossmoor,CA,33.78869,-118.08033,Rossmoor CDP,direct,1
+Salinas,CA,36.69022,-121.63379,Salinas city,direct,1
+San Anselmo,CA,37.98212,-122.56992,San Anselmo town,direct,1
+San Bernardino,CA,34.14114,-117.29463,San Bernardino city,direct,1
+San Dimas,CA,34.10796,-117.80853,San Dimas city,direct,1
+San Marino,CA,34.12267,-118.11291,San Marino city,direct,1
+San Rafael,CA,37.981,-122.50693,San Rafael city,direct,1
+Santa Fe Springs,CA,33.93357,-118.06261,Santa Fe Springs city,direct,1
+Santa Rosa Valley,CA,34.2459,-118.90178,Santa Rosa Valley CDP,direct,1
+Santee,CA,32.85499,-116.98606,Santee city,direct,1
+Scotts Valley,CA,37.0555,-122.01177,Scotts Valley city,direct,1
+Signal Hill,CA,33.80346,-118.16974,Signal Hill city,direct,1
+Solvang,CA,34.59376,-120.13968,Solvang city,direct,1
+Somis,CA,34.26526,-118.99841,Somis CDP,direct,1
+South San Francisco,CA,37.6551,-122.37623,South San Francisco city,direct,1
+Stevenson Ranch,CA,34.38772,-118.58436,Stevenson Ranch CDP,direct,1
+Strawberry,CA,37.89125,-122.50917,Strawberry CDP,direct,1
+Suisun,CA,38.24833,-122.01007,Suisun City city,suffix-add:city,1
+Sutter,CA,39.1556,-121.74926,Sutter CDP,direct,1
+Topanga,CA,34.09678,-118.60602,Topanga CDP,direct,1
+Trabuco Canyon,CA,33.67823,-117.59401,Trabuco Canyon CDP,direct,1
+Vallejo,CA,38.10691,-122.26234,Vallejo city,direct,1
+Valley Center,CA,33.23299,-117.01576,Valley Center CDP,direct,1
+West Hollywood,CA,34.08827,-118.37183,West Hollywood city,direct,1
+Westlake Village,CA,34.13667,-118.81737,Westlake Village city,direct,1
+Windsor,CA,38.5421,-122.80861,Windsor town,direct,1
+Woodland,CA,38.67116,-121.75004,Woodland city,direct,1
+Wrightwood,CA,34.34599,-117.62758,Wrightwood CDP,direct,1
+Yuba City,CA,39.12984,-121.64155,Yuba City city,direct,1
+Yucaipa,CA,34.03358,-117.0429,Yucaipa city,direct,1
+Brighton,CO,39.9657,-104.79417,Brighton city,direct,1
+Buena Vista,CO,38.83199,-106.13866,Buena Vista town,direct,1
+Carbondale,CO,39.39556,-107.21502,Carbondale town,direct,1
+Copper Mountain,CO,39.47689,-106.20111,Copper Mountain CDP,direct,1
+Delta,CO,38.75737,-108.08799,Delta city,direct,1
+El Jebel,CO,39.40699,-107.09422,El Jebel CDP,direct,1
+Fairplay,CO,39.22433,-105.9984,Fairplay town,direct,1
+Fowler,CO,38.13062,-104.0261,Fowler town,direct,1
+Frederick,CO,40.10591,-104.9745,Frederick town,direct,1
+Lafayette,CO,39.99481,-105.09968,Lafayette city,direct,1
+Leadville,CO,39.24728,-106.29346,Leadville city,direct,1
+Lyons,CO,40.22305,-105.26866,Lyons town,direct,1
+New Castle,CO,39.57764,-107.52645,New Castle town,direct,1
+Norwood,CO,38.1284,-108.29225,Norwood town,direct,1
+Oak Creek,CO,40.27402,-106.95764,Oak Creek town,direct,1
+Paonia,CO,38.8698,-107.59208,Paonia town,direct,1
+Pueblo,CO,38.26923,-104.61082,Pueblo city,direct,1
+Sedalia,CO,39.4397,-104.96991,Sedalia CDP,direct,1
+Thornton,CO,39.92043,-104.94141,Thornton city,direct,1
+Windsor,CO,40.47827,-104.91505,Windsor town,direct,1
+Ansonia,CT,41.34425,-73.06982,Ansonia city,direct,1
+Bethlehem,CT,41.64396,-73.20279,Bethlehem Village CDP,suffix-add:village,1
+Cheshire,CT,41.50409,-72.89687,Cheshire Village CDP,suffix-add:village,1
+Dayville,CT,41.84422,-71.88239,Dayville CDP,direct,1
+Guilford,CT,41.28051,-72.67622,Guilford Center CDP,state-starts,1
+Manchester,CT,41.77963,-72.52016,Manchester CDP,direct,1
+North Haven,CT,41.38146,-72.85637,North Haven CDP,direct,1
+Orange,CT,41.28495,-73.02464,Orange CDP,direct,1
+Stamford,CT,41.07961,-73.54608,Stamford city,direct,1
+Torrington,CT,41.8342,-73.13147,Torrington city,direct,1
+Weston,CT,41.20324,-73.37878,Weston CDP,direct,1
+Wilton,CT,41.19128,-73.42616,Wilton Center CDP,state-starts,1
+Windsor Locks,CT,41.92779,-72.65162,Windsor Locks CDP,direct,1
+Washington,DC,38.9072,-77.0369,"Washington, D.C.",override,1
+Delmar,DE,38.47247,-75.54386,Delmar town,direct,1
+Lewes,DE,38.77864,-75.14369,Lewes city,direct,1
+Middletown,DE,39.44339,-75.7175,Middletown town,direct,1
+Rehoboth Beach,DE,38.71745,-75.08061,Rehoboth Beach city,direct,1
+Alva,FL,26.72149,-81.62428,Alva CDP,direct,1
+Anna Maria,FL,27.52983,-82.73372,Anna Maria city,direct,1
+Apollo Beach,FL,27.76302,-82.40331,Apollo Beach CDP,direct,1
+Atlantic Beach,FL,30.33955,-81.39667,Atlantic Beach city,direct,1
+Auburndale,FL,28.11,-81.79732,Auburndale city,direct,1
+Bagdad,FL,30.58417,-87.04489,Bagdad CDP,direct,1
+Belleair Beach,FL,27.93124,-82.83657,Belleair Beach city,direct,1
+Belleair Bluffs,FL,27.91962,-82.81975,Belleair Bluffs city,direct,1
+Brandon,FL,27.93598,-82.29926,Brandon CDP,direct,1
+Cape Coral,FL,26.64319,-81.99736,Cape Coral city,direct,1
+Chuluota,FL,28.64029,-81.1184,Chuluota CDP,direct,1
+Clermont,FL,28.53329,-81.72024,Clermont city,direct,1
+Cocoa,FL,28.37664,-80.76331,Cocoa city,direct,1
+Cocoa Beach,FL,28.32914,-80.62754,Cocoa Beach city,direct,1
+Crestview,FL,30.74793,-86.57927,Crestview city,direct,1
+Dunnellon,FL,29.05961,-82.42538,Dunnellon city,direct,1
+Eagle Lake,FL,27.97427,-81.75539,Eagle Lake city,direct,1
+Ellenton,FL,27.52658,-82.52668,Ellenton CDP,direct,1
+Estero,FL,26.42559,-81.79954,Estero village,direct,1
+Eustis,FL,28.85717,-81.67682,Eustis city,direct,1
+Fellsmere,FL,27.72119,-80.60994,Fellsmere city,direct,1
+Fernandina Beach,FL,30.65813,-81.45152,Fernandina Beach city,direct,1
+Fort Myers,FL,26.62007,-81.82955,Fort Myers city,direct,1
+Fort Pierce,FL,27.42611,-80.34249,Fort Pierce city,direct,1
+Green Cove Springs,FL,29.98531,-81.68098,Green Cove Springs city,direct,1
+Groveland,FL,28.61022,-81.82709,Groveland city,direct,1
+Homestead,FL,25.46633,-80.44305,Homestead city,direct,1
+Homosassa,FL,28.78487,-82.6076,Homosassa CDP,direct,1
+Hudson,FL,28.35923,-82.68966,Hudson CDP,direct,1
+Indian Harbour Beach,FL,28.15747,-80.60015,Indian Harbour Beach city,direct,1
+Inverness,FL,28.84221,-82.34229,Inverness city,direct,1
+Islamorada,FL,24.98435,-80.5433,"Islamorada, Village of Islands village",state-starts,1
+Lake Butler,FL,28.48285,-81.53866,Lake Butler CDP,direct,1
+Lake Panasoffkee,FL,28.78429,-82.12307,Lake Panasoffkee CDP,direct,1
+Lake Wales,FL,27.9207,-81.5995,Lake Wales city,direct,1
+Lauderdale by the Sea,FL,26.19134,-80.09946,Lauderdale-by-the-Sea town,direct,1
+Leesburg,FL,28.71721,-81.90309,Leesburg city,direct,1
+Lynn Haven,FL,30.23357,-85.63692,Lynn Haven city,direct,1
+Melbourne Beach,FL,28.06687,-80.5596,Melbourne Beach town,direct,1
+Merritt Island,FL,28.30924,-80.67596,Merritt Island CDP,direct,1
+Miami Beach,FL,25.8106,-80.14885,Miami Beach city,direct,1
+Miami Gardens,FL,25.94889,-80.24358,Miami Gardens city,direct,1
+Miami Lakes,FL,25.91274,-80.32042,Miami Lakes town,direct,1
+North Palm Beach,FL,26.8203,-80.05691,North Palm Beach village,direct,1
+Odessa,FL,28.18233,-82.55042,Odessa CDP,direct,1
+Orange Park,FL,30.17085,-81.70467,Orange Park town,direct,1
+Ormond Beach,FL,29.29328,-81.10145,Ormond Beach city,direct,1
+Osprey,FL,27.19039,-82.47571,Osprey CDP,direct,1
+Palm Harbor,FL,28.08477,-82.75757,Palm Harbor CDP,direct,1
+Panama City,FL,30.16627,-85.67019,Panama City city,direct,1
+Parkland,FL,26.32136,-80.2543,Parkland city,direct,1
+Pensacola,FL,30.44099,-87.19124,Pensacola city,direct,1
+Plant City,FL,28.01535,-82.11781,Plant City city,direct,1
+Rockledge,FL,28.32136,-80.73782,Rockledge city,direct,1
+Spring Hill,FL,28.47921,-82.52966,Spring Hill CDP,direct,1
+St. Augustine Beach,FL,29.84156,-81.27097,St. Augustine Beach city,direct,1
+Stuart,FL,27.19527,-80.24411,Stuart city,direct,1
+Tequesta,FL,26.96487,-80.11324,Tequesta village,direct,1
+West Palm Beach,FL,26.74511,-80.12704,West Palm Beach city,direct,1
+Winter Haven,FL,28.04584,-81.73274,Winter Haven city,direct,1
+Acworth,GA,34.06199,-84.68112,Acworth city,direct,1
+Albany,GA,31.57812,-84.17622,Albany city,direct,1
+Alma,GA,31.54333,-82.47558,Alma city,direct,1
+Buford,GA,34.11856,-83.98861,Buford city,direct,1
+Cairo,GA,30.87923,-84.20551,Cairo city,direct,1
+Cartersville,GA,34.16458,-84.8017,Cartersville city,direct,1
+Clarkesville,GA,34.60929,-83.52747,Clarkesville city,direct,1
+Conyers,GA,33.65747,-83.98381,Conyers city,direct,1
+Covington,GA,33.60544,-83.84663,Covington city,direct,1
+Cumming,GA,34.20607,-84.13385,Cumming city,direct,1
+Dunwoody,GA,33.94139,-84.3127,Dunwoody city,direct,1
+Eatonton,GA,33.32582,-83.38886,Eatonton city,direct,1
+Glennville,GA,31.9388,-81.93242,Glennville city,direct,1
+Griffin,GA,33.24319,-84.27186,Griffin city,direct,1
+Hampton,GA,33.3777,-84.29897,Hampton city,direct,1
+Jasper,GA,34.4662,-84.43586,Jasper city,direct,1
+Johns Creek,GA,34.03274,-84.20385,Johns Creek city,direct,1
+Macon,GA,32.80884,-83.69419,Macon-Bibb County,state-starts,1
+Monroe,GA,33.79748,-83.71873,Monroe city,direct,1
+Norman Park,GA,31.26902,-83.68453,Norman Park city,direct,1
+Rome,GA,34.26613,-85.18605,Rome city,direct,1
+Sandersville,GA,32.98209,-82.80969,Sandersville city,direct,1
+Savannah,GA,32.01804,-81.19649,Savannah city,direct,1
+Snellville,GA,33.86022,-84.00629,Snellville city,direct,1
+Stockbridge,GA,33.53002,-84.23427,Stockbridge city,direct,1
+Summerville,GA,34.47875,-85.34907,Summerville city,direct,1
+Valdosta,GA,30.85013,-83.27883,Valdosta city,direct,1
+Vidalia,GA,32.21208,-82.40219,Vidalia city,direct,1
+Williamson,GA,33.17827,-84.35757,Williamson city,direct,1
+Aiea,HI,21.38526,-157.92475,Aiea CDP,direct,1
+Haiku,HI,20.92087,-156.30187,Haiku-Pauwela CDP,state-starts,1
+Hauula,HI,21.61205,-157.91089,Hauula CDP,direct,1
+Hau’ula,HI,21.61205,-157.91089,Hauula CDP,direct,1
+Kahuku,HI,21.67894,-157.94316,Kahuku CDP,direct,1
+Kaneohe,HI,21.40933,-157.78965,Kaneohe CDP,direct,1
+Kapolei,HI,21.33993,-158.06783,Kapolei CDP,direct,1
+Kihei,HI,20.76609,-156.43521,Kihei CDP,direct,1
+Makawao,HI,20.84804,-156.31903,Makawao CDP,direct,1
+Nānākuli,HI,21.38985,-158.15497,Nanakuli CDP,direct,1
+Pahala,HI,19.19919,-155.47728,Pahala CDP,direct,1
+Wahiawa,HI,21.50067,-158.01796,Wahiawa CDP,direct,1
+Waikele,HI,21.40255,-158.00583,Waikele CDP,direct,1
+Waipahu,HI,21.38494,-158.01099,Waipahu CDP,direct,1
+Ames,IA,42.02633,-93.62126,Ames city,direct,1
+Coralville,IA,41.69879,-91.5968,Coralville city,direct,1
+Council Bluffs,IA,41.23599,-95.85316,Council Bluffs city,direct,1
+Dubuque,IA,42.4989,-90.70726,Dubuque city,direct,1
+Fairbank,IA,42.64014,-92.04779,Fairbank city,direct,1
+Grimes,IA,41.67785,-93.80231,Grimes city,direct,1
+Grinnell,IA,41.73524,-92.7249,Grinnell city,direct,1
+North Liberty,IA,41.74362,-91.61123,North Liberty city,direct,1
+Pleasant Hill,IA,41.59911,-93.50505,Pleasant Hill city,direct,1
+Sioux City,IA,42.49529,-96.38986,Sioux City city,direct,1
+Swisher,IA,41.84458,-91.69465,Swisher city,direct,1
+Waterloo,IA,42.49233,-92.35195,Waterloo city,direct,1
+West Des Moines,IA,41.54994,-93.78135,West Des Moines city,direct,1
+West Point,IA,40.71454,-91.45283,West Point city,direct,1
+Woodbine,IA,41.73634,-95.71106,Woodbine city,direct,1
+Caldwell,ID,43.64588,-116.65934,Caldwell city,direct,1
+Eagle,ID,43.69342,-116.34599,Eagle city,direct,1
+Hailey,ID,43.51267,-114.2995,Hailey city,direct,1
+McCammon,ID,42.64824,-112.18939,McCammon city,direct,1
+Meridian,ID,43.61149,-116.40066,Meridian city,direct,1
+Rathdrum,ID,47.79404,-116.89293,Rathdrum city,direct,1
+Rexburg,ID,43.82289,-111.79099,Rexburg city,direct,1
+Rigby,ID,43.67359,-111.91353,Rigby city,direct,1
+Sandpoint,ID,48.28169,-116.56001,Sandpoint city,direct,1
+Twin Falls,ID,42.56467,-114.46061,Twin Falls city,direct,1
+Algonquin,IL,42.15947,-88.32187,Algonquin village,direct,1
+Arlington Heights,IL,42.09736,-87.98167,Arlington Heights village,direct,1
+Belleville,IL,38.51597,-89.98978,Belleville city,direct,1
+Bellwood,IL,41.8829,-87.87617,Bellwood village,direct,1
+Bloomington,IL,40.47578,-88.96991,Bloomington city,direct,1
+Boody,IL,39.76438,-89.04667,Boody CDP,direct,1
+Campton Hills,IL,41.95024,-88.41705,Campton Hills village,direct,1
+Carlinville,IL,39.27748,-89.87613,Carlinville city,direct,1
+Cary,IL,42.21214,-88.24963,Cary village,direct,1
+Chatham,IL,39.67453,-89.6933,Chatham village,direct,1
+Chicago Heights,IL,41.51069,-87.63467,Chicago Heights city,direct,1
+Clarendon Hills,IL,41.79845,-87.95724,Clarendon Hills village,direct,1
+Crete,IL,41.44052,-87.62447,Crete village,direct,1
+Decatur,IL,39.85598,-88.93375,Decatur city,direct,1
+East Alton,IL,38.88412,-90.10794,East Alton village,direct,1
+East St. Louis,IL,38.61636,-90.13053,East St. Louis city,direct,1
+Evergreen Park,IL,41.72127,-87.70133,Evergreen Park village,direct,1
+Fox River Grove,IL,42.19549,-88.21481,Fox River Grove village,direct,1
+Freeport,IL,42.28901,-89.63426,Freeport city,direct,1
+Geneva,IL,41.88211,-88.32946,Geneva city,direct,1
+Germantown Hills,IL,40.77063,-89.4689,Germantown Hills village,direct,1
+Glencoe,IL,42.13449,-87.76318,Glencoe village,direct,1
+Gurnee,IL,42.37009,-87.93681,Gurnee village,direct,1
+Itasca,IL,41.97662,-88.01878,Itasca village,direct,1
+Joliet,IL,41.5177,-88.14885,Joliet city,direct,1
+La Grange,IL,41.80721,-87.87415,La Grange village,direct,1
+Lake Bluff,IL,42.28269,-87.85231,Lake Bluff village,direct,1
+Lake Villa,IL,42.41757,-88.08261,Lake Villa village,direct,1
+Lake Zurich,IL,42.19501,-88.08773,Lake Zurich village,direct,1
+Lincolnwood,IL,42.00543,-87.73296,Lincolnwood village,direct,1
+Marion,IL,37.73445,-88.94116,Marion city,direct,1
+Mascoutah,IL,38.51812,-89.80004,Mascoutah city,direct,1
+Mchenry,IL,42.3362,-88.29165,McHenry city,direct,1
+Mt. Prospect,IL,42.0642,-87.93736,Mount Prospect village,direct,1
+Nashville,IL,38.35362,-89.37799,Nashville city,direct,1
+Northfield,IL,42.10297,-87.77738,Northfield village,direct,1
+Northlake,IL,41.91432,-87.90549,Northlake city,direct,1
+Okawville,IL,38.43442,-89.54798,Okawville village,direct,1
+Palos Heights,IL,41.66344,-87.79604,Palos Heights city,direct,1
+Park Ridge,IL,42.01176,-87.84343,Park Ridge city,direct,1
+Richview,IL,38.37588,-89.18026,Richview village,direct,1
+Riverwoods,IL,42.1729,-87.89486,Riverwoods village,direct,1
+Rolling Meadows,IL,42.07491,-88.02536,Rolling Meadows city,direct,1
+Roselle,IL,41.98025,-88.08591,Roselle village,direct,1
+Round Lake,IL,42.34318,-88.1021,Round Lake village,direct,1
+Sauk Village,IL,41.49009,-87.57062,Sauk Village village,direct,1
+Savoy,IL,40.05913,-88.2545,Savoy village,direct,1
+Springfield,IL,39.79106,-89.64457,Springfield city,direct,1
+St. Charles,IL,41.91945,-88.31074,St. Charles city,direct,1
+St. Joseph,IL,40.11471,-88.03562,St. Joseph village,direct,1
+St. Louis,IL,38.61636,-90.13053,East St. Louis city,state-contains,1
+Swansea,IL,38.55178,-89.98751,Swansea village,direct,1
+Sycamore,IL,41.99673,-88.67764,Sycamore city,direct,1
+Vernon Hills,IL,42.23441,-87.96106,Vernon Hills village,direct,1
+Warren,IL,42.49483,-89.99123,Warren village,direct,1
+Wauconda,IL,42.27701,-88.13527,Wauconda village,direct,1
+Waukegan,IL,42.36945,-87.8709,Waukegan city,direct,1
+Willowbrook,IL,41.76732,-87.94215,Willowbrook village,direct,1
+Wilmette,IL,42.07732,-87.72862,Wilmette village,direct,1
+Wilmington,IL,39.48068,-90.48677,Wilmington village,direct,1
+Winfield,IL,41.87844,-88.15303,Winfield village,direct,1
+Woodridge,IL,41.73739,-88.04413,Woodridge village,direct,1
+Yorkville,IL,41.66174,-88.4286,Yorkville city,direct,1
+Auburn,IN,41.36763,-85.05498,Auburn city,direct,1
+Chesterton,IN,41.59982,-87.055,Chesterton town,direct,1
+Columbus,IN,39.20868,-85.91906,Columbus city,direct,1
+Crown Point,IN,41.40911,-87.34695,Crown Point city,direct,1
+Decatur,IN,40.82885,-84.92781,Decatur city,direct,1
+Elwood,IN,40.27382,-85.83729,Elwood city,direct,1
+Fowler,IN,40.61723,-87.31793,Fowler town,direct,1
+Fremont,IN,41.72762,-84.93886,Fremont town,direct,1
+Granger,IN,41.73773,-86.13438,Granger CDP,direct,1
+Huntington,IN,40.88083,-85.5055,Huntington city,direct,1
+Jeffersonville,IN,38.33241,-85.69609,Jeffersonville city,direct,1
+Kokomo,IN,40.46401,-86.12735,Kokomo city,direct,1
+Lake Station,IN,41.57673,-87.25288,Lake Station city,direct,1
+Linton,IN,39.03553,-87.15713,Linton city,direct,1
+Michigan City,IN,41.70878,-86.86687,Michigan City city,direct,1
+Middlebury,IN,39.26489,-87.11931,Middlebury CDP,direct,1
+Mishawaka,IN,41.67661,-86.16536,Mishawaka city,direct,1
+Muncie,IN,40.19883,-85.39506,Muncie city,direct,1
+Princeton,IN,38.35447,-87.57951,Princeton city,direct,1
+Terre Haute,IN,39.46415,-87.37604,Terre Haute city,direct,1
+Valparaiso,IN,41.47981,-87.05227,Valparaiso city,direct,1
+Walkerton,IN,41.46566,-86.48249,Walkerton town,direct,1
+West Lafayette,IN,40.44371,-86.92362,West Lafayette city,direct,1
+Belleville,KS,39.82434,-97.63385,Belleville city,direct,1
+Derby,KS,37.55956,-97.25579,Derby city,direct,1
+Gardner,KS,38.81147,-94.92923,Gardner city,direct,1
+Lawrence,KS,38.96003,-95.26293,Lawrence city,direct,1
+Leavenworth,KS,39.32272,-94.92501,Leavenworth city,direct,1
+Lenexa,KS,38.96527,-94.80394,Lenexa city,direct,1
+McPherson,KS,38.36988,-97.66452,McPherson city,direct,1
+Olathe,KS,38.88203,-94.82005,Olathe city,direct,1
+Paola,KS,38.57893,-94.8604,Paola city,direct,1
+Piedmont,KS,37.61529,-96.37928,Piedmont CDP,direct,1
+Scott City,KS,38.47887,-100.90305,Scott City city,direct,1
+Sterling,KS,38.20929,-98.20646,Sterling city,direct,1
+Wellington,KS,37.27811,-97.40667,Wellington city,direct,1
+Crofton,KY,37.04793,-87.4835,Crofton city,direct,1
+Fort Mitchell,KY,39.04555,-84.55615,Fort Mitchell city,direct,1
+Ft. Mitchell,KY,39.04555,-84.55615,Fort Mitchell city,direct,1
+Georgetown,KY,38.26018,-84.53492,Georgetown city,direct,1
+Grayson,KY,38.33389,-82.93581,Grayson city,direct,1
+Madisonville,KY,37.34104,-87.50347,Madisonville city,direct,1
+Owenton,KY,38.53903,-84.83922,Owenton city,direct,1
+Prospect,KY,38.34689,-85.60887,Prospect city,direct,1
+Shelbyville,KY,38.2068,-85.23062,Shelbyville city,direct,1
+Walton,KY,38.86243,-84.61504,Walton city,direct,1
+Bossier City,LA,32.52367,-93.65543,Bossier City city,direct,1
+Coteau,LA,30.42024,-92.04379,Grand Coteau town,state-contains,1
+Delcambre,LA,29.95105,-91.99171,Delcambre town,direct,1
+Lafayette,LA,30.2056,-92.02806,Lafayette city,direct,1
+Morgan City,LA,29.71033,-91.19154,Morgan City city,direct,1
+Napoleonville,LA,29.93827,-91.02636,Napoleonville village,direct,1
+New Iberia,LA,30.00549,-91.82031,New Iberia city,direct,1
+Prairieville,LA,30.31353,-90.95811,Prairieville CDP,direct,1
+West Monroe,LA,32.51234,-92.15107,West Monroe city,direct,1
+Arlington,MA,42.41872,-71.16391,Arlington CDP,direct,1
+Bedford,MA,41.6613,-70.93791,New Bedford city,state-contains,1
+Belmont,MA,42.39532,-71.18028,Belmont CDP,direct,1
+Brockton,MA,42.08254,-71.02464,Brockton city,direct,1
+Brookline,MA,42.32385,-71.142,Brookline CDP,direct,1
+Burlington,MA,42.50323,-71.20171,Burlington CDP,direct,1
+Danvers,MA,42.57417,-70.95052,Danvers CDP,direct,1
+Dover,MA,42.24667,-71.26807,Dover CDP,direct,1
+Duxbury,MA,42.04435,-70.67924,Duxbury CDP,direct,1
+East Falmouth,MA,41.56825,-70.55744,East Falmouth CDP,direct,1
+Easthampton,MA,42.26543,-72.67081,Easthampton Town city,suffix-add:town,1
+Forestdale,MA,41.68349,-70.51079,Forestdale CDP,direct,1
+Foxborough,MA,42.06402,-71.2484,Foxborough CDP,direct,1
+Framingham,MA,42.3079,-71.4362,Framingham city,direct,1
+Franklin,MA,42.08486,-71.41057,Franklin Town city,suffix-add:town,1
+Hopkinton,MA,42.22556,-71.5241,Hopkinton CDP,direct,1
+Hudson,MA,42.39209,-71.56495,Hudson CDP,direct,1
+Lancaster,MA,42.43702,-71.69709,South Lancaster CDP,state-contains,1
+Leominster,MA,42.52088,-71.77061,Leominster city,direct,1
+Littleton,MA,42.53448,-71.47213,Littleton Common CDP,state-starts,1
+Lowell,MA,42.639,-71.32102,Lowell city,direct,1
+Lynn,MA,42.47477,-70.96204,Lynn city,direct,1
+Marion,MA,41.69661,-70.7555,Marion Center CDP,state-starts,1
+Marlborough,MA,42.34962,-71.54721,Marlborough city,direct,1
+Marshfield,MA,42.10223,-70.6894,Marshfield CDP,direct,1
+Melrose,MA,42.45572,-71.05902,Melrose city,direct,1
+Millis,MA,42.16682,-71.34923,Millis-Clicquot CDP,state-starts,1
+Needham,MA,42.28159,-71.24241,Needham CDP,direct,1
+Norton,MA,41.97446,-71.18855,Norton Center CDP,state-starts,1
+Orange,MA,42.60544,-72.29207,Orange CDP,direct,1
+Peabody,MA,42.53431,-70.96944,Peabody city,direct,1
+Pembroke,MA,42.09774,-70.78327,North Pembroke CDP,state-contains,1
+Raynham,MA,41.93048,-71.04621,Raynham Center CDP,state-starts,1
+Saugus,MA,42.46843,-71.01395,Saugus CDP,direct,1
+Sharon,MA,42.11752,-71.18603,Sharon CDP,direct,1
+Somerville,MA,42.39044,-71.10103,Somerville city,direct,1
+Stoneham,MA,42.47421,-71.09767,Stoneham CDP,direct,1
+Taunton,MA,41.90332,-71.09499,Taunton city,direct,1
+Wakefield,MA,42.50436,-71.06406,Wakefield CDP,direct,1
+Walpole,MA,42.13386,-71.2403,Walpole CDP,direct,1
+Watertown,MA,42.36945,-71.17793,Watertown Town city,suffix-add:town,1
+Westborough,MA,42.26744,-71.61749,Westborough CDP,direct,1
+Westfield,MA,42.13884,-72.75591,Westfield city,direct,1
+Wilmington,MA,42.56465,-71.16452,Wilmington CDP,direct,1
+Woburn,MA,42.4887,-71.15438,Woburn city,direct,1
+Adamstown,MD,39.307,-77.4693,Adamstown CDP,direct,1
+Arnold,MD,39.04323,-76.50499,Arnold CDP,direct,1
+Bowie,MD,38.9547,-76.73883,Bowie city,direct,1
+Columbia,MD,39.20115,-76.85905,Columbia CDP,direct,1
+Fort Washington,MD,38.73187,-77.00866,Fort Washington CDP,direct,1
+Fulton,MD,39.15311,-76.91163,Fulton CDP,direct,1
+Glenarden,MD,38.92929,-76.85769,Glenarden city,direct,1
+Hagerstown,MD,39.64018,-77.72269,Hagerstown city,direct,1
+Landover,MD,38.92439,-76.8876,Landover CDP,direct,1
+Laytonsville,MD,39.20875,-77.13531,Laytonsville town,direct,1
+Little Orleans,MD,39.63051,-78.39584,Little Orleans CDP,direct,1
+Montgomery Village,MD,39.18851,-77.20514,Montgomery Village CDP,direct,1
+Mt. Airy,MD,39.37469,-77.15381,Mount Airy town,direct,1
+Olney,MD,39.14434,-77.07143,Olney CDP,direct,1
+Oxon Hill,MD,38.78879,-76.97186,Oxon Hill CDP,direct,1
+Pasadena,MD,39.1557,-76.55981,Pasadena CDP,direct,1
+Poolesville,MD,39.14183,-77.41051,Poolesville town,direct,1
+Princess Anne,MD,38.20514,-75.69638,Princess Anne town,direct,1
+Springdale,MD,38.9358,-76.84423,Springdale CDP,direct,1
+Towson,MD,39.39421,-76.61775,Towson CDP,direct,1
+Wheaton,MD,39.04949,-77.05821,Wheaton CDP,direct,1
+Boothbay Harbor,ME,43.85562,-69.62334,Boothbay Harbor CDP,direct,1
+Falmouth,ME,43.71601,-70.23106,Falmouth CDP,direct,1
+Fort Fairfield,ME,46.76707,-67.83194,Fort Fairfield CDP,direct,1
+Lisbon Falls,ME,44.00861,-70.05764,Lisbon Falls CDP,direct,1
+Newport,ME,44.83643,-69.25485,Newport CDP,direct,1
+Sanford,ME,43.42414,-70.75786,Sanford city,direct,1
+Allendale,MI,42.98196,-85.94413,Allendale CDP,direct,1
+Bay City,MI,43.59006,-83.88842,Bay City city,direct,1
+Beverly Hills,MI,42.52254,-83.24034,Beverly Hills village,direct,1
+Birmingham,MI,42.5448,-83.21658,Birmingham city,direct,1
+Bloomfield Hills,MI,42.58136,-83.24642,Bloomfield Hills city,direct,1
+Boyne City,MI,45.21299,-85.01244,Boyne City city,direct,1
+Buchanan,MI,41.82829,-86.36597,Buchanan city,direct,1
+Caledonia,MI,42.79474,-85.5171,Caledonia village,direct,1
+Clinton Township,MI,42.06828,-83.96573,Clinton village,suffix-strip,1
+Cutlerville,MI,42.83873,-85.67278,Cutlerville CDP,direct,1
+Eaton Rapids,MI,42.50974,-84.65188,Eaton Rapids city,direct,1
+Escanaba,MI,45.74629,-87.08361,Escanaba city,direct,1
+Fenton,MI,42.80061,-83.71771,Fenton city,direct,1
+Flushing,MI,43.06279,-83.84263,Flushing city,direct,1
+Fowlerville,MI,42.65938,-84.07374,Fowlerville village,direct,1
+Gaylord,MI,45.02134,-84.68182,Gaylord city,direct,1
+Grand Haven,MI,43.05497,-86.21935,Grand Haven city,direct,1
+Grosse Pointe,MI,42.38393,-82.90387,Grosse Pointe city,direct,1
+Grosse Pointe Farms,MI,42.39755,-82.88918,Grosse Pointe Farms city,direct,1
+Hart,MI,43.69662,-86.36727,Hart city,direct,1
+Highland,MI,42.40523,-83.09765,Highland Park city,state-starts,1
+Houghton Lake,MI,44.30107,-84.74986,Houghton Lake CDP,direct,1
+Inkster,MI,42.29395,-83.3203,Inkster city,direct,1
+Iron River,MI,46.09591,-88.6366,Iron River city,direct,1
+Kalamazoo,MI,42.27516,-85.5885,Kalamazoo city,direct,1
+Kingsford,MI,45.80644,-88.10036,Kingsford city,direct,1
+Lapeer,MI,43.04513,-83.32675,Lapeer city,direct,1
+Leland,MI,45.02144,-85.75711,Leland CDP,direct,1
+Lowell,MI,42.9346,-85.34622,Lowell city,direct,1
+Marquette,MI,46.5507,-87.39583,Marquette city,direct,1
+Marysville,MI,42.90847,-82.48096,Marysville city,direct,1
+Melvindale,MI,42.27861,-83.18225,Melvindale city,direct,1
+Milan,MI,42.08135,-83.68479,Milan city,direct,1
+Northville,MI,42.43621,-83.48828,Northville city,direct,1
+Oak Park,MI,42.46494,-83.18241,Oak Park city,direct,1
+Okemos,MI,42.70906,-84.41428,Okemos CDP,direct,1
+Perry,MI,42.83218,-84.22407,Perry city,direct,1
+Pinckney,MI,42.4554,-83.94107,Pinckney village,direct,1
+Pontiac,MI,42.64923,-83.28736,Pontiac city,direct,1
+Portage,MI,42.19705,-85.5914,Portage city,direct,1
+Rockford,MI,43.13697,-85.55452,Rockford city,direct,1
+Saginaw,MI,43.41994,-83.95017,Saginaw city,direct,1
+Saint Clair,MI,42.82653,-82.49243,St. Clair city,direct,1
+Saline,MI,42.17473,-83.77712,Saline city,direct,1
+Sault Ste. Marie,MI,46.47617,-84.37054,Sault Ste. Marie city,direct,1
+Shelby Township,MI,43.61206,-86.36449,Shelby village,suffix-strip,1
+St. Johns,MI,43.00051,-84.55552,St. Johns city,direct,1
+Troy,MI,42.58388,-83.14553,Troy city,direct,1
+Vassar,MI,43.37083,-83.57754,Vassar city,direct,1
+Warren,MI,42.4929,-83.025,Warren city,direct,1
+Westland,MI,42.31917,-83.38078,Westland city,direct,1
+Afton,MN,44.89878,-92.81911,Afton city,direct,1
+Albert Lea,MN,43.65429,-93.36415,Albert Lea city,direct,1
+Albertville,MN,45.23605,-93.66267,Albertville city,direct,1
+Alexandria,MN,45.87718,-95.37696,Alexandria city,direct,1
+Amboy,MN,43.88793,-94.15826,Amboy city,direct,1
+Chanhassen,MN,44.85428,-93.56238,Chanhassen city,direct,1
+Chaska,MN,44.81636,-93.61002,Chaska city,direct,1
+Delano,MN,45.0384,-93.79298,Delano city,direct,1
+Elysian,MN,44.20637,-93.68128,Elysian city,direct,1
+Eveleth,MN,47.47492,-92.54961,Eveleth city,direct,1
+Excelsior,MN,44.9027,-93.56643,Excelsior city,direct,1
+Falcon Heights,MN,44.98805,-93.17466,Falcon Heights city,direct,1
+Fergus Falls,MN,46.28502,-96.07611,Fergus Falls city,direct,1
+Forest Lake,MN,45.25083,-92.96692,Forest Lake city,direct,1
+Gilbert,MN,47.49078,-92.45831,Gilbert city,direct,1
+Golden Valley,MN,44.99023,-93.35874,Golden Valley city,direct,1
+Grant,MN,45.08208,-92.91095,Grant city,direct,1
+Greenwood,MN,44.91296,-93.554,Greenwood city,direct,1
+Hibbing,MN,47.3959,-92.94647,Hibbing city,direct,1
+Hopkins,MN,44.92511,-93.40449,Hopkins city,direct,1
+Hutchinson,MN,44.88536,-94.37688,Hutchinson city,direct,1
+Inver Grove Heights,MN,44.82901,-93.06007,Inver Grove Heights city,direct,1
+Isanti,MN,45.49155,-93.24282,Isanti city,direct,1
+Jordan,MN,44.66463,-93.64022,Jordan city,direct,1
+Kimball,MN,45.31433,-94.30081,Kimball city,direct,1
+Lake City,MN,44.4457,-92.28092,Lake City city,direct,1
+Lake Elmo,MN,44.98785,-92.90965,Lake Elmo city,direct,1
+Lino Lakes,MN,45.15546,-93.10686,Lino Lakes city,direct,1
+Little Canada,MN,45.02327,-93.08365,Little Canada city,direct,1
+Mahtomedi,MN,45.05829,-92.97019,Mahtomedi city,direct,1
+Marine on St. Croix,MN,45.19093,-92.77843,Marine on St. Croix city,direct,1
+Minneapolis-St. Paul,MN,44.96332,-93.26832,Minneapolis city,hyphen-left,1
+Minnetrista,MN,44.93862,-93.71239,Minnetrista city,direct,1
+Moorhead,MN,46.8647,-96.74455,Moorhead city,direct,1
+Mounds View,MN,45.10674,-93.20683,Mounds View city,direct,1
+Mountain Iron,MN,47.53669,-92.61657,Mountain Iron city,direct,1
+New Brighton,MN,45.06723,-93.20578,New Brighton city,direct,1
+Oakdale,MN,44.98755,-92.96355,Oakdale city,direct,1
+Park Rapids,MN,46.91639,-95.05793,Park Rapids city,direct,1
+Pine City,MN,45.84098,-92.96649,Pine City city,direct,1
+Proctor,MN,46.74079,-92.22813,Proctor city,direct,1
+Ramsey,MN,45.26002,-93.45223,Ramsey city,direct,1
+Red Wing,MN,44.58127,-92.60501,Red Wing city,direct,1
+Robbinsdale,MN,45.02453,-93.33064,Robbinsdale city,direct,1
+Rogers,MN,45.18385,-93.57167,Rogers city,direct,1
+Roseau,MN,48.84445,-95.76255,Roseau city,direct,1
+Rosemount,MN,44.74581,-93.06886,Rosemount city,direct,1
+Saint Cloud,MN,45.52666,-94.17101,St. Cloud city,direct,1
+Silver Bay,MN,47.29331,-91.27681,Silver Bay city,direct,1
+Spicer,MN,45.23364,-94.93996,Spicer city,direct,1
+Spring Park,MN,44.93593,-93.63011,Spring Park city,direct,1
+St. Cloud,MN,45.52666,-94.17101,St. Cloud city,direct,1
+St. Louis Park,MN,44.94868,-93.36504,St. Louis Park city,direct,1
+Stewartville,MN,43.86066,-92.48979,Stewartville city,direct,1
+Two Harbors,MN,47.02995,-91.67574,Two Harbors city,direct,1
+Vadnais Heights,MN,45.05794,-93.06645,Vadnais Heights city,direct,1
+Waseca,MN,44.08153,-93.50395,Waseca city,direct,1
+Winona,MN,44.05127,-91.66808,Winona city,direct,1
+Young America,MN,44.77211,-93.91729,Norwood Young America city,state-contains,1
+Zimmerman,MN,45.44056,-93.59609,Zimmerman city,direct,1
+Ballwin,MO,38.59506,-90.55002,Ballwin city,direct,1
+Bowling Green,MO,39.34477,-91.20249,Bowling Green city,direct,1
+Carthage,MO,37.1506,-94.32787,Carthage city,direct,1
+Fairfax,MO,40.3395,-95.39204,Fairfax city,direct,1
+Festus,MO,38.21943,-90.40972,Festus city,direct,1
+Florissant,MO,38.79973,-90.32708,Florissant city,direct,1
+Grain Valley,MO,39.01499,-94.21637,Grain Valley city,direct,1
+Gray Summit,MO,38.49486,-90.81535,Gray Summit CDP,direct,1
+Ironton,MO,37.59584,-90.62975,Ironton city,direct,1
+Lake St. Louis,MO,38.77989,-90.78559,Lake St. Louis city,direct,1
+Leeton,MO,38.58334,-93.69531,Leeton city,direct,1
+Nixa,MO,37.04509,-93.29591,Nixa city,direct,1
+Odessa,MO,38.9994,-93.9664,Odessa city,direct,1
+Ozark,MO,37.0336,-93.21804,Ozark city,direct,1
+Pattonsburg,MO,40.06876,-94.10881,Pattonsburg city,direct,1
+Rogersville,MO,37.11485,-93.07469,Rogersville city,direct,1
+Springfield,MO,37.19416,-93.29264,Springfield city,direct,1
+St Louis,MO,38.6357,-90.24458,St. Louis city,direct,1
+St. Joseph,MO,39.75946,-94.82114,St. Joseph city,direct,1
+Wellington,MO,39.14236,-93.98631,Wellington city,direct,1
+Winston,MO,39.86995,-94.14174,Winston village,direct,1
+Abbeville,MS,34.50339,-89.50252,Abbeville town,direct,1
+Enterprise,MS,32.17254,-88.81582,Enterprise town,direct,1
+Florence,MS,32.15561,-90.12245,Florence city,direct,1
+Greenwood,MS,33.51246,-90.19896,Greenwood city,direct,1
+Hernando,MS,34.84959,-89.9924,Hernando city,direct,1
+Jackson,MS,32.31583,-90.21285,Jackson city,direct,1
+Oxford,MS,34.35126,-89.53698,Oxford city,direct,1
+Pass Christian,MS,30.31803,-89.23908,Pass Christian city,direct,1
+Belgrade,MT,45.77866,-111.17715,Belgrade city,direct,1
+Corvallis,MT,46.31395,-114.11171,Corvallis CDP,direct,1
+Great Falls,MT,47.50252,-111.29997,Great Falls city,direct,1
+Helena,MT,46.59546,-112.01875,Helena city,direct,1
+Manhattan,MT,45.85863,-111.33028,Manhattan town,direct,1
+Valier,MT,48.30554,-112.25222,Valier town,direct,1
+West Yellowstone,MT,44.66218,-111.10702,West Yellowstone town,direct,1
+Apex,NC,35.72463,-78.87874,Apex town,direct,1
+Asheville,NC,35.57097,-82.55272,Asheville city,direct,1
+Beaufort,NC,34.72271,-76.65117,Beaufort town,direct,1
+Bryson City,NC,35.42661,-83.44727,Bryson City town,direct,1
+Burlington,NC,36.07613,-79.4683,Burlington city,direct,1
+Clayton,NC,35.65814,-78.44601,Clayton town,direct,1
+Coats,NC,35.40639,-78.66952,Coats town,direct,1
+Conover,NC,35.71522,-81.21683,Conover city,direct,1
+Greenville,NC,35.59643,-77.37526,Greenville city,direct,1
+High Point,NC,35.9908,-79.99271,High Point city,direct,1
+Hillsborough,NC,36.0779,-79.09798,Hillsborough town,direct,1
+Indian Trail,NC,35.06864,-80.65115,Indian Trail town,direct,1
+Jamestown,NC,35.99844,-79.9346,Jamestown town,direct,1
+Kannapolis,NC,35.4799,-80.6475,Kannapolis city,direct,1
+Knightdale,NC,35.79173,-78.49646,Knightdale town,direct,1
+Matthews,NC,35.11979,-80.70969,Matthews town,direct,1
+Mooresville,NC,35.58372,-80.82775,Mooresville town,direct,1
+Mount Holly,NC,35.3144,-81.00661,Mount Holly city,direct,1
+Norlina,NC,36.44499,-78.19502,Norlina town,direct,1
+Pittsboro,NC,35.72777,-79.16892,Pittsboro town,direct,1
+Raeford,NC,34.9813,-79.22957,Raeford city,direct,1
+Reidsville,NC,36.3413,-79.67383,Reidsville city,direct,1
+Rutherfordton,NC,35.36407,-81.96134,Rutherfordton town,direct,1
+Shelby,NC,35.2904,-81.54564,Shelby city,direct,1
+Stanley,NC,35.35469,-81.09182,Stanley town,direct,1
+Statesville,NC,35.78549,-80.87296,Statesville city,direct,1
+Waco,NC,35.36265,-81.42933,Waco town,direct,1
+Wilmington,NC,34.20923,-77.88577,Wilmington city,direct,1
+Winston Salem,NC,36.10286,-80.26083,Winston-Salem city,direct,1
+Edmore,ND,48.41244,-98.45364,Edmore city,direct,1
+Fairdale,ND,48.49004,-98.23122,Fairdale city,direct,1
+Langdon,ND,48.76221,-98.37526,Langdon city,direct,1
+Stanley,ND,48.31378,-102.39732,Stanley city,direct,1
+West Fargo,ND,46.85638,-96.90481,West Fargo city,direct,1
+Alliance,NE,42.10257,-102.87619,Alliance city,direct,1
+Bellevue,NE,41.1633,-95.90327,Bellevue city,direct,1
+Bridgeport,NE,41.66471,-103.09714,Bridgeport city,direct,1
+Eustis,NE,40.66453,-100.02955,Eustis village,direct,1
+Geneva,NE,40.53069,-97.59713,Geneva city,direct,1
+Gordon,NE,42.80638,-102.204,Gordon city,direct,1
+Hooper,NE,41.61144,-96.54925,Hooper city,direct,1
+Lexington,NE,40.77732,-99.74662,Lexington city,direct,1
+Nebraska City,NE,40.67591,-95.86163,Nebraska City city,direct,1
+Ord,NE,41.60278,-98.91926,Ord city,direct,1
+Papillion,NE,41.14338,-96.07809,Papillion city,direct,1
+Shelby,NE,41.19425,-97.42627,Shelby village,direct,1
+Sidney,NE,41.13363,-102.96954,Sidney city,direct,1
+Springfield,NE,41.10725,-96.14854,Springfield city,direct,1
+Claremont,NH,43.38647,-72.3345,Claremont city,direct,1
+Durham,NH,43.14275,-70.925,Durham CDP,direct,1
+Hanover,NH,43.71159,-72.27314,Hanover CDP,direct,1
+Keene,NH,42.95384,-72.30688,Keene city,direct,1
+Lebanon,NH,43.63543,-72.25384,Lebanon city,direct,1
+Manchester,NH,42.98494,-71.44413,Manchester city,direct,1
+Newmarket,NH,43.07569,-70.94071,Newmarket CDP,direct,1
+Atlantic Highlands,NJ,40.41177,-74.01984,Atlantic Highlands borough,direct,1
+Avenel,NJ,40.58433,-74.27163,Avenel CDP,direct,1
+Basking Ridge,NJ,40.70655,-74.55763,Basking Ridge CDP,direct,1
+Belle Mead,NJ,40.46858,-74.65702,Belle Mead CDP,direct,1
+Bridgewater,NJ,40.60274,-74.6461,Bridgewater Center CDP,state-starts,1
+Brielle,NJ,40.10548,-74.06368,Brielle borough,direct,1
+Caldwell,NJ,40.83924,-74.27703,Caldwell borough,direct,1
+Camden,NJ,39.93679,-75.10664,Camden city,direct,1
+Chatham,NJ,40.74069,-74.38448,Chatham borough,direct,1
+Clayton,NJ,39.66406,-75.0744,Clayton borough,direct,1
+Cranford,NJ,40.65437,-74.30863,Cranford CDP,direct,1
+Dunellen,NJ,40.59029,-74.46565,Dunellen borough,direct,1
+East Orange,NJ,40.76505,-74.21165,East Orange city,direct,1
+Englewood,NJ,40.8912,-73.97252,Englewood city,direct,1
+Fair Lawn,NJ,40.93583,-74.1175,Fair Lawn borough,direct,1
+Flemington,NJ,40.50864,-74.85987,Flemington borough,direct,1
+Florence,NJ,40.11916,-74.80877,Florence CDP,direct,1
+Fort Lee,NJ,40.85064,-73.97101,Fort Lee borough,direct,1
+Franklin Lakes,NJ,41.00753,-74.20565,Franklin Lakes borough,direct,1
+Freehold,NJ,40.26022,-74.27588,Freehold borough,direct,1
+Garfield,NJ,40.8798,-74.10825,Garfield city,direct,1
+Hackettstown,NJ,40.8537,-74.82488,Hackettstown town,direct,1
+Haddonfield,NJ,39.89542,-75.03441,Haddonfield borough,direct,1
+Haledon,NJ,40.93699,-74.18887,Haledon borough,direct,1
+Highland Park,NJ,40.50079,-74.42791,Highland Park borough,direct,1
+Hillsborough,NJ,40.50807,-74.65288,Hillsborough CDP,direct,1
+Kenilworth,NJ,40.67809,-74.28811,Kenilworth borough,direct,1
+Linwood,NJ,39.34372,-74.57105,Linwood city,direct,1
+Marlboro,NJ,39.48708,-75.32458,Marlboro CDP,direct,1
+Martinsville,NJ,40.60295,-74.57579,Martinsville CDP,direct,1
+Matawan,NJ,40.41104,-74.23653,Matawan borough,direct,1
+Medford,NJ,39.85365,-74.81167,Medford Lakes borough,state-starts,1
+Montclair,NJ,40.86592,-74.19836,Montclair State University CDP,state-starts,1
+Moorestown,NJ,39.96612,-74.96156,Moorestown-Lenola CDP,state-starts,1
+New Vernon,NJ,40.73889,-74.48046,New Vernon CDP,direct,1
+Ocean City,NJ,39.26952,-74.5998,Ocean City city,direct,1
+Old Bridge,NJ,40.39537,-74.33119,Old Bridge CDP,direct,1
+Oradell,NJ,40.95665,-74.03286,Oradell borough,direct,1
+Parsippany,NJ,40.86406,-74.41237,Parsippany CDP,direct,1
+Passaic,NJ,40.85755,-74.12909,Passaic city,direct,1
+Pennington,NJ,40.32492,-74.78878,Pennington borough,direct,1
+Plainsboro,NJ,40.33127,-74.59159,Plainsboro Center CDP,state-starts,1
+Ringwood,NJ,41.10396,-74.27114,Ringwood borough,direct,1
+Riverdale,NJ,40.99589,-74.31453,Riverdale borough,direct,1
+Roseland,NJ,40.82174,-74.31015,Roseland borough,direct,1
+Sewell,NJ,39.7692,-75.1447,Sewell CDP,direct,1
+Sicklerville,NJ,39.74251,-74.99023,Sicklerville CDP,direct,1
+Stockton,NJ,40.40585,-74.97063,Stockton borough,direct,1
+Summit,NJ,40.71562,-74.36468,Summit city,direct,1
+Tenafly,NJ,40.91831,-73.95052,Tenafly borough,direct,1
+Thorofare,NJ,39.85473,-75.19868,Thorofare CDP,direct,1
+Trenton,NJ,40.22384,-74.76362,Trenton city,direct,1
+Upper Montclair,NJ,40.84258,-74.2013,Upper Montclair CDP,direct,1
+Whippany,NJ,40.82328,-74.41869,Whippany CDP,direct,1
+Deming,NM,32.26308,-107.75249,Deming city,direct,1
+Farmington,NM,36.75383,-108.18053,Farmington city,direct,1
+Hobbs,NM,32.72909,-103.16083,Hobbs city,direct,1
+Los Alamos,NM,35.89396,-106.29002,Los Alamos CDP,direct,1
+Rio Rancho,NM,35.28507,-106.69887,Rio Rancho city,direct,1
+Battle Mountain,NV,40.62837,-116.94855,Battle Mountain CDP,direct,1
+Boulder City,NV,35.84376,-114.91155,Boulder City city,direct,1
+Incline Village,NV,39.26575,-119.94625,Incline Village CDP,direct,1
+Sparks,NV,39.57434,-119.71515,Sparks city,direct,1
+Allegany,NY,42.09065,-78.48963,Allegany village,direct,1
+Altona,NY,44.8901,-73.65957,Altona CDP,direct,1
+Amityville,NY,40.66984,-73.41579,Amityville village,direct,1
+Barneveld,NY,43.2745,-75.18769,Barneveld CDP,direct,1
+Bedford,NY,41.18686,-73.65738,Bedford CDP,direct,1
+Brewster,NY,41.39616,-73.61627,Brewster village,direct,1
+Brockport,NY,43.2133,-77.94082,Brockport village,direct,1
+Bronxville,NY,40.93949,-73.82644,Bronxville village,direct,1
+Cadyville,NY,44.6985,-73.65344,Cadyville CDP,direct,1
+Camillus,NY,43.03866,-76.30993,Camillus village,direct,1
+Canton,NY,44.59999,-75.16658,Canton village,direct,1
+Cazenovia,NY,42.92792,-75.85132,Cazenovia village,direct,1
+Central Islip,NY,40.78359,-73.19447,Central Islip CDP,direct,1
+Chappaqua,NY,41.15592,-73.76827,Chappaqua CDP,direct,1
+Cheektowaga,NY,42.909,-78.75076,Cheektowaga CDP,direct,1
+Cohoes,NY,42.77287,-73.70776,Cohoes city,direct,1
+Commack,NY,40.84345,-73.28334,Commack CDP,direct,1
+Cornwall,NY,41.43352,-74.01515,Cornwall-on-Hudson village,state-starts,1
+Duanesburg,NY,42.76342,-74.13313,Duanesburg CDP,direct,1
+East Aurora,NY,42.76684,-78.61704,East Aurora village,direct,1
+East Moriches,NY,40.80877,-72.7566,East Moriches CDP,direct,1
+East Northport,NY,40.87913,-73.32324,East Northport CDP,direct,1
+East Rockaway,NY,40.6438,-73.66713,East Rockaway village,direct,1
+East Syracuse,NY,43.06382,-76.06979,East Syracuse village,direct,1
+Eastport,NY,40.83508,-72.73505,Eastport CDP,direct,1
+Elmira,NY,42.09339,-76.80961,Elmira city,direct,1
+Elmont,NY,40.69918,-73.70617,Elmont CDP,direct,1
+Endicott,NY,42.09749,-76.06338,Endicott village,direct,1
+Fair Haven,NY,43.32317,-76.70468,Fair Haven village,direct,1
+Fayetteville,NY,43.03079,-75.99836,Fayetteville village,direct,1
+Franklin Square,NY,40.70019,-73.67748,Franklin Square CDP,direct,1
+Fredonia,NY,42.44066,-79.3319,Fredonia village,direct,1
+Garden City,NY,40.72576,-73.6454,Garden City village,direct,1
+Gouverneur,NY,44.33657,-75.46604,Gouverneur village,direct,1
+Great Neck,NY,40.80237,-73.7331,Great Neck village,direct,1
+Holbrook,NY,40.79437,-73.07002,Holbrook CDP,direct,1
+Hopewell Junction,NY,41.58019,-73.81164,Hopewell Junction CDP,direct,1
+Inwood,NY,40.62135,-73.75699,Inwood CDP,direct,1
+Islip Terrace,NY,40.75027,-73.18689,Islip Terrace CDP,direct,1
+Ithaca,NY,42.44394,-76.50306,Ithaca city,direct,1
+Jamestown,NY,42.0976,-79.23614,Jamestown city,direct,1
+Lancaster,NY,42.9006,-78.66877,Lancaster village,direct,1
+Larchmont,NY,40.92596,-73.75196,Larchmont village,direct,1
+Long Beach,NY,40.58584,-73.6654,Long Beach city,direct,1
+Manlius,NY,43.00144,-75.98223,Manlius village,direct,1
+Massapequa,NY,40.6683,-73.47151,Massapequa CDP,direct,1
+Massena,NY,44.92902,-74.89297,Massena village,direct,1
+Middletown,NY,41.44492,-74.42357,Middletown city,direct,1
+Mount Vernon,NY,40.91311,-73.82932,Mount Vernon city,direct,1
+Mt. Vernon,NY,40.91311,-73.82932,Mount Vernon city,direct,1
+Naples,NY,42.61743,-77.40213,Naples village,direct,1
+Nesconset,NY,40.84685,-73.15201,Nesconset CDP,direct,1
+New Hartford,NY,43.07104,-75.28862,New Hartford village,direct,1
+New Hyde Park,NY,40.73227,-73.68586,New Hyde Park village,direct,1
+Newfane,NY,43.28568,-78.69394,Newfane CDP,direct,1
+Niskayuna,NY,42.8049,-73.88743,Niskayuna CDP,direct,1
+North Bellmore,NY,40.69035,-73.53902,North Bellmore CDP,direct,1
+North Massapequa,NY,40.70301,-73.46912,North Massapequa CDP,direct,1
+North Syracuse,NY,43.13387,-76.13039,North Syracuse village,direct,1
+Old Forge,NY,43.7064,-74.96912,Old Forge CDP,direct,1
+Orchard Park,NY,42.7622,-78.74137,Orchard Park village,direct,1
+Pelham,NY,40.91108,-73.8077,Pelham village,direct,1
+Plattsburgh,NY,44.69203,-73.45828,Plattsburgh city,direct,1
+Port Chester,NY,41.0047,-73.66718,Port Chester village,direct,1
+Port Jefferson,NY,40.94218,-73.0528,Port Jefferson village,direct,1
+Port Jefferson Station,NY,40.92594,-73.06519,Port Jefferson Station CDP,direct,1
+Port Washington,NY,40.82745,-73.68001,Port Washington CDP,direct,1
+Portville,NY,42.03671,-78.33726,Portville village,direct,1
+Remsen,NY,43.32822,-75.18699,Remsen village,direct,1
+Roosevelt,NY,40.67942,-73.58337,Roosevelt CDP,direct,1
+Sand Lake,NY,42.63817,-73.59538,West Sand Lake CDP,state-contains,1
+Scarsdale,NY,40.99361,-73.7772,Scarsdale village,direct,1
+Sleepy Hollow,NY,41.09751,-73.86964,Sleepy Hollow village,direct,1
+Smithtown,NY,40.85748,-73.21667,Smithtown CDP,direct,1
+Southampton,NY,40.87662,-72.40309,Southampton village,direct,1
+Uniondale,NY,40.71759,-73.59466,Uniondale CDP,direct,1
+Valley Stream,NY,40.66475,-73.7049,Valley Stream village,direct,1
+Watkins Glen,NY,42.38055,-76.86699,Watkins Glen village,direct,1
+West Seneca,NY,42.83778,-78.75123,West Seneca CDP,direct,1
+Westbury,NY,40.75988,-73.58919,Westbury village,direct,1
+White Plains,NY,41.0238,-73.75105,White Plains city,direct,1
+Whitehall,NY,43.54601,-73.43378,Whitehall village,direct,1
+Whitesboro,NY,43.12398,-75.29669,Whitesboro village,direct,1
+Whitney Point,NY,42.33057,-75.97162,Whitney Point village,direct,1
+Williamsville,NY,42.95825,-78.73952,Williamsville village,direct,1
+Williston Park,NY,40.75876,-73.64659,Williston Park village,direct,1
+Yonkers,NY,40.94586,-73.86745,Yonkers city,direct,1
+Yorktown Heights,NY,41.27059,-73.77471,Yorktown Heights CDP,direct,1
+Amelia,OH,39.02686,-84.21806,Amelia CDP,direct,1
+Athens,OH,39.32629,-82.10019,Athens city,direct,1
+Attica,OH,41.06368,-82.88711,Attica village,direct,1
+Barberton,OH,41.0069,-81.60439,Barberton city,direct,1
+Bay Village,OH,41.48777,-81.92889,Bay Village city,direct,1
+Bellbrook,OH,39.6384,-84.08541,Bellbrook city,direct,1
+Bexley,OH,39.96536,-82.93448,Bexley city,direct,1
+Bluffton,OH,40.89205,-83.88779,Bluffton village,direct,1
+Broadview Heights,OH,41.31816,-81.67926,Broadview Heights city,direct,1
+Brooklyn Heights,OH,41.41989,-81.66531,Brooklyn Heights village,direct,1
+Canfield,OH,41.02958,-80.76998,Canfield city,direct,1
+Castalia,OH,41.40424,-82.80163,Castalia village,direct,1
+Celina,OH,40.55549,-84.56142,Celina city,direct,1
+Chardon,OH,41.57929,-81.20906,Chardon city,direct,1
+Cleveland Heights,OH,41.51107,-81.56177,Cleveland Heights city,direct,1
+Dover,OH,40.53005,-81.48103,Dover city,direct,1
+Dresden,OH,40.12223,-82.01345,Dresden village,direct,1
+East Palestine,OH,40.83907,-80.54661,East Palestine village,direct,1
+Fairview Park,OH,41.44199,-81.85295,Fairview Park city,direct,1
+Hamilton,OH,39.39343,-84.56575,Hamilton city,direct,1
+Hilliard,OH,40.03472,-83.15779,Hilliard city,direct,1
+Hubbard,OH,41.15812,-80.56465,Hubbard city,direct,1
+Hudson,OH,41.23921,-81.44161,Hudson city,direct,1
+Huron,OH,41.39763,-82.56257,Huron city,direct,1
+Ironton,OH,38.5326,-82.67809,Ironton city,direct,1
+Jamestown,OH,39.6572,-83.75382,Jamestown village,direct,1
+Lakewood,OH,41.48326,-81.80114,Lakewood city,direct,1
+Middletown,OH,39.50295,-84.36489,Middletown city,direct,1
+Milford Center,OH,40.17931,-83.43854,Milford Center village,direct,1
+Millbury,OH,41.56473,-83.42552,Millbury village,direct,1
+New Paris,OH,39.85668,-84.79192,New Paris village,direct,1
+Oberlin,OH,41.28606,-82.21957,Oberlin city,direct,1
+Olmsted Falls,OH,41.36575,-81.90379,Olmsted Falls city,direct,1
+Ontario,OH,40.7682,-82.61477,Ontario city,direct,1
+Orange,OH,41.44262,-81.47172,Orange village,direct,1
+Parma,OH,41.38357,-81.72864,Parma city,direct,1
+Perrysburg,OH,41.53899,-83.64413,Perrysburg city,direct,1
+Pickerington,OH,39.88754,-82.76414,Pickerington city,direct,1
+Poland,OH,41.0229,-80.61539,Poland village,direct,1
+Ravenna,OH,41.16157,-81.24206,Ravenna city,direct,1
+South Euclid,OH,41.52396,-81.52448,South Euclid city,direct,1
+Strongsville,OH,41.31296,-81.83169,Strongsville city,direct,1
+Sunbury,OH,40.24941,-82.8802,Sunbury village,direct,1
+Tiffin,OH,41.11491,-83.18047,Tiffin city,direct,1
+Trenton,OH,39.47881,-84.46637,Trenton city,direct,1
+University Heights,OH,41.49479,-81.5349,University Heights city,direct,1
+Wadsworth,OH,41.02744,-81.7322,Wadsworth city,direct,1
+Warren,OH,41.23956,-80.81601,Warren city,direct,1
+Westlake,OH,41.44953,-81.93016,Westlake city,direct,1
+Wilmington,OH,39.42912,-83.81617,Wilmington city,direct,1
+Wooster,OH,40.81703,-81.93153,Wooster city,direct,1
+Youngstown,OH,41.09909,-80.6459,Youngstown city,direct,1
+Zanesfield,OH,40.3386,-83.67789,Zanesfield village,direct,1
+Ardmore,OK,34.19651,-97.13185,Ardmore city,direct,1
+Claremore,OK,36.31463,-95.60832,Claremore city,direct,1
+Moore,OK,35.3285,-97.47476,Moore city,direct,1
+Newcastle,OK,35.2424,-97.59534,Newcastle city,direct,1
+Sand Springs,OK,36.13648,-96.13197,Sand Springs city,direct,1
+Skiatook,OK,36.34654,-95.94536,Skiatook city,direct,1
+Stillwater,OK,36.1315,-97.07446,Stillwater city,direct,1
+Stroud,OK,35.76888,-96.65007,Stroud city,direct,1
+Warner,OK,35.49169,-95.30894,Warner town,direct,1
+Ashland,OR,42.19222,-122.69825,Ashland city,direct,1
+Aurora,OR,45.22832,-122.75723,Aurora city,direct,1
+Boring,OR,45.43127,-122.3725,Boring CDP,direct,1
+Canby,OR,45.26509,-122.68839,Canby city,direct,1
+Corvallis,OR,44.56995,-123.27828,Corvallis city,direct,1
+Happy Valley,OR,45.43603,-122.51013,Happy Valley city,direct,1
+Hood River,OR,45.70911,-121.52602,Hood River city,direct,1
+Klamath Falls,OR,42.21885,-121.77872,Klamath Falls city,direct,1
+Lake Oswego,OR,45.41355,-122.70001,Lake Oswego city,direct,1
+Milwaukie,OR,45.44483,-122.62085,Milwaukie city,direct,1
+Newberg,OR,45.30724,-122.96018,Newberg city,direct,1
+Ontario,OR,44.02505,-116.97877,Ontario city,direct,1
+Salem,OR,44.9239,-123.02301,Salem city,direct,1
+Springfield,OR,44.05378,-122.98111,Springfield city,direct,1
+Alburtis,PA,40.50663,-75.60023,Alburtis borough,direct,1
+Aliquippa,PA,40.61583,-80.25516,Aliquippa city,direct,1
+Ardmore,PA,40.00324,-75.29474,Ardmore CDP,direct,1
+Audubon,PA,40.13034,-75.42802,Audubon CDP,direct,1
+Benton,PA,41.19569,-76.38425,Benton borough,direct,1
+Berwick,PA,41.05499,-76.25101,Berwick borough,direct,1
+Berwyn,PA,40.03879,-75.44209,Berwyn CDP,direct,1
+Bethlehem,PA,40.62642,-75.3679,Bethlehem city,direct,1
+Blandon,PA,40.44515,-75.87945,Blandon CDP,direct,1
+Blue Bell,PA,40.14735,-75.26868,Blue Bell CDP,direct,1
+Bryn Mawr,PA,40.02082,-75.31617,Bryn Mawr CDP,direct,1
+Carlisle,PA,40.19999,-77.20415,Carlisle borough,direct,1
+Carmichaels,PA,39.8976,-79.97499,Carmichaels borough,direct,1
+Carnegie,PA,40.40799,-80.08604,Carnegie borough,direct,1
+Chadds Ford,PA,39.87595,-75.60822,Chadds Ford CDP,direct,1
+Chambersburg,PA,39.93143,-77.65564,Chambersburg borough,direct,1
+Coopersburg,PA,40.51037,-75.39192,Coopersburg borough,direct,1
+Coraopolis,PA,40.51462,-80.16182,Coraopolis borough,direct,1
+Darby,PA,39.92095,-75.26108,Darby borough,direct,1
+Dauphin,PA,40.36828,-76.93022,Dauphin borough,direct,1
+Donora,PA,40.17953,-79.86241,Donora borough,direct,1
+Douglassville,PA,40.2599,-75.72423,Douglassville CDP,direct,1
+Eagleville,PA,41.05599,-77.58532,Eagleville CDP,direct,1
+Elizabethtown,PA,40.15328,-76.59865,Elizabethtown borough,direct,1
+Elverson,PA,40.15372,-75.83083,Elverson borough,direct,1
+Emmaus,PA,40.53519,-75.49788,Emmaus borough,direct,1
+Fort Washington,PA,40.14076,-75.19258,Fort Washington CDP,direct,1
+Gibsonia,PA,40.63223,-79.96835,Gibsonia CDP,direct,1
+Gilbertsville,PA,40.32304,-75.60863,Gilbertsville CDP,direct,1
+Glen Rock,PA,39.7935,-76.7307,Glen Rock borough,direct,1
+Glenside,PA,40.10325,-75.15188,Glenside CDP,direct,1
+Green Lane,PA,40.33665,-75.47175,Green Lane borough,direct,1
+Greencastle,PA,39.79067,-77.72667,Greencastle borough,direct,1
+Hamburg,PA,40.55622,-75.98236,Hamburg borough,direct,1
+Hatfield,PA,40.2771,-75.29887,Hatfield borough,direct,1
+Haverford,PA,40.00926,-75.30738,Haverford College CDP,state-starts,1
+Hollidaysburg,PA,40.4311,-78.39296,Hollidaysburg borough,direct,1
+Hopewell Township,PA,40.13516,-78.26568,Hopewell borough,suffix-strip,1
+Irwin,PA,40.32506,-79.69976,Irwin borough,direct,1
+Johnstown,PA,40.32613,-78.91914,Johnstown city,direct,1
+Kennett Square,PA,39.84384,-75.7113,Kennett Square borough,direct,1
+Kingston,PA,41.26475,-75.88657,Kingston borough,direct,1
+Kittanning,PA,40.8287,-79.51869,Kittanning borough,direct,1
+Kutztown,PA,40.52131,-75.77729,Kutztown borough,direct,1
+Larksville,PA,41.26401,-75.9309,Larksville borough,direct,1
+Latrobe,PA,40.31243,-79.3826,Latrobe borough,direct,1
+Lebanon,PA,40.34119,-76.42274,Lebanon city,direct,1
+Lewisburg,PA,40.96413,-76.88996,Lewisburg borough,direct,1
+Lewistown,PA,40.59723,-77.57152,Lewistown borough,direct,1
+Lincoln University,PA,39.80647,-75.92791,Lincoln University CDP,direct,1
+Meadville,PA,41.64788,-80.14744,Meadville city,direct,1
+Mechanicsburg,PA,40.2114,-77.00593,Mechanicsburg borough,direct,1
+Mohnton,PA,40.28746,-75.9869,Mohnton borough,direct,1
+Moosic,PA,41.35604,-75.7047,Moosic borough,direct,1
+Myerstown,PA,40.37214,-76.30558,Myerstown borough,direct,1
+New Kensington,PA,40.57248,-79.75305,New Kensington city,direct,1
+Newtown,PA,40.22834,-74.93229,Newtown borough,direct,1
+Northampton,PA,40.68824,-75.48745,Northampton borough,direct,1
+Oley,PA,40.38982,-75.78721,Oley CDP,direct,1
+Oxford,PA,39.78556,-75.97965,Oxford borough,direct,1
+Parkesburg,PA,39.96005,-75.91616,Parkesburg borough,direct,1
+Pennsburg,PA,40.39359,-75.49641,Pennsburg borough,direct,1
+Pottstown,PA,40.25092,-75.64475,Pottstown borough,direct,1
+Robesonia,PA,40.34862,-76.13856,Robesonia borough,direct,1
+Saylorsburg,PA,40.89904,-75.31675,Saylorsburg CDP,direct,1
+Seven Fields,PA,40.68673,-80.0639,Seven Fields borough,direct,1
+Shavertown,PA,41.31876,-75.94044,Shavertown CDP,direct,1
+Sinking Spring,PA,40.32469,-76.02253,Sinking Spring borough,direct,1
+Souderton,PA,40.311,-75.32235,Souderton borough,direct,1
+Spring Grove,PA,39.88085,-76.86401,Spring Grove borough,direct,1
+Thompsontown,PA,40.5658,-77.23613,Thompsontown borough,direct,1
+Uniontown,PA,39.8993,-79.72453,Uniontown city,direct,1
+Villanova,PA,40.04053,-75.34101,Villanova CDP,direct,1
+West Chester,PA,39.95988,-75.60542,West Chester borough,direct,1
+West Grove,PA,39.82019,-75.82852,West Grove borough,direct,1
+Cranston,RI,41.76973,-71.48505,Cranston city,direct,1
+Hope,RI,41.51405,-71.72056,Hope Valley CDP,state-starts,1
+Providence,RI,41.82306,-71.41878,Providence city,direct,1
+Clemson,SC,34.68356,-82.81058,Clemson city,direct,1
+Dillon,SC,34.42447,-79.36759,Dillon city,direct,1
+Fort Mill,SC,35.006,-80.94,Fort Mill town,direct,1
+Greenwood,SC,34.19541,-82.15367,Greenwood city,direct,1
+Hemingway,SC,33.75332,-79.44626,Hemingway town,direct,1
+Hilton Head,SC,32.19031,-80.73843,Hilton Head Island town,state-starts,1
+Lake Wylie,SC,35.09854,-81.0722,Lake Wylie CDP,direct,1
+Little Mountain,SC,34.1969,-81.41237,Little Mountain town,direct,1
+Vance,SC,33.4364,-80.4202,Vance town,direct,1
+Madison,SD,44.00622,-97.10848,Madison city,direct,1
+Pine Ridge,SD,43.02692,-102.55235,Pine Ridge CDP,direct,1
+Rapid City,SD,44.07107,-103.21792,Rapid City city,direct,1
+Sturgis,SD,44.412,-103.50061,Sturgis city,direct,1
+Arlington,TN,35.25252,-89.66115,Arlington town,direct,1
+Bristol,TN,36.55855,-82.217,Bristol city,direct,1
+Cleveland,TN,35.18004,-84.87129,Cleveland city,direct,1
+Germantown,TN,35.08196,-89.78258,Germantown city,direct,1
+Kingsport,TN,36.51937,-82.54339,Kingsport city,direct,1
+La Vergne,TN,36.02224,-86.55938,La Vergne city,direct,1
+Paris,TN,36.29274,-88.30806,Paris city,direct,1
+Aledo,TX,32.69739,-97.60687,Aledo city,direct,1
+Allen,TX,33.10974,-96.67303,Allen city,direct,1
+Alvin,TX,29.42477,-95.22443,Alvin city,direct,1
+Athens,TX,32.2026,-95.8308,Athens city,direct,1
+Azle,TX,32.89555,-97.53923,Azle city,direct,1
+Beaumont,TX,30.08491,-94.14533,Beaumont city,direct,1
+Boerne,TX,29.78494,-98.72795,Boerne city,direct,1
+Brownsville,TX,25.99569,-97.45085,Brownsville city,direct,1
+Caldwell,TX,30.53127,-96.69889,Caldwell city,direct,1
+Carrollton,TX,32.98939,-96.89994,Carrollton city,direct,1
+Cedar Hill,TX,32.58433,-96.9589,Cedar Hill city,direct,1
+Cedar Park,TX,30.51018,-97.81863,Cedar Park city,direct,1
+Clarksville,TX,33.61096,-95.05632,Clarksville city,direct,1
+College Station,TX,30.58516,-96.29636,College Station city,direct,1
+Converse,TX,29.51249,-98.30463,Converse city,direct,1
+Copperas Cove,TX,31.11958,-97.9144,Copperas Cove city,direct,1
+Corsicana,TX,32.0824,-96.4667,Corsicana city,direct,1
+Denver,TX,32.96787,-102.83222,Denver City town,suffix-add:city,1
+Douglassville,TX,33.19165,-94.35194,Douglassville town,direct,1
+Dublin,TX,32.08776,-98.33886,Dublin city,direct,1
+El Lago,TX,29.57146,-95.04525,El Lago city,direct,1
+Ennis,TX,32.32507,-96.6338,Ennis city,direct,1
+Euless,TX,32.84937,-97.07859,Euless city,direct,1
+Flower Mound,TX,33.03789,-97.11338,Flower Mound town,direct,1
+Gail,TX,32.76731,-101.45583,Gail CDP,direct,1
+Garland,TX,32.90983,-96.63033,Garland city,direct,1
+Glenn Heights,TX,32.5513,-96.85439,Glenn Heights city,direct,1
+Gonzales,TX,29.51255,-97.4472,Gonzales city,direct,1
+Granbury,TX,32.43281,-97.77515,Granbury city,direct,1
+Grapevine,TX,32.93497,-97.07591,Grapevine city,direct,1
+Greenville,TX,33.11194,-96.11026,Greenville city,direct,1
+Hallettsville,TX,29.4431,-96.94355,Hallettsville city,direct,1
+Highland Village,TX,33.08975,-97.0615,Highland Village city,direct,1
+Idalou,TX,33.6624,-101.6837,Idalou city,direct,1
+Kemah,TX,29.52865,-95.02004,Kemah city,direct,1
+Kerrville,TX,30.0377,-99.13242,Kerrville city,direct,1
+League City,TX,29.49006,-95.10909,League City city,direct,1
+Lexington,TX,30.41429,-97.00994,Lexington town,direct,1
+Liberty Hill,TX,30.66338,-97.90551,Liberty Hill city,direct,1
+Lovelady,TX,31.12817,-95.44588,Lovelady city,direct,1
+Magnolia,TX,30.21303,-95.7426,Magnolia city,direct,1
+Marshall,TX,32.53916,-94.35317,Marshall city,direct,1
+McAllen,TX,26.22497,-98.24608,McAllen city,direct,1
+Mineral Wells,TX,32.82348,-98.0788,Mineral Wells city,direct,1
+Mission,TX,26.20406,-98.32522,Mission city,direct,1
+Montgomery,TX,30.39315,-95.69415,Montgomery city,direct,1
+Odem,TX,27.94624,-97.58752,Odem city,direct,1
+Parker,TX,33.06306,-96.62524,Parker city,direct,1
+Perryton,TX,36.39287,-100.79766,Perryton city,direct,1
+Prosper,TX,33.24133,-96.81239,Prosper town,direct,1
+Red Oak,TX,32.50955,-96.78398,Red Oak city,direct,1
+Rockwall,TX,32.91806,-96.43805,Rockwall city,direct,1
+Round Rock,TX,30.52677,-97.66008,Round Rock city,direct,1
+Rowlett,TX,32.91593,-96.54859,Rowlett city,direct,1
+Sachse,TX,32.96901,-96.57952,Sachse city,direct,1
+San Benito,TX,26.1294,-97.64405,San Benito city,direct,1
+Splendora,TX,30.22839,-95.16235,Splendora city,direct,1
+Taylor,TX,30.57203,-97.43038,Taylor city,direct,1
+Terrell,TX,32.73535,-96.28644,Terrell city,direct,1
+Texarkana,TX,33.45114,-94.09009,Texarkana city,direct,1
+Trophy Club,TX,32.99252,-97.17296,Trophy Club town,direct,1
+Victoria,TX,28.82853,-96.98601,Victoria city,direct,1
+Westlake,TX,32.98546,-97.20379,Westlake town,direct,1
+Wichita Falls,TX,33.90665,-98.52585,Wichita Falls city,direct,1
+Clearfield,UT,41.09701,-112.01792,Clearfield city,direct,1
+Cottonwood Heights,UT,40.61368,-111.81455,Cottonwood Heights city,direct,1
+Eagle Mountain,UT,40.31432,-112.01171,Eagle Mountain city,direct,1
+Eden,UT,41.30616,-111.80378,Eden CDP,direct,1
+Heber City,UT,40.54174,-111.38744,Heber city,direct,1
+Kaysville,UT,41.02934,-111.94507,Kaysville city,direct,1
+Kearns,UT,40.65194,-112.00939,Kearns metro township,state-starts,1
+Layton,UT,41.07742,-111.96073,Layton city,direct,1
+Logan,UT,41.74026,-111.84176,Logan city,direct,1
+Midway,UT,40.5202,-111.47551,Midway city,direct,1
+Murray,UT,40.65065,-111.88657,Murray city,direct,1
+Ogden,UT,41.22839,-111.96815,Ogden city,direct,1
+Panguitch,UT,37.82277,-112.43414,Panguitch city,direct,1
+Sandy,UT,40.57171,-111.84987,Sandy city,direct,1
+South Jordan,UT,40.55691,-111.97858,South Jordan city,direct,1
+Springville,UT,40.16427,-111.61952,Springville city,direct,1
+Sundance,UT,40.39272,-111.59088,Sundance CDP,direct,1
+Syracuse,UT,41.08585,-112.06874,Syracuse city,direct,1
+West Jordan,UT,40.60267,-112.00126,West Jordan city,direct,1
+Woodland,UT,40.5838,-111.23576,Woodland CDP,direct,1
+Appomattox,VA,37.35874,-78.82645,Appomattox town,direct,1
+Boydton,VA,36.66606,-78.39073,Boydton town,direct,1
+Chester,VA,37.35204,-77.4337,Chester CDP,direct,1
+Crozet,VA,38.06492,-78.69696,Crozet CDP,direct,1
+Dumfries,VA,38.56735,-77.32242,Dumfries town,direct,1
+Glen Allen,VA,37.66587,-77.48435,Glen Allen CDP,direct,1
+Gordonsville,VA,38.13555,-78.18741,Gordonsville town,direct,1
+Hopewell,VA,37.29101,-77.29894,Hopewell city,direct,1
+King George,VA,38.27944,-77.18431,King George CDP,direct,1
+Lake Monticello,VA,37.91981,-78.33188,Lake Monticello CDP,direct,1
+Lorton,VA,38.69872,-77.21665,Lorton CDP,direct,1
+Lynchburg,VA,37.39902,-79.19546,Lynchburg city,direct,1
+Middleburg,VA,38.97035,-77.74064,Middleburg town,direct,1
+Newport News,VA,37.07614,-76.52198,Newport News city,direct,1
+Nokesville,VA,38.69299,-77.57644,Nokesville CDP,direct,1
+Portsmouth,VA,36.85934,-76.35697,Portsmouth city,direct,1
+Powhatan,VA,37.54212,-77.92708,Powhatan CDP,direct,1
+Purcellville,VA,39.1375,-77.71139,Purcellville town,direct,1
+Ruckersville,VA,38.22805,-78.37748,Ruckersville CDP,direct,1
+Rustburg,VA,37.27219,-79.1001,Rustburg CDP,direct,1
+South Riding,VA,38.91166,-77.51328,South Riding CDP,direct,1
+Stafford,VA,38.41492,-77.4157,Stafford Courthouse CDP,state-starts,1
+Sterling,VA,39.00473,-77.40537,Sterling CDP,direct,1
+Williamsburg,VA,37.26948,-76.70819,Williamsburg city,direct,1
+Yorktown,VA,37.23401,-76.5182,Yorktown CDP,direct,1
+East Montpelier,VT,44.26732,-72.49124,East Montpelier CDP,direct,1
+Hinesburg,VT,44.33315,-73.10921,Hinesburg CDP,direct,1
+Jericho,VT,44.50268,-72.99029,Jericho village,direct,1
+Killington,VT,43.65055,-72.77842,Killington Village CDP,suffix-add:village,1
+Manchester Center,VT,43.1884,-73.03518,Manchester Center CDP,direct,1
+Milton,VT,44.63038,-73.12244,Milton CDP,direct,1
+Montpelier,VT,44.26645,-72.57152,Montpelier city,direct,1
+Shaftsbury,VT,42.9406,-73.19463,South Shaftsbury CDP,state-contains,1
+Shelburne,VT,44.39045,-73.21799,Shelburne CDP,direct,1
+South Burlington,VT,44.43647,-73.18262,South Burlington city,direct,1
+Stowe,VT,44.46724,-72.68377,Stowe CDP,direct,1
+Waitsfield,VT,44.18335,-72.83451,Waitsfield CDP,direct,1
+Woodstock,VT,43.62344,-72.513,Woodstock village,direct,1
+Acme,WA,48.71643,-122.20996,Acme CDP,direct,1
+Arlington,WA,48.17037,-122.14455,Arlington city,direct,1
+Battle Ground,WA,45.77683,-122.54097,Battle Ground city,direct,1
+Bonney Lake,WA,47.1995,-122.16303,Bonney Lake city,direct,1
+Bremerton,WA,47.53988,-122.71705,Bremerton city,direct,1
+Burlington,WA,48.46636,-122.32888,Burlington city,direct,1
+Cashmere,WA,47.51805,-120.46704,Cashmere city,direct,1
+Cheney,WA,47.49113,-117.58155,Cheney city,direct,1
+Cle Elum,WA,47.19464,-120.95284,Cle Elum city,direct,1
+College Place,WA,46.04158,-118.38941,College Place city,direct,1
+DuPont,WA,47.10735,-122.64758,DuPont city,direct,1
+Edmonds,WA,47.8136,-122.35333,Edmonds city,direct,1
+Enumclaw,WA,47.20218,-121.98898,Enumclaw city,direct,1
+Ferndale,WA,48.85263,-122.58862,Ferndale city,direct,1
+Lakewood,WA,47.16409,-122.52811,Lakewood city,direct,1
+Maple Valley,WA,47.36715,-122.03481,Maple Valley city,direct,1
+Mead,WA,47.77953,-117.34994,Mead CDP,direct,1
+Monroe,WA,47.85979,-121.98401,Monroe city,direct,1
+Moses Lake,WA,47.12785,-119.27638,Moses Lake city,direct,1
+Olympia,WA,47.0406,-122.895,Olympia city,direct,1
+Port Orchard,WA,47.53844,-122.63243,Port Orchard city,direct,1
+Pullman,WA,46.73313,-117.16828,Pullman city,direct,1
+Puyallup,WA,47.17905,-122.29152,Puyallup city,direct,1
+Quincy,WA,47.2349,-119.8525,Quincy city,direct,1
+Snohomish,WA,47.92887,-122.09268,Snohomish city,direct,1
+Tekoa,WA,47.22473,-117.07306,Tekoa city,direct,1
+Trout Lake,WA,45.99777,-121.52884,Trout Lake CDP,direct,1
+Walla Walla,WA,46.06701,-118.33703,Walla Walla city,direct,1
+Wapato,WA,46.44363,-120.42151,Wapato city,direct,1
+Amery,WI,45.30459,-92.36336,Amery city,direct,1
+Barron,WI,45.40219,-91.84435,Barron city,direct,1
+Beaver Dam,WI,43.46811,-88.8309,Beaver Dam city,direct,1
+Belleville,WI,42.86402,-89.53962,Belleville village,direct,1
+Big Bend,WI,42.8839,-88.2036,Big Bend village,direct,1
+Burlington,WI,42.67525,-88.27187,Burlington city,direct,1
+Cedar Grove,WI,43.56825,-87.82297,Cedar Grove village,direct,1
+Cedarburg,WI,43.29992,-87.98844,Cedarburg city,direct,1
+Coleman,WI,45.067,-88.03566,Coleman village,direct,1
+Columbus,WI,43.3368,-89.02999,Columbus city,direct,1
+Cottage Grove,WI,43.09222,-89.20534,Cottage Grove village,direct,1
+Dane,WI,43.2461,-89.49958,Dane village,direct,1
+Darlington,WI,42.67656,-90.12006,Darlington city,direct,1
+Deerfield,WI,43.04918,-89.07615,Deerfield village,direct,1
+Dousman,WI,43.00938,-88.47557,Dousman village,direct,1
+Edgerton,WI,42.83895,-89.06957,Edgerton city,direct,1
+Elkhorn,WI,42.6716,-88.53626,Elkhorn city,direct,1
+Endeavor,WI,43.71439,-89.46917,Endeavor village,direct,1
+Evansville,WI,42.77807,-89.29598,Evansville city,direct,1
+Florence,WI,45.92786,-88.23524,Florence CDP,direct,1
+Franklin,WI,42.88388,-88.01155,Franklin city,direct,1
+Germantown,WI,43.23453,-88.125,Germantown village,direct,1
+Green Bay,WI,44.52154,-87.98657,Green Bay city,direct,1
+Janesville,WI,42.6847,-89.01317,Janesville city,direct,1
+Kaukauna,WI,44.27679,-88.26386,Kaukauna city,direct,1
+Kewaskum,WI,43.51765,-88.23061,Kewaskum village,direct,1
+Lac du Flambeau,WI,45.96228,-89.89687,Lac du Flambeau CDP,direct,1
+Menomonee Falls,WI,43.15941,-88.12155,Menomonee Falls village,direct,1
+Mequon,WI,43.21136,-88.01424,Mequon city,direct,1
+Milton,WI,42.77468,-88.93999,Milton city,direct,1
+Minocqua,WI,45.87921,-89.70362,Minocqua CDP,direct,1
+Monona,WI,43.05387,-89.33351,Monona city,direct,1
+Nashotah,WI,43.08881,-88.40796,Nashotah village,direct,1
+Neenah,WI,44.16492,-88.47963,Neenah city,direct,1
+Oconomowoc,WI,43.10043,-88.49269,Oconomowoc city,direct,1
+Ogema,WI,45.45661,-90.30028,Ogema CDP,direct,1
+Omro,WI,44.03897,-88.73699,Omro city,direct,1
+Oregon,WI,42.92521,-89.38911,Oregon village,direct,1
+Pardeeville,WI,43.53727,-89.30265,Pardeeville village,direct,1
+Pewaukee,WI,43.06614,-88.24447,Pewaukee city,direct,1
+Plover,WI,44.46202,-89.53797,Plover village,direct,1
+Pulaski,WI,44.66821,-88.23428,Pulaski village,direct,1
+Racine,WI,42.72557,-87.81422,Racine city,direct,1
+Rice Lake,WI,45.48199,-91.74576,Rice Lake city,direct,1
+Rio,WI,43.45216,-89.24159,Rio village,direct,1
+River Falls,WI,44.8604,-92.62529,River Falls city,direct,1
+St. Croix Falls,WI,45.41137,-92.62469,St. Croix Falls city,direct,1
+Suamico,WI,44.62673,-88.03305,Suamico village,direct,1
+Sun Prairie,WI,43.18262,-89.23782,Sun Prairie city,direct,1
+Superior,WI,46.69212,-92.08036,Superior city,direct,1
+Tomah,WI,43.98801,-90.50138,Tomah city,direct,1
+Tomahawk,WI,45.47896,-89.71177,Tomahawk city,direct,1
+Waterford,WI,42.7644,-88.21667,Waterford village,direct,1
+Waukesha,WI,43.00908,-88.24506,Waukesha city,direct,1
+Waunakee,WI,43.18286,-89.44529,Waunakee village,direct,1
+Wauwatosa,WI,43.06316,-88.03558,Wauwatosa city,direct,1
+West Allis,WI,43.00719,-88.02899,West Allis city,direct,1
+Whitefish Bay,WI,43.11314,-87.90048,Whitefish Bay village,direct,1
+Elkins,WV,38.92381,-79.85404,Elkins city,direct,1
+Fairmont,WV,39.47688,-80.14909,Fairmont city,direct,1
+Fayetteville,WV,38.06408,-81.10865,Fayetteville town,direct,1
+Milton,WV,38.43801,-82.14599,Milton town,direct,1
+Casper,WY,42.84212,-106.32128,Casper city,direct,1
+Jackson,WY,43.47194,-110.77527,Jackson town,direct,1

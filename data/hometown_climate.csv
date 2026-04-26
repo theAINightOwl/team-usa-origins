@@ -1,0 +1,52 @@
+state,avg_temp_annual_f,avg_snowfall_annual_in,avg_precip_annual_in,climate_zone
+AL,62.8,1.0,56.3,Hot Humid
+AK,26.6,74.5,22.5,Cold
+AZ,60.3,2.5,13.6,Hot Dry
+AR,60.4,4.8,50.6,Warm Humid
+CA,59.4,0.0,22.2,Mild
+CO,45.1,53.1,15.9,Continental
+CT,49.0,35.4,50.3,Continental
+DE,55.3,14.6,45.7,Subtropical
+DC,56.6,14.5,40.8,Subtropical
+FL,70.7,0.0,54.5,Hot Humid
+GA,63.5,0.7,50.7,Hot Humid
+HI,72.6,0.0,63.7,Hot Humid
+ID,44.4,38.1,18.9,Continental
+IL,51.8,25.3,39.2,Continental
+IN,51.7,22.0,42.4,Continental
+IA,48.4,33.2,35.9,Continental
+KS,54.3,14.9,28.9,Continental
+KY,55.6,12.5,48.9,Warm Humid
+LA,66.4,0.2,60.1,Hot Humid
+ME,41.0,61.9,46.2,Cold
+MD,54.2,20.2,43.1,Subtropical
+MA,48.7,43.8,49.9,Continental
+MI,44.4,51.2,32.8,Continental
+MN,41.2,45.3,27.3,Cold
+MS,63.4,0.8,57.3,Hot Humid
+MO,55.2,16.8,42.2,Continental
+MT,42.7,38.8,15.3,Cold
+NE,48.8,25.7,24.2,Continental
+NV,49.9,15.0,9.5,Hot Dry
+NH,43.8,60.0,47.3,Cold
+NJ,52.7,23.0,47.1,Subtropical
+NM,53.4,10.5,14.6,Hot Dry
+NY,45.4,52.7,41.0,Continental
+NC,59.0,5.6,49.8,Warm Humid
+ND,40.4,38.0,17.8,Cold
+OH,50.7,28.2,39.7,Continental
+OK,59.6,7.3,36.5,Warm Humid
+OR,48.4,5.0,27.4,Mild
+PA,48.8,38.1,43.6,Continental
+RI,50.1,33.5,49.3,Continental
+SC,62.4,1.3,49.8,Hot Humid
+SD,45.2,33.8,20.1,Cold
+TN,57.6,5.2,53.7,Warm Humid
+TX,64.8,1.0,28.9,Warm Humid
+UT,48.6,38.6,16.1,Continental
+VT,42.9,65.7,42.7,Cold
+VA,55.1,13.0,44.3,Warm Humid
+WA,48.3,12.6,38.4,Mild
+WV,52.0,28.8,44.1,Continental
+WI,43.1,42.3,33.2,Continental
+WY,42.0,51.4,13.0,Cold

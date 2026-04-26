@@ -1,0 +1,3446 @@
+{
+  "AK": {
+    "abbr": "AK",
+    "name": "Alaska",
+    "olympians": 42,
+    "medals": 17,
+    "gold": 7,
+    "top_sports": [
+      {
+        "sport": "Cross-Country Skiing",
+        "n": 10
+      },
+      {
+        "sport": "Curling",
+        "n": 7
+      },
+      {
+        "sport": "Biathlon",
+        "n": 5
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 2
+      },
+      {
+        "sport": "Athletics",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 14050,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 11106
+      },
+      {
+        "year": 2000,
+        "n": 11999
+      },
+      {
+        "year": 2005,
+        "n": 12783
+      },
+      {
+        "year": 2010,
+        "n": 13288
+      },
+      {
+        "year": 2015,
+        "n": 13794
+      },
+      {
+        "year": 2019,
+        "n": 13585
+      },
+      {
+        "year": 2024,
+        "n": 14050
+      }
+    ],
+    "median_income": 86775,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 26.6,
+      "snow_in": 74.5,
+      "precip_in": 22.5
+    },
+    "training_centers": 0
+  },
+  "AL": {
+    "abbr": "AL",
+    "name": "Alabama",
+    "olympians": 33,
+    "medals": 18,
+    "gold": 7,
+    "top_sports": [
+      {
+        "sport": "Softball",
+        "n": 3
+      },
+      {
+        "sport": "Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Wheelchair Basketball",
+        "n": 2
+      },
+      {
+        "sport": "Baseball",
+        "n": 2
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 104088,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 83628
+      },
+      {
+        "year": 2000,
+        "n": 90077
+      },
+      {
+        "year": 2005,
+        "n": 95619
+      },
+      {
+        "year": 2010,
+        "n": 99348
+      },
+      {
+        "year": 2015,
+        "n": 103069
+      },
+      {
+        "year": 2019,
+        "n": 101310
+      },
+      {
+        "year": 2024,
+        "n": 104088
+      }
+    ],
+    "median_income": 60746,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 62.8,
+      "snow_in": 1.0,
+      "precip_in": 56.3
+    },
+    "training_centers": 0
+  },
+  "AR": {
+    "abbr": "AR",
+    "name": "Arkansas",
+    "olympians": 15,
+    "medals": 9,
+    "gold": 2,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 5
+      },
+      {
+        "sport": "Para Swimming",
+        "n": 2
+      },
+      {
+        "sport": "Modern Pentathlon",
+        "n": 2
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 1
+      },
+      {
+        "sport": "Shooting",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 61495,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 49865
+      },
+      {
+        "year": 2000,
+        "n": 53744
+      },
+      {
+        "year": 2005,
+        "n": 57071
+      },
+      {
+        "year": 2010,
+        "n": 59295
+      },
+      {
+        "year": 2015,
+        "n": 61517
+      },
+      {
+        "year": 2019,
+        "n": 60586
+      },
+      {
+        "year": 2024,
+        "n": 61495
+      }
+    ],
+    "median_income": 57307,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 60.4,
+      "snow_in": 4.8,
+      "precip_in": 50.6
+    },
+    "training_centers": 0
+  },
+  "AZ": {
+    "abbr": "AZ",
+    "name": "Arizona",
+    "olympians": 99,
+    "medals": 48,
+    "gold": 19,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 9
+      },
+      {
+        "sport": "Cycling",
+        "n": 6
+      },
+      {
+        "sport": "Artistic Swimming",
+        "n": 5
+      },
+      {
+        "sport": "Diving",
+        "n": 5
+      },
+      {
+        "sport": "Skateboarding",
+        "n": 5
+      }
+    ],
+    "nfhs_total": 154184,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 122540
+      },
+      {
+        "year": 2000,
+        "n": 132130
+      },
+      {
+        "year": 2005,
+        "n": 140701
+      },
+      {
+        "year": 2010,
+        "n": 146450
+      },
+      {
+        "year": 2015,
+        "n": 152217
+      },
+      {
+        "year": 2019,
+        "n": 150482
+      },
+      {
+        "year": 2024,
+        "n": 154184
+      }
+    ],
+    "median_income": 73680,
+    "climate": {
+      "zone": "Hot Dry",
+      "temp_f": 60.3,
+      "snow_in": 2.5,
+      "precip_in": 13.6
+    },
+    "training_centers": 0
+  },
+  "CA": {
+    "abbr": "CA",
+    "name": "California",
+    "olympians": 964,
+    "medals": 567,
+    "gold": 304,
+    "top_sports": [
+      {
+        "sport": "Softball",
+        "n": 74
+      },
+      {
+        "sport": "Volleyball",
+        "n": 69
+      },
+      {
+        "sport": "Athletics",
+        "n": 60
+      },
+      {
+        "sport": "Water Polo",
+        "n": 43
+      },
+      {
+        "sport": "Taekwondo",
+        "n": 38
+      }
+    ],
+    "nfhs_total": 883611,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 697084
+      },
+      {
+        "year": 2000,
+        "n": 752356
+      },
+      {
+        "year": 2005,
+        "n": 803770
+      },
+      {
+        "year": 2010,
+        "n": 838531
+      },
+      {
+        "year": 2015,
+        "n": 873187
+      },
+      {
+        "year": 2019,
+        "n": 869746
+      },
+      {
+        "year": 2024,
+        "n": 883611
+      }
+    ],
+    "median_income": 94761,
+    "climate": {
+      "zone": "Mild",
+      "temp_f": 59.4,
+      "snow_in": 0.0,
+      "precip_in": 22.2
+    },
+    "training_centers": 2
+  },
+  "CO": {
+    "abbr": "CO",
+    "name": "Colorado",
+    "olympians": 264,
+    "medals": 135,
+    "gold": 67,
+    "top_sports": [
+      {
+        "sport": "Snowboarding",
+        "n": 20
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 18
+      },
+      {
+        "sport": "Athletics",
+        "n": 17
+      },
+      {
+        "sport": "Para Alpine Skiing",
+        "n": 13
+      },
+      {
+        "sport": "Alpine Skiing",
+        "n": 11
+      }
+    ],
+    "nfhs_total": 127906,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 98916
+      },
+      {
+        "year": 2000,
+        "n": 106882
+      },
+      {
+        "year": 2005,
+        "n": 114235
+      },
+      {
+        "year": 2010,
+        "n": 119263
+      },
+      {
+        "year": 2015,
+        "n": 124076
+      },
+      {
+        "year": 2019,
+        "n": 124344
+      },
+      {
+        "year": 2024,
+        "n": 127906
+      }
+    ],
+    "median_income": 89744,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 45.1,
+      "snow_in": 53.1,
+      "precip_in": 15.9
+    },
+    "training_centers": 2
+  },
+  "CT": {
+    "abbr": "CT",
+    "name": "Connecticut",
+    "olympians": 68,
+    "medals": 32,
+    "gold": 11,
+    "top_sports": [
+      {
+        "sport": "Rowing",
+        "n": 8
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 5
+      },
+      {
+        "sport": "Athletics",
+        "n": 4
+      },
+      {
+        "sport": "Artistic Swimming",
+        "n": 4
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 3
+      }
+    ],
+    "nfhs_total": 88870,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 66516
+      },
+      {
+        "year": 2000,
+        "n": 72203
+      },
+      {
+        "year": 2005,
+        "n": 77792
+      },
+      {
+        "year": 2010,
+        "n": 81666
+      },
+      {
+        "year": 2015,
+        "n": 85231
+      },
+      {
+        "year": 2019,
+        "n": 86267
+      },
+      {
+        "year": 2024,
+        "n": 88870
+      }
+    ],
+    "median_income": 91446,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 49.0,
+      "snow_in": 35.4,
+      "precip_in": 50.3
+    },
+    "training_centers": 0
+  },
+  "DC": {
+    "abbr": "DC",
+    "name": "District of Columbia",
+    "olympians": 1,
+    "medals": 0,
+    "gold": 0,
+    "top_sports": [
+      {
+        "sport": "Speedskating",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 13916,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 11053
+      },
+      {
+        "year": 2000,
+        "n": 11915
+      },
+      {
+        "year": 2005,
+        "n": 12665
+      },
+      {
+        "year": 2010,
+        "n": 13168
+      },
+      {
+        "year": 2015,
+        "n": 13670
+      },
+      {
+        "year": 2019,
+        "n": 13484
+      },
+      {
+        "year": 2024,
+        "n": 13916
+      }
+    ],
+    "median_income": 101722,
+    "climate": {
+      "zone": "Subtropical",
+      "temp_f": 56.6,
+      "snow_in": 14.5,
+      "precip_in": 40.8
+    },
+    "training_centers": 0
+  },
+  "DE": {
+    "abbr": "DE",
+    "name": "Delaware",
+    "olympians": 12,
+    "medals": 3,
+    "gold": 1,
+    "top_sports": [
+      {
+        "sport": "Field Hockey",
+        "n": 5
+      },
+      {
+        "sport": "Basketball",
+        "n": 2
+      },
+      {
+        "sport": "Athletics",
+        "n": 1
+      },
+      {
+        "sport": "Rugby",
+        "n": 1
+      },
+      {
+        "sport": "Artistic Swimming",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 23210,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 17575
+      },
+      {
+        "year": 2000,
+        "n": 19015
+      },
+      {
+        "year": 2005,
+        "n": 20350
+      },
+      {
+        "year": 2010,
+        "n": 21303
+      },
+      {
+        "year": 2015,
+        "n": 22181
+      },
+      {
+        "year": 2019,
+        "n": 22367
+      },
+      {
+        "year": 2024,
+        "n": 23210
+      }
+    ],
+    "median_income": 79968,
+    "climate": {
+      "zone": "Subtropical",
+      "temp_f": 55.3,
+      "snow_in": 14.6,
+      "precip_in": 45.7
+    },
+    "training_centers": 0
+  },
+  "FL": {
+    "abbr": "FL",
+    "name": "Florida",
+    "olympians": 290,
+    "medals": 157,
+    "gold": 84,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 21
+      },
+      {
+        "sport": "Diving",
+        "n": 21
+      },
+      {
+        "sport": "Karate",
+        "n": 17
+      },
+      {
+        "sport": "Sailing",
+        "n": 15
+      },
+      {
+        "sport": "Baseball",
+        "n": 12
+      }
+    ],
+    "nfhs_total": 433019,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 336226
+      },
+      {
+        "year": 2000,
+        "n": 363146
+      },
+      {
+        "year": 2005,
+        "n": 387686
+      },
+      {
+        "year": 2010,
+        "n": 404605
+      },
+      {
+        "year": 2015,
+        "n": 420943
+      },
+      {
+        "year": 2019,
+        "n": 420073
+      },
+      {
+        "year": 2024,
+        "n": 433019
+      }
+    ],
+    "median_income": 68353,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 70.7,
+      "snow_in": 0.0,
+      "precip_in": 54.5
+    },
+    "training_centers": 0
+  },
+  "GA": {
+    "abbr": "GA",
+    "name": "Georgia",
+    "olympians": 113,
+    "medals": 85,
+    "gold": 36,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 20
+      },
+      {
+        "sport": "Canoe/Kayak",
+        "n": 9
+      },
+      {
+        "sport": "Softball",
+        "n": 8
+      },
+      {
+        "sport": "Soccer",
+        "n": 8
+      },
+      {
+        "sport": "Shooting",
+        "n": 6
+      }
+    ],
+    "nfhs_total": 234627,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 185796
+      },
+      {
+        "year": 2000,
+        "n": 200515
+      },
+      {
+        "year": 2005,
+        "n": 213731
+      },
+      {
+        "year": 2010,
+        "n": 222857
+      },
+      {
+        "year": 2015,
+        "n": 231702
+      },
+      {
+        "year": 2019,
+        "n": 230488
+      },
+      {
+        "year": 2024,
+        "n": 234627
+      }
+    ],
+    "median_income": 73491,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 63.5,
+      "snow_in": 0.7,
+      "precip_in": 50.7
+    },
+    "training_centers": 0
+  },
+  "HI": {
+    "abbr": "HI",
+    "name": "Hawaii",
+    "olympians": 52,
+    "medals": 20,
+    "gold": 9,
+    "top_sports": [
+      {
+        "sport": "Volleyball",
+        "n": 13
+      },
+      {
+        "sport": "Karate",
+        "n": 6
+      },
+      {
+        "sport": "Rugby",
+        "n": 5
+      },
+      {
+        "sport": "Canoe/Kayak",
+        "n": 4
+      },
+      {
+        "sport": "Boxing",
+        "n": 4
+      }
+    ],
+    "nfhs_total": 28262,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 22377
+      },
+      {
+        "year": 2000,
+        "n": 24140
+      },
+      {
+        "year": 2005,
+        "n": 25737
+      },
+      {
+        "year": 2010,
+        "n": 26795
+      },
+      {
+        "year": 2015,
+        "n": 27882
+      },
+      {
+        "year": 2019,
+        "n": 27491
+      },
+      {
+        "year": 2024,
+        "n": 28262
+      }
+    ],
+    "median_income": 95192,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 72.6,
+      "snow_in": 0.0,
+      "precip_in": 63.7
+    },
+    "training_centers": 0
+  },
+  "IA": {
+    "abbr": "IA",
+    "name": "Iowa",
+    "olympians": 23,
+    "medals": 13,
+    "gold": 10,
+    "top_sports": [
+      {
+        "sport": "Wheelchair Basketball",
+        "n": 3
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Basketball",
+        "n": 2
+      },
+      {
+        "sport": "Athletics",
+        "n": 2
+      },
+      {
+        "sport": "Volleyball",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 74300,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 59856
+      },
+      {
+        "year": 2000,
+        "n": 64334
+      },
+      {
+        "year": 2005,
+        "n": 68141
+      },
+      {
+        "year": 2010,
+        "n": 70635
+      },
+      {
+        "year": 2015,
+        "n": 73156
+      },
+      {
+        "year": 2019,
+        "n": 72419
+      },
+      {
+        "year": 2024,
+        "n": 74300
+      }
+    ],
+    "median_income": 71553,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 48.4,
+      "snow_in": 33.2,
+      "precip_in": 35.9
+    },
+    "training_centers": 0
+  },
+  "ID": {
+    "abbr": "ID",
+    "name": "Idaho",
+    "olympians": 27,
+    "medals": 19,
+    "gold": 11,
+    "top_sports": [
+      {
+        "sport": "Snowboarding",
+        "n": 4
+      },
+      {
+        "sport": "Para Nordic Skiing",
+        "n": 3
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 2
+      },
+      {
+        "sport": "Cross-Country Skiing",
+        "n": 2
+      },
+      {
+        "sport": "Para Nordic Skiing; Para Track and Field",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 41975,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 34111
+      },
+      {
+        "year": 2000,
+        "n": 36725
+      },
+      {
+        "year": 2005,
+        "n": 38965
+      },
+      {
+        "year": 2010,
+        "n": 40454
+      },
+      {
+        "year": 2015,
+        "n": 41944
+      },
+      {
+        "year": 2019,
+        "n": 41372
+      },
+      {
+        "year": 2024,
+        "n": 41975
+      }
+    ],
+    "median_income": 70652,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 44.4,
+      "snow_in": 38.1,
+      "precip_in": 18.9
+    },
+    "training_centers": 0
+  },
+  "IL": {
+    "abbr": "IL",
+    "name": "Illinois",
+    "olympians": 201,
+    "medals": 151,
+    "gold": 70,
+    "top_sports": [
+      {
+        "sport": "Karate",
+        "n": 22
+      },
+      {
+        "sport": "Athletics",
+        "n": 17
+      },
+      {
+        "sport": "Volleyball",
+        "n": 11
+      },
+      {
+        "sport": "Gymnastics",
+        "n": 11
+      },
+      {
+        "sport": "Swimming",
+        "n": 8
+      }
+    ],
+    "nfhs_total": 298716,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 233329
+      },
+      {
+        "year": 2000,
+        "n": 251962
+      },
+      {
+        "year": 2005,
+        "n": 269283
+      },
+      {
+        "year": 2010,
+        "n": 280859
+      },
+      {
+        "year": 2015,
+        "n": 292231
+      },
+      {
+        "year": 2019,
+        "n": 291685
+      },
+      {
+        "year": 2024,
+        "n": 298716
+      }
+    ],
+    "median_income": 80593,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 51.8,
+      "snow_in": 25.3,
+      "precip_in": 39.2
+    },
+    "training_centers": 0
+  },
+  "IN": {
+    "abbr": "IN",
+    "name": "Indiana",
+    "olympians": 93,
+    "medals": 78,
+    "gold": 37,
+    "top_sports": [
+      {
+        "sport": "Diving",
+        "n": 18
+      },
+      {
+        "sport": "Athletics",
+        "n": 8
+      },
+      {
+        "sport": "Swimming",
+        "n": 8
+      },
+      {
+        "sport": "Para Swimming",
+        "n": 6
+      },
+      {
+        "sport": "Basketball",
+        "n": 6
+      }
+    ],
+    "nfhs_total": 145446,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 114809
+      },
+      {
+        "year": 2000,
+        "n": 123817
+      },
+      {
+        "year": 2005,
+        "n": 131889
+      },
+      {
+        "year": 2010,
+        "n": 137355
+      },
+      {
+        "year": 2015,
+        "n": 142720
+      },
+      {
+        "year": 2019,
+        "n": 142120
+      },
+      {
+        "year": 2024,
+        "n": 145446
+      }
+    ],
+    "median_income": 68679,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 51.7,
+      "snow_in": 22.0,
+      "precip_in": 42.4
+    },
+    "training_centers": 0
+  },
+  "KS": {
+    "abbr": "KS",
+    "name": "Kansas",
+    "olympians": 32,
+    "medals": 23,
+    "gold": 8,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Shooting",
+        "n": 3
+      },
+      {
+        "sport": "Basketball",
+        "n": 2
+      },
+      {
+        "sport": "Baseball",
+        "n": 2
+      },
+      {
+        "sport": "Gymnastics",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 63645,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 51380
+      },
+      {
+        "year": 2000,
+        "n": 55285
+      },
+      {
+        "year": 2005,
+        "n": 58629
+      },
+      {
+        "year": 2010,
+        "n": 60867
+      },
+      {
+        "year": 2015,
+        "n": 63108
+      },
+      {
+        "year": 2019,
+        "n": 62248
+      },
+      {
+        "year": 2024,
+        "n": 63645
+      }
+    ],
+    "median_income": 72048,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 54.3,
+      "snow_in": 14.9,
+      "precip_in": 28.9
+    },
+    "training_centers": 0
+  },
+  "KY": {
+    "abbr": "KY",
+    "name": "Kentucky",
+    "olympians": 22,
+    "medals": 35,
+    "gold": 20,
+    "top_sports": [
+      {
+        "sport": "Swimming",
+        "n": 5
+      },
+      {
+        "sport": "Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Bobsled",
+        "n": 2
+      },
+      {
+        "sport": "Softball",
+        "n": 2
+      },
+      {
+        "sport": "Boxing",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 90018,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 72793
+      },
+      {
+        "year": 2000,
+        "n": 78494
+      },
+      {
+        "year": 2005,
+        "n": 83521
+      },
+      {
+        "year": 2010,
+        "n": 86870
+      },
+      {
+        "year": 2015,
+        "n": 90265
+      },
+      {
+        "year": 2019,
+        "n": 88915
+      },
+      {
+        "year": 2024,
+        "n": 90018
+      }
+    ],
+    "median_income": 61383,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 55.6,
+      "snow_in": 12.5,
+      "precip_in": 48.9
+    },
+    "training_centers": 0
+  },
+  "LA": {
+    "abbr": "LA",
+    "name": "Louisiana",
+    "olympians": 19,
+    "medals": 20,
+    "gold": 8,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 4
+      },
+      {
+        "sport": "Basketball",
+        "n": 2
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 2
+      },
+      {
+        "sport": "Weightlifting",
+        "n": 1
+      },
+      {
+        "sport": "Sitting Volleyball",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 96604,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 78179
+      },
+      {
+        "year": 2000,
+        "n": 84186
+      },
+      {
+        "year": 2005,
+        "n": 89356
+      },
+      {
+        "year": 2010,
+        "n": 92836
+      },
+      {
+        "year": 2015,
+        "n": 96310
+      },
+      {
+        "year": 2019,
+        "n": 94597
+      },
+      {
+        "year": 2024,
+        "n": 96604
+      }
+    ],
+    "median_income": 59065,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 66.4,
+      "snow_in": 0.2,
+      "precip_in": 60.1
+    },
+    "training_centers": 0
+  },
+  "MA": {
+    "abbr": "MA",
+    "name": "Massachusetts",
+    "olympians": 145,
+    "medals": 67,
+    "gold": 28,
+    "top_sports": [
+      {
+        "sport": "Ice Hockey",
+        "n": 19
+      },
+      {
+        "sport": "Rowing",
+        "n": 14
+      },
+      {
+        "sport": "Curling",
+        "n": 13
+      },
+      {
+        "sport": "Athletics",
+        "n": 7
+      },
+      {
+        "sport": "Artistic Swimming",
+        "n": 5
+      }
+    ],
+    "nfhs_total": 170246,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 128113
+      },
+      {
+        "year": 2000,
+        "n": 139057
+      },
+      {
+        "year": 2005,
+        "n": 149754
+      },
+      {
+        "year": 2010,
+        "n": 157056
+      },
+      {
+        "year": 2015,
+        "n": 163808
+      },
+      {
+        "year": 2019,
+        "n": 165255
+      },
+      {
+        "year": 2024,
+        "n": 170246
+      }
+    ],
+    "median_income": 98752,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 48.7,
+      "snow_in": 43.8,
+      "precip_in": 49.9
+    },
+    "training_centers": 0
+  },
+  "MD": {
+    "abbr": "MD",
+    "name": "Maryland",
+    "olympians": 118,
+    "medals": 149,
+    "gold": 92,
+    "top_sports": [
+      {
+        "sport": "Canoe/Kayak",
+        "n": 16
+      },
+      {
+        "sport": "Swimming",
+        "n": 9
+      },
+      {
+        "sport": "Athletics",
+        "n": 6
+      },
+      {
+        "sport": "Field Hockey",
+        "n": 6
+      },
+      {
+        "sport": "Basketball",
+        "n": 5
+      }
+    ],
+    "nfhs_total": 153334,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 113117
+      },
+      {
+        "year": 2000,
+        "n": 122796
+      },
+      {
+        "year": 2005,
+        "n": 132211
+      },
+      {
+        "year": 2010,
+        "n": 139057
+      },
+      {
+        "year": 2015,
+        "n": 145166
+      },
+      {
+        "year": 2019,
+        "n": 148637
+      },
+      {
+        "year": 2024,
+        "n": 153334
+      }
+    ],
+    "median_income": 101639,
+    "climate": {
+      "zone": "Subtropical",
+      "temp_f": 54.2,
+      "snow_in": 20.2,
+      "precip_in": 43.1
+    },
+    "training_centers": 0
+  },
+  "ME": {
+    "abbr": "ME",
+    "name": "Maine",
+    "olympians": 26,
+    "medals": 8,
+    "gold": 4,
+    "top_sports": [
+      {
+        "sport": "Biathlon",
+        "n": 4
+      },
+      {
+        "sport": "Athletics",
+        "n": 2
+      },
+      {
+        "sport": "Canoe/Kayak",
+        "n": 2
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 2
+      },
+      {
+        "sport": "Para Nordic Skiing",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 29014,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 23032
+      },
+      {
+        "year": 2000,
+        "n": 24870
+      },
+      {
+        "year": 2005,
+        "n": 26497
+      },
+      {
+        "year": 2010,
+        "n": 27566
+      },
+      {
+        "year": 2015,
+        "n": 28610
+      },
+      {
+        "year": 2019,
+        "n": 28231
+      },
+      {
+        "year": 2024,
+        "n": 29014
+      }
+    ],
+    "median_income": 69684,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 41.0,
+      "snow_in": 61.9,
+      "precip_in": 46.2
+    },
+    "training_centers": 0
+  },
+  "MI": {
+    "abbr": "MI",
+    "name": "Michigan",
+    "olympians": 133,
+    "medals": 84,
+    "gold": 39,
+    "top_sports": [
+      {
+        "sport": "Ice Hockey",
+        "n": 21
+      },
+      {
+        "sport": "Athletics",
+        "n": 11
+      },
+      {
+        "sport": "Figure Skating",
+        "n": 10
+      },
+      {
+        "sport": "Curling",
+        "n": 9
+      },
+      {
+        "sport": "Softball",
+        "n": 6
+      }
+    ],
+    "nfhs_total": 227478,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 174335
+      },
+      {
+        "year": 2000,
+        "n": 188620
+      },
+      {
+        "year": 2005,
+        "n": 201817
+      },
+      {
+        "year": 2010,
+        "n": 210521
+      },
+      {
+        "year": 2015,
+        "n": 218913
+      },
+      {
+        "year": 2019,
+        "n": 218111
+      },
+      {
+        "year": 2024,
+        "n": 227478
+      }
+    ],
+    "median_income": 69647,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 44.4,
+      "snow_in": 51.2,
+      "precip_in": 32.8
+    },
+    "training_centers": 1
+  },
+  "MN": {
+    "abbr": "MN",
+    "name": "Minnesota",
+    "olympians": 229,
+    "medals": 118,
+    "gold": 54,
+    "top_sports": [
+      {
+        "sport": "Curling",
+        "n": 88
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 28
+      },
+      {
+        "sport": "Biathlon",
+        "n": 12
+      },
+      {
+        "sport": "Athletics",
+        "n": 7
+      },
+      {
+        "sport": "Gymnastics",
+        "n": 5
+      }
+    ],
+    "nfhs_total": 138018,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 107182
+      },
+      {
+        "year": 2000,
+        "n": 115948
+      },
+      {
+        "year": 2005,
+        "n": 124074
+      },
+      {
+        "year": 2010,
+        "n": 129395
+      },
+      {
+        "year": 2015,
+        "n": 134423
+      },
+      {
+        "year": 2019,
+        "n": 134341
+      },
+      {
+        "year": 2024,
+        "n": 138018
+      }
+    ],
+    "median_income": 86197,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 41.2,
+      "snow_in": 45.3,
+      "precip_in": 27.3
+    },
+    "training_centers": 0
+  },
+  "MO": {
+    "abbr": "MO",
+    "name": "Missouri",
+    "olympians": 65,
+    "medals": 31,
+    "gold": 15,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 11
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 5
+      },
+      {
+        "sport": "Diving",
+        "n": 4
+      },
+      {
+        "sport": "Para Swimming",
+        "n": 3
+      },
+      {
+        "sport": "Basketball",
+        "n": 3
+      }
+    ],
+    "nfhs_total": 133767,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 108409
+      },
+      {
+        "year": 2000,
+        "n": 116678
+      },
+      {
+        "year": 2005,
+        "n": 123868
+      },
+      {
+        "year": 2010,
+        "n": 128733
+      },
+      {
+        "year": 2015,
+        "n": 133557
+      },
+      {
+        "year": 2019,
+        "n": 131869
+      },
+      {
+        "year": 2024,
+        "n": 133767
+      }
+    ],
+    "median_income": 67554,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 55.2,
+      "snow_in": 16.8,
+      "precip_in": 42.2
+    },
+    "training_centers": 0
+  },
+  "MS": {
+    "abbr": "MS",
+    "name": "Mississippi",
+    "olympians": 17,
+    "medals": 16,
+    "gold": 5,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 9
+      },
+      {
+        "sport": "Skeleton",
+        "n": 1
+      },
+      {
+        "sport": "Wheelchair Fencing",
+        "n": 1
+      },
+      {
+        "sport": "Field Hockey",
+        "n": 1
+      },
+      {
+        "sport": "Karate",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 62190,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 49923
+      },
+      {
+        "year": 2000,
+        "n": 53803
+      },
+      {
+        "year": 2005,
+        "n": 57131
+      },
+      {
+        "year": 2010,
+        "n": 59361
+      },
+      {
+        "year": 2015,
+        "n": 61590
+      },
+      {
+        "year": 2019,
+        "n": 60555
+      },
+      {
+        "year": 2024,
+        "n": 62190
+      }
+    ],
+    "median_income": 53929,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 63.4,
+      "snow_in": 0.8,
+      "precip_in": 57.3
+    },
+    "training_centers": 0
+  },
+  "MT": {
+    "abbr": "MT",
+    "name": "Montana",
+    "olympians": 25,
+    "medals": 15,
+    "gold": 5,
+    "top_sports": [
+      {
+        "sport": "Para Nordic Skiing",
+        "n": 3
+      },
+      {
+        "sport": "Shooting",
+        "n": 3
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 3
+      },
+      {
+        "sport": "Swimming",
+        "n": 2
+      },
+      {
+        "sport": "Biathlon",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 21124,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 16924
+      },
+      {
+        "year": 2000,
+        "n": 18248
+      },
+      {
+        "year": 2005,
+        "n": 19399
+      },
+      {
+        "year": 2010,
+        "n": 20158
+      },
+      {
+        "year": 2015,
+        "n": 20907
+      },
+      {
+        "year": 2019,
+        "n": 20612
+      },
+      {
+        "year": 2024,
+        "n": 21124
+      }
+    ],
+    "median_income": 66499,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 42.7,
+      "snow_in": 38.8,
+      "precip_in": 15.3
+    },
+    "training_centers": 0
+  },
+  "NC": {
+    "abbr": "NC",
+    "name": "North Carolina",
+    "olympians": 101,
+    "medals": 51,
+    "gold": 18,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 11
+      },
+      {
+        "sport": "Diving",
+        "n": 8
+      },
+      {
+        "sport": "Para Swimming",
+        "n": 7
+      },
+      {
+        "sport": "Swimming",
+        "n": 7
+      },
+      {
+        "sport": "Canoe/Kayak",
+        "n": 7
+      }
+    ],
+    "nfhs_total": 233046,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 179684
+      },
+      {
+        "year": 2000,
+        "n": 194159
+      },
+      {
+        "year": 2005,
+        "n": 207511
+      },
+      {
+        "year": 2010,
+        "n": 216844
+      },
+      {
+        "year": 2015,
+        "n": 225729
+      },
+      {
+        "year": 2019,
+        "n": 225806
+      },
+      {
+        "year": 2024,
+        "n": 233046
+      }
+    ],
+    "median_income": 68149,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 59.0,
+      "snow_in": 5.6,
+      "precip_in": 49.8
+    },
+    "training_centers": 0
+  },
+  "ND": {
+    "abbr": "ND",
+    "name": "North Dakota",
+    "olympians": 27,
+    "medals": 7,
+    "gold": 3,
+    "top_sports": [
+      {
+        "sport": "Curling",
+        "n": 19
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 3
+      },
+      {
+        "sport": "Athletics",
+        "n": 1
+      },
+      {
+        "sport": "Team Handball",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 21789,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 17375
+      },
+      {
+        "year": 2000,
+        "n": 18754
+      },
+      {
+        "year": 2005,
+        "n": 19957
+      },
+      {
+        "year": 2010,
+        "n": 20724
+      },
+      {
+        "year": 2015,
+        "n": 21497
+      },
+      {
+        "year": 2019,
+        "n": 21220
+      },
+      {
+        "year": 2024,
+        "n": 21789
+      }
+    ],
+    "median_income": 73893,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 40.4,
+      "snow_in": 38.0,
+      "precip_in": 17.8
+    },
+    "training_centers": 0
+  },
+  "NE": {
+    "abbr": "NE",
+    "name": "Nebraska",
+    "olympians": 26,
+    "medals": 21,
+    "gold": 6,
+    "top_sports": [
+      {
+        "sport": "Para Athletics",
+        "n": 4
+      },
+      {
+        "sport": "Diving",
+        "n": 3
+      },
+      {
+        "sport": "Shooting",
+        "n": 2
+      },
+      {
+        "sport": "Sitting Volleyball",
+        "n": 2
+      },
+      {
+        "sport": "Athletics",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 42387,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 34234
+      },
+      {
+        "year": 2000,
+        "n": 36827
+      },
+      {
+        "year": 2005,
+        "n": 39052
+      },
+      {
+        "year": 2010,
+        "n": 40536
+      },
+      {
+        "year": 2015,
+        "n": 42016
+      },
+      {
+        "year": 2019,
+        "n": 41446
+      },
+      {
+        "year": 2024,
+        "n": 42387
+      }
+    ],
+    "median_income": 72872,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 48.8,
+      "snow_in": 25.7,
+      "precip_in": 24.2
+    },
+    "training_centers": 0
+  },
+  "NH": {
+    "abbr": "NH",
+    "name": "New Hampshire",
+    "olympians": 27,
+    "medals": 33,
+    "gold": 14,
+    "top_sports": [
+      {
+        "sport": "Biathlon",
+        "n": 4
+      },
+      {
+        "sport": "Rowing",
+        "n": 3
+      },
+      {
+        "sport": "Curling",
+        "n": 2
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 2
+      },
+      {
+        "sport": "Para Alpine Skiing",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 31050,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 23868
+      },
+      {
+        "year": 2000,
+        "n": 25898
+      },
+      {
+        "year": 2005,
+        "n": 27838
+      },
+      {
+        "year": 2010,
+        "n": 29152
+      },
+      {
+        "year": 2015,
+        "n": 30376
+      },
+      {
+        "year": 2019,
+        "n": 30525
+      },
+      {
+        "year": 2024,
+        "n": 31050
+      }
+    ],
+    "median_income": 91699,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 43.8,
+      "snow_in": 60.0,
+      "precip_in": 47.3
+    },
+    "training_centers": 0
+  },
+  "NJ": {
+    "abbr": "NJ",
+    "name": "New Jersey",
+    "olympians": 143,
+    "medals": 96,
+    "gold": 57,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 16
+      },
+      {
+        "sport": "Field Hockey",
+        "n": 12
+      },
+      {
+        "sport": "Fencing",
+        "n": 10
+      },
+      {
+        "sport": "Soccer",
+        "n": 7
+      },
+      {
+        "sport": "Rowing",
+        "n": 7
+      }
+    ],
+    "nfhs_total": 234273,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 176343
+      },
+      {
+        "year": 2000,
+        "n": 190918
+      },
+      {
+        "year": 2005,
+        "n": 205185
+      },
+      {
+        "year": 2010,
+        "n": 215053
+      },
+      {
+        "year": 2015,
+        "n": 224262
+      },
+      {
+        "year": 2019,
+        "n": 227569
+      },
+      {
+        "year": 2024,
+        "n": 234273
+      }
+    ],
+    "median_income": 98335,
+    "climate": {
+      "zone": "Subtropical",
+      "temp_f": 52.7,
+      "snow_in": 23.0,
+      "precip_in": 47.1
+    },
+    "training_centers": 0
+  },
+  "NM": {
+    "abbr": "NM",
+    "name": "New Mexico",
+    "olympians": 14,
+    "medals": 11,
+    "gold": 6,
+    "top_sports": [
+      {
+        "sport": "Boxing",
+        "n": 3
+      },
+      {
+        "sport": "Modern Pentathlon",
+        "n": 2
+      },
+      {
+        "sport": "Para Swimming",
+        "n": 2
+      },
+      {
+        "sport": "Sled Hockey; Para Nordic Skiing",
+        "n": 1
+      },
+      {
+        "sport": "Skateboarding",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 41082,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 33491
+      },
+      {
+        "year": 2000,
+        "n": 36093
+      },
+      {
+        "year": 2005,
+        "n": 38332
+      },
+      {
+        "year": 2010,
+        "n": 39831
+      },
+      {
+        "year": 2015,
+        "n": 41322
+      },
+      {
+        "year": 2019,
+        "n": 40658
+      },
+      {
+        "year": 2024,
+        "n": 41082
+      }
+    ],
+    "median_income": 59276,
+    "climate": {
+      "zone": "Hot Dry",
+      "temp_f": 53.4,
+      "snow_in": 10.5,
+      "precip_in": 14.6
+    },
+    "training_centers": 0
+  },
+  "NV": {
+    "abbr": "NV",
+    "name": "Nevada",
+    "olympians": 51,
+    "medals": 32,
+    "gold": 6,
+    "top_sports": [
+      {
+        "sport": "Swimming",
+        "n": 7
+      },
+      {
+        "sport": "Artistic Swimming",
+        "n": 6
+      },
+      {
+        "sport": "Boxing",
+        "n": 3
+      },
+      {
+        "sport": "Karate",
+        "n": 2
+      },
+      {
+        "sport": "Cycling",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 61691,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 50195
+      },
+      {
+        "year": 2000,
+        "n": 54083
+      },
+      {
+        "year": 2005,
+        "n": 57418
+      },
+      {
+        "year": 2010,
+        "n": 59655
+      },
+      {
+        "year": 2015,
+        "n": 61889
+      },
+      {
+        "year": 2019,
+        "n": 60878
+      },
+      {
+        "year": 2024,
+        "n": 61691
+      }
+    ],
+    "median_income": 72001,
+    "climate": {
+      "zone": "Hot Dry",
+      "temp_f": 49.9,
+      "snow_in": 15.0,
+      "precip_in": 9.5
+    },
+    "training_centers": 0
+  },
+  "NY": {
+    "abbr": "NY",
+    "name": "New York",
+    "olympians": 269,
+    "medals": 128,
+    "gold": 72,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 20
+      },
+      {
+        "sport": "Karate",
+        "n": 14
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 12
+      },
+      {
+        "sport": "Curling",
+        "n": 11
+      },
+      {
+        "sport": "Fencing",
+        "n": 11
+      }
+    ],
+    "nfhs_total": 478789,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 361025
+      },
+      {
+        "year": 2000,
+        "n": 391407
+      },
+      {
+        "year": 2005,
+        "n": 420860
+      },
+      {
+        "year": 2010,
+        "n": 441101
+      },
+      {
+        "year": 2015,
+        "n": 460040
+      },
+      {
+        "year": 2019,
+        "n": 464919
+      },
+      {
+        "year": 2024,
+        "n": 478789
+      }
+    ],
+    "median_income": 86050,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 45.4,
+      "snow_in": 52.7,
+      "precip_in": 41.0
+    },
+    "training_centers": 1
+  },
+  "OH": {
+    "abbr": "OH",
+    "name": "Ohio",
+    "olympians": 147,
+    "medals": 70,
+    "gold": 38,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 18
+      },
+      {
+        "sport": "Diving",
+        "n": 15
+      },
+      {
+        "sport": "Boxing",
+        "n": 8
+      },
+      {
+        "sport": "Curling",
+        "n": 7
+      },
+      {
+        "sport": "Swimming",
+        "n": 6
+      }
+    ],
+    "nfhs_total": 270058,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 210002
+      },
+      {
+        "year": 2000,
+        "n": 226666
+      },
+      {
+        "year": 2005,
+        "n": 242124
+      },
+      {
+        "year": 2010,
+        "n": 252532
+      },
+      {
+        "year": 2015,
+        "n": 262626
+      },
+      {
+        "year": 2019,
+        "n": 262830
+      },
+      {
+        "year": 2024,
+        "n": 270058
+      }
+    ],
+    "median_income": 68157,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 50.7,
+      "snow_in": 28.2,
+      "precip_in": 39.7
+    },
+    "training_centers": 0
+  },
+  "OK": {
+    "abbr": "OK",
+    "name": "Oklahoma",
+    "olympians": 25,
+    "medals": 25,
+    "gold": 12,
+    "top_sports": [
+      {
+        "sport": "Sitting Volleyball",
+        "n": 5
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Rugby",
+        "n": 2
+      },
+      {
+        "sport": "Swimming",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 85170,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 68869
+      },
+      {
+        "year": 2000,
+        "n": 74120
+      },
+      {
+        "year": 2005,
+        "n": 78626
+      },
+      {
+        "year": 2010,
+        "n": 81624
+      },
+      {
+        "year": 2015,
+        "n": 84639
+      },
+      {
+        "year": 2019,
+        "n": 83398
+      },
+      {
+        "year": 2024,
+        "n": 85170
+      }
+    ],
+    "median_income": 61995,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 59.6,
+      "snow_in": 7.3,
+      "precip_in": 36.5
+    },
+    "training_centers": 0
+  },
+  "OR": {
+    "abbr": "OR",
+    "name": "Oregon",
+    "olympians": 67,
+    "medals": 54,
+    "gold": 26,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 16
+      },
+      {
+        "sport": "Alpine Skiing",
+        "n": 4
+      },
+      {
+        "sport": "Goalball",
+        "n": 3
+      },
+      {
+        "sport": "Snowboarding",
+        "n": 3
+      },
+      {
+        "sport": "Para-Cycling",
+        "n": 3
+      }
+    ],
+    "nfhs_total": 87257,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 68703
+      },
+      {
+        "year": 2000,
+        "n": 74036
+      },
+      {
+        "year": 2005,
+        "n": 78783
+      },
+      {
+        "year": 2010,
+        "n": 82039
+      },
+      {
+        "year": 2015,
+        "n": 85198
+      },
+      {
+        "year": 2019,
+        "n": 84741
+      },
+      {
+        "year": 2024,
+        "n": 87257
+      }
+    ],
+    "median_income": 78474,
+    "climate": {
+      "zone": "Mild",
+      "temp_f": 48.4,
+      "snow_in": 5.0,
+      "precip_in": 27.4
+    },
+    "training_centers": 0
+  },
+  "PA": {
+    "abbr": "PA",
+    "name": "Pennsylvania",
+    "olympians": 207,
+    "medals": 63,
+    "gold": 29,
+    "top_sports": [
+      {
+        "sport": "Field Hockey",
+        "n": 49
+      },
+      {
+        "sport": "Rowing",
+        "n": 14
+      },
+      {
+        "sport": "Swimming",
+        "n": 12
+      },
+      {
+        "sport": "Athletics",
+        "n": 10
+      },
+      {
+        "sport": "Curling",
+        "n": 8
+      }
+    ],
+    "nfhs_total": 327379,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 250310
+      },
+      {
+        "year": 2000,
+        "n": 270578
+      },
+      {
+        "year": 2005,
+        "n": 289953
+      },
+      {
+        "year": 2010,
+        "n": 303197
+      },
+      {
+        "year": 2015,
+        "n": 315757
+      },
+      {
+        "year": 2019,
+        "n": 318235
+      },
+      {
+        "year": 2024,
+        "n": 327379
+      }
+    ],
+    "median_income": 75594,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 48.8,
+      "snow_in": 38.1,
+      "precip_in": 43.6
+    },
+    "training_centers": 0
+  },
+  "RI": {
+    "abbr": "RI",
+    "name": "Rhode Island",
+    "olympians": 9,
+    "medals": 4,
+    "gold": 0,
+    "top_sports": [
+      {
+        "sport": "Sailing",
+        "n": 2
+      },
+      {
+        "sport": "Rowing",
+        "n": 2
+      },
+      {
+        "sport": "Swimming",
+        "n": 1
+      },
+      {
+        "sport": "Figure Skating",
+        "n": 1
+      },
+      {
+        "sport": "Judo",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 23456,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 17830
+      },
+      {
+        "year": 2000,
+        "n": 19330
+      },
+      {
+        "year": 2005,
+        "n": 20758
+      },
+      {
+        "year": 2010,
+        "n": 21732
+      },
+      {
+        "year": 2015,
+        "n": 22647
+      },
+      {
+        "year": 2019,
+        "n": 22756
+      },
+      {
+        "year": 2024,
+        "n": 23456
+      }
+    ],
+    "median_income": 81219,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 50.1,
+      "snow_in": 33.5,
+      "precip_in": 49.3
+    },
+    "training_centers": 0
+  },
+  "SC": {
+    "abbr": "SC",
+    "name": "South Carolina",
+    "olympians": 30,
+    "medals": 14,
+    "gold": 9,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 5
+      },
+      {
+        "sport": "Karate",
+        "n": 3
+      },
+      {
+        "sport": "Basketball",
+        "n": 3
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 3
+      },
+      {
+        "sport": "Baseball",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 104180,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 83779
+      },
+      {
+        "year": 2000,
+        "n": 90321
+      },
+      {
+        "year": 2005,
+        "n": 95977
+      },
+      {
+        "year": 2010,
+        "n": 99756
+      },
+      {
+        "year": 2015,
+        "n": 103540
+      },
+      {
+        "year": 2019,
+        "n": 101933
+      },
+      {
+        "year": 2024,
+        "n": 104180
+      }
+    ],
+    "median_income": 64338,
+    "climate": {
+      "zone": "Hot Humid",
+      "temp_f": 62.4,
+      "snow_in": 1.3,
+      "precip_in": 49.8
+    },
+    "training_centers": 0
+  },
+  "SD": {
+    "abbr": "SD",
+    "name": "South Dakota",
+    "olympians": 9,
+    "medals": 3,
+    "gold": 1,
+    "top_sports": [
+      {
+        "sport": "Bobsled",
+        "n": 1
+      },
+      {
+        "sport": "Triathlon",
+        "n": 1
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 1
+      },
+      {
+        "sport": "Track and Field; Beach Volleyball",
+        "n": 1
+      },
+      {
+        "sport": "Para Badminton",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 21180,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 17101
+      },
+      {
+        "year": 2000,
+        "n": 18408
+      },
+      {
+        "year": 2005,
+        "n": 19524
+      },
+      {
+        "year": 2010,
+        "n": 20269
+      },
+      {
+        "year": 2015,
+        "n": 21010
+      },
+      {
+        "year": 2019,
+        "n": 20730
+      },
+      {
+        "year": 2024,
+        "n": 21180
+      }
+    ],
+    "median_income": 68956,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 45.2,
+      "snow_in": 33.8,
+      "precip_in": 20.1
+    },
+    "training_centers": 0
+  },
+  "TN": {
+    "abbr": "TN",
+    "name": "Tennessee",
+    "olympians": 32,
+    "medals": 19,
+    "gold": 10,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 6
+      },
+      {
+        "sport": "Swimming",
+        "n": 5
+      },
+      {
+        "sport": "Diving",
+        "n": 3
+      },
+      {
+        "sport": "Tennis",
+        "n": 2
+      },
+      {
+        "sport": "Weightlifting",
+        "n": 2
+      }
+    ],
+    "nfhs_total": 138151,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 110763
+      },
+      {
+        "year": 2000,
+        "n": 119456
+      },
+      {
+        "year": 2005,
+        "n": 127044
+      },
+      {
+        "year": 2010,
+        "n": 132155
+      },
+      {
+        "year": 2015,
+        "n": 137237
+      },
+      {
+        "year": 2019,
+        "n": 135528
+      },
+      {
+        "year": 2024,
+        "n": 138151
+      }
+    ],
+    "median_income": 65748,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 57.6,
+      "snow_in": 5.2,
+      "precip_in": 53.7
+    },
+    "training_centers": 0
+  },
+  "TX": {
+    "abbr": "TX",
+    "name": "Texas",
+    "olympians": 307,
+    "medals": 141,
+    "gold": 76,
+    "top_sports": [
+      {
+        "sport": "Athletics",
+        "n": 35
+      },
+      {
+        "sport": "Diving",
+        "n": 23
+      },
+      {
+        "sport": "Boxing",
+        "n": 16
+      },
+      {
+        "sport": "Taekwondo",
+        "n": 13
+      },
+      {
+        "sport": "Swimming",
+        "n": 12
+      }
+    ],
+    "nfhs_total": 667503,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 530277
+      },
+      {
+        "year": 2000,
+        "n": 571525
+      },
+      {
+        "year": 2005,
+        "n": 607923
+      },
+      {
+        "year": 2010,
+        "n": 632683
+      },
+      {
+        "year": 2015,
+        "n": 657055
+      },
+      {
+        "year": 2019,
+        "n": 649996
+      },
+      {
+        "year": 2024,
+        "n": 667503
+      }
+    ],
+    "median_income": 74723,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 64.8,
+      "snow_in": 1.0,
+      "precip_in": 28.9
+    },
+    "training_centers": 0
+  },
+  "UT": {
+    "abbr": "UT",
+    "name": "Utah",
+    "olympians": 101,
+    "medals": 62,
+    "gold": 18,
+    "top_sports": [
+      {
+        "sport": "Freestyle Skiing",
+        "n": 12
+      },
+      {
+        "sport": "Alpine Skiing",
+        "n": 10
+      },
+      {
+        "sport": "Ski Jumping",
+        "n": 8
+      },
+      {
+        "sport": "Para Alpine Skiing",
+        "n": 6
+      },
+      {
+        "sport": "Athletics",
+        "n": 6
+      }
+    ],
+    "nfhs_total": 77884,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 62096
+      },
+      {
+        "year": 2000,
+        "n": 66863
+      },
+      {
+        "year": 2005,
+        "n": 70989
+      },
+      {
+        "year": 2010,
+        "n": 73776
+      },
+      {
+        "year": 2015,
+        "n": 76535
+      },
+      {
+        "year": 2019,
+        "n": 75619
+      },
+      {
+        "year": 2024,
+        "n": 77884
+      }
+    ],
+    "median_income": 87698,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 48.6,
+      "snow_in": 38.6,
+      "precip_in": 16.1
+    },
+    "training_centers": 3
+  },
+  "VA": {
+    "abbr": "VA",
+    "name": "Virginia",
+    "olympians": 128,
+    "medals": 51,
+    "gold": 27,
+    "top_sports": [
+      {
+        "sport": "Diving",
+        "n": 14
+      },
+      {
+        "sport": "Athletics",
+        "n": 12
+      },
+      {
+        "sport": "Field Hockey",
+        "n": 9
+      },
+      {
+        "sport": "Para Athletics",
+        "n": 7
+      },
+      {
+        "sport": "Swimming",
+        "n": 7
+      }
+    ],
+    "nfhs_total": 202652,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 153303
+      },
+      {
+        "year": 2000,
+        "n": 165934
+      },
+      {
+        "year": 2005,
+        "n": 177804
+      },
+      {
+        "year": 2010,
+        "n": 186209
+      },
+      {
+        "year": 2015,
+        "n": 194008
+      },
+      {
+        "year": 2019,
+        "n": 195876
+      },
+      {
+        "year": 2024,
+        "n": 202652
+      }
+    ],
+    "median_income": 95667,
+    "climate": {
+      "zone": "Warm Humid",
+      "temp_f": 55.1,
+      "snow_in": 13.0,
+      "precip_in": 44.3
+    },
+    "training_centers": 0
+  },
+  "VT": {
+    "abbr": "VT",
+    "name": "Vermont",
+    "olympians": 44,
+    "medals": 16,
+    "gold": 5,
+    "top_sports": [
+      {
+        "sport": "Biathlon",
+        "n": 11
+      },
+      {
+        "sport": "Cross-Country Skiing",
+        "n": 7
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 7
+      },
+      {
+        "sport": "Alpine Skiing",
+        "n": 4
+      },
+      {
+        "sport": "Rowing",
+        "n": 3
+      }
+    ],
+    "nfhs_total": 15122,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 11685
+      },
+      {
+        "year": 2000,
+        "n": 12650
+      },
+      {
+        "year": 2005,
+        "n": 13548
+      },
+      {
+        "year": 2010,
+        "n": 14159
+      },
+      {
+        "year": 2015,
+        "n": 14729
+      },
+      {
+        "year": 2019,
+        "n": 14739
+      },
+      {
+        "year": 2024,
+        "n": 15122
+      }
+    ],
+    "median_income": 75499,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 42.9,
+      "snow_in": 65.7,
+      "precip_in": 42.7
+    },
+    "training_centers": 0
+  },
+  "WA": {
+    "abbr": "WA",
+    "name": "Washington",
+    "olympians": 153,
+    "medals": 96,
+    "gold": 33,
+    "top_sports": [
+      {
+        "sport": "Para Athletics",
+        "n": 18
+      },
+      {
+        "sport": "Curling",
+        "n": 14
+      },
+      {
+        "sport": "Canoe/Kayak",
+        "n": 11
+      },
+      {
+        "sport": "Athletics",
+        "n": 9
+      },
+      {
+        "sport": "Rowing",
+        "n": 7
+      }
+    ],
+    "nfhs_total": 162065,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 130678
+      },
+      {
+        "year": 2000,
+        "n": 140692
+      },
+      {
+        "year": 2005,
+        "n": 149361
+      },
+      {
+        "year": 2010,
+        "n": 155223
+      },
+      {
+        "year": 2015,
+        "n": 161022
+      },
+      {
+        "year": 2019,
+        "n": 158965
+      },
+      {
+        "year": 2024,
+        "n": 162065
+      }
+    ],
+    "median_income": 93119,
+    "climate": {
+      "zone": "Mild",
+      "temp_f": 48.3,
+      "snow_in": 12.6,
+      "precip_in": 38.4
+    },
+    "training_centers": 0
+  },
+  "WI": {
+    "abbr": "WI",
+    "name": "Wisconsin",
+    "olympians": 146,
+    "medals": 74,
+    "gold": 44,
+    "top_sports": [
+      {
+        "sport": "Curling",
+        "n": 42
+      },
+      {
+        "sport": "Wheelchair Basketball",
+        "n": 8
+      },
+      {
+        "sport": "Ice Hockey",
+        "n": 7
+      },
+      {
+        "sport": "Speedskating",
+        "n": 7
+      },
+      {
+        "sport": "Wheelchair Curling",
+        "n": 7
+      }
+    ],
+    "nfhs_total": 135488,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 105349
+      },
+      {
+        "year": 2000,
+        "n": 113832
+      },
+      {
+        "year": 2005,
+        "n": 121747
+      },
+      {
+        "year": 2010,
+        "n": 126931
+      },
+      {
+        "year": 2015,
+        "n": 132007
+      },
+      {
+        "year": 2019,
+        "n": 131473
+      },
+      {
+        "year": 2024,
+        "n": 135488
+      }
+    ],
+    "median_income": 73510,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 43.1,
+      "snow_in": 42.3,
+      "precip_in": 33.2
+    },
+    "training_centers": 1
+  },
+  "WV": {
+    "abbr": "WV",
+    "name": "West Virginia",
+    "olympians": 4,
+    "medals": 6,
+    "gold": 2,
+    "top_sports": [
+      {
+        "sport": "Para Athletics",
+        "n": 1
+      },
+      {
+        "sport": "Paratriathlon",
+        "n": 1
+      },
+      {
+        "sport": "Artistic Gymnastics",
+        "n": 1
+      },
+      {
+        "sport": "Softball",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 34572,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 27936
+      },
+      {
+        "year": 2000,
+        "n": 30102
+      },
+      {
+        "year": 2005,
+        "n": 31963
+      },
+      {
+        "year": 2010,
+        "n": 33211
+      },
+      {
+        "year": 2015,
+        "n": 34457
+      },
+      {
+        "year": 2019,
+        "n": 33900
+      },
+      {
+        "year": 2024,
+        "n": 34572
+      }
+    ],
+    "median_income": 55967,
+    "climate": {
+      "zone": "Continental",
+      "temp_f": 52.0,
+      "snow_in": 28.8,
+      "precip_in": 44.1
+    },
+    "training_centers": 0
+  },
+  "WY": {
+    "abbr": "WY",
+    "name": "Wyoming",
+    "olympians": 6,
+    "medals": 4,
+    "gold": 1,
+    "top_sports": [
+      {
+        "sport": "Alpine Skiing",
+        "n": 2
+      },
+      {
+        "sport": "Ski Mountaineering",
+        "n": 1
+      },
+      {
+        "sport": "Freestyle Skiing",
+        "n": 1
+      },
+      {
+        "sport": "Triathlon",
+        "n": 1
+      },
+      {
+        "sport": "Biathlon",
+        "n": 1
+      }
+    ],
+    "nfhs_total": 14227,
+    "nfhs_history": [
+      {
+        "year": 1995,
+        "n": 11430
+      },
+      {
+        "year": 2000,
+        "n": 12303
+      },
+      {
+        "year": 2005,
+        "n": 13048
+      },
+      {
+        "year": 2010,
+        "n": 13546
+      },
+      {
+        "year": 2015,
+        "n": 14045
+      },
+      {
+        "year": 2019,
+        "n": 13858
+      },
+      {
+        "year": 2024,
+        "n": 14227
+      }
+    ],
+    "median_income": 73566,
+    "climate": {
+      "zone": "Cold",
+      "temp_f": 42.0,
+      "snow_in": 51.4,
+      "precip_in": 13.0
+    },
+    "training_centers": 0
+  }
+}

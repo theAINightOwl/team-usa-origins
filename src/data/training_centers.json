@@ -1,0 +1,112 @@
+[
+  {
+    "name": "U.S. Olympic & Paralympic Training Center - Colorado Springs",
+    "type": "OPTC",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "lat": 38.8339,
+    "lng": -104.8214,
+    "sports_served": "Archery;Boxing;Cycling;Fencing;Gymnastics;Judo;Modern Pentathlon;Shooting;Swimming;Taekwondo;Volleyball;Weightlifting;Wrestling",
+    "year_opened": 1978,
+    "paralympic": true
+  },
+  {
+    "name": "U.S. Olympic & Paralympic Training Center - Lake Placid",
+    "type": "OPTC",
+    "city": "Lake Placid",
+    "state": "NY",
+    "lat": 44.2795,
+    "lng": -73.9799,
+    "sports_served": "Biathlon;Bobsled;Cross-Country Skiing;Figure Skating;Freestyle Skiing;Ice Hockey;Luge;Nordic Combined;Skeleton;Ski Jumping;Speed Skating",
+    "year_opened": 1982,
+    "paralympic": true
+  },
+  {
+    "name": "U.S. Olympic & Paralympic Training Center - Chula Vista",
+    "type": "OPTC",
+    "city": "Chula Vista",
+    "state": "CA",
+    "lat": 32.6127,
+    "lng": -117.0698,
+    "sports_served": "Archery;BMX;Canoe/Kayak;Cycling;Field Hockey;Rowing;Rugby;Soccer;Tennis;Track and Field",
+    "year_opened": 1995,
+    "paralympic": true
+  },
+  {
+    "name": "National Training Center",
+    "type": "NTC",
+    "city": "Marquette",
+    "state": "MI",
+    "lat": 46.5436,
+    "lng": -87.3954,
+    "sports_served": "Cycling;Cross-Country Skiing;Biathlon",
+    "year_opened": 1985,
+    "paralympic": false
+  },
+  {
+    "name": "Utah Olympic Oval",
+    "type": "Training Site",
+    "city": "Kearns",
+    "state": "UT",
+    "lat": 40.642,
+    "lng": -112.0107,
+    "sports_served": "Speed Skating;Short Track Speed Skating",
+    "year_opened": 2001,
+    "paralympic": true
+  },
+  {
+    "name": "Utah Olympic Park",
+    "type": "Training Site",
+    "city": "Park City",
+    "state": "UT",
+    "lat": 40.694,
+    "lng": -111.558,
+    "sports_served": "Bobsled;Luge;Skeleton;Ski Jumping;Nordic Combined;Freestyle Skiing;Aerial Skiing",
+    "year_opened": 2002,
+    "paralympic": true
+  },
+  {
+    "name": "Pettit National Ice Center",
+    "type": "Training Site",
+    "city": "Milwaukee",
+    "state": "WI",
+    "lat": 43.028,
+    "lng": -87.97,
+    "sports_served": "Speed Skating;Short Track Speed Skating",
+    "year_opened": 1993,
+    "paralympic": true
+  },
+  {
+    "name": "U.S. Ski Team Training Facility - Center of Excellence",
+    "type": "Training Site",
+    "city": "Park City",
+    "state": "UT",
+    "lat": 40.6514,
+    "lng": -111.508,
+    "sports_served": "Alpine Skiing;Cross-Country Skiing;Freestyle Skiing;Ski Jumping;Snowboarding;Nordic Combined",
+    "year_opened": 2009,
+    "paralympic": true
+  },
+  {
+    "name": "USA Swimming National Training Center",
+    "type": "Training Site",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "lat": 38.8339,
+    "lng": -104.8214,
+    "sports_served": "Swimming;Diving;Artistic Swimming;Water Polo",
+    "year_opened": 2000,
+    "paralympic": true
+  },
+  {
+    "name": "USA Volleyball Training Center",
+    "type": "Training Site",
+    "city": "Anaheim",
+    "state": "CA",
+    "lat": 33.8303,
+    "lng": -117.9143,
+    "sports_served": "Volleyball;Beach Volleyball",
+    "year_opened": 2003,
+    "paralympic": true
+  }
+]

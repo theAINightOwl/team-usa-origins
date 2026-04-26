@@ -1,0 +1,347 @@
+city,state,lat,lng,canonical_name,strategy,n_athletes,note
+Pheonix,AZ,33.4484,-112.0740,Phoenix,manual:typo,2,Misspelling of Phoenix
+Milipitas,CA,37.4323,-121.8996,Milpitas,manual:typo,3,Misspelling of Milpitas
+Detriot,MI,42.3314,-83.0458,Detroit,manual:typo,1,Misspelling of Detroit
+Cornona,CA,33.8753,-117.5664,Corona,manual:typo,1,Misspelling of Corona
+Philladelphia,PA,39.9526,-75.1652,Philadelphia,manual:typo,1,Misspelling of Philadelphia
+Gainsville,GA,34.2979,-83.8241,Gainesville,manual:typo,1,Misspelling of Gainesville
+LaCrosse,WI,43.8014,-91.2396,La Crosse,manual:typo,1,Space-missing variant of La Crosse
+Odgen,UT,41.2230,-111.9738,Ogden,manual:typo,1,Misspelling of Ogden
+Cheswich,PA,40.5434,-79.7992,Cheswick,manual:typo,1,Misspelling of Cheswick
+Steamboat Srings,CO,40.4850,-106.8317,Steamboat Springs,manual:typo,1,Misspelling of Steamboat Springs
+Jacksonsville,FL,30.3322,-81.6557,Jacksonville,manual:typo,1,Misspelling of Jacksonville
+Algonquinn,IL,42.1656,-88.2945,Algonquin,manual:typo,1,Misspelling of Algonquin
+Freemont,CA,37.5485,-121.9886,Fremont,manual:typo,1,Misspelling of Fremont
+Harselle,AL,34.4434,-86.9414,Hartselle,manual:typo,1,Misspelling of Hartselle
+Silverthrone,CO,39.6322,-106.0739,Silverthorne,manual:typo,1,Misspelling of Silverthorne
+Pineallas Park,FL,27.8428,-82.6995,Pinellas Park,manual:typo,1,Misspelling of Pinellas Park
+Isaaquah,WA,47.5301,-122.0326,Issaquah,manual:typo,1,Misspelling of Issaquah
+Fayettville,GA,33.4487,-84.4549,Fayetteville,manual:typo,1,Misspelling of Fayetteville
+Wyantskill,NY,42.7103,-73.6312,Wynantskill,manual:typo,1,Misspelling of Wynantskill
+Hiahlea,FL,25.8576,-80.2781,Hialeah,manual:typo,1,Misspelling of Hialeah
+Pico Riviera,CA,33.9831,-118.0969,Pico Rivera,manual:typo,1,Misspelling of Pico Rivera
+Lemore,CA,36.3008,-119.7830,Lemoore,manual:typo,1,Misspelling of Lemoore
+Sommerset,NJ,40.4968,-74.4890,Somerset,manual:typo,1,Misspelling of Somerset
+Windmere,FL,28.4953,-81.5348,Windermere,manual:typo,1,Misspelling of Windermere
+North Fort Meyers,FL,26.6689,-81.8770,North Fort Myers,manual:typo,1,Misspelling of North Fort Myers
+Grosse Point,MI,42.3864,-82.9119,Grosse Pointe,manual:typo,1,Missing 'e' in Grosse Pointe
+Rancho Sante Fe,CA,33.0195,-117.2036,Rancho Santa Fe,manual:typo,1,Misspelling of Santa
+Cliffton,VA,38.7835,-77.3861,Clifton,manual:typo,1,Doubled 'f' in Clifton
+Mt Prospect,IL,42.0664,-87.9373,Mount Prospect,manual:typo,1,Abbreviated Mt without period
+LaPorte,TX,29.6658,-95.0194,La Porte,manual:typo,1,Missing space in La Porte
+LaGrange Park,IL,41.8378,-87.8723,La Grange Park,manual:typo,1,Missing space in La Grange Park
+Oldsmarf,FL,28.0342,-82.6654,Oldsmar,manual:typo,1,Trailing f in Oldsmar
+Haverville,MA,42.7762,-71.0773,Haverhill,manual:typo,1,Misspelling of Haverhill
+Carkesville,GA,34.6107,-83.5221,Clarkesville,manual:typo,1,Misspelling of Clarkesville
+Yuton,OK,35.5067,-97.7625,Yukon,manual:typo,1,Misspelling of Yukon
+Santa RosaC,CA,38.4404,-122.7141,Santa Rosa,manual:typo,1,Trailing C in Santa Rosa
+Kitnersville,PA,40.5801,-75.1116,Kintnersville,manual:typo,1,Misspelling of Kintnersville
+Monteverde,FL,28.5633,-81.6823,Montverde,manual:typo,1,Misspelling of Montverde
+Lees Summit,MO,38.9108,-94.3822,Lee's Summit,manual:typo,1,Lee's Summit missing apostrophe
+Sainte Genevieve,MO,37.9806,-90.0420,Ste. Genevieve,manual:typo,1,Alt spelling of Ste. Genevieve
+Fairpoint,NY,43.0737,-77.0816,Fairport,manual:typo,1,Likely Fairport NY
+Westwoods,CA,34.0633,-118.4478,Westwood,manual:typo,1,Likely typo of Westwood
+Woodbridge,IL,41.7608,-87.9695,Woodridge,manual:typo,1,Likely Woodridge IL
+Patterson,NJ,40.9168,-74.1718,Paterson,manual:typo,1,Likely Paterson NJ
+Kent Hill,ME,44.4322,-69.8672,Kents Hill,manual:typo,1,Readfield ME village
+Santa Margherita,CA,33.6389,-117.6031,Rancho Santa Margarita,manual:typo,1,Likely Rancho Santa Margarita CA
+Brown Mills,NJ,39.9728,-74.5677,Browns Mills,manual:typo,1,Browns Mills NJ CDP
+Lawrence,GA,33.9562,-83.9879,Lawrenceville,manual:typo,1,Likely Lawrenceville GA
+Simons Island,GA,31.1583,-81.3925,St. Simons Island,manual:typo,1,Missing 'St.' prefix
+Hannah,HI,21.3099,-157.8581,Honolulu,manual:typo,1,No town named Hannah in HI; falling back to Honolulu
+"Washington, D.C.",WA,38.9072,-77.0369,Washington D.C.,manual:state-fix,4,State typed WA but clearly Washington DC
+Washington D.C.,MD,38.9072,-77.0369,Washington D.C.,manual:state-fix,1,State typed MD but clearly Washington DC
+"Washington, D.C.",MD,38.9072,-77.0369,Washington D.C.,manual:state-fix,1,State typed MD but clearly Washington DC
+"Colorado Springs, Colo.",SC,38.8339,-104.8214,Colorado Springs,manual:state-fix,1,State typed SC but clearly CO
+Vestavia Hills,AK,33.4488,-86.7877,Vestavia Hills,manual:state-fix,1,State typed AK but Vestavia Hills is in AL
+"Chagrin Falls, Ohio",FL,41.4339,-81.3912,Chagrin Falls,manual:state-fix,1,State typed FL but city says Ohio
+"Williston, Fla.",NH,29.3875,-82.4470,Williston,manual:state-fix,1,State typed NH but city says Fla.
+"Newark, Del.",MA,39.6837,-75.7497,Newark,manual:state-fix,1,State typed MA but city says Del.
+"Murrieta, Calif.",FL,33.5539,-117.2139,Murrieta,manual:state-fix,1,State typed FL but city says Calif.
+Gresham,WA,45.4978,-122.4302,Gresham,manual:state-fix,1,State typed WA but Gresham is in OR
+Salt Lake City,NY,40.7608,-111.8910,Salt Lake City,manual:state-fix,1,State typed NY but SLC is in UT
+Byhalia,TN,34.8726,-89.6873,Byhalia,manual:state-fix,1,State typed TN but Byhalia is in MS
+Huntersville,MD,35.4107,-80.8428,Huntersville,manual:state-fix,1,State typed MD but Huntersville is in NC
+Chicago,WI,41.8781,-87.6298,Chicago,manual:state-fix,1,State typed WI but Chicago is in IL
+Irving,CA,33.6846,-117.8265,Irvine,manual:state-fix,1,Likely Irvine CA (Irving is TX)
+Winter Park,CA,40.3428,-105.7661,Winter Park,manual:state-fix,1,State typed CA but Winter Park is a CO ski resort
+"Avondale, Ariz.",AZ,33.4356,-112.3496,Avondale,manual:embedded-state,1,City field carries 'Ariz.' suffix
+"Franklinville, N.J.",NJ,39.6087,-75.0707,Franklinville,manual:embedded-state,1,City field carries 'N.J.' suffix
+"Grand Rapids, Mich.",MI,42.9634,-85.6681,Grand Rapids,manual:embedded-state,1,City field carries 'Mich.' suffix
+"Manhattan Beach, Calif.",CA,33.8847,-118.4109,Manhattan Beach,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Ferndale, Wash.",WA,48.8465,-122.5914,Ferndale,manual:embedded-state,1,City field carries 'Wash.' suffix
+"Reedsport, Ore.",OR,43.7021,-124.0965,Reedsport,manual:embedded-state,1,City field carries 'Ore.' suffix
+"Sacramento, Calif.",CA,38.5816,-121.4944,Sacramento,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Orchard Park, NY",NY,42.7675,-78.7442,Orchard Park,manual:embedded-state,1,City field carries 'NY' suffix
+"Gilbert, Ariz.",AZ,33.3528,-111.7890,Gilbert,manual:embedded-state,1,City field carries 'Ariz.' suffix
+"Hinsdale, Ill.",IL,41.8008,-87.9370,Hinsdale,manual:embedded-state,1,City field carries 'Ill.' suffix
+"Willoughby, Ohio",OH,41.6392,-81.4068,Willoughby,manual:embedded-state,1,City field carries 'Ohio' suffix
+"Sealy, Texas",TX,29.7827,-96.1605,Sealy,manual:embedded-state,1,City field carries 'Texas' suffix
+"St. Louis, Mo.",MO,38.6270,-90.1994,St. Louis,manual:embedded-state,2,City field carries 'Mo.' suffix
+"Houston, Texas",TX,29.7604,-95.3698,Houston,manual:embedded-state,2,City field carries 'Texas' suffix
+"Butler, Pa.",PA,40.8612,-79.8953,Butler,manual:embedded-state,1,City field carries 'Pa.' suffix
+"Timonium, Md.",MD,39.4376,-76.6181,Lutherville-Timonium,manual:embedded-state,1,City field carries 'Md.' suffix
+"Rapid City, S.D.",SD,44.0805,-103.2310,Rapid City,manual:embedded-state,1,City field carries 'S.D.' suffix
+"Seekonk, Mass",MA,41.8084,-71.3367,Seekonk,manual:embedded-state,1,City field carries 'Mass' suffix
+"Lewisville, NC",NC,36.1035,-80.4148,Lewisville,manual:embedded-state,1,City field carries 'NC' suffix
+"Baltimore, Md.",MD,39.2904,-76.6122,Baltimore,manual:embedded-state,1,City field carries 'Md.' suffix
+"Killeen, Texas",TX,31.1171,-97.7278,Killeen,manual:embedded-state,1,City field carries 'Texas' suffix
+"Indianapolis, Ind.",IN,39.7684,-86.1581,Indianapolis,manual:embedded-state,1,City field carries 'Ind.' suffix
+"Pasco, Wash.",WA,46.2395,-119.1006,Pasco,manual:embedded-state,1,City field carries 'Wash.' suffix
+"San Diego, Calif.",CA,32.7157,-117.1611,San Diego,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Cold Spring Harbor, N.Y.",NY,40.8701,-73.4643,Cold Spring Harbor,manual:embedded-state,1,City field carries 'N.Y.' suffix
+"Philadelphia, Penn.",PA,39.9526,-75.1652,Philadelphia,manual:embedded-state,1,City field carries 'Penn.' suffix
+"Overland Park, Kan.",KS,38.9822,-94.6708,Overland Park,manual:embedded-state,1,City field carries 'Kan.' suffix
+"Kenai, Alaska",AK,60.5544,-151.2583,Kenai,manual:embedded-state,1,City field carries 'Alaska' suffix
+"Oakley, Calif.",CA,37.9974,-121.7124,Oakley,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Ringwood, N.J.",NJ,41.1140,-74.2457,Ringwood,manual:embedded-state,1,City field carries 'N.J.' suffix
+"Windsor, Connecticut",CT,41.8524,-72.6437,Windsor,manual:embedded-state,1,City field carries 'Connecticut' suffix
+"Santa Monica, Calif.",CA,34.0195,-118.4912,Santa Monica,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Johnsonburg, Pa.",PA,41.4881,-78.6811,Johnsonburg,manual:embedded-state,1,City field carries 'Pa.' suffix
+"Rancho Cucamonga, Calif.",CA,34.1064,-117.5931,Rancho Cucamonga,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Huntington Beach, Calif.",CA,33.6603,-117.9992,Huntington Beach,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Tulsa, Okla.",OK,36.1540,-95.9928,Tulsa,manual:embedded-state,1,City field carries 'Okla.' suffix
+"Memphis, Tenn.",TN,35.1495,-90.0490,Memphis,manual:embedded-state,1,City field carries 'Tenn.' suffix
+"Wichita, Kan.",KS,37.6872,-97.3301,Wichita,manual:embedded-state,1,City field carries 'Kan.' suffix
+"Diamond Bar, California",CA,34.0286,-117.8103,Diamond Bar,manual:embedded-state,1,City field carries 'California' suffix
+"Edwards, Colo.",CO,39.6426,-106.5947,Edwards,manual:embedded-state,1,City field carries 'Colo.' suffix
+"Missouri City, Texas",TX,29.6186,-95.5377,Missouri City,manual:embedded-state,1,City field carries 'Texas' suffix
+"Thousand Oaks, Calif.",CA,34.1706,-118.8376,Thousand Oaks,manual:embedded-state,1,City field carries 'Calif.' suffix
+"Tampa, Fla.",FL,27.9506,-82.4572,Tampa,manual:embedded-state,1,City field carries 'Fla.' suffix
+"Detroit, Mich.",MI,42.3314,-83.0458,Detroit,manual:embedded-state,1,City field carries 'Mich.' suffix
+"Salt Lake City, UT",UT,40.7608,-111.8910,Salt Lake City,manual:embedded-state,1,City field carries 'UT' suffix
+"Frederick, MD",MD,39.4143,-77.4105,Frederick,manual:embedded-state,1,City field carries 'MD' suffix
+"Colony, Texas",TX,33.0806,-96.8864,The Colony,manual:embedded-state,1,The Colony TX
+Jamaica,NY,40.7025,-73.8029,Jamaica (Queens),manual:neighborhood,4,NYC neighborhood in Queens; not a Census Place
+Flushing,NY,40.7656,-73.8331,Flushing (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+Bayside,NY,40.7634,-73.7713,Bayside (Queens),manual:neighborhood,3,NYC neighborhood in Queens; not a Census Place
+Middle Village,NY,40.7173,-73.8837,Middle Village (Queens),manual:neighborhood,2,NYC neighborhood in Queens; not a Census Place
+Ozone Park,NY,40.6803,-73.8448,Ozone Park (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+Woodside,NY,40.7456,-73.9066,Woodside (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+College Point,NY,40.7876,-73.8421,College Point (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+Elmhurst,NY,40.7365,-73.8775,Elmhurst (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+Glendale,NY,40.7020,-73.8706,Glendale (Queens),manual:neighborhood,1,NYC neighborhood in Queens; not a Census Place
+Long Island,NY,40.7062,-73.6187,Long Island,manual:region,2,Hempstead as LI centroid
+Westchester,NY,41.1220,-73.7949,Westchester County,manual:region,1,Using White Plains centroid
+Studio City,CA,34.1430,-118.3947,Studio City (Los Angeles),manual:neighborhood,3,LA neighborhood; not a Census Place
+Tarzana,CA,34.1734,-118.5517,Tarzana (Los Angeles),manual:neighborhood,2,LA neighborhood; not a Census Place
+Northridge,CA,34.2283,-118.5373,Northridge (Los Angeles),manual:neighborhood,2,LA neighborhood; not a Census Place
+Canoga Park,CA,34.2013,-118.5989,Canoga Park (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+North Hollywood,CA,34.1720,-118.3781,North Hollywood (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Woodland Hills,CA,34.1684,-118.6059,Woodland Hills (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Pacific Palisades,CA,34.0357,-118.5156,Pacific Palisades (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Granada Hills,CA,34.2694,-118.5023,Granada Hills (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+North Hills,CA,34.2364,-118.4831,North Hills (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+West Hills,CA,34.2125,-118.6456,West Hills (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Sun Valley,CA,34.2172,-118.3761,Sun Valley (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Playa Del Rey,CA,33.9575,-118.4473,Playa del Rey (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+San Pedro,CA,33.7361,-118.2922,San Pedro (Los Angeles),manual:neighborhood,1,LA neighborhood; not a Census Place
+Newbury Park,CA,34.1839,-118.9089,Newbury Park (Thousand Oaks),manual:neighborhood,2,Thousand Oaks neighborhood
+Saugus,CA,34.4167,-118.5417,Saugus (Santa Clarita),manual:neighborhood,2,Santa Clarita neighborhood
+Valencia,CA,34.4436,-118.6098,Valencia (Santa Clarita),manual:neighborhood,4,Santa Clarita neighborhood
+La Canada Flintridge,CA,34.1988,-118.1898,La Cañada Flintridge,manual:neighborhood,1,La Canada Flintridge CA
+La Canada,CA,34.1988,-118.1898,La Cañada Flintridge,manual:neighborhood,1,Short form of La Canada Flintridge
+La Jolla,CA,32.8328,-117.2713,La Jolla (San Diego),manual:neighborhood,1,San Diego neighborhood
+Corona Del Mar,CA,33.5981,-117.8726,Corona del Mar (Newport Beach),manual:neighborhood,1,Newport Beach neighborhood
+Anaheim Hills,CA,33.8606,-117.7509,Anaheim Hills,manual:neighborhood,1,Anaheim neighborhood
+Alta Loma,CA,34.1231,-117.5942,Alta Loma (Rancho Cucamonga),manual:neighborhood,1,Rancho Cucamonga neighborhood
+Stevensons Ranch,CA,34.3953,-118.5978,Stevenson Ranch,manual:neighborhood,1,Stevenson Ranch CDP (singular)
+Kingsbury,CA,38.9658,-119.9201,Kingsbury,manual:neighborhood,1,Small Tahoe-area community (CA/NV border)
+El Toro,CA,33.6272,-117.6932,El Toro (Lake Forest),manual:neighborhood,1,Former name; now part of Lake Forest CA
+Lanikai,HI,21.3930,-157.7149,Lanikai (Kailua),manual:neighborhood,1,Oahu neighborhood in Kailua
+"Wahiawa, Oahu",HI,21.5028,-158.0239,Wahiawa,manual:neighborhood,1,Wahiawa CDP on Oahu
+Oahu,HI,21.4389,-158.0001,Oahu,manual:region,1,Island of Oahu; using Honolulu area
+Newton Center,MA,42.3370,-71.1950,Newton Center,manual:neighborhood,1,Newton MA village
+Brighton,MA,42.3499,-71.1662,Brighton (Boston),manual:neighborhood,1,Boston neighborhood
+Jupiter Beach,FL,26.9342,-80.0942,Jupiter,manual:neighborhood,1,Jupiter FL coastal area
+Redwood Shores,CA,37.5320,-122.2416,Redwood Shores (Redwood City),manual:neighborhood,1,Redwood City CA neighborhood
+Canton,MI,42.3086,-83.4819,Canton Charter Township,manual:township,5,MI charter township (Wayne County)
+Commerce,MI,42.5950,-83.4766,Commerce Charter Township,manual:township,2,MI charter township
+Commerce Township,MI,42.5950,-83.4766,Commerce Charter Township,manual:township,1,MI charter township
+Oakland Township,MI,42.7584,-83.1541,Oakland Charter Township,manual:township,2,MI charter township
+West Bloomfield,MI,42.5684,-83.3832,West Bloomfield Township,manual:township,2,MI charter township
+Bloomfield Township,MI,42.5834,-83.2455,Bloomfield Township,manual:township,1,MI township
+Waterford,MI,42.6931,-83.4025,Waterford Charter Township,manual:township,1,MI charter township
+White Lake,MI,42.6653,-83.5294,White Lake Charter Township,manual:township,1,MI charter township
+Liberty Township,OH,39.4092,-84.4008,Liberty Township,manual:township,1,Butler County OH township
+Wayne,NJ,40.9254,-74.2765,Wayne Township,manual:township,3,NJ township in Passaic County
+Warren,NJ,40.6339,-74.5150,Warren Township,manual:township,2,NJ township in Somerset County
+Randolph,NJ,40.8484,-74.5776,Randolph Township,manual:township,2,NJ township in Morris County
+Edison,NJ,40.5187,-74.4121,Edison Township,manual:township,2,NJ township in Middlesex County
+Piscataway,NJ,40.5549,-74.4632,Piscataway Township,manual:township,2,NJ township in Middlesex County
+Willingboro,NJ,40.0284,-74.8876,Willingboro Township,manual:township,2,NJ township in Burlington County
+Willingboro Township,NJ,40.0284,-74.8876,Willingboro Township,manual:township,1,NJ township in Burlington County
+West Orange,NJ,40.7987,-74.2390,West Orange Township,manual:township,1,NJ township in Essex County
+Monroe Township,NJ,40.3129,-74.4293,Monroe Township,manual:township,1,NJ township in Middlesex County
+Manalapan Township,NJ,40.2960,-74.3862,Manalapan Township,manual:township,1,NJ township in Monmouth County
+Mount Laurel,NJ,39.9343,-74.8918,Mount Laurel Township,manual:township,1,NJ township in Burlington County
+East Brunswick,NJ,40.4276,-74.4154,East Brunswick Township,manual:township,1,NJ township in Middlesex County
+Mount Olive,NJ,40.8770,-74.7352,Mount Olive Township,manual:township,1,NJ township in Morris County
+Cinnaminson,NJ,40.0117,-74.9965,Cinnaminson Township,manual:township,1,Burlington County NJ township
+Deptford,NJ,39.8315,-75.1060,Deptford Township,manual:township,1,Gloucester County NJ township
+Colts Neck,NJ,40.2923,-74.1724,Colts Neck Township,manual:township,1,Monmouth County NJ township
+Westampton,NJ,39.9914,-74.7624,Westampton Township,manual:township,1,Burlington County NJ township
+Maplewood,NJ,40.7312,-74.2735,Maplewood Township,manual:township,1,Essex County NJ township
+Delran,NJ,40.0125,-74.9615,Delran Township,manual:township,1,Burlington County NJ township
+Teaneck,NJ,40.8976,-74.0160,Teaneck Township,manual:township,1,Bergen County NJ township
+Ewing,NJ,40.2698,-74.7999,Ewing Township,manual:township,1,Mercer County NJ township
+Warrington,PA,40.2562,-75.1352,Warrington Township,manual:township,3,PA township in Bucks County
+Bensalem,PA,40.1048,-74.9516,Bensalem Township,manual:township,1,Bucks County PA township
+Abington,PA,40.1207,-75.1197,Abington Township,manual:township,1,Montgomery County PA township
+Helena,MN,44.4125,-93.5391,Helena Township,manual:township,1,Scott County MN township
+Palisades Tahoe,CA,39.1969,-120.2358,Olympic Valley,manual:resort,3,Palisades Tahoe resort at Olympic Valley
+Olympic Valley,CA,39.1969,-120.2358,Olympic Valley,manual:resort,1,Squaw Valley / Olympic Valley CA
+Alpine Meadows,CA,39.1681,-120.2378,Alpine Meadows,manual:resort,1,Alpine Meadows ski area in Placer County CA
+Jackson Hole,WY,43.4799,-110.7624,Jackson,manual:resort,2,Informal name for Jackson WY
+Orange County,CA,33.7455,-117.8677,Orange County,manual:county,2,Using county seat Santa Ana
+Palm Beach County,FL,26.7153,-80.0534,Palm Beach County,manual:county,1,Using county seat West Palm Beach
+Summit County,CO,39.6333,-106.0430,Summit County,manual:county,1,Using Breckenridge
+Chaffee County,CO,38.5347,-106.0039,Chaffee County,manual:county,1,Using Salida
+Bucks County,PA,40.3101,-75.1299,Bucks County,manual:county,1,Using county seat Doylestown
+Inland Empire,CA,33.9806,-117.3755,Inland Empire,manual:region,1,Using Riverside as anchor
+Las Vegas/Reno,NV,36.1699,-115.1398,Las Vegas,manual:region,1,Dual listing; using Las Vegas
+Henrico,VA,37.5407,-77.4360,Henrico County,manual:county,2,Henrico is a VA county; using centroid
+Cornell University,NY,42.4534,-76.4735,Ithaca (Cornell University),manual:institution,1,Cornell University main campus in Ithaca
+Mission Viejo,CA,33.6000,-117.6719,Mission Viejo,manual:gazetteer-gap,6,City not matched by automated geocoder
+Lake Forest,CA,33.6469,-117.6891,Lake Forest,manual:gazetteer-gap,4,City not matched by automated geocoder
+Lake Forest,IL,42.2586,-87.8406,Lake Forest,manual:gazetteer-gap,2,City not matched by automated geocoder
+Eagle River,AK,61.3214,-149.5672,Eagle River,manual:gazetteer-gap,4,CDP near Anchorage
+Craftsbury,VT,44.6481,-72.3800,Craftsbury,manual:gazetteer-gap,4,Small VT town in Orleans County
+Saunderstown,RI,41.5015,-71.4339,Saunderstown,manual:gazetteer-gap,2,Village in North Kingstown RI
+Cape Elizabeth,ME,43.5643,-70.1997,Cape Elizabeth,manual:gazetteer-gap,2,Cumberland County ME town
+North Reading,MA,42.5754,-71.0853,North Reading,manual:gazetteer-gap,2,Middlesex County MA town
+Peru,VT,43.2393,-72.9026,Peru,manual:gazetteer-gap,2,Small VT town in Bennington County
+Old Lyme,CT,41.3157,-72.3381,Old Lyme,manual:gazetteer-gap,2,CT town in New London County
+Roxbury,CT,41.5492,-73.3062,Roxbury,manual:gazetteer-gap,2,Small CT town in Litchfield County
+Columbia,CT,41.7054,-72.3000,Columbia,manual:gazetteer-gap,2,Small CT town in Tolland County
+Santa Rosa Beach,FL,30.3735,-86.2485,Santa Rosa Beach,manual:gazetteer-gap,2,Walton County FL community
+Marstons Mills,MA,41.6598,-70.4183,Marstons Mills,manual:gazetteer-gap,2,Village in Barnstable MA
+North Andover,MA,42.6984,-71.1347,North Andover,manual:gazetteer-gap,3,Essex County MA town
+Weston,MA,42.3657,-71.3036,Weston,manual:gazetteer-gap,3,Middlesex County MA town
+Wayland,MA,42.3618,-71.3617,Wayland,manual:gazetteer-gap,2,Middlesex County MA town
+Burnt Hills,NY,42.9311,-73.8776,Burnt Hills,manual:gazetteer-gap,2,Saratoga County NY hamlet
+West Henrietta,NY,43.0242,-77.6758,West Henrietta,manual:gazetteer-gap,2,Monroe County NY hamlet
+Franconia,NH,44.2209,-71.7439,Franconia,manual:gazetteer-gap,2,White Mountains NH town
+Carrabassett Valley,ME,45.0920,-70.2470,Carrabassett Valley,manual:gazetteer-gap,2,Franklin County ME town
+Carmel,CA,36.5552,-121.9233,Carmel-by-the-Sea,manual:gazetteer-gap,2,Monterey County CA city
+Dresher,PA,40.1521,-75.1596,Dresher,manual:gazetteer-gap,2,Upper Dublin Twp PA community
+Wake Forest,NC,35.9799,-78.5098,Wake Forest,manual:gazetteer-gap,3,Wake/Franklin NC town
+Clarksville,MD,39.2056,-76.9494,Clarksville,manual:gazetteer-gap,3,Howard County MD CDP
+Havertown,PA,39.9823,-75.3071,Havertown,manual:gazetteer-gap,1,Delaware County PA CDP
+Slate Hill,NY,41.3923,-74.5346,Slate Hill,manual:gazetteer-gap,1,Orange County NY hamlet
+Clifton Park,NY,42.8517,-73.7771,Clifton Park,manual:gazetteer-gap,1,Saratoga County NY town
+Harvest,AL,34.8767,-86.7478,Harvest,manual:gazetteer-gap,1,Madison County AL CDP
+Keene,NY,44.2531,-73.7986,Keene,manual:gazetteer-gap,1,Essex County NY town in Adirondacks
+Sandhill,MS,32.3796,-89.8942,Sandhill,manual:gazetteer-gap,1,Small MS community
+Monroe,CT,41.3329,-73.2076,Monroe,manual:gazetteer-gap,1,Fairfield County CT town
+Cordova,TN,35.1568,-89.7762,Cordova,manual:gazetteer-gap,1,Shelby County TN CDP
+Gansevoort,NY,43.1389,-73.6893,Gansevoort,manual:gazetteer-gap,1,Saratoga County NY hamlet
+Bedford,NH,42.9462,-71.5179,Bedford,manual:gazetteer-gap,1,Hillsborough County NH town
+Jackson,NH,44.1519,-71.1837,Jackson,manual:gazetteer-gap,1,Carroll County NH town
+Hampton Falls,NH,42.9245,-70.8606,Hampton Falls,manual:gazetteer-gap,1,Rockingham County NH town
+Boyds,MD,39.1707,-77.3097,Boyds,manual:gazetteer-gap,1,Montgomery County MD CDP
+Starksboro,VT,44.2232,-73.0592,Starksboro,manual:gazetteer-gap,1,Addison County VT town
+Norwell,MA,42.1626,-70.8932,Norwell,manual:gazetteer-gap,1,Plymouth County MA town
+Muncy Valley,PA,41.3950,-76.5194,Muncy Valley,manual:gazetteer-gap,1,Sullivan County PA CDP
+Easton,MA,42.0335,-71.1198,Easton,manual:gazetteer-gap,1,Bristol County MA town
+Fortson,GA,32.6201,-84.9691,Fortson,manual:gazetteer-gap,1,Harris County GA community
+Smithson Valley,TX,29.8247,-98.2955,Smithson Valley,manual:gazetteer-gap,1,Comal County TX CDP
+Springfield,NH,43.4970,-72.0562,Springfield,manual:gazetteer-gap,1,Sullivan County NH town
+Stockholm,ME,47.0540,-68.1308,Stockholm,manual:gazetteer-gap,1,Aroostook County ME town
+Middleton,MA,42.5959,-70.9720,Middleton,manual:gazetteer-gap,1,Essex County MA town
+Grafton,MA,42.2079,-71.6856,Grafton,manual:gazetteer-gap,1,Worcester County MA town
+Vermontville,NY,44.4917,-74.1670,Vermontville,manual:gazetteer-gap,1,Franklin County NY hamlet
+Campton,NH,43.8565,-71.6490,Campton,manual:gazetteer-gap,1,Grafton County NH town
+Medway,MA,42.1421,-71.3983,Medway,manual:gazetteer-gap,1,Norfolk County MA town
+Pound Ridge,NY,41.2084,-73.5743,Pound Ridge,manual:gazetteer-gap,1,Westchester County NY town
+Center Conway,NH,43.9956,-71.0672,Center Conway,manual:gazetteer-gap,1,Carroll County NH village
+Rochester,MA,41.7382,-70.8219,Rochester,manual:gazetteer-gap,1,Plymouth County MA town
+Southborough,MA,42.3051,-71.5253,Southborough,manual:gazetteer-gap,1,Worcester County MA town
+North Chelmsford,MA,42.6404,-71.3940,North Chelmsford,manual:gazetteer-gap,1,Village in Chelmsford MA
+N. Chelmsford,MA,42.6404,-71.3940,North Chelmsford,manual:typo,1,Abbreviated North Chelmsford
+Chelmsford,MA,42.5998,-71.3673,Chelmsford,manual:gazetteer-gap,1,Middlesex County MA town
+Drums,PA,40.9890,-76.0152,Drums,manual:gazetteer-gap,1,Luzerne County PA CDP
+DeForest,WI,43.2427,-89.3429,DeForest,manual:gazetteer-gap,1,Dane County WI village
+Sparks Glencoe,MD,39.5973,-76.6722,Sparks,manual:gazetteer-gap,1,Baltimore County MD CDP
+Andover,NH,43.4372,-71.7895,Andover,manual:gazetteer-gap,1,Merrimack County NH town
+Johnston,RI,41.8220,-71.5076,Johnston,manual:gazetteer-gap,1,Providence County RI town
+Southington,CT,41.5998,-72.8776,Southington,manual:gazetteer-gap,1,Hartford County CT town
+Winhall,VT,43.1339,-72.9665,Winhall,manual:gazetteer-gap,1,Bennington County VT town
+South Freeport,ME,43.8250,-70.1036,South Freeport,manual:gazetteer-gap,1,Village in Freeport ME
+Phoenix,MD,39.5315,-76.5969,Phoenix,manual:gazetteer-gap,1,Baltimore County MD community
+Chesterfield,VA,37.3777,-77.5058,Chesterfield,manual:gazetteer-gap,1,Chesterfield County VA
+Lake Clear,NY,44.3145,-74.2420,Lake Clear,manual:gazetteer-gap,1,Franklin County NY hamlet
+West Fairlee,VT,43.8814,-72.2522,West Fairlee,manual:gazetteer-gap,1,Orange County VT town
+North Branford,CT,41.3287,-72.7715,North Branford,manual:gazetteer-gap,1,New Haven County CT town
+Chesterfield,NH,42.8892,-72.4598,Chesterfield,manual:gazetteer-gap,1,Cheshire County NH town
+Lincoln,MA,42.4259,-71.3076,Lincoln,manual:gazetteer-gap,1,Middlesex County MA town
+Mohegan Lake,NY,41.3126,-73.8668,Mohegan Lake,manual:gazetteer-gap,1,Westchester County NY CDP
+White Hall,MD,39.6979,-76.5869,White Hall,manual:gazetteer-gap,1,Harford County MD community
+Millersville,MD,39.0571,-76.6260,Millersville,manual:gazetteer-gap,1,Anne Arundel County MD CDP
+Tolland,CT,41.8709,-72.3687,Tolland,manual:gazetteer-gap,1,Tolland County CT town
+Enfield,CT,41.9761,-72.5921,Enfield,manual:gazetteer-gap,1,Hartford County CT town
+East Fairfield,VT,44.7834,-72.9045,East Fairfield,manual:gazetteer-gap,1,Franklin County VT hamlet
+Chester Springs,PA,40.1121,-75.6360,Chester Springs,manual:gazetteer-gap,1,Chester County PA CDP
+Salem,NH,42.7884,-71.2009,Salem,manual:gazetteer-gap,1,Rockingham County NH town
+Forest,VA,37.3710,-79.2886,Forest,manual:gazetteer-gap,1,Bedford County VA CDP
+Amherst,MA,42.3732,-72.5199,Amherst,manual:gazetteer-gap,1,Hampshire County MA town
+Whitehouse Station,NJ,40.6218,-74.7696,Whitehouse Station,manual:gazetteer-gap,1,Readington Twp NJ community
+Gilford,NH,43.5412,-71.4106,Gilford,manual:gazetteer-gap,1,Belknap County NH town
+Wallingford,PA,39.9015,-75.3702,Wallingford,manual:gazetteer-gap,1,Nether Providence Twp PA CDP
+Stilwell,KS,38.7958,-94.6658,Stilwell,manual:gazetteer-gap,1,Johnson County KS community
+Fort Sill,OK,34.6698,-98.4023,Fort Sill,manual:gazetteer-gap,1,Army post in OK
+Carlisle,MA,42.5298,-71.3486,Carlisle,manual:gazetteer-gap,1,Middlesex County MA town
+Harding,PA,41.3454,-75.7710,Harding,manual:gazetteer-gap,1,Exeter Twp PA community
+Jamestown,RI,41.4974,-71.3731,Jamestown,manual:gazetteer-gap,1,Newport County RI town
+Hollis,NH,42.7414,-71.5903,Hollis,manual:gazetteer-gap,1,Hillsborough County NH town
+Warren,VT,44.1267,-72.8620,Warren,manual:gazetteer-gap,1,Washington County VT town
+Marlborough,CT,41.6323,-72.4681,Marlborough,manual:gazetteer-gap,1,Hartford County CT town
+Sea Island,GA,31.1913,-81.3446,Sea Island,manual:gazetteer-gap,1,Glynn County GA resort community
+West Dover,VT,42.9400,-72.8853,West Dover,manual:gazetteer-gap,1,Village in Dover VT
+Pelham,NH,42.7339,-71.3184,Pelham,manual:gazetteer-gap,1,Hillsborough County NH town
+Westwood,MA,42.2135,-71.2245,Westwood,manual:gazetteer-gap,1,Norfolk County MA town
+Parkton,MD,39.6357,-76.6616,Parkton,manual:gazetteer-gap,1,Baltimore County MD community
+Wildwood Crest,NJ,38.9762,-74.8310,Wildwood Crest,manual:gazetteer-gap,1,Cape May County NJ borough
+Salisbury,CT,41.9851,-73.4221,Salisbury,manual:gazetteer-gap,1,Litchfield County CT town
+Queensbury,NY,43.3206,-73.6837,Queensbury,manual:gazetteer-gap,1,Warren County NY town
+Stockton Springs,ME,44.4892,-68.8556,Stockton Springs,manual:gazetteer-gap,1,Waldo County ME town
+Strafford,PA,40.0787,-75.3988,Strafford,manual:gazetteer-gap,1,Tredyffrin Twp PA community
+Rush,NY,42.9923,-77.6817,Rush,manual:gazetteer-gap,1,Monroe County NY town
+Elmore,VT,44.5381,-72.5281,Elmore,manual:gazetteer-gap,1,Lamoille County VT town
+Glenwood,NJ,41.2262,-74.4968,Glenwood,manual:gazetteer-gap,1,Vernon Twp NJ community
+West Monroe,NY,43.3050,-76.1252,West Monroe,manual:gazetteer-gap,1,Oswego County NY town
+Pittsfield,VT,43.7767,-72.8167,Pittsfield,manual:gazetteer-gap,1,Rutland County VT town
+Harpswell,ME,43.8028,-69.9828,Harpswell,manual:gazetteer-gap,1,Cumberland County ME town
+Palm Coast,FL,29.5844,-81.2078,Palm Coast,manual:gazetteer-gap,1,Flagler County FL city
+Jay,VT,44.9275,-72.5208,Jay,manual:gazetteer-gap,1,Orleans County VT town
+Newtown Square,PA,39.9870,-75.3968,Newtown Square,manual:gazetteer-gap,1,Delaware County PA community
+South Hadley,MA,42.2584,-72.5801,South Hadley,manual:gazetteer-gap,1,Hampshire County MA town
+Stehekin,WA,48.3199,-120.6565,Stehekin,manual:gazetteer-gap,1,Chelan County WA community
+Middlefield,CT,41.5162,-72.7131,Middlefield,manual:gazetteer-gap,1,Middlesex County CT town
+Lineboro,MD,39.7159,-76.8058,Lineboro,manual:gazetteer-gap,1,Carroll County MD community
+Dover,VT,42.9511,-72.8231,Dover,manual:gazetteer-gap,1,Windham County VT town
+Glenburn,ME,44.9431,-68.8317,Glenburn,manual:gazetteer-gap,1,Penobscot County ME town
+Girdwood,AK,60.9543,-149.1372,Girdwood,manual:gazetteer-gap,1,Anchorage borough community
+Browns Summit,NC,36.2079,-79.7319,Browns Summit,manual:gazetteer-gap,1,Guilford County NC community
+Belmont,VT,43.4278,-72.8378,Belmont,manual:gazetteer-gap,1,Village in Mount Holly VT
+Shrewsbury,MA,42.2957,-71.7135,Shrewsbury,manual:gazetteer-gap,1,Worcester County MA town
+Munger,MI,43.5278,-83.8022,Munger,manual:gazetteer-gap,1,Bay County MI community
+New Caney,TX,30.1519,-95.2102,New Caney,manual:gazetteer-gap,1,Montgomery County TX community
+Pueblo West,CO,38.3219,-104.7222,Pueblo West,manual:gazetteer-gap,1,Pueblo County CO CDP
+Barrington,RI,41.7401,-71.3050,Barrington,manual:gazetteer-gap,1,Bristol County RI town
+Sudbury,MA,42.3834,-71.4162,Sudbury,manual:gazetteer-gap,1,Middlesex County MA town
+Wenham,MA,42.6012,-70.8784,Wenham,manual:gazetteer-gap,1,Essex County MA town
+Truro,MA,42.0035,-70.0512,Truro,manual:gazetteer-gap,1,Barnstable County MA town
+Leyden,MA,42.6843,-72.5806,Leyden,manual:gazetteer-gap,1,Franklin County MA town
+Lithia,FL,27.8642,-82.1998,Lithia,manual:gazetteer-gap,1,Hillsborough County FL community
+Erdenheim,PA,40.0798,-75.1905,Erdenheim,manual:gazetteer-gap,1,Springfield Twp PA community
+Hillsgrove,PA,41.4862,-76.6594,Hillsgrove,manual:gazetteer-gap,1,Sullivan County PA township
+Hixson,TN,35.1534,-85.2563,Hixson,manual:gazetteer-gap,1,Hamilton County TN CDP
+North Kingstown,RI,41.5645,-71.4584,North Kingstown,manual:gazetteer-gap,1,Washington County RI town
+Manchester,ME,44.3253,-69.8775,Manchester,manual:gazetteer-gap,1,Kennebec County ME town
+Stoughton,MA,42.1251,-71.1028,Stoughton,manual:gazetteer-gap,1,Norfolk County MA town
+Westford,MA,42.5787,-71.4373,Westford,manual:gazetteer-gap,1,Middlesex County MA town
+Montgomery,VT,44.9278,-72.6281,Montgomery,manual:gazetteer-gap,1,Franklin County VT town
+Flint,TX,32.2335,-95.3850,Flint,manual:gazetteer-gap,1,Smith County TX unincorporated community
+Cypress Falls,TX,29.9166,-95.6525,Cy-Fair,manual:gazetteer-gap,1,Cypress Falls HS area (Harris County TX)
+Hagerstown,PA,39.9401,-78.3114,Hagerstown,manual:gazetteer-gap,1,Small PA community (main Hagerstown is MD)

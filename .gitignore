@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local caches (e.g. Census Gazetteer zip for geocoding)
+.cache/
+
+# Environment
+.env
+*.env
+!.env.example
+
+.DS_Store

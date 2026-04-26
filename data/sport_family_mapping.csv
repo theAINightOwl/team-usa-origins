@@ -1,0 +1,171 @@
+sport,sport_family,is_paralympic,olympic_equivalent
+3x3 Basketball,Team Ball,False,
+ALP,Winter,False,
+ARC,Precision,False,
+ART,Other,False,
+ATH,Track & Field,False,
+Alpine Skiing,Winter,False,
+American Football,Team Ball,False,
+Archery,Precision,False,
+Art Competitions,Other,False,
+Artistic Gymnastics,Gymnastics,False,
+Artistic Swimming,Aquatic,False,
+Athletics,Track & Field,False,
+BMX,Endurance,False,
+BOB,Winter,False,
+BOX,Combat,False,
+Badminton,Racket,False,
+Baseball,Team Ball,False,
+Basketball,Team Ball,False,
+Basque pelota,Racket,False,
+Beach Volleyball,Team Ball,False,
+Biathlon,Endurance,False,
+Bobsled,Winter,False,
+Bobsleigh,Winter,False,
+Boccia,Precision,True,
+Bowling,Precision,False,
+Boxing,Combat,False,
+Breaking,Gymnastics,False,
+CCS,Endurance,False,
+CRD,Aquatic,False,
+CSP,Aquatic,False,
+CUR,Winter,False,
+Canoe Slalom,Aquatic,False,
+Canoe Sprint,Aquatic,False,
+Canoe/Kayak,Aquatic,False,
+Canoeing,Aquatic,False,
+Cross Country,Endurance,False,
+Cross Country Skiing,Endurance,False,
+Cross-Country Skiing,Endurance,False,
+Curling,Winter,False,
+Cycling,Endurance,False,
+Cycling BMX Freestyle,Endurance,False,
+Cycling BMX Racing,Endurance,False,
+Cycling Mountain Bike,Endurance,False,
+Cycling Road,Endurance,False,
+Cycling Track,Endurance,False,
+DIV,Aquatic,False,
+Diving,Aquatic,False,
+Dogsled Racing,Other,False,
+EDR,Equestrian,False,
+EJP,Equestrian,False,
+EVE,Equestrian,False,
+Equestrian,Equestrian,False,
+Equestrian Dressage,Equestrian,False,
+Equestrian Eventing,Equestrian,False,
+Equestrian Jumping,Equestrian,False,
+FBL,Team Ball,False,
+FEN,Combat,False,
+FSK,Winter,False,
+Fencing,Combat,False,
+Field Hockey,Team Ball,False,
+Figure Skating,Winter,False,
+Firefighting,Other,False,
+Football,Team Ball,False,
+Freestyle Skiing,Winter,False,
+GAR,Gymnastics,False,
+Goalball,Team Ball,True,
+Golf,Precision,False,
+Gymnastics,Gymnastics,False,
+HOC,Team Ball,False,
+Handball,Team Ball,False,
+Hockey,Team Ball,False,
+Hurling,Team Ball,False,
+IHO,Winter,False,
+Ice Hockey,Winter,False,
+Jeu De Paume,Racket,False,
+Judo,Combat,False,
+Karate,Combat,False,
+Kendo,Combat,False,
+LUG,Winter,False,
+Lacrosse,Team Ball,False,
+Lawn Bowls,Precision,False,
+Luge,Winter,False,
+Marathon Swimming,Aquatic,False,
+Military Ski Patrol,Winter,False,
+Modern Pentathlon,Track & Field,False,
+Nordic Combined,Endurance,False,
+Para Alpine Skiing,Winter,True,Alpine Skiing
+"Para Alpine Skiing; Para Biathlon",Winter,True,Alpine Skiing
+Para Archery,Precision,True,Archery
+Para Badminton,Racket,True,Badminton
+Para Judo,Combat,True,Judo
+Para Nordic Skiing,Endurance,True,Cross-Country Skiing
+"Para Nordic Skiing; Para Biathlon",Endurance,True,Cross-Country Skiing
+"Para Nordic Skiing; Para Track and Field",Endurance,True,Cross-Country Skiing
+Para Powerlifting,Strength,True,Weightlifting
+Para Shooting,Precision,True,Shooting
+Para Snowboarding,Winter,True,Snowboarding
+Para Swimming,Aquatic,True,Swimming
+Para Table Tennis,Racket,True,Table Tennis
+Para Taekwondo,Combat,True,Taekwondo
+Para Track and Field,Track & Field,True,Athletics
+Para-Cycling,Endurance,True,Cycling
+Para-Equestrian,Equestrian,True,Equestrian
+Para-Rowing,Aquatic,True,Rowing
+Paracanoe,Aquatic,True,Canoeing
+Paratriathlon,Track & Field,True,Triathlon
+Polo,Team Ball,False,
+Powerlifting,Strength,True,Weightlifting
+ROW,Aquatic,False,
+Racquetball,Racket,False,
+Rhythmic Gymnastics,Gymnastics,False,
+Roller Hockey,Team Ball,False,
+Roque,Precision,False,
+Rowing,Aquatic,False,
+Rugby,Team Ball,False,
+Rugby Sevens,Team Ball,False,
+SBD,Winter,False,
+SBL,Winter,False,
+SHO,Precision,False,
+SSK,Winter,False,
+STK,Winter,False,
+SWM,Aquatic,False,
+Sailing,Aquatic,False,
+Shooting,Precision,False,
+Short Track Speed Skating,Winter,False,
+Sitting Volleyball,Team Ball,True,Volleyball
+Skateboarding,Other,False,
+Skeleton,Winter,False,
+Ski Jumping,Winter,False,
+Ski Mountaineering,Winter,False,
+Sled Hockey,Winter,True,Ice Hockey
+"Sled Hockey; Para Nordic Skiing",Winter,True,Ice Hockey
+"Sled Hockey; Paracanoe",Winter,True,Ice Hockey
+Snowboard,Winter,False,
+Snowboarding,Winter,False,
+Soccer,Team Ball,False,
+Soccer 7-A-Side,Team Ball,True,Soccer
+Softball,Team Ball,False,
+Speed Skating,Winter,False,
+Speed Skiing,Other,False,
+Sport Climbing,Other,False,
+Surfing,Aquatic,False,
+Swimming,Aquatic,False,
+TEN,Racket,False,
+TRI,Track & Field,False,
+TTE,Racket,False,
+Table Tennis,Racket,False,
+Taekwondo,Combat,False,
+Team Handball,Team Ball,False,
+Tennis,Racket,False,
+Track and Field,Track & Field,False,
+Trampolining,Gymnastics,False,
+Triathlon,Track & Field,False,
+Tug-Of-War,Strength,False,
+USF,Aquatic,False,
+VBV,Team Ball,False,
+VVO,Team Ball,False,
+Volleyball,Team Ball,False,
+Water Polo,Aquatic,False,
+Waterski/Wakeboard,Aquatic,False,
+Waterskiing,Aquatic,False,
+Weightlifting,Strength,False,
+Wheelchair Basketball,Team Ball,True,Basketball
+Wheelchair Curling,Winter,True,Curling
+"Wheelchair Curling; Sitting Volleyball",Winter,True,Curling
+Wheelchair Fencing,Combat,True,Fencing
+Wheelchair Rugby,Team Ball,True,Rugby
+Wheelchair Tennis,Racket,True,Tennis
+Wrestling,Combat,False,
+Wushu,Combat,False,
