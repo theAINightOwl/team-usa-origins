@@ -20,6 +20,19 @@ export default function Legend({ families, familyColors, familyCounts }) {
       <section style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-3)", lineHeight: 1.6 }}>
         <h2>Map keys <span className="index">iii.</span></h2>
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0" }}>
+          <svg width="20" height="20" viewBox="-12 -12 24 24">
+            <circle r="11" fill="none" stroke="#c89837" strokeWidth="0.8" opacity="0.7" />
+            <path
+              d="M0,-9 L2.7,-2.7 L9,0 L2.7,2.7 L0,9 L-2.7,2.7 L-9,0 L-2.7,-2.7 Z"
+              fill="#c63d2f"
+              stroke="#1a1410"
+              strokeWidth="0.8"
+              transform="scale(1.05)"
+            />
+          </svg>
+          Official OPTC (USOPC-operated)
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0" }}>
           <svg width="16" height="16" viewBox="-10 -10 20 20">
             <path
               d="M0,-9 L2.7,-2.7 L9,0 L2.7,2.7 L0,9 L-2.7,2.7 L-9,0 L-2.7,-2.7 Z"
@@ -28,7 +41,7 @@ export default function Legend({ families, familyColors, familyCounts }) {
               strokeWidth="0.8"
             />
           </svg>
-          Training center (gold)
+          Affiliated training site (gold)
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0" }}>
           <svg width="16" height="16" viewBox="-10 -10 20 20">
@@ -39,7 +52,7 @@ export default function Legend({ families, familyColors, familyCounts }) {
               strokeWidth="0.8"
             />
           </svg>
-          Paralympic-supporting
+          Paralympic-supporting (rust)
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0" }}>
           <svg width="16" height="16" viewBox="-10 -10 20 20">

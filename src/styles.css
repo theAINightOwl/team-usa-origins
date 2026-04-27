@@ -893,6 +893,21 @@ input[type="range"]::-webkit-slider-thumb {
   font-variation-settings: "opsz" 16;
   line-height: 1.2;
 }
+.halo-badge {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 1px 5px 0;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  color: #1a1410;
+  background: var(--gold, #c89837);
+  border: 0.5px solid rgba(26, 20, 16, 0.6);
+  border-radius: 1.5px;
+  vertical-align: 1.5px;
+  text-transform: uppercase;
+}
+.halo-row.optc { background: linear-gradient(to right, rgba(200, 152, 55, 0.07), transparent 60%); }
 .halo-name .loc {
   font-family: var(--mono);
   font-size: 9px;
@@ -917,7 +932,7 @@ input[type="range"]::-webkit-slider-thumb {
 .halo-ring .bar .fg { position: absolute; inset: 0 auto 0 0; background: var(--gold); }
 .halo-ring .n { color: var(--ink); font-size: 10.5px; font-variant-numeric: tabular-nums; }
 
-/* ── Plate V — Climate × Sport heatmap ───────────────────────────── */
+/* ── Plate VI — Climate × Sport heatmap ──────────────────────────── */
 .climate-grid {
   width: 100%;
   border-collapse: collapse;
@@ -959,7 +974,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .climate-grid td.peak { outline: 1.5px solid var(--ink); }
 
-/* ── Plate VI — Distance distribution bars ────────────────────────── */
+/* ── Plate V — Distance distribution bars ─────────────────────────── */
 .dist-list { display: flex; flex-direction: column; gap: 12px; }
 .dist-row { display: flex; flex-direction: column; gap: 4px; }
 .dist-fam {

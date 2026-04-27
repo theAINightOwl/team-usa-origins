@@ -13,8 +13,8 @@ export function buildPlateBriefs(analytics, states) {
     plateII(analytics.factories),
     plateIII(analytics.concentration),
     plateIV(analytics.halos),
-    plateV(analytics.climate_sport),
-    plateVI(analytics.distance),
+    plateV(analytics.distance),
+    plateVI(analytics.climate_sport),
     plateVII(analytics.paralympic),
     plateVIII(analytics.college_efficiency),
     plateIX(analytics.per_capita),
@@ -67,7 +67,8 @@ function plateIV(rows) {
   const top = [...rows].sort((a, b) => (b.cumulative.at(-1) ?? 0) - (a.cumulative.at(-1) ?? 0)).slice(0, 6);
   return [
     "## Plate IV — Training-Center Halos",
-    "Athletes within 25/50/100/200 mi of each USOPC center. Cumulative — wider rings include closer ones.",
+    "Athletes within 25/50/100/200 mi of each USOPC-recognized facility. Cumulative — wider rings include closer ones.",
+    "Of the 10 facilities tracked, **2 are official Olympic & Paralympic Training Centers (OPTCs)** owned and operated by USOPC — Colorado Springs and Lake Placid. The other 8 are USOPC-affiliated training sites (Chula Vista was sold to the City of Chula Vista in 2017 and is no longer USOPC-owned).",
     "",
     "**Centers ranked by 200-mi reach:**",
     ...top.map((r) => {
@@ -78,8 +79,20 @@ function plateIV(rows) {
 }
 
 function plateV(d) {
-  if (!d?.matrix?.length) return "## Plate V — Climate × Sport\n(no data)";
-  const lines = ["## Plate V — Climate × Sport Family",
+  if (!d?.families) return "## Plate V — Distance\n(no data)";
+  const fams = Object.entries(d.families).sort((a, b) => b[1].n_med - a[1].n_med).slice(0, 6);
+  return [
+    "## Plate V — Distance to Nearest USOPC Center",
+    "Buckets: ≤25, ≤50, ≤100, ≤200, ≤400, ≤800, >800 miles. Compares medalists vs non-medalists per family.",
+    "",
+    "**By family (medalist count / non-medalist count):**",
+    ...fams.map(([fam, x]) => `- **${fam}**: ${x.n_med} medalists / ${x.n_non} non-medalists`),
+  ].join("\n");
+}
+
+function plateVI(d) {
+  if (!d?.matrix?.length) return "## Plate VI — Climate × Sport\n(no data)";
+  const lines = ["## Plate VI — Climate × Sport Family",
     "Share of each sport family's athletes from each climate zone (NCEI Köppen).",
     "",
     "**Each family's dominant climate zone:**"];
@@ -90,18 +103,6 @@ function plateV(d) {
     }
   }
   return lines.join("\n");
-}
-
-function plateVI(d) {
-  if (!d?.families) return "## Plate VI — Distance\n(no data)";
-  const fams = Object.entries(d.families).sort((a, b) => b[1].n_med - a[1].n_med).slice(0, 6);
-  return [
-    "## Plate VI — Distance to Nearest USOPC Center",
-    "Buckets: ≤25, ≤50, ≤100, ≤200, ≤400, ≤800, >800 miles. Compares medalists vs non-medalists per family.",
-    "",
-    "**By family (medalist count / non-medalist count):**",
-    ...fams.map(([fam, x]) => `- **${fam}**: ${x.n_med} medalists / ${x.n_non} non-medalists`),
-  ].join("\n");
 }
 
 function plateVII(rows) {

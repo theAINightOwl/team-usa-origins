@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import analytics from "../data/analytics.json";
+import trainingCentersData from "../data/training_centers.json";
 import { STORIES } from "../data/plate_stories.js";
 import Markdown from "../lib/markdown.jsx";
+
+const CENTER_TYPE_BY_NAME = new Map(trainingCentersData.map((c) => [c.name, c.type]));
+const OPTC_COUNT = trainingCentersData.filter((c) => c.type === "OPTC").length;
+const AFFILIATE_COUNT = trainingCentersData.length - OPTC_COUNT;
 
 /*
  * Plates — the right-hand reading column.
@@ -19,8 +24,8 @@ export const PLATE_DEFS = [
   { key: "factories", roman: "II", short: "Factories", title: "The smallest factories" },
   { key: "concentration", roman: "III", short: "Concentration", title: "Where each sport lives" },
   { key: "halos", roman: "IV", short: "Halos", title: "Reach of the training centers" },
-  { key: "climate", roman: "V", short: "Climate", title: "Climate × sport family" },
-  { key: "distance", roman: "VI", short: "Distance", title: "Closer to a center, more medals?" },
+  { key: "distance", roman: "V", short: "Distance", title: "Closer to a center, more medals?" },
+  { key: "climate", roman: "VI", short: "Climate", title: "Climate × sport family" },
   { key: "paralympic", roman: "VII", short: "Paralympic", title: "Paralympic geography" },
   { key: "colleges", roman: "VIII", short: "Colleges", title: "Olympians per athletic dollar" },
   { key: "per_capita", roman: "IX", short: "Per Capita", title: "Olympians per 100k residents" },
@@ -255,14 +260,20 @@ function PlateHalos() {
     <>
       <PlateHeader roman="IV" eyebrow="Influence" title="Reach of the " italic="training centers." />
       <p className="plate-lede">
-        Athletes within <span className="num">25 / 50 / 100 / 200</span> miles of each USOPC center.
-        Cumulative — wider rings include all closer ones.
+        Athletes within <span className="num">25 / 50 / 100 / 200</span> miles of each facility.
+        <strong> {OPTC_COUNT} are official USOPC-operated OPTCs</strong> (badged below);
+        the other {AFFILIATE_COUNT} are USOPC-affiliated training sites. Cumulative — wider rings include all closer ones.
       </p>
       <ul className="halo-list">
-        {rows.map((r) => (
-          <li key={r.name + r.lat} className="halo-row">
+        {rows.map((r) => {
+          const isOptc = CENTER_TYPE_BY_NAME.get(r.name) === "OPTC";
+          return (
+          <li key={r.name + r.lat} className={`halo-row${isOptc ? " optc" : ""}`}>
             <div className="halo-name">
-              <span className="name">{r.name.replace(/^U\.S\. (Olympic & Paralympic )?/, "")}</span>
+              <span className="name">
+                {r.name.replace(/^U\.S\. (Olympic & Paralympic )?/, "")}
+                {isOptc && <span className="halo-badge" title="USOPC-operated Olympic & Paralympic Training Center">OFFICIAL</span>}
+              </span>
               <span className="loc">{r.city}, {r.state}</span>
             </div>
             <div className="halo-rings">
@@ -280,21 +291,73 @@ function PlateHalos() {
               ))}
             </div>
           </li>
-        ))}
+          );
+        })}
       </ul>
       <PlateStory plateKey="halos" />
     </>
   );
 }
 
-/* ── Plate V — Climate × Sport ─────────────────────────────────────── */
+/* ── Plate V — Distance to Training Center ─────────────────────────── */
+
+function PlateDistance() {
+  const { bins, families } = analytics.distance;
+  // sort families by # medalists
+  const ordered = Object.entries(families)
+    .sort((a, b) => b[1].n_med - a[1].n_med)
+    .slice(0, 8);
+  const rowMax = (counts) => Math.max(1, ...counts);
+  return (
+    <>
+      <PlateHeader roman="V" eyebrow="Proximity" title="Closer to a center, " italic="more medals?" />
+      <p className="plate-lede">
+        Distance from each athlete's hometown to the nearest USOPC center, bucketed.
+        For each family: <span className="rust-tag">medalists</span> on top,
+        <span className="ink-tag"> non-medalists</span> on bottom. Watch the winter sports.
+      </p>
+      <div className="dist-list">
+        {ordered.map(([fam, d]) => {
+          const m = rowMax([...d.medalist, ...d.nonmedalist]);
+          return (
+            <div className="dist-row" key={fam}>
+              <div className="dist-fam">
+                <span className="dot" style={{ background: FAMILY_COLOR_HINT[fam] || "#555" }} />
+                {fam}
+                <span className="dist-counts">
+                  {d.n_med}<span className="sep">m</span> · {d.n_non}<span className="sep">n</span>
+                </span>
+              </div>
+              <div className="dist-bars">
+                {bins.map((b, i) => {
+                  const med = d.medalist[i] || 0;
+                  const non = d.nonmedalist[i] || 0;
+                  return (
+                    <div key={b} className="dist-col">
+                      <div className="med" style={{ height: `${(med / m) * 100}%` }} title={`${b}: ${med} medalists`} />
+                      <div className="non" style={{ height: `${(non / m) * 100}%` }} title={`${b}: ${non} non-medalists`} />
+                      <div className="lab">{b}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <PlateStory plateKey="distance" />
+    </>
+  );
+}
+
+/* ── Plate VI — Climate × Sport ────────────────────────────────────── */
 
 function PlateClimate() {
   const { zones, families, matrix } = analytics.climate_sport;
   // For each family row, pick the dominant zone to highlight
   return (
     <>
-      <PlateHeader roman="V" eyebrow="Atmosphere" title="Climate × " italic="sport family." />
+      <PlateHeader roman="VI" eyebrow="Atmosphere" title="Climate × " italic="sport family." />
       <p className="plate-lede">
         Share of each sport family's athletes from each climate zone.
         Cell darkness = share. Diagonal stories: Winter ↔ Cold, Aquatic ↔ Subtropical.
@@ -338,57 +401,6 @@ function PlateClimate() {
         Zones from NCEI Köppen classification, applied to athlete's state of residence.
       </p>
       <PlateStory plateKey="climate" />
-    </>
-  );
-}
-
-/* ── Plate VI — Distance to Training Center ────────────────────────── */
-
-function PlateDistance() {
-  const { bins, families } = analytics.distance;
-  // sort families by # medalists
-  const ordered = Object.entries(families)
-    .sort((a, b) => b[1].n_med - a[1].n_med)
-    .slice(0, 8);
-  const rowMax = (counts) => Math.max(1, ...counts);
-  return (
-    <>
-      <PlateHeader roman="VI" eyebrow="Proximity" title="Closer to a center, " italic="more medals?" />
-      <p className="plate-lede">
-        Distance from each athlete's hometown to the nearest USOPC center, bucketed.
-        For each family: <span className="rust-tag">medalists</span> on top,
-        <span className="ink-tag"> non-medalists</span> on bottom. Watch the winter sports.
-      </p>
-      <div className="dist-list">
-        {ordered.map(([fam, d]) => {
-          const m = rowMax([...d.medalist, ...d.nonmedalist]);
-          return (
-            <div className="dist-row" key={fam}>
-              <div className="dist-fam">
-                <span className="dot" style={{ background: FAMILY_COLOR_HINT[fam] || "#555" }} />
-                {fam}
-                <span className="dist-counts">
-                  {d.n_med}<span className="sep">m</span> · {d.n_non}<span className="sep">n</span>
-                </span>
-              </div>
-              <div className="dist-bars">
-                {bins.map((b, i) => {
-                  const med = d.medalist[i] || 0;
-                  const non = d.nonmedalist[i] || 0;
-                  return (
-                    <div key={b} className="dist-col">
-                      <div className="med" style={{ height: `${(med / m) * 100}%` }} title={`${b}: ${med} medalists`} />
-                      <div className="non" style={{ height: `${(non / m) * 100}%` }} title={`${b}: ${non} non-medalists`} />
-                      <div className="lab">{b}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <PlateStory plateKey="distance" />
     </>
   );
 }

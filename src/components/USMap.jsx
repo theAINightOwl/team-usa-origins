@@ -277,18 +277,24 @@ export default function USMap({
           {/* Training centers on top */}
           {showCenters && (
             <g>
-              {centerDots.map((c) => (
-                <g
-                  key={c.name}
-                  className={`tc-mark ${c.paralympic ? "para" : ""}`}
-                  transform={`translate(${c.x} ${c.y})`}
-                  onMouseEnter={() =>
-                    setTooltip({ kind: "center", data: c, cx: 0, cy: 0 })
-                  }
-                >
-                  <path d={starPath(6.2)} />
-                </g>
-              ))}
+              {centerDots.map((c) => {
+                const isOptc = c.type === "OPTC";
+                return (
+                  <g
+                    key={c.name}
+                    className={`tc-mark ${c.paralympic ? "para" : ""} ${isOptc ? "optc" : ""}`}
+                    transform={`translate(${c.x} ${c.y})`}
+                    onMouseEnter={() =>
+                      setTooltip({ kind: "center", data: c, cx: 0, cy: 0 })
+                    }
+                  >
+                    {isOptc && (
+                      <circle r="11" fill="none" stroke="#c89837" strokeWidth="0.9" opacity="0.75" />
+                    )}
+                    <path d={starPath(isOptc ? 8.5 : 6.2)} />
+                  </g>
+                );
+              })}
             </g>
           )}
 
@@ -509,8 +515,8 @@ function plateCaption(p) {
     case "factories":     return "Plate II — Small-town factories";
     case "concentration": return "Plate III — Where each sport lives";
     case "halos":         return "Plate IV — Reach of the training centers";
-    case "climate":       return "Plate V — Climate × sport family";
-    case "distance":      return "Plate VI — Distance to nearest training center";
+    case "distance":      return "Plate V — Distance to nearest training center";
+    case "climate":       return "Plate VI — Climate × sport family";
     case "paralympic":    return "Plate VII — Paralympic geography";
     case "colleges":      return "Plate VIII — Olympians per athletic dollar";
     case "per_capita":    return "Plate IX — Olympians per 100k residents";

@@ -165,10 +165,17 @@ export default function App() {
           </span>
         </div>
         <div className="cell">
-          <span className="label">Training centers</span>
+          <span className="label">USOPC training centers</span>
           <span className="value num">
-            {trainingCentersData.length}
-            <span className="unit">USOPC</span>
+            {trainingCentersData.filter((c) => c.type === "OPTC").length}
+            <span className="unit">official OPTCs</span>
+          </span>
+        </div>
+        <div className="cell">
+          <span className="label">Affiliated sites</span>
+          <span className="value num">
+            {trainingCentersData.filter((c) => c.type !== "OPTC").length}
+            <span className="unit">USOPC-recognized</span>
           </span>
         </div>
         <div className="cell">
