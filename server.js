@@ -27,6 +27,7 @@ import express from "express";
 import { GoogleGenAI } from "@google/genai";
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
+import { runVizAgent } from "./server/viz_agent.js";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -205,6 +206,51 @@ app.post("/api/chat", async (req, res) => {
     sseSend(res, { type: "done" });
   } finally {
     res.end();
+  }
+});
+
+// ── Viz agent — natural-language → interactive Plotly figure ────────────
+//
+// Asks the ADK viz agent (Gemini Pro + BuiltInCodeExecutor) to write and
+// run Python that produces a themed Plotly figure. Synchronous JSON
+// response — small enough to skip SSE.
+app.post("/api/viz", async (req, res) => {
+  const question = (req.body?.question || "").toString().trim();
+  if (!question) {
+    res.status(400).json({ error: "Pass { question: '...' } in body." });
+    return;
+  }
+  if (!API_KEY) {
+    res.status(500).json({
+      error: "GEMINI_API_KEY is not configured on the server. Add it to .env and restart.",
+    });
+    return;
+  }
+
+  // Lean dataset payload — analytics is what plate_briefs already trusts;
+  // the per-state summary lets the agent slice geography without pulling
+  // in the full athletes list.
+  const stateSummary = Object.fromEntries(
+    Object.entries(states).map(([abbr, s]) => [
+      abbr,
+      {
+        name: s.name,
+        olympians: s.olympians,
+        medals: s.medals,
+        gold: s.gold,
+        top_sports: s.top_sports,
+        training_centers: s.training_centers,
+      },
+    ])
+  );
+  const dataset = { analytics, states: stateSummary };
+
+  try {
+    const result = await runVizAgent(question, dataset);
+    res.json(result);
+  } catch (err) {
+    console.error("[viz] agent error:", err);
+    res.status(500).json({ error: err?.message || String(err) });
   }
 });
 

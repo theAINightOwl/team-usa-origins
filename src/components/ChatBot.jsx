@@ -2,13 +2,16 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { streamChat } from "../lib/sse.js";
 import Markdown from "../lib/markdown.jsx";
 import { useGeminiLive } from "../hooks/useGeminiLive.js";
+import { renderFigure } from "../lib/plotly-render.js";
 
 /*
  * ChatBot — "Ask the atlas" floating drawer (Plate XII).
  *
- * Two modes, toggled from the header:
+ * Three modes, toggled from the header:
  *   - text:  POST to /api/chat, Gemini streams markdown answers (SSE).
  *   - voice: WS to /live, Gemini Live speaks and listens in real time.
+ *   - chart: POST to /api/viz, Gemini ADK + code execution returns a
+ *            themed Plotly figure rendered inline.
  */
 
 const TEXT_STARTERS = [
@@ -25,9 +28,16 @@ const VOICE_STARTERS = [
   "What does the Paralympic map look like?",
 ];
 
+const CHART_STARTERS = [
+  "Bar chart of the top 10 states by Olympians per 100k residents.",
+  "Line chart of Team USA athlete counts by decade since 1980.",
+  "Horizontal bar of medals by sport family, highlight the top family in rust.",
+  "Scatter of state median income vs. Olympians per capita; label the outliers.",
+];
+
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState("text"); // "text" | "voice"
+  const [mode, setMode] = useState("text"); // "text" | "voice" | "chart"
 
   const live = useGeminiLive();
 
@@ -89,9 +99,20 @@ export default function ChatBot() {
               <span className="mt-ic" aria-hidden>◉</span>
               Voice
             </button>
+            <button
+              role="tab"
+              aria-selected={mode === "chart"}
+              className={`mode-tab ${mode === "chart" ? "on" : ""}`}
+              onClick={() => switchMode("chart")}
+            >
+              <span className="mt-ic" aria-hidden>▦</span>
+              Chart
+            </button>
           </div>
 
-          {mode === "text" ? <TextChat /> : <VoiceChat live={live} />}
+          {mode === "text" && <TextChat />}
+          {mode === "voice" && <VoiceChat live={live} />}
+          {mode === "chart" && <ChartChat />}
         </div>
       )}
     </>
@@ -373,6 +394,150 @@ function VoiceChat({ live }) {
   );
 }
 
+/* ── Chart mode ────────────────────────────────────────────────── */
+
+function ChartChat() {
+  const [messages, setMessages] = useState([]); // {role, text?, figures?, code?, status?, error?}
+  const [input, setInput] = useState("");
+  const [sending, setSending] = useState(false);
+  const scrollRef = useRef(null);
+  const taRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, sending]);
+
+  useEffect(() => {
+    const id = setTimeout(() => taRef.current?.focus(), 80);
+    return () => clearTimeout(id);
+  }, []);
+
+  async function send(text) {
+    const trimmed = text.trim();
+    if (!trimmed || sending) return;
+    const userMsg = { role: "user", text: trimmed };
+    const placeholder = { role: "model", pending: true };
+    setMessages((prev) => [...prev, userMsg, placeholder]);
+    setInput("");
+    setSending(true);
+
+    try {
+      const r = await fetch("/api/viz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: trimmed }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        throw new Error(data?.error || `HTTP ${r.status}`);
+      }
+      setMessages((prev) => {
+        const next = [...prev];
+        next[next.length - 1] = {
+          role: "model",
+          text: data.text || "",
+          figures: data.figures || [],
+          code: data.code || "",
+          pending: false,
+        };
+        return next;
+      });
+    } catch (err) {
+      setMessages((prev) => {
+        const next = [...prev];
+        next[next.length - 1] = {
+          role: "model",
+          text: `*Error: ${err?.message || err}*`,
+          pending: false,
+          error: true,
+        };
+        return next;
+      });
+    } finally {
+      setSending(false);
+    }
+  }
+
+  function onKeyDown(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      send(input);
+    }
+  }
+
+  return (
+    <>
+      <div className="chat-body" ref={scrollRef}>
+        {messages.length === 0 ? (
+          <div className="chat-empty">
+            <p className="chat-lede">
+              Describe a chart in plain English. Gemini writes Python, runs it
+              server-side, and returns an interactive Plotly figure themed to
+              the atlas. The dataset behind the 11 plates is in scope.
+            </p>
+            <div className="starters">
+              {CHART_STARTERS.map((s) => (
+                <button
+                  key={s}
+                  className="starter"
+                  onClick={() => send(s)}
+                  disabled={sending}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          messages.map((m, i) => <Message key={i} m={m} />)
+        )}
+      </div>
+
+      <form
+        className="chat-input"
+        onSubmit={(e) => {
+          e.preventDefault();
+          send(input);
+        }}
+      >
+        <textarea
+          ref={taRef}
+          rows={2}
+          placeholder={sending ? "writing python…" : "Describe a chart of the atlas data…"}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={onKeyDown}
+          disabled={sending}
+        />
+        <button type="submit" disabled={sending || !input.trim()} className="send-btn">
+          {sending ? "…" : "plot"}
+        </button>
+      </form>
+    </>
+  );
+}
+
+function ChartFigure({ fig }) {
+  const ref = useRef(null);
+  const [err, setErr] = useState(null);
+
+  useEffect(() => {
+    let alive = true;
+    if (!ref.current || !fig) return;
+    renderFigure(ref.current, fig).catch((e) => {
+      if (alive) setErr(e?.message || String(e));
+    });
+    return () => {
+      alive = false;
+    };
+  }, [fig]);
+
+  if (err) return <div className="viz-err">Plot failed: {err}</div>;
+  return <div className="viz-fig" ref={ref} />;
+}
+
 /* ── Shared message bubble ─────────────────────────────────────── */
 
 function Message({ m }) {
@@ -383,12 +548,25 @@ function Message({ m }) {
         <div className="bubble">{m.text}</div>
       ) : (
         <div className="bubble">
+          {m.figures && m.figures.length > 0 && (
+            <div className="viz-stack">
+              {m.figures.map((fig, i) => (
+                <ChartFigure key={i} fig={fig} />
+              ))}
+            </div>
+          )}
           {m.text ? (
             <Markdown text={m.text} />
-          ) : (
+          ) : m.pending ? (
             <span className="thinking">
               <span /><span /><span />
             </span>
+          ) : null}
+          {m.code && (
+            <details className="viz-code">
+              <summary>Show generated Python</summary>
+              <pre>{m.code}</pre>
+            </details>
           )}
           {m.sources && m.sources.length > 0 && (
             <div className="srcs">

@@ -1477,6 +1477,47 @@ input[type="range"]::-webkit-slider-thumb {
 .chat-msg a { color: var(--rust); text-decoration: underline dotted; text-underline-offset: 2px; }
 .chat-msg.u a { color: var(--gold); }
 
+/* ── Plate XII · Chart mode (viz agent) ─────────────────────────── */
+.viz-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+.viz-fig {
+  width: 100%;
+  height: 360px;
+  background: var(--paper);
+}
+.viz-err {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--rust);
+  padding: 8px 10px;
+  border: 1px dashed var(--rust);
+  background: rgba(198, 61, 47, 0.06);
+}
+.viz-code {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--hair);
+}
+.viz-code summary {
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  list-style: none;
+}
+.viz-code summary::before { content: "▸  "; }
+.viz-code[open] summary::before { content: "▾  "; }
+.viz-code pre {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  max-height: 280px;
+  overflow: auto;
+  background: var(--ink);
+  color: var(--paper-2);
+  font: 11px/1.5 var(--mono);
+}
+
 .thinking { display: inline-flex; gap: 4px; align-items: center; }
 .thinking span {
   width: 6px; height: 6px; border-radius: 50%;
