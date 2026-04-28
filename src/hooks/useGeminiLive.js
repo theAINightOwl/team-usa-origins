@@ -1,11 +1,22 @@
 /*
  * useGeminiLive — React wrapper around GeminiLiveClient + GeminiLiveMedia.
  *
- * Exposes the minimum the UI needs:
- *   { status, transcript, micLevel, error, start(), stop(), sendText(t) }
+ * Event-driven: callers pass callbacks for voice fragments / chart events
+ * and own the messages state themselves. The hook is responsible for the
+ * media pipeline + WebSocket lifecycle only.
+ *
+ * Exposed:
+ *   { status, micLevel, error, start(), stop(), sendText(t) }
+ *
+ * Options (all optional callbacks):
+ *   onUserFragment(text)     — partial transcript fragment from the user
+ *   onModelFragment(text)    — partial transcript fragment from Gemini
+ *   onTurnComplete()         — server signaled end of a turn
+ *   onInterrupted()          — user interrupted the model mid-speech
+ *   onChart({figures, narration, code}) — voice agent invoked request_chart
+ *   onError(msg)
  *
  * status transitions: idle → connecting → connected → ending → idle
- *                     (any → error on failure; clearable via stop())
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -13,9 +24,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { GeminiLiveClient } from "../lib/gemini-live-client.js";
 import { GeminiLiveMedia } from "../lib/gemini-live-media.js";
 
-export function useGeminiLive() {
+export function useGeminiLive(opts = {}) {
   const [status, setStatus] = useState("idle");
-  const [transcript, setTranscript] = useState([]); // [{ role: "user"|"model", text, final }]
   const [micLevel, setMicLevel] = useState(0);
   const [error, setError] = useState(null);
 
@@ -23,27 +33,10 @@ export function useGeminiLive() {
   const mediaRef = useRef(null);
   const rafRef = useRef(null);
 
-  // Append or extend the last turn for a given role. Live transcription
-  // streams in fragments — we accumulate until turn_complete, then flush.
-  const appendTranscript = useCallback((role, text) => {
-    if (!text) return;
-    setTranscript((prev) => {
-      const next = [...prev];
-      const last = next[next.length - 1];
-      if (last && last.role === role && !last.final) {
-        next[next.length - 1] = { ...last, text: last.text + text };
-      } else {
-        next.push({ role, text, final: false });
-      }
-      return next;
-    });
-  }, []);
-
-  const finalizeOpenTurns = useCallback(() => {
-    setTranscript((prev) =>
-      prev.map((t) => (t.final ? t : { ...t, final: true }))
-    );
-  }, []);
+  // Refs for callbacks so consumers can pass inline lambdas without
+  // re-triggering start().
+  const cbRef = useRef(opts);
+  useEffect(() => { cbRef.current = opts; }, [opts]);
 
   const cleanup = useCallback(async () => {
     if (rafRef.current) {
@@ -65,7 +58,6 @@ export function useGeminiLive() {
 
   const start = useCallback(async () => {
     setError(null);
-    setTranscript([]);
     setStatus("connecting");
 
     const media = new GeminiLiveMedia();
@@ -75,8 +67,6 @@ export function useGeminiLive() {
       onOpen: async () => {
         try {
           await media.startAudio((bytes) => client.send(bytes));
-          // Bail if server closed / user stopped during startup — avoid
-          // flipping status back to "connected" on a dead session.
           if (clientRef.current !== client) return;
           setStatus("connected");
 
@@ -102,22 +92,35 @@ export function useGeminiLive() {
         // JSON events
         try {
           const evt = JSON.parse(e.data);
+          const cb = cbRef.current || {};
           switch (evt.type) {
             case "user":
-              appendTranscript("user", evt.text);
+              cb.onUserFragment?.(evt.text || "");
               break;
             case "gemini":
-              appendTranscript("model", evt.text);
+              cb.onModelFragment?.(evt.text || "");
               break;
             case "turn_complete":
-              finalizeOpenTurns();
+              cb.onTurnComplete?.();
               break;
             case "interrupted":
               media.stopAudioPlayback();
-              finalizeOpenTurns();
+              cb.onInterrupted?.();
+              break;
+            case "chart":
+              try {
+                cb.onChart?.({
+                  figures: evt.figures || [],
+                  narration: evt.narration || "",
+                  code: evt.code || "",
+                });
+              } catch (err) {
+                console.warn("[live] onChart handler threw:", err);
+              }
               break;
             case "error":
               setError(evt.error || "live error");
+              cb.onError?.(evt.error || "live error");
               break;
             default:
               break;
@@ -131,24 +134,28 @@ export function useGeminiLive() {
         setStatus((s) => (s === "ending" ? "idle" : "idle"));
       },
       onError: () => {
-        setError("WebSocket error — is the live server running on :8765?");
+        const msg = "WebSocket error — is the live server running on :8765?";
+        setError(msg);
+        cbRef.current?.onError?.(msg);
       },
     });
 
     clientRef.current = client;
     client.connect();
-  }, [appendTranscript, cleanup, finalizeOpenTurns]);
+  }, [cleanup]);
 
   const sendText = useCallback((text) => {
     clientRef.current?.sendText(text);
-    appendTranscript("user", text);
-    finalizeOpenTurns();
-  }, [appendTranscript, finalizeOpenTurns]);
+    // Mirror the typed turn through the same fragment pipeline so the consumer
+    // can render it identically to spoken turns.
+    cbRef.current?.onUserFragment?.(text);
+    cbRef.current?.onTurnComplete?.();
+  }, []);
 
-  // Ensure we tear down on unmount
+  // Tear down on unmount
   useEffect(() => {
     return () => { cleanup(); };
   }, [cleanup]);
 
-  return { status, transcript, micLevel, error, start, stop, sendText };
+  return { status, micLevel, error, start, stop, sendText };
 }

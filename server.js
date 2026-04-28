@@ -22,9 +22,20 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { Agent, setGlobalDispatcher } from "undici";
 import cors from "cors";
 import express from "express";
 import { GoogleGenAI } from "@google/genai";
+
+// The Gemini Pro + code-execution path can hold the connection open well
+// beyond Node's default 30s headers timeout while it runs Python in the
+// hosted sandbox. Bump the global undici dispatcher so /api/chat's chart
+// fan-out and /api/viz both have room to breathe.
+setGlobalDispatcher(new Agent({
+  headersTimeout: 5 * 60_000,
+  bodyTimeout: 5 * 60_000,
+  connectTimeout: 30_000,
+}));
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
 import { runVizAgent } from "./server/viz_agent.js";
@@ -115,6 +126,43 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
+// Build the dataset payload the viz agent will receive when the chat agent
+// invokes its `request_chart` function. Same shape as /api/viz uses below;
+// extracted so both code paths stay in sync.
+function buildVizDataset() {
+  const stateSummary = Object.fromEntries(
+    Object.entries(states).map(([abbr, s]) => [
+      abbr,
+      {
+        name: s.name,
+        olympians: s.olympians,
+        medals: s.medals,
+        gold: s.gold,
+        top_sports: s.top_sports,
+        training_centers: s.training_centers,
+      },
+    ])
+  );
+  return { analytics, states: stateSummary };
+}
+
+const REQUEST_CHART_DECL = {
+  name: "request_chart",
+  description:
+    "Render an interactive Plotly chart of the atlas data when the user asks for a visualization, comparison, or trend that benefits from a chart. Use sparingly — only when a chart genuinely helps over prose. Pass a self-contained chart specification that names the dimensions, axes, sort order, and any highlight; the chart agent has access to the same atlas analytics you do.",
+  parameters: {
+    type: "object",
+    properties: {
+      prompt: {
+        type: "string",
+        description:
+          "A self-contained chart specification: what to plot, axes, highlight, sort order, etc. The chart agent will receive only this string plus the atlas dataset, so include any context the chart needs.",
+      },
+    },
+    required: ["prompt"],
+  },
+};
+
 app.post("/api/chat", async (req, res) => {
   const { messages = [] } = req.body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -163,34 +211,113 @@ app.post("/api/chat", async (req, res) => {
 
   let collectedSources = [];
 
-  try {
-    // Gemini 3 supports `thinkingConfig`; Gemini 2.5 and earlier reject it.
-    const config = {
-      systemInstruction: systemPrompt(),
-      tools: [{ googleSearch: {} }],
-    };
-    // thinkingConfig disabled — 3-flash-preview was slow/hanging with it.
-    // Re-enable by setting GEMINI_THINKING=low in .env if you want quality > speed.
-    if (/gemini-3/.test(MODEL) && process.env.GEMINI_THINKING) {
-      config.thinkingConfig = { thinkingLevel: process.env.GEMINI_THINKING };
-    }
+  // Gemini 3 supports `thinkingConfig`; Gemini 2.5 and earlier reject it.
+  const config = {
+    systemInstruction: systemPrompt(),
+    tools: [{
+      googleSearch: {},
+      functionDeclarations: [REQUEST_CHART_DECL],
+    }],
+    // Required when combining built-in tools (googleSearch) with custom
+    // functionDeclarations on Gemini 3.
+    toolConfig: { includeServerSideToolInvocations: true },
+  };
+  if (/gemini-3/.test(MODEL) && process.env.GEMINI_THINKING) {
+    config.thinkingConfig = { thinkingLevel: process.env.GEMINI_THINKING };
+  }
 
+  // Stream one turn of the chat agent. Returns:
+  //   { fc: ..., modelTurnParts: [...] }
+  // where modelTurnParts is the full accumulated parts array of the model
+  // turn (text + any functionCall parts including their thoughtSignature
+  // blobs). On Gemini 3 we MUST echo thoughtSignature back when re-feeding
+  // the model turn alongside our functionResponse, otherwise the API rejects
+  // the next call with "Function call is missing a thought_signature".
+  async function streamTurn(turnContents) {
+    let textBuffer = "";
+    let functionCallPart = null;
     const stream = await ai.models.generateContentStream({
       model: MODEL,
-      contents,
+      contents: turnContents,
       config,
     });
-
     for await (const chunk of stream) {
       const delta = chunk?.text;
-      if (delta) sseSend(res, { type: "text", delta });
-
+      if (delta) {
+        sseSend(res, { type: "text", delta });
+        textBuffer += delta;
+      }
+      const parts = chunk?.candidates?.[0]?.content?.parts || [];
+      for (const p of parts) {
+        if (p.functionCall?.name === "request_chart") {
+          // Keep the WHOLE part — it carries the thoughtSignature.
+          functionCallPart = p;
+        }
+      }
       const sources = extractGroundingSources(chunk);
       for (const s of sources) {
         if (!collectedSources.find((x) => x.uri === s.uri)) {
           collectedSources.push(s);
         }
       }
+    }
+    const modelTurnParts = [];
+    if (textBuffer) modelTurnParts.push({ text: textBuffer });
+    if (functionCallPart) modelTurnParts.push(functionCallPart);
+    return { fc: functionCallPart?.functionCall || null, modelTurnParts };
+  }
+
+  try {
+    let { fc, modelTurnParts } = await streamTurn(contents);
+
+    while (fc) {
+      // Tell the client a chart is being prepared so it can show a placeholder.
+      sseSend(res, { type: "chart_pending" });
+
+      let vizResult;
+      try {
+        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset());
+      } catch (err) {
+        console.error("[chat] viz agent error:", err);
+        vizResult = {
+          text: `*Chart could not be generated: ${err?.message || String(err)}*`,
+          figures: [],
+          code: "",
+          stdout: "",
+        };
+      }
+
+      sseSend(res, {
+        type: "chart",
+        figures: vizResult.figures || [],
+        narration: vizResult.text || "",
+        code: vizResult.code || "",
+      });
+
+      // Echo the model's full turn back (includes thoughtSignature) and
+      // append our functionResponse, then resume streaming so the chat agent
+      // can add a one-line wrap-up.
+      contents.push({ role: "model", parts: modelTurnParts });
+      contents.push({
+        role: "user",
+        parts: [
+          {
+            functionResponse: {
+              id: fc.id,
+              name: "request_chart",
+              response: {
+                result: {
+                  rendered: true,
+                  figure_count: (vizResult.figures || []).length,
+                  narration: vizResult.text || "",
+                },
+              },
+            },
+          },
+        ],
+      });
+
+      ({ fc, modelTurnParts } = await streamTurn(contents));
     }
 
     if (collectedSources.length > 0) {
@@ -227,26 +354,8 @@ app.post("/api/viz", async (req, res) => {
     return;
   }
 
-  // Lean dataset payload — analytics is what plate_briefs already trusts;
-  // the per-state summary lets the agent slice geography without pulling
-  // in the full athletes list.
-  const stateSummary = Object.fromEntries(
-    Object.entries(states).map(([abbr, s]) => [
-      abbr,
-      {
-        name: s.name,
-        olympians: s.olympians,
-        medals: s.medals,
-        gold: s.gold,
-        top_sports: s.top_sports,
-        training_centers: s.training_centers,
-      },
-    ])
-  );
-  const dataset = { analytics, states: stateSummary };
-
   try {
-    const result = await runVizAgent(question, dataset);
+    const result = await runVizAgent(question, buildVizDataset());
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);

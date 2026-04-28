@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { streamChat } from "../lib/sse.js";
 import Markdown from "../lib/markdown.jsx";
 import { useGeminiLive } from "../hooks/useGeminiLive.js";
@@ -7,52 +7,246 @@ import { renderFigure } from "../lib/plotly-render.js";
 /*
  * ChatBot — "Ask the atlas" floating drawer (Plate XII).
  *
- * Three modes, toggled from the header:
- *   - text:  POST to /api/chat, Gemini streams markdown answers (SSE).
- *   - voice: WS to /live, Gemini Live speaks and listens in real time.
- *   - chart: POST to /api/viz, Gemini ADK + code execution returns a
- *            themed Plotly figure rendered inline.
+ * One conversation thread. The user types or speaks; the chat agent decides
+ * whether to answer in prose or invoke a `request_chart` tool that fans out
+ * to the viz agent. Voice and typed turns flow into the same messages array
+ * so follow-ups can reference any prior turn — text, transcript, or figure.
  */
 
-const TEXT_STARTERS = [
+const STARTERS = [
   "Why does Park City UT produce so many olympians?",
-  "What's special about Vermont's high-school pipeline?",
-  "Which sports does the Sun Belt actually dominate?",
-  "How do training-center halos affect medal counts?",
-];
-
-const VOICE_STARTERS = [
-  "Which state produces the most Olympians per capita?",
-  "Why is Park City such a factory town?",
-  "How did Colorado's training-center investment pay off?",
-  "What does the Paralympic map look like?",
-];
-
-const CHART_STARTERS = [
-  "Bar chart of the top 10 states by Olympians per 100k residents.",
-  "Line chart of Team USA athlete counts by decade since 1980.",
-  "Horizontal bar of medals by sport family, highlight the top family in rust.",
-  "Scatter of state median income vs. Olympians per capita; label the outliers.",
+  "Bar chart of medals by sport family, highlight the top family in rust.",
+  "Which states have the highest paralympic share?",
+  "Plot Olympians per 100k by state, top 10.",
 ];
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState("text"); // "text" | "voice" | "chart"
+  const [messages, setMessages] = useState([]);
+  const [pendingVoice, setPendingVoice] = useState(null); // { role, text } in-flight voice fragment
+  const [input, setInput] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const live = useGeminiLive();
+  const idCounter = useRef(0);
+  const nextId = useCallback(() => `m-${++idCounter.current}`, []);
 
-  // When the drawer closes, stop any live session.
+  const abortRef = useRef(null);
+  const scrollRef = useRef(null);
+  const taRef = useRef(null);
+
+  // ── Voice hook callbacks — drive the same messages state ────────────
+  const commitPending = useCallback(() => {
+    setPendingVoice((p) => {
+      if (p && p.text.trim()) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: nextId(),
+            role: p.role,
+            kind: "text",
+            text: p.text,
+            via: "voice",
+          },
+        ]);
+      }
+      return null;
+    });
+  }, [nextId]);
+
+  const liveOpts = useMemo(() => ({
+    onUserFragment: (text) => {
+      setPendingVoice((p) =>
+        p && p.role === "user"
+          ? { role: "user", text: p.text + text }
+          : (p && p.role === "model" ? (commitPending(), { role: "user", text }) : { role: "user", text })
+      );
+    },
+    onModelFragment: (text) => {
+      setPendingVoice((p) =>
+        p && p.role === "model"
+          ? { role: "model", text: p.text + text }
+          : (p && p.role === "user" ? (commitPending(), { role: "model", text }) : { role: "model", text })
+      );
+    },
+    onTurnComplete: commitPending,
+    onInterrupted: commitPending,
+    onChart: ({ figures, narration, code }) => {
+      commitPending();
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: nextId(),
+          role: "model",
+          kind: "chart",
+          figures: figures || [],
+          narration: narration || "",
+          code: code || "",
+          via: "voice",
+        },
+      ]);
+    },
+  }), [commitPending, nextId]);
+
+  const live = useGeminiLive(liveOpts);
+
+  const isLive = live.status === "connected";
+  const isLiveBusy = live.status === "connecting" || live.status === "ending";
+
+  // ── Auto-scroll on new content ─────────────────────────────────────
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, pendingVoice, sending]);
+
+  // ── Focus textarea when drawer opens ───────────────────────────────
+  useEffect(() => {
+    if (open) {
+      const id = setTimeout(() => taRef.current?.focus(), 80);
+      return () => clearTimeout(id);
+    }
+  }, [open]);
+
+  // When the drawer closes, end any live session.
   useEffect(() => {
     if (!open && live.status !== "idle") live.stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  function switchMode(next) {
-    if (next === mode) return;
-    if (mode === "voice" && live.status !== "idle") live.stop();
-    setMode(next);
+  // ── Send a typed message ───────────────────────────────────────────
+  async function send(text) {
+    const trimmed = text.trim();
+    if (!trimmed || sending) return;
+
+    // If a voice session is active, route the typed text through the live
+    // channel so the agent answers out loud and stays in conversation.
+    if (isLive) {
+      // The hook mirrors the typed turn through onUserFragment + turn_complete.
+      live.sendText(trimmed);
+      setInput("");
+      return;
+    }
+
+    const userMsg = { id: nextId(), role: "user", kind: "text", text: trimmed };
+    const modelPlaceholderId = nextId();
+    const modelPlaceholder = {
+      id: modelPlaceholderId,
+      role: "model",
+      kind: "text",
+      text: "",
+      pending: true,
+    };
+    setMessages((prev) => [...prev, userMsg, modelPlaceholder]);
+    setInput("");
+    setSending(true);
+
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+
+    // Build the history sent to the server: every prior text + chart turn,
+    // plus this user message. Voice transcript turns participate too — they
+    // were committed as kind:text already.
+    const history = [...messages, userMsg]
+      .filter((m) => m.kind === "text" || m.kind === "chart")
+      .map((m) =>
+        m.kind === "chart"
+          ? { role: "model", text: `[chart rendered] ${m.narration || ""}` }
+          : { role: m.role, text: m.text }
+      );
+
+    let inFlightId = modelPlaceholderId;
+    let acc = "";
+
+    function patch(id, patchObj) {
+      setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, ...patchObj } : m)));
+    }
+    function dropEmpty(id) {
+      setMessages((prev) => prev.filter((m) => !(m.id === id && (!m.text || !m.text.trim()))));
+    }
+
+    try {
+      for await (const evt of streamChat({ messages: history, signal: ctrl.signal })) {
+        if (evt.type === "text") {
+          acc += evt.delta;
+          patch(inFlightId, { text: acc, pending: true });
+        } else if (evt.type === "sources") {
+          patch(inFlightId, { sources: evt.sources || [] });
+        } else if (evt.type === "chart_pending") {
+          // Finalize whatever text we have, or drop the empty placeholder.
+          if (acc.trim()) {
+            patch(inFlightId, { text: acc, pending: false });
+          } else {
+            dropEmpty(inFlightId);
+          }
+          // Insert a chart bubble in pending state.
+          const chartId = nextId();
+          setMessages((prev) => [
+            ...prev,
+            { id: chartId, role: "model", kind: "chart", pending: true },
+          ]);
+          inFlightId = chartId;
+          acc = "";
+        } else if (evt.type === "chart") {
+          patch(inFlightId, {
+            kind: "chart",
+            figures: evt.figures || [],
+            narration: evt.narration || "",
+            code: evt.code || "",
+            pending: false,
+          });
+          // Prepare a new text bubble for the wrap-up the chat agent emits
+          // after the functionResponse.
+          const wrapUpId = nextId();
+          setMessages((prev) => [
+            ...prev,
+            { id: wrapUpId, role: "model", kind: "text", text: "", pending: true },
+          ]);
+          inFlightId = wrapUpId;
+          acc = "";
+        } else if (evt.type === "done") {
+          // If the last in-flight bubble is an empty text wrap-up, drop it.
+          if (!acc.trim()) {
+            dropEmpty(inFlightId);
+          } else {
+            patch(inFlightId, { text: acc, pending: false });
+          }
+          break;
+        } else if (evt.type === "error") {
+          patch(inFlightId, {
+            text: (acc ? acc + "\n\n" : "") + `*Error: ${evt.message}*`,
+            pending: false,
+            error: true,
+          });
+          break;
+        }
+      }
+    } catch (e) {
+      if (e?.name !== "AbortError") {
+        patch(inFlightId, {
+          text: `*Network error: ${e.message || e}*`,
+          pending: false,
+          error: true,
+        });
+      }
+    } finally {
+      setSending(false);
+      abortRef.current = null;
+    }
   }
 
+  function onKeyDown(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      send(input);
+    }
+  }
+
+  function onClickMic() {
+    if (isLive) live.stop();
+    else if (live.status === "idle") live.start();
+  }
+
+  // ── Render ──────────────────────────────────────────────────────────
   return (
     <>
       {!open && (
@@ -70,9 +264,9 @@ export default function ChatBot() {
         <div className="chat-drawer" role="dialog" aria-label="Ask the atlas">
           <header className="chat-head">
             <div>
-              <p className="eyebrow">Plate XII · Conversation</p>
+              <p className="eyebrow">Plate XII · Ask the atlas</p>
               <h3>
-                Ask the <em>atlas</em>.
+                Type, talk, or <em>chart</em>.
               </h3>
             </div>
             <div className="chat-head-actions">
@@ -80,444 +274,105 @@ export default function ChatBot() {
             </div>
           </header>
 
-          <div className="chat-mode-bar" role="tablist" aria-label="Chat mode">
-            <button
-              role="tab"
-              aria-selected={mode === "text"}
-              className={`mode-tab ${mode === "text" ? "on" : ""}`}
-              onClick={() => switchMode("text")}
-            >
-              <span className="mt-ic" aria-hidden>✎</span>
-              Text
-            </button>
-            <button
-              role="tab"
-              aria-selected={mode === "voice"}
-              className={`mode-tab ${mode === "voice" ? "on" : ""}`}
-              onClick={() => switchMode("voice")}
-            >
-              <span className="mt-ic" aria-hidden>◉</span>
-              Voice
-            </button>
-            <button
-              role="tab"
-              aria-selected={mode === "chart"}
-              className={`mode-tab ${mode === "chart" ? "on" : ""}`}
-              onClick={() => switchMode("chart")}
-            >
-              <span className="mt-ic" aria-hidden>▦</span>
-              Chart
-            </button>
+          {live.error && (
+            <p className="live-error drawer">
+              <b>Voice error</b> · {live.error}
+            </p>
+          )}
+
+          <div className="chat-body" ref={scrollRef}>
+            {messages.length === 0 && !pendingVoice ? (
+              <div className="chat-empty">
+                <p className="chat-lede">
+                  Ask in plain English, paste a follow-up, or say it out loud
+                  with the mic. The atlas will answer in prose, draw a chart,
+                  or look something up — whichever fits.
+                </p>
+                <div className="starters">
+                  {STARTERS.map((s) => (
+                    <button
+                      key={s}
+                      className="starter"
+                      onClick={() => (isLive ? live.sendText(s) : send(s))}
+                      disabled={sending}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <>
+                {messages.map((m) => <Message key={m.id} m={m} />)}
+                {pendingVoice && (
+                  <Message
+                    key="pending-voice"
+                    m={{ ...pendingVoice, kind: "text", pending: true, via: "voice" }}
+                  />
+                )}
+              </>
+            )}
           </div>
 
-          {mode === "text" && <TextChat />}
-          {mode === "voice" && <VoiceChat live={live} />}
-          {mode === "chart" && <ChartChat />}
+          <form
+            className="chat-input"
+            onSubmit={(e) => {
+              e.preventDefault();
+              send(input);
+            }}
+          >
+            <button
+              type="button"
+              className={`mic-btn ${isLive ? "on" : ""} ${isLiveBusy ? "busy" : ""}`}
+              onClick={onClickMic}
+              disabled={isLiveBusy}
+              aria-label={isLive ? "End voice session" : "Start voice session"}
+              title={isLive ? "End voice session" : "Start voice session"}
+            >
+              <span
+                className="mic-ring"
+                style={{ transform: `scale(${1 + live.micLevel * 1.1})` }}
+              />
+              <span className="mic-glyph" aria-hidden>{isLive ? "■" : "●"}</span>
+            </button>
+            <textarea
+              ref={taRef}
+              rows={2}
+              placeholder={
+                isLive
+                  ? "voice live — type to send, or just speak"
+                  : sending
+                    ? "atlas is thinking…"
+                    : "Ask, plot, or look something up…"
+              }
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={onKeyDown}
+              disabled={sending && !isLive}
+            />
+            <button type="submit" disabled={(sending && !isLive) || !input.trim()} className="send-btn">
+              {sending && !isLive ? "…" : "send"}
+            </button>
+          </form>
+
+          <p className={`chat-status s-${live.status}`}>
+            {isLive
+              ? "voice live · interrupt any time"
+              : live.status === "connecting"
+                ? "opening voice line…"
+                : live.status === "ending"
+                  ? "closing voice line…"
+                  : sending
+                    ? "atlas is thinking…"
+                    : "type or tap the mic"}
+          </p>
         </div>
       )}
     </>
   );
 }
 
-/* ── Text mode ─────────────────────────────────────────────────── */
-
-function TextChat() {
-  const [messages, setMessages] = useState([]); // {role, text, sources?, pending?, error?}
-  const [input, setInput] = useState("");
-  const [sending, setSending] = useState(false);
-  const abortRef = useRef(null);
-  const scrollRef = useRef(null);
-  const taRef = useRef(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, sending]);
-
-  useEffect(() => {
-    const id = setTimeout(() => taRef.current?.focus(), 80);
-    return () => clearTimeout(id);
-  }, []);
-
-  async function send(text) {
-    const trimmed = text.trim();
-    if (!trimmed || sending) return;
-    const userMsg = { role: "user", text: trimmed };
-    const placeholder = { role: "model", text: "", sources: [], pending: true };
-    const newHistory = [...messages, userMsg];
-    setMessages([...newHistory, placeholder]);
-    setInput("");
-    setSending(true);
-
-    const ctrl = new AbortController();
-    abortRef.current = ctrl;
-
-    try {
-      let acc = "";
-      let sources = [];
-      for await (const evt of streamChat({
-        messages: newHistory.map((m) => ({ role: m.role, text: m.text })),
-        signal: ctrl.signal,
-      })) {
-        if (evt.type === "text") {
-          acc += evt.delta;
-          setMessages((prev) => {
-            const next = [...prev];
-            next[next.length - 1] = { role: "model", text: acc, sources, pending: true };
-            return next;
-          });
-        } else if (evt.type === "sources") {
-          sources = evt.sources || [];
-          setMessages((prev) => {
-            const next = [...prev];
-            next[next.length - 1] = { role: "model", text: acc, sources, pending: true };
-            return next;
-          });
-        } else if (evt.type === "done") {
-          setMessages((prev) => {
-            const next = [...prev];
-            next[next.length - 1] = { role: "model", text: acc, sources, pending: false };
-            return next;
-          });
-          break;
-        } else if (evt.type === "error") {
-          setMessages((prev) => {
-            const next = [...prev];
-            next[next.length - 1] = {
-              role: "model",
-              text: (acc ? acc + "\n\n" : "") + `*Error: ${evt.message}*`,
-              sources,
-              pending: false,
-              error: true,
-            };
-            return next;
-          });
-          break;
-        }
-      }
-    } catch (e) {
-      if (e?.name !== "AbortError") {
-        setMessages((prev) => {
-          const next = [...prev];
-          next[next.length - 1] = {
-            role: "model",
-            text: `*Network error: ${e.message || e}*`,
-            sources: [],
-            pending: false,
-            error: true,
-          };
-          return next;
-        });
-      }
-    } finally {
-      setSending(false);
-      abortRef.current = null;
-    }
-  }
-
-  function onKeyDown(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      send(input);
-    }
-  }
-
-  return (
-    <>
-      <div className="chat-body" ref={scrollRef}>
-        {messages.length === 0 ? (
-          <div className="chat-empty">
-            <p className="chat-lede">
-              Ask anything about the data — small-town factories, training-center
-              reach, climate patterns, sport pipelines. The atlas knows the
-              numbers; the model can search the web for the rest.
-            </p>
-            <div className="starters">
-              {TEXT_STARTERS.map((s) => (
-                <button
-                  key={s}
-                  className="starter"
-                  onClick={() => send(s)}
-                  disabled={sending}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          messages.map((m, i) => <Message key={i} m={m} />)
-        )}
-      </div>
-
-      <form
-        className="chat-input"
-        onSubmit={(e) => {
-          e.preventDefault();
-          send(input);
-        }}
-      >
-        <textarea
-          ref={taRef}
-          rows={2}
-          placeholder={sending ? "atlas is thinking…" : "Ask about a state, a sport, a town…"}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          disabled={sending}
-        />
-        <button type="submit" disabled={sending || !input.trim()} className="send-btn">
-          {sending ? "…" : "send"}
-        </button>
-      </form>
-    </>
-  );
-}
-
-/* ── Voice mode ────────────────────────────────────────────────── */
-
-function VoiceChat({ live }) {
-  const { status, transcript, micLevel, error, start, stop, sendText } = live;
-  const [text, setText] = useState("");
-  const scrollRef = useRef(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [transcript, status]);
-
-  const isLive = status === "connected";
-  const isBusy = status === "connecting" || status === "ending";
-
-  const pillLabel = useMemo(() => {
-    switch (status) {
-      case "idle":       return "idle";
-      case "connecting": return "connecting…";
-      case "connected":  return "live";
-      case "ending":     return "ending…";
-      default:           return status;
-    }
-  }, [status]);
-
-  function onClickMic() {
-    if (isLive) stop();
-    else if (status === "idle") start();
-  }
-
-  function onSubmitText(e) {
-    e.preventDefault();
-    const t = text.trim();
-    if (!t || !isLive) return;
-    sendText(t);
-    setText("");
-  }
-
-  return (
-    <>
-      <div className="voice-dock">
-        <button
-          className={`live-mic sm ${isLive ? "on" : ""} ${isBusy ? "busy" : ""}`}
-          onClick={onClickMic}
-          disabled={isBusy}
-          aria-label={isLive ? "End voice session" : "Start voice session"}
-        >
-          <span
-            className="live-mic-ring"
-            style={{ transform: `scale(${1 + micLevel * 1.1})` }}
-          />
-          <span className="live-mic-glyph" aria-hidden>
-            {isLive ? "■" : "●"}
-          </span>
-        </button>
-        <div className="voice-dock-meta">
-          <span className={`live-pill s-${status}`}>{pillLabel}</span>
-          <span className="live-hint">
-            {status === "idle" && "Tap the mic and speak"}
-            {status === "connecting" && "Opening secure line…"}
-            {isLive && "Interrupt any time by talking"}
-            {status === "ending" && "Closing the line…"}
-          </span>
-        </div>
-      </div>
-
-      {error && (
-        <p className="live-error drawer">
-          <b>Error</b> · {error}
-        </p>
-      )}
-
-      <div className="chat-body" ref={scrollRef}>
-        {transcript.length === 0 ? (
-          <div className="chat-empty">
-            <p className="chat-lede">
-              A voice line to the atlas — powered by Gemini Live. Tap the
-              microphone, speak in plain English, and Gemini answers out
-              loud. The transcript appears here as you go.
-            </p>
-            <div className="starters">
-              {VOICE_STARTERS.map((s) => (
-                <button
-                  key={s}
-                  className="starter"
-                  onClick={() => (isLive ? sendText(s) : null)}
-                  disabled={!isLive}
-                  title={isLive ? "Send as text" : "Start the session first"}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          transcript.map((m, i) => <Message key={i} m={m} />)
-        )}
-      </div>
-
-      <form className="chat-input" onSubmit={onSubmitText}>
-        <textarea
-          rows={2}
-          placeholder={isLive ? "…or type instead of speaking" : "Start the session to type or speak"}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) onSubmitText(e);
-          }}
-          disabled={!isLive}
-        />
-        <button type="submit" className="send-btn" disabled={!isLive || !text.trim()}>
-          send
-        </button>
-      </form>
-    </>
-  );
-}
-
-/* ── Chart mode ────────────────────────────────────────────────── */
-
-function ChartChat() {
-  const [messages, setMessages] = useState([]); // {role, text?, figures?, code?, status?, error?}
-  const [input, setInput] = useState("");
-  const [sending, setSending] = useState(false);
-  const scrollRef = useRef(null);
-  const taRef = useRef(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, sending]);
-
-  useEffect(() => {
-    const id = setTimeout(() => taRef.current?.focus(), 80);
-    return () => clearTimeout(id);
-  }, []);
-
-  async function send(text) {
-    const trimmed = text.trim();
-    if (!trimmed || sending) return;
-    const userMsg = { role: "user", text: trimmed };
-    const placeholder = { role: "model", pending: true };
-    setMessages((prev) => [...prev, userMsg, placeholder]);
-    setInput("");
-    setSending(true);
-
-    try {
-      const r = await fetch("/api/viz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: trimmed }),
-      });
-      const data = await r.json().catch(() => ({}));
-      if (!r.ok) {
-        throw new Error(data?.error || `HTTP ${r.status}`);
-      }
-      setMessages((prev) => {
-        const next = [...prev];
-        next[next.length - 1] = {
-          role: "model",
-          text: data.text || "",
-          figures: data.figures || [],
-          code: data.code || "",
-          pending: false,
-        };
-        return next;
-      });
-    } catch (err) {
-      setMessages((prev) => {
-        const next = [...prev];
-        next[next.length - 1] = {
-          role: "model",
-          text: `*Error: ${err?.message || err}*`,
-          pending: false,
-          error: true,
-        };
-        return next;
-      });
-    } finally {
-      setSending(false);
-    }
-  }
-
-  function onKeyDown(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      send(input);
-    }
-  }
-
-  return (
-    <>
-      <div className="chat-body" ref={scrollRef}>
-        {messages.length === 0 ? (
-          <div className="chat-empty">
-            <p className="chat-lede">
-              Describe a chart in plain English. Gemini writes Python, runs it
-              server-side, and returns an interactive Plotly figure themed to
-              the atlas. The dataset behind the 11 plates is in scope.
-            </p>
-            <div className="starters">
-              {CHART_STARTERS.map((s) => (
-                <button
-                  key={s}
-                  className="starter"
-                  onClick={() => send(s)}
-                  disabled={sending}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          messages.map((m, i) => <Message key={i} m={m} />)
-        )}
-      </div>
-
-      <form
-        className="chat-input"
-        onSubmit={(e) => {
-          e.preventDefault();
-          send(input);
-        }}
-      >
-        <textarea
-          ref={taRef}
-          rows={2}
-          placeholder={sending ? "writing python…" : "Describe a chart of the atlas data…"}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          disabled={sending}
-        />
-        <button type="submit" disabled={sending || !input.trim()} className="send-btn">
-          {sending ? "…" : "plot"}
-        </button>
-      </form>
-    </>
-  );
-}
+/* ── Chart figure mount ────────────────────────────────────────────── */
 
 function ChartFigure({ fig }) {
   const ref = useRef(null);
@@ -538,31 +393,36 @@ function ChartFigure({ fig }) {
   return <div className="viz-fig" ref={ref} />;
 }
 
-/* ── Shared message bubble ─────────────────────────────────────── */
+/* ── Shared message bubble ─────────────────────────────────────────── */
 
 function Message({ m }) {
   const isUser = m.role === "user";
+  const isChart = m.kind === "chart";
   return (
-    <div className={`chat-msg ${isUser ? "u" : "a"} ${m.error ? "err" : ""}`}>
+    <div
+      className={`chat-msg ${isUser ? "u" : "a"} ${m.error ? "err" : ""} ${m.via === "voice" ? "voice" : ""}`}
+    >
       {isUser ? (
         <div className="bubble">{m.text}</div>
       ) : (
         <div className="bubble">
-          {m.figures && m.figures.length > 0 && (
+          {isChart && m.figures && m.figures.length > 0 && (
             <div className="viz-stack">
               {m.figures.map((fig, i) => (
                 <ChartFigure key={i} fig={fig} />
               ))}
             </div>
           )}
-          {m.text ? (
+          {isChart && m.narration ? (
+            <Markdown text={m.narration} />
+          ) : !isChart && m.text ? (
             <Markdown text={m.text} />
           ) : m.pending ? (
             <span className="thinking">
               <span /><span /><span />
             </span>
           ) : null}
-          {m.code && (
+          {isChart && m.code && (
             <details className="viz-code">
               <summary>Show generated Python</summary>
               <pre>{m.code}</pre>

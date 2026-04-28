@@ -12,6 +12,7 @@ import { WebSocketServer } from "ws";
 
 import { GeminiLive } from "./gemini-live.mts";
 import { buildPlateBriefs } from "../server/plate_briefs.js";
+import { runVizAgent } from "../server/viz_agent.js";
 // Model Armor (disabled — re-enable by uncommenting here and the blocks below)
 // import { sanitizePrompt, logArmorBanner } from "../server/armor.js";
 
@@ -58,7 +59,46 @@ const SYSTEM_INSTRUCTION = [
   plateBriefs,
 ].join("\n");
 
-const TOOLS: any[] = [{ googleSearch: {} }];
+const REQUEST_CHART_DECL = {
+  name: "request_chart",
+  description:
+    "Render an interactive Plotly chart for the user when they ask for a visualization, comparison, or trend that benefits from a chart. The chart appears on the user's screen instantly. After calling this, briefly narrate what the chart shows (under 30 spoken words). Pass a self-contained chart specification — what to plot, axes, sort order, any highlight.",
+  parameters: {
+    type: "object",
+    properties: {
+      prompt: {
+        type: "string",
+        description:
+          "Self-contained chart specification: what to plot, axes, highlight, sort order. The chart agent has access to the same atlas dataset you do.",
+      },
+    },
+    required: ["prompt"],
+  },
+};
+
+const TOOLS: any[] = [{
+  googleSearch: {},
+  functionDeclarations: [REQUEST_CHART_DECL],
+}];
+
+// Same dataset shape that /api/viz uses — keeps text and voice charts on
+// identical footing so the model can't tell which surface invoked it.
+function buildVizDataset() {
+  const stateSummary = Object.fromEntries(
+    Object.entries(states as Record<string, any>).map(([abbr, s]: [string, any]) => [
+      abbr,
+      {
+        name: s.name,
+        olympians: s.olympians,
+        medals: s.medals,
+        gold: s.gold,
+        top_sports: s.top_sports,
+        training_centers: s.training_centers,
+      },
+    ])
+  );
+  return { analytics, states: stateSummary };
+}
 
 const httpServer = createServer((req, res) => {
   if (req.url === "/health") {
@@ -115,12 +155,39 @@ wss.on("connection", async (ws) => {
   }
   */
 
+  // Voice chart mapping. Closes over ws so we can push the figure straight
+  // to the browser; the string returned to the model is intentionally short
+  // so the speech response stays terse.
+  const toolMapping = {
+    request_chart: async ({ prompt }: { prompt?: string }) => {
+      try {
+        const result: any = await runVizAgent(prompt || "", buildVizDataset());
+        if (ws.readyState === ws.OPEN) {
+          ws.send(JSON.stringify({
+            type: "chart",
+            figures: result.figures || [],
+            narration: result.text || "",
+            code: result.code || "",
+          }));
+        }
+        return `Chart rendered with ${(result.figures || []).length} figure(s). Narration: ${result.text || "(none)"}`;
+      } catch (e: any) {
+        const msg = `Chart generation failed: ${e?.message ?? e}`;
+        if (ws.readyState === ws.OPEN) {
+          ws.send(JSON.stringify({ type: "error", error: msg }));
+        }
+        return msg;
+      }
+    },
+  };
+
   const gemini = new GeminiLive({
     apiKey: GEMINI_API_KEY,
     model: MODEL,
     voice: VOICE,
     systemInstruction: SYSTEM_INSTRUCTION,
     tools: TOOLS,
+    toolMapping,
     onAudio: (bytes) => {
       if (ws.readyState === ws.OPEN) ws.send(bytes, { binary: true });
     },

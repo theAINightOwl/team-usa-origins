@@ -124,8 +124,6 @@ export default function App() {
             <span>Team USA · Olympic &amp; Paralympic</span>
             <span className="sep" />
             <span>1896 — 2026</span>
-            <span className="sep" />
-            <span>Vol. I</span>
           </div>
           <h1 className="wordmark">
             Olympian <em>Roots</em>
