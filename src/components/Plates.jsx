@@ -115,9 +115,6 @@ function PlateStory({ plateKey }) {
       {open && (
         <div className="story-body">
           <Markdown text={text} />
-          <p className="story-foot">
-            <em>From the journalist's notebook — full version at <code>PLATE_STORIES.md</code>.</em>
-          </p>
         </div>
       )}
     </section>

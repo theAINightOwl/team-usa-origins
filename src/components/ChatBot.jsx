@@ -34,41 +34,59 @@ export default function ChatBot() {
   const scrollRef = useRef(null);
   const taRef = useRef(null);
 
-  // ── Voice hook callbacks — drive the same messages state ────────────
+  // ── Voice fragment plumbing ─────────────────────────────────────────
+  // pendingVoiceRef mirrors pendingVoice synchronously so role-transition
+  // logic can branch on the *current* value without nesting setState calls
+  // inside updater functions (which would lose work — that's what was making
+  // the first voice user bubble vanish when the model started replying).
+  const pendingVoiceRef = useRef(null);
+  const setPending = useCallback((value) => {
+    pendingVoiceRef.current = value;
+    setPendingVoice(value);
+  }, []);
+
   const commitPending = useCallback(() => {
-    setPendingVoice((p) => {
-      if (p && p.text.trim()) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: nextId(),
-            role: p.role,
-            kind: "text",
-            text: p.text,
-            via: "voice",
-          },
-        ]);
-      }
-      return null;
-    });
+    const p = pendingVoiceRef.current;
+    if (p && p.text.trim()) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: nextId(),
+          role: p.role,
+          kind: "text",
+          text: p.text,
+          via: "voice",
+        },
+      ]);
+    }
+    pendingVoiceRef.current = null;
+    setPendingVoice(null);
   }, [nextId]);
 
+  const appendFragment = useCallback((role, text) => {
+    if (!text) return;
+    const p = pendingVoiceRef.current;
+    if (p && p.role !== role) {
+      // Role transition — flush the prior speaker's bubble first.
+      commitPending();
+    }
+    const prev = pendingVoiceRef.current;
+    const next = prev && prev.role === role
+      ? { role, text: prev.text + text }
+      : { role, text };
+    setPending(next);
+  }, [commitPending, setPending]);
+
   const liveOpts = useMemo(() => ({
-    onUserFragment: (text) => {
-      setPendingVoice((p) =>
-        p && p.role === "user"
-          ? { role: "user", text: p.text + text }
-          : (p && p.role === "model" ? (commitPending(), { role: "user", text }) : { role: "user", text })
-      );
-    },
-    onModelFragment: (text) => {
-      setPendingVoice((p) =>
-        p && p.role === "model"
-          ? { role: "model", text: p.text + text }
-          : (p && p.role === "user" ? (commitPending(), { role: "model", text }) : { role: "model", text })
-      );
-    },
-    onTurnComplete: commitPending,
+    onUserFragment: (text) => appendFragment("user", text),
+    onModelFragment: (text) => appendFragment("model", text),
+    // Don't auto-commit on turn_complete: Gemini Live emits it on every
+    // model pause and intermediate tool consideration, which was splitting
+    // a single answer across multiple bubbles ("Did you" / "know tiny
+    // Vermont…"). The role-transition check in appendFragment + the
+    // explicit commit on interrupted / session-end covers the legitimate
+    // commit moments.
+    onTurnComplete: () => {},
     onInterrupted: commitPending,
     onChart: ({ figures, narration, code }) => {
       commitPending();
@@ -85,7 +103,7 @@ export default function ChatBot() {
         },
       ]);
     },
-  }), [commitPending, nextId]);
+  }), [appendFragment, commitPending, nextId]);
 
   const live = useGeminiLive(liveOpts);
 
@@ -107,9 +125,12 @@ export default function ChatBot() {
     }
   }, [open]);
 
-  // When the drawer closes, end any live session.
+  // When the drawer closes, flush any pending voice bubble and end the session.
   useEffect(() => {
-    if (!open && live.status !== "idle") live.stop();
+    if (!open) {
+      if (pendingVoiceRef.current) commitPending();
+      if (live.status !== "idle") live.stop();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
@@ -242,8 +263,13 @@ export default function ChatBot() {
   }
 
   function onClickMic() {
-    if (isLive) live.stop();
-    else if (live.status === "idle") live.start();
+    if (isLive) {
+      // Flush whatever's mid-stream before tearing the WS down.
+      commitPending();
+      live.stop();
+    } else if (live.status === "idle") {
+      live.start();
+    }
   }
 
   // ── Render ──────────────────────────────────────────────────────────

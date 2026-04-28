@@ -396,7 +396,6 @@ export default function USMap({
           </div>
           <span>{metricLabel(metric)}</span>
         </div>
-        <span>© Team USA Hackathon</span>
       </div>
     </div>
   );

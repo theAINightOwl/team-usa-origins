@@ -105,7 +105,10 @@ h1.wordmark {
   font-size: clamp(56px, 9vw, 124px);
   line-height: 0.85;
   letter-spacing: -0.035em;
-  margin: 2px 0 8px;
+  /* Bottom margin needs to clear the 'p' / 'y' descenders; the tight
+     0.85 line-height shrinks the line box well above the visible
+     glyph bottom, so we add visual breathing room here. */
+  margin: 2px 0 28px;
   font-variation-settings: "opsz" 144, "SOFT" 30;
   color: var(--ink);
 }
