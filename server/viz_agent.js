@@ -11,9 +11,21 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const MODEL = process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
-const API_KEY = process.env.GEMINI_API_KEY;
-const ai = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
+// Read env LAZILY (inside getAi() / getModel()). The live voice server
+// imports this module before its dotenv.loadEnv runs, so capturing
+// process.env.GEMINI_API_KEY at module-load time would be null and we'd
+// fail every voice-side chart with "GEMINI_API_KEY not configured".
+let _ai = null;
+function getAi() {
+  if (_ai) return _ai;
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) return null;
+  _ai = new GoogleGenAI({ apiKey: key });
+  return _ai;
+}
+function getModel() {
+  return process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
+}
 
 const SYSTEM_INSTRUCTION = `You are a data visualization specialist working in the visual style of
 the "Olympian Roots" editorial / printed-magazine aesthetic. When asked, run
@@ -109,6 +121,7 @@ const RESPONSE_SCHEMA = {
  * @returns {Promise<{ text: string, code: string, stdout: string, figures: unknown[] }>}
  */
 export async function runVizAgent(userQuestion, dataset) {
+  const ai = getAi();
   if (!ai) throw new Error("GEMINI_API_KEY is not configured on the server.");
 
   const userText =
@@ -117,7 +130,7 @@ export async function runVizAgent(userQuestion, dataset) {
     "```json\n" + JSON.stringify(dataset) + "\n```";
 
   const response = await ai.models.generateContent({
-    model: MODEL,
+    model: getModel(),
     contents: [{ role: "user", parts: [{ text: userText }] }],
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
