@@ -115,7 +115,7 @@ export default function AthleteCard({ athlete, trainingCenters, states, familyCo
         )}
         {state && (
           <div className="row">
-            <span className="k">Home state HS</span>
+            <span className="k">Home state HS slots</span>
             <span className="v num">
               {(state.nfhs_total || 0).toLocaleString()}
             </span>

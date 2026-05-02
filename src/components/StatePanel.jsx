@@ -2,14 +2,14 @@ import React from "react";
 
 /*
  * StatePanel — renders when a US state is selected on the map.
- * Shows counts, climate, NFHS sparkline, top sports, and top feeder colleges
+ * Shows counts, climate, NFHS context, top sports, and top feeder colleges
  * for that state.
  */
 export default function StatePanel({ state, colleges, onClose }) {
   if (!state) return null;
 
   const stateColleges = colleges
-    .filter((c) => c.state === state.abbr && c.olympians > 0)
+    .filter((c) => c.state === state.abbr && (c.matched_profiles ?? c.olympians ?? 0) > 0)
     .slice(0, 5);
 
   const topMax = Math.max(1, ...(state.top_sports || []).map((s) => s.n));
@@ -31,8 +31,8 @@ export default function StatePanel({ state, colleges, onClose }) {
 
       <div className="stats">
         <div className="cell">
-          <div className="label">Olympians</div>
-          <div className="value rust num">{(state.olympians || 0).toLocaleString()}</div>
+          <div className="label">Profiles</div>
+          <div className="value rust num">{(state.profiles ?? state.olympians ?? 0).toLocaleString()}</div>
         </div>
         <div className="cell">
           <div className="label">Medals</div>
@@ -82,7 +82,7 @@ export default function StatePanel({ state, colleges, onClose }) {
           </span>
         </div>
         <div className="row">
-          <span className="k">HS sports (2024)</span>
+          <span className="k">HS slots ({state.nfhs_year || 2025})</span>
           <span className="v num">
             {(state.nfhs_total || 0).toLocaleString()}
           </span>
@@ -112,7 +112,9 @@ export default function StatePanel({ state, colleges, onClose }) {
               <span className="k" style={{ maxWidth: 220, textTransform: "none", letterSpacing: 0, fontSize: 11, fontFamily: "var(--serif)", fontStyle: "italic", color: "var(--ink-2)" }}>
                 {c.name}
               </span>
-              <span className="v num" style={{ color: "var(--rust)" }}>{c.olympians}</span>
+              <span className="v num" style={{ color: "var(--rust)" }}>
+                {c.matched_profiles ?? c.olympians}
+              </span>
             </div>
           ))}
         </section>

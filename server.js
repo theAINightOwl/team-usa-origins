@@ -65,10 +65,24 @@ if (!API_KEY) {
 
 const ai = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
 
-// ── System prompt builder ───────────────────────────────────────────────
+// ── System prompt builders ──────────────────────────────────────────────
+//
+// Shared NIL / medal-level / honesty rules that BOTH endpoints must enforce.
+// Extracted so /api/chat and /api/personal can't drift out of sync.
+const BASE_RULES = [
+  "**Rules of engagement:**",
+  "1. **NIL — strict.** The athletes dataset is anonymised for NIL reasons. Do NOT name any specific athlete, not from the dataset and not from outside knowledge. If the user asks about a particular athlete by name, decline and redirect to the pattern, place, program, or sport instead. \"An Olympic medalist from Park City\" is fine; naming them is not.",
+  "2. **Medal-level only.** Never present detailed athletic performance records — no finishing times, splits, event-by-event placings, world records, personal bests, or race-by-race breakdowns. The finest grain you are allowed is medal level (\"an Olympic gold medalist\", \"a two-time Paralympic bronze medalist\", or counts like \"produced 42 Olympians\"). Keep the focus on geography, pipelines, and programs, not individual box scores.",
+  "3. **Use the data first.** Look up the actual numbers from the data above before reaching for outside knowledge.",
+  "4. **Stay honest.** If the data doesn't say or you don't know, say so.",
+  "5. The current date is April 2026.",
+].join("\n");
+
+const ATLAS_INTRO = "You are an analytical assistant embedded in **Olympian Roots**, an editorial atlas of Team USA hometowns and the support systems that produce American Olympians and Paralympians.";
+
 function systemPrompt() {
   return [
-    "You are an analytical assistant embedded in **Olympian Roots**, an editorial atlas of Team USA hometowns and the support systems that produce American Olympians and Paralympians.",
+    ATLAS_INTRO,
     "",
     "The user is currently looking at a US map with 11 plates of pre-computed findings. Your job is to answer their questions about the data and the broader context.",
     "",
@@ -82,15 +96,44 @@ function systemPrompt() {
     JSON.stringify(analytics, null, 0),
     "```",
     "",
-    "**Rules of engagement:**",
-    "1. **NIL — strict.** The athletes dataset is anonymised for NIL reasons. Do NOT name any specific athlete, not from the dataset and not from outside knowledge. If the user asks about a particular athlete by name, decline and redirect to the pattern, place, program, or sport instead. \"An Olympic medalist from Park City\" is fine; naming them is not.",
-    "2. **Medal-level only.** Never present detailed athletic performance records — no finishing times, splits, event-by-event placings, world records, personal bests, or race-by-race breakdowns. The finest grain you are allowed is medal level (\"an Olympic gold medalist\", \"a two-time Paralympic bronze medalist\", or counts like \"produced 42 Olympians\"). Keep the focus on geography, pipelines, and programs, not individual box scores.",
-    "3. **Use the data first.** When the user asks about specific places/sports/states, look up the actual numbers from the data above before reaching for the web.",
-    "4. **Use Google Search for context.** For deep-dive 'why' questions — history, training programs, individual towns, sport culture, recent news — call the googleSearch tool and ground your answer in real sources. Do not pull named athletes or performance stats back from the web either.",
-    "5. **Cite web sources** inline as `[short title](url)` at the relevant spot.",
-    "6. **Be concise.** Markdown is welcome (lists, **bold**, headers). Keep most answers under ~200 words unless the user asks for a deep dive.",
-    "7. **Stay honest.** If the data doesn't say or you don't know, say so.",
-    "8. The current date is April 2026.",
+    BASE_RULES,
+    "",
+    "**Chat-specific notes:**",
+    "- **Use Google Search for context.** For deep-dive 'why' questions — history, training programs, individual towns, sport culture, recent news — call the googleSearch tool and ground your answer in real sources. Do not pull named athletes or performance stats back from the web either.",
+    "- **Cite web sources** inline as `[short title](url)` at the relevant spot.",
+    "- **Be concise.** Markdown is welcome (lists, **bold**, headers). Keep most answers under ~200 words unless the user asks for a deep dive.",
+  ].join("\n");
+}
+
+function personalSystemPrompt({ hometown, residence }) {
+  return [
+    ATLAS_INTRO,
+    "",
+    "A visitor has shared two pieces of geography and you are writing a short personalized briefing for **just them**, weaving the atlas's existing data around their hometown and current residence.",
+    "",
+    "**Visitor input:**",
+    `- Hometown (where they grew up): ${hometown || "(not provided)"}`,
+    `- Current residence: ${residence || "(not provided)"}`,
+    "",
+    "**The 11 plates of pre-computed findings you can draw from:**",
+    "",
+    plateBriefs,
+    "",
+    "**Raw data you can quote from:**",
+    "",
+    "```json",
+    JSON.stringify(analytics, null, 0),
+    "```",
+    "",
+    BASE_RULES,
+    "",
+    "**Output format — follow exactly:**",
+    "1. One short opening line (≤2 sentences) acknowledging both places by name. No fluff like \"What a great question\" — just dive in.",
+    "2. **3–5 markdown bullets**, each a self-contained fun fact tying their hometown OR residence to one of the 11 plates. Mix the two locations across the bullets when you can.",
+    "3. Cite the plate by roman numeral in the relevant bullet — e.g. *(Plate IX)*. The roman goes inline, italicized, in parentheses.",
+    "4. Total under ~180 words.",
+    "5. If a place isn't in the dataset, fall back to its state-level stats. Don't invent numbers; if nothing fits a plate, skip it.",
+    "6. Don't ask questions back. Don't sign off. Don't include a heading.",
   ].join("\n");
 }
 
@@ -330,6 +373,64 @@ app.post("/api/chat", async (req, res) => {
       type: "error",
       message: err?.message || String(err),
     });
+    sseSend(res, { type: "done" });
+  } finally {
+    res.end();
+  }
+});
+
+// ── Personalized briefing for Plate XII ─────────────────────────────────
+//
+// The visitor enters their hometown + current residence. We stream back a
+// short markdown briefing (1 lede + 3-5 bullets) that ties their geography
+// to the atlas's 11 plates. No tools, no function calls — just the same
+// plate briefs + analytics the chat agent reads, scoped to two places.
+app.post("/api/personal", async (req, res) => {
+  const hometown = (req.body?.hometown || "").toString().trim().slice(0, 120);
+  const residence = (req.body?.residence || "").toString().trim().slice(0, 120);
+
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache, no-transform");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders?.();
+
+  if (!ai) {
+    sseSend(res, {
+      type: "error",
+      message: "GEMINI_API_KEY is not configured on the server. Add it to olympian-roots/.env and restart.",
+    });
+    sseSend(res, { type: "done" });
+    res.end();
+    return;
+  }
+
+  if (!hometown && !residence) {
+    sseSend(res, { type: "error", message: "Tell the atlas at least one place — hometown or current residence." });
+    sseSend(res, { type: "done" });
+    res.end();
+    return;
+  }
+
+  try {
+    const stream = await ai.models.generateContentStream({
+      model: MODEL,
+      contents: [{
+        role: "user",
+        parts: [{ text: `Hometown: ${hometown || "(not provided)"}\nResidence: ${residence || "(not provided)"}\n\nWrite my personalized atlas briefing now, following the format rules above.` }],
+      }],
+      config: {
+        systemInstruction: personalSystemPrompt({ hometown, residence }),
+      },
+    });
+
+    for await (const chunk of stream) {
+      const delta = chunk?.text;
+      if (delta) sseSend(res, { type: "text", delta });
+    }
+    sseSend(res, { type: "done" });
+  } catch (err) {
+    console.error("[personal] gemini error:", err);
+    sseSend(res, { type: "error", message: err?.message || String(err) });
     sseSend(res, { type: "done" });
   } finally {
     res.end();

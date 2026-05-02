@@ -1,27 +1,5 @@
 [
   {
-    "name": "University of California",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 450,
-    "women": 430,
-    "sports": 30,
-    "budget_m": 105.0,
-    "olympians": 140
-  },
-  {
-    "name": "University of Texas",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 20,
-    "budget_m": 225.0,
-    "olympians": 118
-  },
-  {
     "name": "Stanford University",
     "state": "CA",
     "classification": "NCAA Division I",
@@ -30,1778 +8,15 @@
     "women": 410,
     "sports": 36,
     "budget_m": 178.0,
-    "olympians": 116
-  },
-  {
-    "name": "University of Colorado",
-    "state": "CO",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 17,
-    "budget_m": 105.0,
-    "olympians": 76
-  },
-  {
-    "name": "University of Minnesota",
-    "state": "MN",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 25,
-    "budget_m": 130.0,
-    "olympians": 75
-  },
-  {
-    "name": "University of Florida",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 21,
-    "budget_m": 185.0,
-    "olympians": 74
-  },
-  {
-    "name": "University of Utah",
-    "state": "UT",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 19,
-    "budget_m": 95.0,
-    "olympians": 67
-  },
-  {
-    "name": "University of Michigan",
-    "state": "MI",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 480,
-    "women": 420,
-    "sports": 29,
-    "budget_m": 197.0,
-    "olympians": 65
-  },
-  {
-    "name": "University of Washington",
-    "state": "WA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 330,
-    "women": 310,
-    "sports": 22,
-    "budget_m": 125.0,
-    "olympians": 65
-  },
-  {
-    "name": "Devry University",
-    "state": "IL",
-    "classification": "Non-athletic",
-    "conference": "",
-    "men": 0,
-    "women": 0,
-    "sports": 0,
-    "budget_m": 0.0,
-    "olympians": 62
-  },
-  {
-    "name": "University of Wisconsin",
-    "state": "WI",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 430,
-    "women": 400,
-    "sports": 23,
-    "budget_m": 155.0,
-    "olympians": 62
-  },
-  {
-    "name": "UCLA",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 370,
-    "women": 360,
-    "sports": 25,
-    "budget_m": 140.0,
-    "olympians": 51
-  },
-  {
-    "name": "University of Arizona",
-    "state": "AZ",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 21,
-    "budget_m": 105.0,
-    "olympians": 51
-  },
-  {
-    "name": "University of Illinois",
-    "state": "IL",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 21,
-    "budget_m": 110.0,
-    "olympians": 50
-  },
-  {
-    "name": "University of Virginia",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 380,
-    "women": 360,
-    "sports": 27,
-    "budget_m": 115.0,
-    "olympians": 48
-  },
-  {
-    "name": "The Ohio State University",
-    "state": "OH",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 510,
-    "women": 470,
-    "sports": 36,
-    "budget_m": 235.0,
-    "olympians": 47
-  },
-  {
-    "name": "University of Georgia",
-    "state": "GA",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 310,
-    "women": 280,
-    "sports": 21,
-    "budget_m": 170.0,
-    "olympians": 46
-  },
-  {
-    "name": "Boston University",
-    "state": "MA",
-    "classification": "NCAA Division I",
-    "conference": "Patriot League",
-    "men": 320,
-    "women": 300,
-    "sports": 24,
-    "budget_m": 40.0,
-    "olympians": 45
-  },
-  {
-    "name": "University of North Carolina",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 410,
-    "women": 390,
-    "sports": 28,
-    "budget_m": 115.0,
-    "olympians": 45
-  },
-  {
-    "name": "Harvard University",
-    "state": "MA",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 530,
-    "women": 510,
-    "sports": 42,
-    "budget_m": 50.0,
-    "olympians": 41
-  },
-  {
-    "name": "Princeton University",
-    "state": "NJ",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 500,
-    "women": 480,
-    "sports": 37,
-    "budget_m": 42.0,
-    "olympians": 39
-  },
-  {
-    "name": "University of Oregon",
-    "state": "OR",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 120.0,
-    "olympians": 39
-  },
-  {
-    "name": "Texas A&M University",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 20,
-    "budget_m": 180.0,
-    "olympians": 38
-  },
-  {
-    "name": "Indiana University",
-    "state": "IN",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 350,
-    "women": 330,
-    "sports": 24,
-    "budget_m": 100.0,
-    "olympians": 37
-  },
-  {
-    "name": "Dartmouth College",
-    "state": "NH",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 460,
-    "women": 440,
-    "sports": 34,
-    "budget_m": 38.0,
-    "olympians": 35
-  },
-  {
-    "name": "University of Alabama",
-    "state": "AL",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 21,
-    "budget_m": 195.0,
-    "olympians": 32
-  },
-  {
-    "name": "University of Notre Dame",
-    "state": "IN",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 370,
-    "women": 350,
-    "sports": 26,
-    "budget_m": 135.0,
-    "olympians": 30
-  },
-  {
-    "name": "University of Maryland",
-    "state": "MD",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 27,
-    "budget_m": 115.0,
-    "olympians": 29
-  },
-  {
-    "name": "Columbia University",
-    "state": "NY",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 500,
-    "women": 480,
-    "sports": 31,
-    "budget_m": 38.0,
-    "olympians": 28
-  },
-  {
-    "name": "University of Kentucky",
-    "state": "KY",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 22,
-    "budget_m": 145.0,
-    "olympians": 28
-  },
-  {
-    "name": "University of Oklahoma",
-    "state": "OK",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 300,
-    "women": 280,
-    "sports": 19,
-    "budget_m": 145.0,
-    "olympians": 28
-  },
-  {
-    "name": "Penn State University",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 430,
-    "women": 400,
-    "sports": 31,
-    "budget_m": 165.0,
-    "olympians": 27
-  },
-  {
-    "name": "University of Southern California",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 370,
-    "women": 350,
-    "sports": 21,
-    "budget_m": 165.0,
-    "olympians": 25
-  },
-  {
-    "name": "University of Tennessee",
-    "state": "TN",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 300,
-    "women": 280,
-    "sports": 20,
-    "budget_m": 165.0,
-    "olympians": 25
-  },
-  {
-    "name": "Arizona State University",
-    "state": "AZ",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 330,
-    "women": 310,
-    "sports": 26,
-    "budget_m": 115.0,
-    "olympians": 24
-  },
-  {
-    "name": "University of Nebraska",
-    "state": "NE",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 350,
-    "women": 320,
-    "sports": 24,
-    "budget_m": 125.0,
-    "olympians": 24
-  },
-  {
-    "name": "Long Beach State University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 32.0,
-    "olympians": 22
-  },
-  {
-    "name": "Westminster College",
-    "state": "UT",
-    "classification": "NAIA",
-    "conference": "Frontier Conference",
-    "men": 180,
-    "women": 170,
-    "sports": 18,
-    "budget_m": 5.0,
-    "olympians": 22
-  },
-  {
-    "name": "Duke University",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 340,
-    "women": 320,
-    "sports": 27,
-    "budget_m": 130.0,
-    "olympians": 21
-  },
-  {
-    "name": "Florida State University",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 20,
-    "budget_m": 130.0,
-    "olympians": 21
-  },
-  {
-    "name": "Purdue University",
-    "state": "IN",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 18,
-    "budget_m": 100.0,
-    "olympians": 21
-  },
-  {
-    "name": "University of Arkansas",
-    "state": "AR",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 19,
-    "budget_m": 130.0,
-    "olympians": 21
-  },
-  {
-    "name": "University of Connecticut",
-    "state": "CT",
-    "classification": "NCAA Division I",
-    "conference": "Big East Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 24,
-    "budget_m": 95.0,
-    "olympians": 20
-  },
-  {
-    "name": "Louisiana State University",
-    "state": "LA",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 300,
-    "women": 280,
-    "sports": 21,
-    "budget_m": 175.0,
-    "olympians": 19
-  },
-  {
-    "name": "University of Hawaii",
-    "state": "HI",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 17,
-    "budget_m": 40.0,
-    "olympians": 19
-  },
-  {
-    "name": "University of Miami",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 105.0,
-    "olympians": 19
-  },
-  {
-    "name": "University of California--Los Angeles",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 370,
-    "women": 360,
-    "sports": 25,
-    "budget_m": 140.0,
-    "olympians": 18
-  },
-  {
-    "name": "Northwestern University",
-    "state": "IL",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 19,
-    "budget_m": 100.0,
-    "olympians": 17
-  },
-  {
-    "name": "University of Iowa",
-    "state": "IA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 340,
-    "women": 320,
-    "sports": 22,
-    "budget_m": 130.0,
-    "olympians": 17
-  },
-  {
-    "name": "University of Massachusetts",
-    "state": "MA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic 10 Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 21,
-    "budget_m": 45.0,
-    "olympians": 17
-  },
-  {
-    "name": "Yale University",
-    "state": "CT",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 500,
-    "women": 480,
-    "sports": 35,
-    "budget_m": 42.0,
-    "olympians": 17
-  },
-  {
-    "name": "University of North Dakota",
-    "state": "ND",
-    "classification": "NCAA Division I",
-    "conference": "Summit League",
-    "men": 260,
-    "women": 240,
-    "sports": 21,
-    "budget_m": 30.0,
-    "olympians": 16
-  },
-  {
-    "name": "Auburn University",
-    "state": "AL",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 20,
-    "budget_m": 165.0,
-    "olympians": 15
-  },
-  {
-    "name": "Brigham Young University",
-    "state": "UT",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 350,
-    "women": 330,
-    "sports": 21,
-    "budget_m": 80.0,
-    "olympians": 15
-  },
-  {
-    "name": "Pennsylvania State University",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 430,
-    "women": 400,
-    "sports": 31,
-    "budget_m": 165.0,
-    "olympians": 15
-  },
-  {
-    "name": "University of California, Berkeley",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 450,
-    "women": 430,
-    "sports": 30,
-    "budget_m": 105.0,
-    "olympians": 15
-  },
-  {
-    "name": "Brown University",
-    "state": "RI",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 490,
-    "women": 470,
-    "sports": 38,
-    "budget_m": 35.0,
-    "olympians": 14
-  },
-  {
-    "name": "Cornell University",
-    "state": "NY",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 530,
-    "women": 510,
-    "sports": 37,
-    "budget_m": 40.0,
-    "olympians": 14
-  },
-  {
-    "name": "University of Denver",
-    "state": "CO",
-    "classification": "NCAA Division I",
-    "conference": "Summit League",
-    "men": 210,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 40.0,
-    "olympians": 14
-  },
-  {
-    "name": "Northeastern University",
-    "state": "MA",
-    "classification": "NCAA Division I",
-    "conference": "Colonial Athletic Association",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 42.0,
-    "olympians": 13
-  },
-  {
-    "name": "Pepperdine University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "West Coast Conference",
-    "men": 200,
-    "women": 190,
-    "sports": 15,
-    "budget_m": 25.0,
-    "olympians": 13
-  },
-  {
-    "name": "Rutgers University",
-    "state": "NJ",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 27,
-    "budget_m": 115.0,
-    "olympians": 13
-  },
-  {
-    "name": "University of Kansas",
-    "state": "KS",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 115.0,
-    "olympians": 13
-  },
-  {
-    "name": "University of Maine",
-    "state": "ME",
-    "classification": "NCAA Division I",
-    "conference": "America East Conference",
-    "men": 260,
-    "women": 240,
-    "sports": 17,
-    "budget_m": 22.0,
-    "olympians": 13
-  },
-  {
-    "name": "University of South Carolina",
-    "state": "SC",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 19,
-    "budget_m": 115.0,
-    "olympians": 13
-  },
-  {
-    "name": "Oregon State University",
-    "state": "OR",
-    "classification": "NCAA Division I",
-    "conference": "Pac-12 Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 17,
-    "budget_m": 80.0,
-    "olympians": 12
-  },
-  {
-    "name": "Salt Lake Community College",
-    "state": "UT",
-    "classification": "NJCAA",
-    "conference": "Scenic West Athletic Conference",
-    "men": 120,
-    "women": 110,
-    "sports": 10,
-    "budget_m": 3.0,
-    "olympians": 12
-  },
-  {
-    "name": "University of Illinois at Urbana-Champaign",
-    "state": "IL",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 21,
-    "budget_m": 110.0,
-    "olympians": 12
-  },
-  {
-    "name": "University of New Hampshire",
-    "state": "NH",
-    "classification": "NCAA Division I",
-    "conference": "America East Conference",
-    "men": 260,
-    "women": 240,
-    "sports": 18,
-    "budget_m": 35.0,
-    "olympians": 12
-  },
-  {
-    "name": "University of Vermont",
-    "state": "VT",
-    "classification": "NCAA Division I",
-    "conference": "America East Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 18,
-    "budget_m": 28.0,
-    "olympians": 12
-  },
-  {
-    "name": "Bemidji State University",
-    "state": "MN",
-    "classification": "NCAA Division II",
-    "conference": "Northern Sun Intercollegiate Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 15,
-    "budget_m": 8.0,
-    "olympians": 11
-  },
-  {
-    "name": "Michigan State University",
-    "state": "MI",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 370,
-    "women": 340,
-    "sports": 25,
-    "budget_m": 140.0,
-    "olympians": 11
-  },
-  {
-    "name": "San Diego State University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 19,
-    "budget_m": 55.0,
-    "olympians": 11
-  },
-  {
-    "name": "University of Pennsylvania",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 480,
-    "women": 460,
-    "sports": 33,
-    "budget_m": 38.0,
-    "olympians": 11
-  },
-  {
-    "name": "Sacred Heart University",
-    "state": "CT",
-    "classification": "NCAA Division I",
-    "conference": "Northeast Conference",
-    "men": 460,
-    "women": 430,
-    "sports": 32,
-    "budget_m": 22.0,
-    "olympians": 10
-  },
-  {
-    "name": "San Jose State University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 19,
-    "budget_m": 38.0,
-    "olympians": 10
-  },
-  {
-    "name": "Syracuse University",
-    "state": "NY",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 320,
-    "women": 300,
-    "sports": 20,
-    "budget_m": 90.0,
-    "olympians": 10
-  },
-  {
-    "name": "University of Central Florida",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 16,
-    "budget_m": 80.0,
-    "olympians": 10
-  },
-  {
-    "name": "University of Central Oklahoma",
-    "state": "OK",
-    "classification": "NCAA Division II",
-    "conference": "Mid-America Intercollegiate Athletics Association",
-    "men": 220,
-    "women": 200,
-    "sports": 15,
-    "budget_m": 10.0,
-    "olympians": 10
-  },
-  {
-    "name": "University of Louisville",
-    "state": "KY",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 23,
-    "budget_m": 115.0,
-    "olympians": 10
-  },
-  {
-    "name": "University of San Diego",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "West Coast Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 17,
-    "budget_m": 30.0,
-    "olympians": 10
-  },
-  {
-    "name": "University of Texas at Austin",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 20,
-    "budget_m": 225.0,
-    "olympians": 10
-  },
-  {
-    "name": "Baylor University",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 19,
-    "budget_m": 100.0,
-    "olympians": 9
-  },
-  {
-    "name": "University of Minnesota Duluth",
-    "state": "MN",
-    "classification": "NCAA Division II",
-    "conference": "Northern Sun Intercollegiate Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 16,
-    "budget_m": 12.0,
-    "olympians": 9
-  },
-  {
-    "name": "University of Mississippi",
-    "state": "MS",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 18,
-    "budget_m": 110.0,
-    "olympians": 9
-  },
-  {
-    "name": "George Mason University",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic 10 Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 22,
-    "budget_m": 38.0,
-    "olympians": 8
-  },
-  {
-    "name": "Georgetown University",
-    "state": "DC",
-    "classification": "NCAA Division I",
-    "conference": "Big East Conference",
-    "men": 340,
-    "women": 320,
-    "sports": 29,
-    "budget_m": 48.0,
-    "olympians": 8
-  },
-  {
-    "name": "James Madison University",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Sun Belt Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 52.0,
-    "olympians": 8
-  },
-  {
-    "name": "Marian University",
-    "state": "IN",
-    "classification": "NAIA",
-    "conference": "Crossroads League",
-    "men": 350,
-    "women": 320,
-    "sports": 27,
-    "budget_m": 8.0,
-    "olympians": 8
-  },
-  {
-    "name": "Northern Michigan University",
-    "state": "MI",
-    "classification": "NCAA Division II",
-    "conference": "Great Lakes Intercollegiate Athletic Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 16,
-    "budget_m": 10.0,
-    "olympians": 8
-  },
-  {
-    "name": "USC",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 370,
-    "women": 350,
-    "sports": 21,
-    "budget_m": 165.0,
-    "olympians": 8
-  },
-  {
-    "name": "University of New Mexico",
-    "state": "NM",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 18,
-    "budget_m": 45.0,
-    "olympians": 8
-  },
-  {
-    "name": "Naval Academy",
-    "state": "MD",
-    "classification": "NCAA Division I",
-    "conference": "Patriot League",
-    "men": 550,
-    "women": 220,
-    "sports": 33,
-    "budget_m": 40.0,
-    "olympians": 7
-  },
-  {
-    "name": "North Carolina State University",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 23,
-    "budget_m": 100.0,
-    "olympians": 7
-  },
-  {
-    "name": "Oklahoma State University",
-    "state": "OK",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 19,
-    "budget_m": 100.0,
-    "olympians": 7
-  },
-  {
-    "name": "Wake Forest University",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 18,
-    "budget_m": 90.0,
-    "olympians": 7
-  },
-  {
-    "name": "Indiana State University",
-    "state": "IN",
-    "classification": "NCAA Division I",
-    "conference": "Missouri Valley Conference",
-    "men": 200,
-    "women": 180,
-    "sports": 17,
-    "budget_m": 22.0,
-    "olympians": 6
-  },
-  {
-    "name": "Iowa State University",
-    "state": "IA",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 16,
-    "budget_m": 95.0,
-    "olympians": 6
-  },
-  {
-    "name": "Old Dominion University",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Sun Belt Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 18,
-    "budget_m": 45.0,
-    "olympians": 6
-  },
-  {
-    "name": "Tennessee State University",
-    "state": "TN",
-    "classification": "NCAA Division I",
-    "conference": "Ohio Valley Conference",
-    "men": 200,
-    "women": 180,
-    "sports": 16,
-    "budget_m": 15.0,
-    "olympians": 6
-  },
-  {
-    "name": "University of Cincinnati",
-    "state": "OH",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 18,
-    "budget_m": 80.0,
-    "olympians": 6
-  },
-  {
-    "name": "University of Colorado Boulder",
-    "state": "CO",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 17,
-    "budget_m": 105.0,
-    "olympians": 6
-  },
-  {
-    "name": "University of Texas at Arlington",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Western Athletic Conference",
-    "men": 190,
-    "women": 170,
-    "sports": 15,
-    "budget_m": 28.0,
-    "olympians": 6
-  },
-  {
-    "name": "Ashland University",
-    "state": "OH",
-    "classification": "NCAA Division II",
-    "conference": "Great Midwest Athletic Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 22,
-    "budget_m": 8.0,
-    "olympians": 5
-  },
-  {
-    "name": "California Polytechnic State University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 21,
-    "budget_m": 35.0,
-    "olympians": 5
-  },
-  {
-    "name": "Clarkson University",
-    "state": "NY",
-    "classification": "NCAA Division III",
-    "conference": "Liberty League",
-    "men": 310,
-    "women": 290,
-    "sports": 22,
-    "budget_m": 6.0,
-    "olympians": 5
-  },
-  {
-    "name": "Lindenwood University",
-    "state": "MO",
-    "classification": "NCAA Division I",
-    "conference": "Ohio Valley Conference",
-    "men": 260,
-    "women": 240,
-    "sports": 27,
-    "budget_m": 18.0,
-    "olympians": 5
-  },
-  {
-    "name": "Mississippi State University",
-    "state": "MS",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 16,
-    "budget_m": 95.0,
-    "olympians": 5
-  },
-  {
-    "name": "Queens University of Charlotte",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "ASUN Conference",
-    "men": 290,
-    "women": 270,
-    "sports": 23,
-    "budget_m": 12.0,
-    "olympians": 5
-  },
-  {
-    "name": "Southern Methodist University",
-    "state": "TX",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 260,
-    "women": 240,
-    "sports": 17,
-    "budget_m": 70.0,
-    "olympians": 5
-  },
-  {
-    "name": "United States Military Academy",
-    "state": "NY",
-    "classification": "NCAA Division I",
-    "conference": "Patriot League",
-    "men": 550,
-    "women": 230,
-    "sports": 32,
-    "budget_m": 40.0,
-    "olympians": 5
-  },
-  {
-    "name": "University of California--Irvine",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 18,
-    "budget_m": 35.0,
-    "olympians": 5
-  },
-  {
-    "name": "University of Wisconsin-Whitewater",
-    "state": "WI",
-    "classification": "NCAA Division III",
-    "conference": "Wisconsin Intercollegiate Athletic Conference",
-    "men": 350,
-    "women": 320,
-    "sports": 22,
-    "budget_m": 5.0,
-    "olympians": 5
-  },
-  {
-    "name": "Colorado Mountain College",
-    "state": "CO",
-    "classification": "NJCAA",
-    "conference": "Independent",
-    "men": 60,
-    "women": 50,
-    "sports": 6,
-    "budget_m": 1.5,
-    "olympians": 4
-  },
-  {
-    "name": "University of Colorado, Colorado Springs",
-    "state": "CO",
-    "classification": "NCAA Division II",
-    "conference": "Rocky Mountain Athletic Conference",
-    "men": 180,
-    "women": 170,
-    "sports": 14,
-    "budget_m": 8.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of Minnesota, Twin Cities",
-    "state": "MN",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 340,
-    "women": 310,
-    "sports": 25,
-    "budget_m": 130.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of Nevada, Las Vegas",
-    "state": "NV",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 17,
-    "budget_m": 55.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of North Carolina, Chapel Hill",
-    "state": "NC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 410,
-    "women": 390,
-    "sports": 28,
-    "budget_m": 115.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of Pittsburgh",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 19,
-    "budget_m": 95.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of South Florida",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "American Athletic Conference",
-    "men": 260,
-    "women": 240,
-    "sports": 19,
-    "budget_m": 55.0,
-    "olympians": 4
-  },
-  {
-    "name": "University of Tulsa",
-    "state": "OK",
-    "classification": "NCAA Division I",
-    "conference": "American Athletic Conference",
-    "men": 210,
-    "women": 190,
-    "sports": 17,
-    "budget_m": 32.0,
-    "olympians": 4
-  },
-  {
-    "name": "Utah Valley University",
-    "state": "UT",
-    "classification": "NCAA Division I",
-    "conference": "Western Athletic Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 16,
-    "budget_m": 20.0,
-    "olympians": 4
-  },
-  {
-    "name": "Villanova University",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Big East Conference",
-    "men": 340,
-    "women": 320,
-    "sports": 24,
-    "budget_m": 55.0,
-    "olympians": 4
-  },
-  {
-    "name": "Clemson University",
-    "state": "SC",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 19,
-    "budget_m": 140.0,
-    "olympians": 3
-  },
-  {
-    "name": "Colorado State University",
-    "state": "CO",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 16,
-    "budget_m": 55.0,
-    "olympians": 3
-  },
-  {
-    "name": "Florida International University",
-    "state": "FL",
-    "classification": "NCAA Division I",
-    "conference": "Conference USA",
-    "men": 220,
-    "women": 200,
-    "sports": 18,
-    "budget_m": 38.0,
-    "olympians": 3
-  },
-  {
-    "name": "Fort Lewis College",
-    "state": "CO",
-    "classification": "NCAA Division II",
-    "conference": "Rocky Mountain Athletic Conference",
-    "men": 180,
-    "women": 170,
-    "sports": 14,
-    "budget_m": 6.0,
-    "olympians": 3
-  },
-  {
-    "name": "Fresno State University",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 18,
-    "budget_m": 42.0,
-    "olympians": 3
-  },
-  {
-    "name": "Georgia Tech",
-    "state": "GA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 17,
-    "budget_m": 95.0,
-    "olympians": 3
-  },
-  {
-    "name": "Howard University",
-    "state": "DC",
-    "classification": "NCAA Division I",
-    "conference": "Mid-Eastern Athletic Conference",
-    "men": 200,
-    "women": 180,
-    "sports": 19,
-    "budget_m": 18.0,
-    "olympians": 3
-  },
-  {
-    "name": "Southern Illinois University",
-    "state": "IL",
-    "classification": "NCAA Division I",
-    "conference": "Missouri Valley Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 18,
-    "budget_m": 30.0,
-    "olympians": 3
-  },
-  {
-    "name": "University of California, San Diego",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 300,
-    "women": 280,
-    "sports": 23,
-    "budget_m": 32.0,
-    "olympians": 3
-  },
-  {
-    "name": "University of California, Santa Barbara",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 200,
-    "women": 190,
-    "sports": 14,
-    "budget_m": 25.0,
-    "olympians": 3
-  },
-  {
-    "name": "University of San Francisco",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "West Coast Conference",
-    "men": 180,
-    "women": 170,
-    "sports": 15,
-    "budget_m": 22.0,
-    "olympians": 3
-  },
-  {
-    "name": "University of South Dakota",
-    "state": "SD",
-    "classification": "NCAA Division I",
-    "conference": "Summit League",
-    "men": 220,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 20.0,
-    "olympians": 3
-  },
-  {
-    "name": "University of Wyoming",
-    "state": "WY",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 38.0,
-    "olympians": 3
-  },
-  {
-    "name": "Washington State University",
-    "state": "WA",
-    "classification": "NCAA Division I",
-    "conference": "Pac-12 Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 17,
-    "budget_m": 70.0,
-    "olympians": 3
-  },
-  {
-    "name": "Weber State University",
-    "state": "UT",
-    "classification": "NCAA Division I",
-    "conference": "Big Sky Conference",
-    "men": 210,
-    "women": 190,
-    "sports": 16,
-    "budget_m": 18.0,
-    "olympians": 3
-  },
-  {
-    "name": "West Virginia University",
-    "state": "WV",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 17,
-    "budget_m": 75.0,
-    "olympians": 3
-  },
-  {
-    "name": "Yale University '23",
-    "state": "CT",
-    "classification": "NCAA Division I",
-    "conference": "Ivy League",
-    "men": 500,
-    "women": 480,
-    "sports": 35,
-    "budget_m": 42.0,
-    "olympians": 3
-  },
-  {
-    "name": "Kennesaw State University",
-    "state": "GA",
-    "classification": "NCAA Division I",
-    "conference": "Conference USA",
-    "men": 220,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 28.0,
-    "olympians": 2
-  },
-  {
-    "name": "Monmouth University",
-    "state": "NJ",
-    "classification": "NCAA Division I",
-    "conference": "Colonial Athletic Association",
-    "men": 240,
-    "women": 220,
-    "sports": 23,
-    "budget_m": 20.0,
-    "olympians": 2
-  },
-  {
-    "name": "Tulane University",
-    "state": "LA",
-    "classification": "NCAA Division I",
-    "conference": "American Athletic Conference",
-    "men": 220,
-    "women": 210,
-    "sports": 16,
-    "budget_m": 42.0,
-    "olympians": 2
-  },
-  {
-    "name": "University of California, Davis",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 340,
-    "women": 320,
-    "sports": 25,
-    "budget_m": 28.0,
-    "olympians": 2
-  },
-  {
-    "name": "University of Richmond",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic 10 Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 17,
-    "budget_m": 28.0,
-    "olympians": 2
-  },
-  {
-    "name": "Bowling Green State University",
-    "state": "OH",
-    "classification": "NCAA Division I",
-    "conference": "Mid-American Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 18,
-    "budget_m": 28.0,
-    "olympians": 1
-  },
-  {
-    "name": "Emory University",
-    "state": "GA",
-    "classification": "NCAA Division III",
-    "conference": "University Athletic Association",
-    "men": 250,
-    "women": 240,
-    "sports": 19,
-    "budget_m": 8.0,
-    "olympians": 1
-  },
-  {
-    "name": "Gonzaga University",
-    "state": "WA",
-    "classification": "NCAA Division I",
-    "conference": "West Coast Conference",
-    "men": 200,
-    "women": 190,
-    "sports": 16,
-    "budget_m": 35.0,
-    "olympians": 1
-  },
-  {
-    "name": "Hawai'i",
-    "state": "HI",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 17,
-    "budget_m": 40.0,
-    "olympians": 1
-  },
-  {
-    "name": "University of Dayton",
-    "state": "OH",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic 10 Conference",
-    "men": 240,
-    "women": 220,
-    "sports": 17,
-    "budget_m": 32.0,
-    "olympians": 1
-  },
-  {
-    "name": "University of Nevada, Reno",
-    "state": "NV",
-    "classification": "NCAA Division I",
-    "conference": "Mountain West Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 16,
-    "budget_m": 42.0,
-    "olympians": 1
-  },
-  {
-    "name": "University of Wisconsin-Madison",
-    "state": "WI",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 430,
-    "women": 400,
-    "sports": 23,
-    "budget_m": 155.0,
-    "olympians": 1
-  },
-  {
-    "name": "Vanderbilt University",
-    "state": "TN",
-    "classification": "NCAA Division I",
-    "conference": "Southeastern Conference",
-    "men": 280,
-    "women": 260,
-    "sports": 16,
-    "budget_m": 110.0,
-    "olympians": 1
-  },
-  {
-    "name": "Virginia Tech",
-    "state": "VA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 310,
-    "women": 290,
-    "sports": 22,
-    "budget_m": 95.0,
-    "olympians": 1
-  },
-  {
-    "name": "Boston College",
-    "state": "MA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 380,
-    "women": 360,
-    "sports": 31,
-    "budget_m": 90.0,
-    "olympians": 0
-  },
-  {
-    "name": "Colorado College",
-    "state": "CO",
-    "classification": "NCAA Division III",
-    "conference": "Southern Collegiate Athletic Conference",
-    "men": 230,
-    "women": 210,
-    "sports": 17,
-    "budget_m": 10.0,
-    "olympians": 0
-  },
-  {
-    "name": "DeVry University",
-    "state": "IL",
-    "classification": "Non-athletic",
-    "conference": "",
-    "men": 0,
-    "women": 0,
-    "sports": 0,
-    "budget_m": 0.0,
-    "olympians": 0
-  },
-  {
-    "name": "Long Beach State",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 220,
-    "women": 200,
-    "sports": 17,
-    "budget_m": 32.0,
-    "olympians": 0
-  },
-  {
-    "name": "Ohio State University",
-    "state": "OH",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 510,
-    "women": 470,
-    "sports": 36,
-    "budget_m": 235.0,
-    "olympians": 0
-  },
-  {
-    "name": "Oklahoma State",
-    "state": "OK",
-    "classification": "NCAA Division I",
-    "conference": "Big 12 Conference",
-    "men": 270,
-    "women": 250,
-    "sports": 19,
-    "budget_m": 100.0,
-    "olympians": 0
-  },
-  {
-    "name": "Penn State",
-    "state": "PA",
-    "classification": "NCAA Division I",
-    "conference": "Big Ten Conference",
-    "men": 430,
-    "women": 400,
-    "sports": 31,
-    "budget_m": 165.0,
-    "olympians": 0
-  },
-  {
-    "name": "Stanford",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 430,
-    "women": 410,
-    "sports": 36,
-    "budget_m": 178.0,
-    "olympians": 0
-  },
-  {
-    "name": "University of California - Berkeley",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Atlantic Coast Conference",
-    "men": 450,
-    "women": 430,
-    "sports": 30,
-    "budget_m": 105.0,
-    "olympians": 0
-  },
-  {
-    "name": "University of California, Irvine",
-    "state": "CA",
-    "classification": "NCAA Division I",
-    "conference": "Big West Conference",
-    "men": 250,
-    "women": 230,
-    "sports": 18,
-    "budget_m": 35.0,
-    "olympians": 0
+    "matched_profiles": 120,
+    "profile_types": {
+      "Olympic": 80,
+      "Paralympic": 4,
+      "Hopeful": 36
+    },
+    "olympians": 80,
+    "paralympians": 4,
+    "hopefuls": 36
   },
   {
     "name": "University of California, Los Angeles",
@@ -1812,40 +27,72 @@
     "women": 360,
     "sports": 25,
     "budget_m": 140.0,
-    "olympians": 0
+    "matched_profiles": 90,
+    "profile_types": {
+      "Olympic": 59,
+      "Paralympic": 2,
+      "Hopeful": 29
+    },
+    "olympians": 59,
+    "paralympians": 2,
+    "hopefuls": 29
   },
   {
-    "name": "University of California, Santa Cruz",
-    "state": "CA",
-    "classification": "NCAA Division III",
-    "conference": "Independent",
-    "men": 160,
-    "women": 150,
-    "sports": 14,
-    "budget_m": 3.0,
-    "olympians": 0
-  },
-  {
-    "name": "University of Colorado Colorado Springs",
-    "state": "CO",
-    "classification": "NCAA Division II",
-    "conference": "Rocky Mountain Athletic Conference",
-    "men": 180,
-    "women": 170,
-    "sports": 14,
-    "budget_m": 8.0,
-    "olympians": 0
-  },
-  {
-    "name": "University of Illinois Urbana",
+    "name": "DeVry University",
     "state": "IL",
+    "classification": "Non-athletic",
+    "conference": "",
+    "men": 0,
+    "women": 0,
+    "sports": 0,
+    "budget_m": 0.0,
+    "matched_profiles": 62,
+    "profile_types": {
+      "Olympic": 31,
+      "Paralympic": 19,
+      "Hopeful": 12
+    },
+    "olympians": 31,
+    "paralympians": 19,
+    "hopefuls": 12
+  },
+  {
+    "name": "University of Southern California",
+    "state": "CA",
     "classification": "NCAA Division I",
     "conference": "Big Ten Conference",
-    "men": 310,
-    "women": 290,
+    "men": 370,
+    "women": 350,
     "sports": 21,
-    "budget_m": 110.0,
-    "olympians": 0
+    "budget_m": 165.0,
+    "matched_profiles": 61,
+    "profile_types": {
+      "Olympic": 44,
+      "Paralympic": 3,
+      "Hopeful": 14
+    },
+    "olympians": 44,
+    "paralympians": 3,
+    "hopefuls": 14
+  },
+  {
+    "name": "University of Minnesota",
+    "state": "MN",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 25,
+    "budget_m": 130.0,
+    "matched_profiles": 58,
+    "profile_types": {
+      "Olympic": 36,
+      "Paralympic": 3,
+      "Hopeful": 19
+    },
+    "olympians": 36,
+    "paralympians": 3,
+    "hopefuls": 19
   },
   {
     "name": "University of Illinois Urbana-Champaign",
@@ -1856,18 +103,2599 @@
     "women": 290,
     "sports": 21,
     "budget_m": 110.0,
-    "olympians": 0
+    "matched_profiles": 54,
+    "profile_types": {
+      "Olympic": 8,
+      "Paralympic": 37,
+      "Hopeful": 9
+    },
+    "olympians": 8,
+    "paralympians": 37,
+    "hopefuls": 9
   },
   {
-    "name": "University of Illinois at Urbana Champaign",
-    "state": "IL",
+    "name": "University of Michigan",
+    "state": "MI",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 480,
+    "women": 420,
+    "sports": 29,
+    "budget_m": 197.0,
+    "matched_profiles": 52,
+    "profile_types": {
+      "Olympic": 40,
+      "Paralympic": 2,
+      "Hopeful": 10
+    },
+    "olympians": 40,
+    "paralympians": 2,
+    "hopefuls": 10
+  },
+  {
+    "name": "University of Texas",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 20,
+    "budget_m": 225.0,
+    "matched_profiles": 51,
+    "profile_types": {
+      "Olympic": 27,
+      "Paralympic": 2,
+      "Hopeful": 22
+    },
+    "olympians": 27,
+    "paralympians": 2,
+    "hopefuls": 22
+  },
+  {
+    "name": "University of Utah",
+    "state": "UT",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 19,
+    "budget_m": 95.0,
+    "matched_profiles": 49,
+    "profile_types": {
+      "Olympic": 41,
+      "Paralympic": 2,
+      "Hopeful": 6
+    },
+    "olympians": 41,
+    "paralympians": 2,
+    "hopefuls": 6
+  },
+  {
+    "name": "University of California - Berkeley",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 450,
+    "women": 430,
+    "sports": 30,
+    "budget_m": 105.0,
+    "matched_profiles": 48,
+    "profile_types": {
+      "Olympic": 32,
+      "Paralympic": 1,
+      "Hopeful": 15
+    },
+    "olympians": 32,
+    "paralympians": 1,
+    "hopefuls": 15
+  },
+  {
+    "name": "The Ohio State University",
+    "state": "OH",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 510,
+    "women": 470,
+    "sports": 36,
+    "budget_m": 235.0,
+    "matched_profiles": 46,
+    "profile_types": {
+      "Olympic": 23,
+      "Paralympic": 3,
+      "Hopeful": 20
+    },
+    "olympians": 23,
+    "paralympians": 3,
+    "hopefuls": 20
+  },
+  {
+    "name": "University of Florida",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 21,
+    "budget_m": 185.0,
+    "matched_profiles": 45,
+    "profile_types": {
+      "Olympic": 29,
+      "Paralympic": 1,
+      "Hopeful": 15
+    },
+    "olympians": 29,
+    "paralympians": 1,
+    "hopefuls": 15
+  },
+  {
+    "name": "University of Washington",
+    "state": "WA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 330,
+    "women": 310,
+    "sports": 22,
+    "budget_m": 125.0,
+    "matched_profiles": 45,
+    "profile_types": {
+      "Olympic": 26,
+      "Paralympic": 5,
+      "Hopeful": 14
+    },
+    "olympians": 26,
+    "paralympians": 5,
+    "hopefuls": 14
+  },
+  {
+    "name": "Penn State University",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 430,
+    "women": 400,
+    "sports": 31,
+    "budget_m": 165.0,
+    "matched_profiles": 41,
+    "profile_types": {
+      "Olympic": 30,
+      "Paralympic": 3,
+      "Hopeful": 8
+    },
+    "olympians": 30,
+    "paralympians": 3,
+    "hopefuls": 8
+  },
+  {
+    "name": "University of Wisconsin",
+    "state": "WI",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 430,
+    "women": 400,
+    "sports": 23,
+    "budget_m": 155.0,
+    "matched_profiles": 41,
+    "profile_types": {
+      "Olympic": 32,
+      "Paralympic": 1,
+      "Hopeful": 8
+    },
+    "olympians": 32,
+    "paralympians": 1,
+    "hopefuls": 8
+  },
+  {
+    "name": "Harvard University",
+    "state": "MA",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 530,
+    "women": 510,
+    "sports": 42,
+    "budget_m": 50.0,
+    "matched_profiles": 40,
+    "profile_types": {
+      "Olympic": 31,
+      "Paralympic": 2,
+      "Hopeful": 7
+    },
+    "olympians": 31,
+    "paralympians": 2,
+    "hopefuls": 7
+  },
+  {
+    "name": "Princeton University",
+    "state": "NJ",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 500,
+    "women": 480,
+    "sports": 37,
+    "budget_m": 42.0,
+    "matched_profiles": 40,
+    "profile_types": {
+      "Olympic": 27,
+      "Paralympic": 1,
+      "Hopeful": 12
+    },
+    "olympians": 27,
+    "paralympians": 1,
+    "hopefuls": 12
+  },
+  {
+    "name": "University of Arizona",
+    "state": "AZ",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 21,
+    "budget_m": 105.0,
+    "matched_profiles": 38,
+    "profile_types": {
+      "Olympic": 17,
+      "Paralympic": 10,
+      "Hopeful": 11
+    },
+    "olympians": 17,
+    "paralympians": 10,
+    "hopefuls": 11
+  },
+  {
+    "name": "University of Oregon",
+    "state": "OR",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 120.0,
+    "matched_profiles": 38,
+    "profile_types": {
+      "Olympic": 25,
+      "Paralympic": 1,
+      "Hopeful": 12
+    },
+    "olympians": 25,
+    "paralympians": 1,
+    "hopefuls": 12
+  },
+  {
+    "name": "Dartmouth College",
+    "state": "NH",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 460,
+    "women": 440,
+    "sports": 34,
+    "budget_m": 38.0,
+    "matched_profiles": 35,
+    "profile_types": {
+      "Olympic": 29,
+      "Paralympic": 1,
+      "Hopeful": 5
+    },
+    "olympians": 29,
+    "paralympians": 1,
+    "hopefuls": 5
+  },
+  {
+    "name": "University of North Carolina",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 410,
+    "women": 390,
+    "sports": 28,
+    "budget_m": 115.0,
+    "matched_profiles": 35,
+    "profile_types": {
+      "Olympic": 20,
+      "Paralympic": 3,
+      "Hopeful": 12
+    },
+    "olympians": 20,
+    "paralympians": 3,
+    "hopefuls": 12
+  },
+  {
+    "name": "Texas A&M University",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 20,
+    "budget_m": 180.0,
+    "matched_profiles": 34,
+    "profile_types": {
+      "Olympic": 20,
+      "Paralympic": 1,
+      "Hopeful": 13
+    },
+    "olympians": 20,
+    "paralympians": 1,
+    "hopefuls": 13
+  },
+  {
+    "name": "University of Virginia",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 380,
+    "women": 360,
+    "sports": 27,
+    "budget_m": 115.0,
+    "matched_profiles": 34,
+    "profile_types": {
+      "Olympic": 22,
+      "Paralympic": 3,
+      "Hopeful": 9
+    },
+    "olympians": 22,
+    "paralympians": 3,
+    "hopefuls": 9
+  },
+  {
+    "name": "University of Georgia",
+    "state": "GA",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 310,
+    "women": 280,
+    "sports": 21,
+    "budget_m": 170.0,
+    "matched_profiles": 33,
+    "profile_types": {
+      "Olympic": 19,
+      "Paralympic": 5,
+      "Hopeful": 9
+    },
+    "olympians": 19,
+    "paralympians": 5,
+    "hopefuls": 9
+  },
+  {
+    "name": "Louisiana State University",
+    "state": "LA",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 300,
+    "women": 280,
+    "sports": 21,
+    "budget_m": 175.0,
+    "matched_profiles": 31,
+    "profile_types": {
+      "Olympic": 15,
+      "Paralympic": 2,
+      "Hopeful": 14
+    },
+    "olympians": 15,
+    "paralympians": 2,
+    "hopefuls": 14
+  },
+  {
+    "name": "University of Alabama",
+    "state": "AL",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 21,
+    "budget_m": 195.0,
+    "matched_profiles": 30,
+    "profile_types": {
+      "Olympic": 9,
+      "Paralympic": 12,
+      "Hopeful": 9
+    },
+    "olympians": 9,
+    "paralympians": 12,
+    "hopefuls": 9
+  },
+  {
+    "name": "University of Notre Dame",
+    "state": "IN",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 370,
+    "women": 350,
+    "sports": 26,
+    "budget_m": 135.0,
+    "matched_profiles": 27,
+    "profile_types": {
+      "Olympic": 19,
+      "Paralympic": 1,
+      "Hopeful": 7
+    },
+    "olympians": 19,
+    "paralympians": 1,
+    "hopefuls": 7
+  },
+  {
+    "name": "Indiana University",
+    "state": "IN",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 350,
+    "women": 330,
+    "sports": 24,
+    "budget_m": 100.0,
+    "matched_profiles": 26,
+    "profile_types": {
+      "Olympic": 14,
+      "Paralympic": 0,
+      "Hopeful": 12
+    },
+    "olympians": 14,
+    "paralympians": 0,
+    "hopefuls": 12
+  },
+  {
+    "name": "University of Tennessee",
+    "state": "TN",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 300,
+    "women": 280,
+    "sports": 20,
+    "budget_m": 165.0,
+    "matched_profiles": 26,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 1,
+      "Hopeful": 12
+    },
+    "olympians": 13,
+    "paralympians": 1,
+    "hopefuls": 12
+  },
+  {
+    "name": "University of Maryland",
+    "state": "MD",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 27,
+    "budget_m": 115.0,
+    "matched_profiles": 25,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 2,
+      "Hopeful": 13
+    },
+    "olympians": 10,
+    "paralympians": 2,
+    "hopefuls": 13
+  },
+  {
+    "name": "University of Kentucky",
+    "state": "KY",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 22,
+    "budget_m": 145.0,
+    "matched_profiles": 24,
+    "profile_types": {
+      "Olympic": 18,
+      "Paralympic": 0,
+      "Hopeful": 6
+    },
+    "olympians": 18,
+    "paralympians": 0,
+    "hopefuls": 6
+  },
+  {
+    "name": "Yale University",
+    "state": "CT",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 500,
+    "women": 480,
+    "sports": 35,
+    "budget_m": 42.0,
+    "matched_profiles": 24,
+    "profile_types": {
+      "Olympic": 16,
+      "Paralympic": 1,
+      "Hopeful": 7
+    },
+    "olympians": 16,
+    "paralympians": 1,
+    "hopefuls": 7
+  },
+  {
+    "name": "Arizona State University",
+    "state": "AZ",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 330,
+    "women": 310,
+    "sports": 26,
+    "budget_m": 115.0,
+    "matched_profiles": 23,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 5,
+      "Hopeful": 11
+    },
+    "olympians": 7,
+    "paralympians": 5,
+    "hopefuls": 11
+  },
+  {
+    "name": "Purdue University",
+    "state": "IN",
     "classification": "NCAA Division I",
     "conference": "Big Ten Conference",
     "men": 310,
     "women": 290,
+    "sports": 18,
+    "budget_m": 100.0,
+    "matched_profiles": 23,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 2,
+      "Hopeful": 9
+    },
+    "olympians": 12,
+    "paralympians": 2,
+    "hopefuls": 9
+  },
+  {
+    "name": "University of Oklahoma",
+    "state": "OK",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 300,
+    "women": 280,
+    "sports": 19,
+    "budget_m": 145.0,
+    "matched_profiles": 23,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 2,
+      "Hopeful": 11
+    },
+    "olympians": 10,
+    "paralympians": 2,
+    "hopefuls": 11
+  },
+  {
+    "name": "Boston College",
+    "state": "MA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 380,
+    "women": 360,
+    "sports": 31,
+    "budget_m": 90.0,
+    "matched_profiles": 22,
+    "profile_types": {
+      "Olympic": 16,
+      "Paralympic": 0,
+      "Hopeful": 6
+    },
+    "olympians": 16,
+    "paralympians": 0,
+    "hopefuls": 6
+  },
+  {
+    "name": "Duke University",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 340,
+    "women": 320,
+    "sports": 27,
+    "budget_m": 130.0,
+    "matched_profiles": 22,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 0,
+      "Hopeful": 9
+    },
+    "olympians": 13,
+    "paralympians": 0,
+    "hopefuls": 9
+  },
+  {
+    "name": "Brigham Young University",
+    "state": "UT",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 350,
+    "women": 330,
     "sports": 21,
+    "budget_m": 80.0,
+    "matched_profiles": 21,
+    "profile_types": {
+      "Olympic": 16,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 16,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "Columbia University",
+    "state": "NY",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 500,
+    "women": 480,
+    "sports": 31,
+    "budget_m": 38.0,
+    "matched_profiles": 21,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 3,
+      "Hopeful": 6
+    },
+    "olympians": 12,
+    "paralympians": 3,
+    "hopefuls": 6
+  },
+  {
+    "name": "Westminster College",
+    "state": "UT",
+    "classification": "NAIA",
+    "conference": "Frontier Conference",
+    "men": 180,
+    "women": 170,
+    "sports": 18,
+    "budget_m": 5.0,
+    "matched_profiles": 21,
+    "profile_types": {
+      "Olympic": 20,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 20,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Nebraska",
+    "state": "NE",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 350,
+    "women": 320,
+    "sports": 24,
+    "budget_m": 125.0,
+    "matched_profiles": 20,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 3,
+      "Hopeful": 4
+    },
+    "olympians": 13,
+    "paralympians": 3,
+    "hopefuls": 4
+  },
+  {
+    "name": "Florida State University",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 20,
+    "budget_m": 130.0,
+    "matched_profiles": 19,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 1,
+      "Hopeful": 8
+    },
+    "olympians": 10,
+    "paralympians": 1,
+    "hopefuls": 8
+  },
+  {
+    "name": "University of California, Irvine",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 18,
+    "budget_m": 35.0,
+    "matched_profiles": 19,
+    "profile_types": {
+      "Olympic": 9,
+      "Paralympic": 1,
+      "Hopeful": 9
+    },
+    "olympians": 9,
+    "paralympians": 1,
+    "hopefuls": 9
+  },
+  {
+    "name": "University of Texas at Austin",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 20,
+    "budget_m": 225.0,
+    "matched_profiles": 19,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 2,
+      "Hopeful": 4
+    },
+    "olympians": 13,
+    "paralympians": 2,
+    "hopefuls": 4
+  },
+  {
+    "name": "University of Arkansas",
+    "state": "AR",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 19,
+    "budget_m": 130.0,
+    "matched_profiles": 18,
+    "profile_types": {
+      "Olympic": 14,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 14,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Boston University",
+    "state": "MA",
+    "classification": "NCAA Division I",
+    "conference": "Patriot League",
+    "men": 320,
+    "women": 300,
+    "sports": 24,
+    "budget_m": 40.0,
+    "matched_profiles": 17,
+    "profile_types": {
+      "Olympic": 16,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 16,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Long Beach State University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 32.0,
+    "matched_profiles": 17,
+    "profile_types": {
+      "Olympic": 9,
+      "Paralympic": 0,
+      "Hopeful": 8
+    },
+    "olympians": 9,
+    "paralympians": 0,
+    "hopefuls": 8
+  },
+  {
+    "name": "University of California",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 450,
+    "women": 430,
+    "sports": 30,
+    "budget_m": 105.0,
+    "matched_profiles": 17,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 0,
+      "Hopeful": 5
+    },
+    "olympians": 12,
+    "paralympians": 0,
+    "hopefuls": 5
+  },
+  {
+    "name": "University of Colorado",
+    "state": "CO",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 17,
+    "budget_m": 105.0,
+    "matched_profiles": 17,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 4,
+      "Hopeful": 3
+    },
+    "olympians": 10,
+    "paralympians": 4,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of Colorado Colorado Springs",
+    "state": "CO",
+    "classification": "NCAA Division II",
+    "conference": "Rocky Mountain Athletic Conference",
+    "men": 180,
+    "women": 170,
+    "sports": 14,
+    "budget_m": 8.0,
+    "matched_profiles": 17,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 4,
+      "Hopeful": 0
+    },
+    "olympians": 13,
+    "paralympians": 4,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Colorado Boulder",
+    "state": "CO",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 17,
+    "budget_m": 105.0,
+    "matched_profiles": 16,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 3,
+      "Hopeful": 3
+    },
+    "olympians": 10,
+    "paralympians": 3,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of South Carolina",
+    "state": "SC",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 19,
+    "budget_m": 115.0,
+    "matched_profiles": 15,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 0,
+      "Hopeful": 8
+    },
+    "olympians": 7,
+    "paralympians": 0,
+    "hopefuls": 8
+  },
+  {
+    "name": "University of Texas at Arlington",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Western Athletic Conference",
+    "men": 190,
+    "women": 170,
+    "sports": 15,
+    "budget_m": 28.0,
+    "matched_profiles": 15,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 12,
+      "Hopeful": 2
+    },
+    "olympians": 1,
+    "paralympians": 12,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of Wisconsin-Whitewater",
+    "state": "WI",
+    "classification": "NCAA Division III",
+    "conference": "Wisconsin Intercollegiate Athletic Conference",
+    "men": 350,
+    "women": 320,
+    "sports": 22,
+    "budget_m": 5.0,
+    "matched_profiles": 15,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 14,
+      "Hopeful": 1
+    },
+    "olympians": 0,
+    "paralympians": 14,
+    "hopefuls": 1
+  },
+  {
+    "name": "Auburn University",
+    "state": "AL",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 20,
+    "budget_m": 165.0,
+    "matched_profiles": 14,
+    "profile_types": {
+      "Olympic": 8,
+      "Paralympic": 0,
+      "Hopeful": 6
+    },
+    "olympians": 8,
+    "paralympians": 0,
+    "hopefuls": 6
+  },
+  {
+    "name": "Colorado State University",
+    "state": "CO",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 16,
+    "budget_m": 55.0,
+    "matched_profiles": 14,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 4,
+      "Hopeful": 6
+    },
+    "olympians": 4,
+    "paralympians": 4,
+    "hopefuls": 6
+  },
+  {
+    "name": "Cornell University",
+    "state": "NY",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 530,
+    "women": 510,
+    "sports": 37,
+    "budget_m": 40.0,
+    "matched_profiles": 14,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 10,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of Connecticut",
+    "state": "CT",
+    "classification": "NCAA Division I",
+    "conference": "Big East Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 24,
+    "budget_m": 95.0,
+    "matched_profiles": 14,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 10,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Rutgers University",
+    "state": "NJ",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 27,
+    "budget_m": 115.0,
+    "matched_profiles": 13,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 2,
+      "Hopeful": 5
+    },
+    "olympians": 6,
+    "paralympians": 2,
+    "hopefuls": 5
+  },
+  {
+    "name": "San Diego State University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 19,
+    "budget_m": 55.0,
+    "matched_profiles": 13,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 4,
+      "Hopeful": 3
+    },
+    "olympians": 6,
+    "paralympians": 4,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of California, Santa Barbara",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 200,
+    "women": 190,
+    "sports": 14,
+    "budget_m": 25.0,
+    "matched_profiles": 13,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 7
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 7
+  },
+  {
+    "name": "University of Massachusetts",
+    "state": "MA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic 10 Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 21,
+    "budget_m": 45.0,
+    "matched_profiles": 13,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 3,
+      "Hopeful": 3
+    },
+    "olympians": 7,
+    "paralympians": 3,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of Miami",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 105.0,
+    "matched_profiles": 13,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 8
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 8
+  },
+  {
+    "name": "Brown University",
+    "state": "RI",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 490,
+    "women": 470,
+    "sports": 38,
+    "budget_m": 35.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 10,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Northeastern University",
+    "state": "MA",
+    "classification": "NCAA Division I",
+    "conference": "Colonial Athletic Association",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 42.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 3,
+      "Hopeful": 3
+    },
+    "olympians": 6,
+    "paralympians": 3,
+    "hopefuls": 3
+  },
+  {
+    "name": "Northwestern University",
+    "state": "IL",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 19,
+    "budget_m": 100.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 6
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 6
+  },
+  {
+    "name": "Pepperdine University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "West Coast Conference",
+    "men": 200,
+    "women": 190,
+    "sports": 15,
+    "budget_m": 25.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 0,
+      "Hopeful": 5
+    },
+    "olympians": 7,
+    "paralympians": 0,
+    "hopefuls": 5
+  },
+  {
+    "name": "University of Hawaii",
+    "state": "HI",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 17,
+    "budget_m": 40.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 6
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 6
+  },
+  {
+    "name": "University of Minnesota Duluth",
+    "state": "MN",
+    "classification": "NCAA Division II",
+    "conference": "Northern Sun Intercollegiate Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 16,
+    "budget_m": 12.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 8,
+      "Paralympic": 0,
+      "Hopeful": 4
+    },
+    "olympians": 8,
+    "paralympians": 0,
+    "hopefuls": 4
+  },
+  {
+    "name": "University of Vermont",
+    "state": "VT",
+    "classification": "NCAA Division I",
+    "conference": "America East Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 18,
+    "budget_m": 28.0,
+    "matched_profiles": 12,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 0,
+      "Hopeful": 5
+    },
+    "olympians": 7,
+    "paralympians": 0,
+    "hopefuls": 5
+  },
+  {
+    "name": "Oregon State University",
+    "state": "OR",
+    "classification": "NCAA Division I",
+    "conference": "Pac-12 Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 17,
+    "budget_m": 80.0,
+    "matched_profiles": 11,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 2,
+      "Hopeful": 6
+    },
+    "olympians": 3,
+    "paralympians": 2,
+    "hopefuls": 6
+  },
+  {
+    "name": "University of Louisville",
+    "state": "KY",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 23,
+    "budget_m": 115.0,
+    "matched_profiles": 11,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 0,
+      "Hopeful": 4
+    },
+    "olympians": 7,
+    "paralympians": 0,
+    "hopefuls": 4
+  },
+  {
+    "name": "University of New Hampshire",
+    "state": "NH",
+    "classification": "NCAA Division I",
+    "conference": "America East Conference",
+    "men": 260,
+    "women": 240,
+    "sports": 18,
+    "budget_m": 35.0,
+    "matched_profiles": 11,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 4,
+      "Hopeful": 2
+    },
+    "olympians": 5,
+    "paralympians": 4,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of Pennsylvania",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 480,
+    "women": 460,
+    "sports": 33,
+    "budget_m": 38.0,
+    "matched_profiles": 11,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 5
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 5
+  },
+  {
+    "name": "Bemidji State University",
+    "state": "MN",
+    "classification": "NCAA Division II",
+    "conference": "Northern Sun Intercollegiate Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 15,
+    "budget_m": 8.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 0,
+      "Hopeful": 4
+    },
+    "olympians": 6,
+    "paralympians": 0,
+    "hopefuls": 4
+  },
+  {
+    "name": "California Polytechnic State University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 21,
+    "budget_m": 35.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 6,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Michigan State University",
+    "state": "MI",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 370,
+    "women": 340,
+    "sports": 25,
+    "budget_m": 140.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 6,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Salt Lake Community College",
+    "state": "UT",
+    "classification": "NJCAA",
+    "conference": "Scenic West Athletic Conference",
+    "men": 120,
+    "women": 110,
+    "sports": 10,
+    "budget_m": 3.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "San Jose State University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 19,
+    "budget_m": 38.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 2,
+      "Hopeful": 3
+    },
+    "olympians": 5,
+    "paralympians": 2,
+    "hopefuls": 3
+  },
+  {
+    "name": "Syracuse University",
+    "state": "NY",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 320,
+    "women": 300,
+    "sports": 20,
+    "budget_m": 90.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 0,
+      "Hopeful": 4
+    },
+    "olympians": 6,
+    "paralympians": 0,
+    "hopefuls": 4
+  },
+  {
+    "name": "University of Central Oklahoma",
+    "state": "OK",
+    "classification": "NCAA Division II",
+    "conference": "Mid-America Intercollegiate Athletics Association",
+    "men": 220,
+    "women": 200,
+    "sports": 15,
+    "budget_m": 10.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 9,
+      "Hopeful": 1
+    },
+    "olympians": 0,
+    "paralympians": 9,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Denver",
+    "state": "CO",
+    "classification": "NCAA Division I",
+    "conference": "Summit League",
+    "men": 210,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 40.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 4,
+      "Hopeful": 2
+    },
+    "olympians": 4,
+    "paralympians": 4,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of Iowa",
+    "state": "IA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 340,
+    "women": 320,
+    "sports": 22,
+    "budget_m": 130.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 0,
+      "Hopeful": 5
+    },
+    "olympians": 5,
+    "paralympians": 0,
+    "hopefuls": 5
+  },
+  {
+    "name": "University of North Dakota",
+    "state": "ND",
+    "classification": "NCAA Division I",
+    "conference": "Summit League",
+    "men": 260,
+    "women": 240,
+    "sports": 21,
+    "budget_m": 30.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 8,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 8,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Washington State University",
+    "state": "WA",
+    "classification": "NCAA Division I",
+    "conference": "Pac-12 Conference",
+    "men": 250,
+    "women": 230,
+    "sports": 17,
+    "budget_m": 70.0,
+    "matched_profiles": 10,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "Baylor University",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 19,
+    "budget_m": 100.0,
+    "matched_profiles": 9,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 0,
+      "Hopeful": 3
+    },
+    "olympians": 6,
+    "paralympians": 0,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of Central Florida",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 16,
+    "budget_m": 80.0,
+    "matched_profiles": 9,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "University of Kansas",
+    "state": "KS",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 115.0,
+    "matched_profiles": 9,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 1,
+      "Hopeful": 1
+    },
+    "olympians": 7,
+    "paralympians": 1,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of South Florida",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "American Athletic Conference",
+    "men": 260,
+    "women": 240,
+    "sports": 19,
+    "budget_m": 55.0,
+    "matched_profiles": 9,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 5
+    },
+    "olympians": 3,
+    "paralympians": 1,
+    "hopefuls": 5
+  },
+  {
+    "name": "George Mason University",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic 10 Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 22,
+    "budget_m": 38.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 2
+  },
+  {
+    "name": "Georgetown University",
+    "state": "DC",
+    "classification": "NCAA Division I",
+    "conference": "Big East Conference",
+    "men": 340,
+    "women": 320,
+    "sports": 29,
+    "budget_m": 48.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 5,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
+    "olympians": 5,
+    "paralympians": 1,
+    "hopefuls": 2
+  },
+  {
+    "name": "North Carolina State University",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 23,
+    "budget_m": 100.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 6,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Northern Michigan University",
+    "state": "MI",
+    "classification": "NCAA Division II",
+    "conference": "Great Lakes Intercollegiate Athletic Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 16,
+    "budget_m": 10.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Oklahoma State University",
+    "state": "OK",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 19,
+    "budget_m": 100.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 1,
+      "Hopeful": 1
+    },
+    "olympians": 6,
+    "paralympians": 1,
+    "hopefuls": 1
+  },
+  {
+    "name": "Southern Methodist University",
+    "state": "TX",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 260,
+    "women": 240,
+    "sports": 17,
+    "budget_m": 70.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 3,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "United States Military Academy",
+    "state": "NY",
+    "classification": "NCAA Division I",
+    "conference": "Patriot League",
+    "men": 550,
+    "women": 230,
+    "sports": 32,
+    "budget_m": 40.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 3,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "University of Mississippi",
+    "state": "MS",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 18,
     "budget_m": 110.0,
-    "olympians": 0
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 6,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of North Carolina, Chapel Hill",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 410,
+    "women": 390,
+    "sports": 28,
+    "budget_m": 115.0,
+    "matched_profiles": 8,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 6
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 6
+  },
+  {
+    "name": "Colorado Mountain College",
+    "state": "CO",
+    "classification": "NJCAA",
+    "conference": "Independent",
+    "men": 60,
+    "women": 50,
+    "sports": 6,
+    "budget_m": 1.5,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 2
+  },
+  {
+    "name": "Georgia Tech",
+    "state": "GA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 17,
+    "budget_m": 95.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 2,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 2,
+    "hopefuls": 2
+  },
+  {
+    "name": "James Madison University",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Sun Belt Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 52.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 1,
+      "Hopeful": 5
+    },
+    "olympians": 1,
+    "paralympians": 1,
+    "hopefuls": 5
+  },
+  {
+    "name": "Naval Academy",
+    "state": "MD",
+    "classification": "NCAA Division I",
+    "conference": "Patriot League",
+    "men": 550,
+    "women": 220,
+    "sports": 33,
+    "budget_m": 40.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 3,
+      "Hopeful": 2
+    },
+    "olympians": 2,
+    "paralympians": 3,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of California, Davis",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 340,
+    "women": 320,
+    "sports": 25,
+    "budget_m": 28.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 2,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 2,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of California, San Diego",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 300,
+    "women": 280,
+    "sports": 23,
+    "budget_m": 32.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
+    "olympians": 2,
+    "paralympians": 1,
+    "hopefuls": 4
+  },
+  {
+    "name": "Wake Forest University",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 18,
+    "budget_m": 90.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 3,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "West Virginia University",
+    "state": "WV",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 17,
+    "budget_m": 75.0,
+    "matched_profiles": 7,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 3
+    },
+    "olympians": 3,
+    "paralympians": 1,
+    "hopefuls": 3
+  },
+  {
+    "name": "Indiana State University",
+    "state": "IN",
+    "classification": "NCAA Division I",
+    "conference": "Missouri Valley Conference",
+    "men": 200,
+    "women": 180,
+    "sports": 17,
+    "budget_m": 22.0,
+    "matched_profiles": 6,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 3,
+      "Hopeful": 0
+    },
+    "olympians": 3,
+    "paralympians": 3,
+    "hopefuls": 0
+  },
+  {
+    "name": "Marian University",
+    "state": "IN",
+    "classification": "NAIA",
+    "conference": "Crossroads League",
+    "men": 350,
+    "women": 320,
+    "sports": 27,
+    "budget_m": 8.0,
+    "matched_profiles": 6,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 1
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 1
+  },
+  {
+    "name": "Old Dominion University",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Sun Belt Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 18,
+    "budget_m": 45.0,
+    "matched_profiles": 6,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 3
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 3
+  },
+  {
+    "name": "Tennessee State University",
+    "state": "TN",
+    "classification": "NCAA Division I",
+    "conference": "Ohio Valley Conference",
+    "men": 200,
+    "women": 180,
+    "sports": 16,
+    "budget_m": 15.0,
+    "matched_profiles": 6,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 1
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Minnesota, Twin Cities",
+    "state": "MN",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 340,
+    "women": 310,
+    "sports": 25,
+    "budget_m": 130.0,
+    "matched_profiles": 6,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 2,
+      "Hopeful": 2
+    },
+    "olympians": 2,
+    "paralympians": 2,
+    "hopefuls": 2
+  },
+  {
+    "name": "Ashland University",
+    "state": "OH",
+    "classification": "NCAA Division II",
+    "conference": "Great Midwest Athletic Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 22,
+    "budget_m": 8.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "Clarkson University",
+    "state": "NY",
+    "classification": "NCAA Division III",
+    "conference": "Liberty League",
+    "men": 310,
+    "women": 290,
+    "sports": 22,
+    "budget_m": 6.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 4,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "Iowa State University",
+    "state": "IA",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 16,
+    "budget_m": 95.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Lindenwood University",
+    "state": "MO",
+    "classification": "NCAA Division I",
+    "conference": "Ohio Valley Conference",
+    "men": 260,
+    "women": 240,
+    "sports": 27,
+    "budget_m": 18.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Mississippi State University",
+    "state": "MS",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 16,
+    "budget_m": 95.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Queens University of Charlotte",
+    "state": "NC",
+    "classification": "NCAA Division I",
+    "conference": "ASUN Conference",
+    "men": 290,
+    "women": 270,
+    "sports": 23,
+    "budget_m": 12.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
+    "olympians": 2,
+    "paralympians": 1,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of Cincinnati",
+    "state": "OH",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 18,
+    "budget_m": 80.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "University of Nevada, Las Vegas",
+    "state": "NV",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 17,
+    "budget_m": 55.0,
+    "matched_profiles": 5,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Fresno State University",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 18,
+    "budget_m": 42.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Sacred Heart University",
+    "state": "CT",
+    "classification": "NCAA Division I",
+    "conference": "Northeast Conference",
+    "men": 460,
+    "women": 430,
+    "sports": 32,
+    "budget_m": 22.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 3,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 3,
+    "hopefuls": 0
+  },
+  {
+    "name": "Southern Illinois University",
+    "state": "IL",
+    "classification": "NCAA Division I",
+    "conference": "Missouri Valley Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 18,
+    "budget_m": 30.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 3,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 3,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Nevada, Reno",
+    "state": "NV",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 16,
+    "budget_m": 42.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Pittsburgh",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 19,
+    "budget_m": 95.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 2,
+      "Hopeful": 1
+    },
+    "olympians": 1,
+    "paralympians": 2,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Wisconsin-Madison",
+    "state": "WI",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 430,
+    "women": 400,
+    "sports": 23,
+    "budget_m": 155.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 4,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Utah Valley University",
+    "state": "UT",
+    "classification": "NCAA Division I",
+    "conference": "Western Athletic Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 16,
+    "budget_m": 20.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Villanova University",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Big East Conference",
+    "men": 340,
+    "women": 320,
+    "sports": 24,
+    "budget_m": 55.0,
+    "matched_profiles": 4,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
+    "olympians": 1,
+    "paralympians": 1,
+    "hopefuls": 2
+  },
+  {
+    "name": "Clemson University",
+    "state": "SC",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 19,
+    "budget_m": 140.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 2,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 2,
+    "hopefuls": 0
+  },
+  {
+    "name": "Florida International University",
+    "state": "FL",
+    "classification": "NCAA Division I",
+    "conference": "Conference USA",
+    "men": 220,
+    "women": 200,
+    "sports": 18,
+    "budget_m": 38.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 2
+  },
+  {
+    "name": "Fort Lewis College",
+    "state": "CO",
+    "classification": "NCAA Division II",
+    "conference": "Rocky Mountain Athletic Conference",
+    "men": 180,
+    "women": 170,
+    "sports": 14,
+    "budget_m": 6.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 2,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Maine",
+    "state": "ME",
+    "classification": "NCAA Division I",
+    "conference": "America East Conference",
+    "men": 260,
+    "women": 240,
+    "sports": 17,
+    "budget_m": 22.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 3,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of New Mexico",
+    "state": "NM",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 18,
+    "budget_m": 45.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 2,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of San Diego",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "West Coast Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 17,
+    "budget_m": 30.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Tulsa",
+    "state": "OK",
+    "classification": "NCAA Division I",
+    "conference": "American Athletic Conference",
+    "men": 210,
+    "women": 190,
+    "sports": 17,
+    "budget_m": 32.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Virginia Tech",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 22,
+    "budget_m": 95.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Weber State University",
+    "state": "UT",
+    "classification": "NCAA Division I",
+    "conference": "Big Sky Conference",
+    "men": 210,
+    "women": 190,
+    "sports": 16,
+    "budget_m": 18.0,
+    "matched_profiles": 3,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 2,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 2,
+    "hopefuls": 0
+  },
+  {
+    "name": "Colorado College",
+    "state": "CO",
+    "classification": "NCAA Division III",
+    "conference": "Southern Collegiate Athletic Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 17,
+    "budget_m": 10.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Howard University",
+    "state": "DC",
+    "classification": "NCAA Division I",
+    "conference": "Mid-Eastern Athletic Conference",
+    "men": 200,
+    "women": 180,
+    "sports": 19,
+    "budget_m": 18.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "Kennesaw State University",
+    "state": "GA",
+    "classification": "NCAA Division I",
+    "conference": "Conference USA",
+    "men": 220,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 28.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Monmouth University",
+    "state": "NJ",
+    "classification": "NCAA Division I",
+    "conference": "Colonial Athletic Association",
+    "men": 240,
+    "women": 220,
+    "sports": 23,
+    "budget_m": 20.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 2,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 2,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Tulane University",
+    "state": "LA",
+    "classification": "NCAA Division I",
+    "conference": "American Athletic Conference",
+    "men": 220,
+    "women": 210,
+    "sports": 16,
+    "budget_m": 42.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of California, Santa Cruz",
+    "state": "CA",
+    "classification": "NCAA Division III",
+    "conference": "Independent",
+    "men": 160,
+    "women": 150,
+    "sports": 14,
+    "budget_m": 3.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 2
   },
   {
     "name": "University of North Carolina at Charlotte",
@@ -1878,6 +2706,432 @@
     "women": 200,
     "sports": 18,
     "budget_m": 38.0,
-    "olympians": 0
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of South Dakota",
+    "state": "SD",
+    "classification": "NCAA Division I",
+    "conference": "Summit League",
+    "men": 220,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 20.0,
+    "matched_profiles": 2,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "Bowling Green State University",
+    "state": "OH",
+    "classification": "NCAA Division I",
+    "conference": "Mid-American Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 18,
+    "budget_m": 28.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Emory University",
+    "state": "GA",
+    "classification": "NCAA Division III",
+    "conference": "University Athletic Association",
+    "men": 250,
+    "women": 240,
+    "sports": 19,
+    "budget_m": 8.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Gonzaga University",
+    "state": "WA",
+    "classification": "NCAA Division I",
+    "conference": "West Coast Conference",
+    "men": 200,
+    "women": 190,
+    "sports": 16,
+    "budget_m": 35.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 1,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 1,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Dayton",
+    "state": "OH",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic 10 Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 17,
+    "budget_m": 32.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 1
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 1
+  },
+  {
+    "name": "University of Wyoming",
+    "state": "WY",
+    "classification": "NCAA Division I",
+    "conference": "Mountain West Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 38.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Vanderbilt University",
+    "state": "TN",
+    "classification": "NCAA Division I",
+    "conference": "Southeastern Conference",
+    "men": 280,
+    "women": 260,
+    "sports": 16,
+    "budget_m": 110.0,
+    "matched_profiles": 1,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 1,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Hawai'i",
+    "state": "HI",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 240,
+    "women": 220,
+    "sports": 17,
+    "budget_m": 40.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Long Beach State",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big West Conference",
+    "men": 220,
+    "women": 200,
+    "sports": 17,
+    "budget_m": 32.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Ohio State University",
+    "state": "OH",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 510,
+    "women": 470,
+    "sports": 36,
+    "budget_m": 235.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Oklahoma State",
+    "state": "OK",
+    "classification": "NCAA Division I",
+    "conference": "Big 12 Conference",
+    "men": 270,
+    "women": 250,
+    "sports": 19,
+    "budget_m": 100.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Penn State",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 430,
+    "women": 400,
+    "sports": 31,
+    "budget_m": 165.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Pennsylvania State University",
+    "state": "PA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 430,
+    "women": 400,
+    "sports": 31,
+    "budget_m": 165.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Stanford",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic Coast Conference",
+    "men": 430,
+    "women": 410,
+    "sports": 36,
+    "budget_m": 178.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "UCLA",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 370,
+    "women": 360,
+    "sports": 25,
+    "budget_m": 140.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "USC",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 370,
+    "women": 350,
+    "sports": 21,
+    "budget_m": 165.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Illinois",
+    "state": "IL",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 21,
+    "budget_m": 110.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Illinois Urbana",
+    "state": "IL",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 21,
+    "budget_m": 110.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Illinois at Urbana Champaign",
+    "state": "IL",
+    "classification": "NCAA Division I",
+    "conference": "Big Ten Conference",
+    "men": 310,
+    "women": 290,
+    "sports": 21,
+    "budget_m": 110.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of Richmond",
+    "state": "VA",
+    "classification": "NCAA Division I",
+    "conference": "Atlantic 10 Conference",
+    "men": 230,
+    "women": 210,
+    "sports": 17,
+    "budget_m": 28.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "University of San Francisco",
+    "state": "CA",
+    "classification": "NCAA Division I",
+    "conference": "West Coast Conference",
+    "men": 180,
+    "women": 170,
+    "sports": 15,
+    "budget_m": 22.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
+  },
+  {
+    "name": "Yale University '23",
+    "state": "CT",
+    "classification": "NCAA Division I",
+    "conference": "Ivy League",
+    "men": 500,
+    "women": 480,
+    "sports": 35,
+    "budget_m": 42.0,
+    "matched_profiles": 0,
+    "profile_types": {
+      "Olympic": 0,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
+    "olympians": 0,
+    "paralympians": 0,
+    "hopefuls": 0
   }
 ]

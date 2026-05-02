@@ -17,7 +17,7 @@ Inputs
 
 Output
 ------
-- ``datasets/teamusa_hometown_geocodes.csv``
+- ``data/teamusa_hometown_geocodes.csv``
   Columns: city, state, lat, lng, canonical_name, strategy, n_athletes
 
 Matching Strategy (applied in order, first hit wins)

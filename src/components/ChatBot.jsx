@@ -5,7 +5,7 @@ import { useGeminiLive } from "../hooks/useGeminiLive.js";
 import { renderFigure } from "../lib/plotly-render.js";
 
 /*
- * ChatBot — "Ask the atlas" floating drawer (Plate XII).
+ * ChatBot — "Ask the atlas" floating drawer (Plate XIII).
  *
  * One conversation thread. The user types or speaks; the chat agent decides
  * whether to answer in prose or invoke a `request_chart` tool that fans out
@@ -17,7 +17,7 @@ const STARTERS = [
   "Why does Park City UT produce so many olympians?",
   "Bar chart of medals by sport family, highlight the top family in rust.",
   "Which states have the highest paralympic share?",
-  "Plot Olympians per 100k by state, top 10.",
+  "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
 export default function ChatBot() {
@@ -281,7 +281,7 @@ export default function ChatBot() {
           onClick={() => setOpen(true)}
           aria-label="Open Ask the atlas"
         >
-          <span className="r">XII</span>
+          <span className="r">XIII</span>
           <span className="s">Ask the atlas</span>
         </button>
       )}
@@ -290,7 +290,7 @@ export default function ChatBot() {
         <div className="chat-drawer" role="dialog" aria-label="Ask the atlas">
           <header className="chat-head">
             <div>
-              <p className="eyebrow">Plate XII · Ask the atlas</p>
+              <p className="eyebrow">Plate XIII · Ask the atlas</p>
               <h3>
                 Type, talk, or <em>chart</em>.
               </h3>

@@ -2,6 +2,12 @@
   "AK": {
     "abbr": "AK",
     "name": "Alaska",
+    "profiles": 42,
+    "profile_types": {
+      "Olympic": 21,
+      "Paralympic": 5,
+      "Hopeful": 16
+    },
     "olympians": 42,
     "medals": 17,
     "gold": 7,
@@ -27,8 +33,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 14050,
-    "nfhs_history": [
+    "nfhs_total": 18475,
+    "nfhs_participation_slots": 18475,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 10134,
+    "nfhs_girls": 8341,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 11106
@@ -70,6 +83,12 @@
   "AL": {
     "abbr": "AL",
     "name": "Alabama",
+    "profiles": 33,
+    "profile_types": {
+      "Olympic": 14,
+      "Paralympic": 7,
+      "Hopeful": 12
+    },
     "olympians": 33,
     "medals": 18,
     "gold": 7,
@@ -95,8 +114,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 104088,
-    "nfhs_history": [
+    "nfhs_total": 172332,
+    "nfhs_participation_slots": 172332,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 106843,
+    "nfhs_girls": 65489,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 83628
@@ -138,6 +164,12 @@
   "AR": {
     "abbr": "AR",
     "name": "Arkansas",
+    "profiles": 15,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 4,
+      "Hopeful": 4
+    },
     "olympians": 15,
     "medals": 9,
     "gold": 2,
@@ -163,8 +195,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 61495,
-    "nfhs_history": [
+    "nfhs_total": 88378,
+    "nfhs_participation_slots": 88378,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 51511,
+    "nfhs_girls": 36867,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 49865
@@ -206,6 +245,12 @@
   "AZ": {
     "abbr": "AZ",
     "name": "Arizona",
+    "profiles": 99,
+    "profile_types": {
+      "Olympic": 45,
+      "Paralympic": 12,
+      "Hopeful": 42
+    },
     "olympians": 99,
     "medals": 48,
     "gold": 19,
@@ -231,8 +276,15 @@
         "n": 5
       }
     ],
-    "nfhs_total": 154184,
-    "nfhs_history": [
+    "nfhs_total": 136785,
+    "nfhs_participation_slots": 136785,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 77393,
+    "nfhs_girls": 59392,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 122540
@@ -274,6 +326,12 @@
   "CA": {
     "abbr": "CA",
     "name": "California",
+    "profiles": 964,
+    "profile_types": {
+      "Olympic": 448,
+      "Paralympic": 71,
+      "Hopeful": 445
+    },
     "olympians": 964,
     "medals": 567,
     "gold": 304,
@@ -299,8 +357,15 @@
         "n": 38
       }
     ],
-    "nfhs_total": 883611,
-    "nfhs_history": [
+    "nfhs_total": 852575,
+    "nfhs_participation_slots": 852575,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 474876,
+    "nfhs_girls": 377699,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 697084
@@ -342,6 +407,12 @@
   "CO": {
     "abbr": "CO",
     "name": "Colorado",
+    "profiles": 264,
+    "profile_types": {
+      "Olympic": 130,
+      "Paralympic": 52,
+      "Hopeful": 82
+    },
     "olympians": 264,
     "medals": 135,
     "gold": 67,
@@ -367,8 +438,15 @@
         "n": 11
       }
     ],
-    "nfhs_total": 127906,
-    "nfhs_history": [
+    "nfhs_total": 147139,
+    "nfhs_participation_slots": 147139,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 80550,
+    "nfhs_girls": 66589,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 98916
@@ -410,6 +488,12 @@
   "CT": {
     "abbr": "CT",
     "name": "Connecticut",
+    "profiles": 68,
+    "profile_types": {
+      "Olympic": 37,
+      "Paralympic": 10,
+      "Hopeful": 21
+    },
     "olympians": 68,
     "medals": 32,
     "gold": 11,
@@ -435,8 +519,15 @@
         "n": 3
       }
     ],
-    "nfhs_total": 88870,
-    "nfhs_history": [
+    "nfhs_total": 111664,
+    "nfhs_participation_slots": 111664,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 63326,
+    "nfhs_girls": 48338,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 66516
@@ -478,6 +569,12 @@
   "DC": {
     "abbr": "DC",
     "name": "District of Columbia",
+    "profiles": 1,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 0,
+      "Hopeful": 0
+    },
     "olympians": 1,
     "medals": 0,
     "gold": 0,
@@ -487,8 +584,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 13916,
-    "nfhs_history": [
+    "nfhs_total": 13314,
+    "nfhs_participation_slots": 13314,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 7252,
+    "nfhs_girls": 6062,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 11053
@@ -530,6 +634,12 @@
   "DE": {
     "abbr": "DE",
     "name": "Delaware",
+    "profiles": 12,
+    "profile_types": {
+      "Olympic": 7,
+      "Paralympic": 1,
+      "Hopeful": 4
+    },
     "olympians": 12,
     "medals": 3,
     "gold": 1,
@@ -555,8 +665,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 23210,
-    "nfhs_history": [
+    "nfhs_total": 27912,
+    "nfhs_participation_slots": 27912,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 16341,
+    "nfhs_girls": 11571,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 17575
@@ -598,6 +715,12 @@
   "FL": {
     "abbr": "FL",
     "name": "Florida",
+    "profiles": 290,
+    "profile_types": {
+      "Olympic": 125,
+      "Paralympic": 35,
+      "Hopeful": 130
+    },
     "olympians": 290,
     "medals": 157,
     "gold": 84,
@@ -623,8 +746,15 @@
         "n": 12
       }
     ],
-    "nfhs_total": 433019,
-    "nfhs_history": [
+    "nfhs_total": 308396,
+    "nfhs_participation_slots": 308396,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 172042,
+    "nfhs_girls": 136354,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 336226
@@ -666,6 +796,12 @@
   "GA": {
     "abbr": "GA",
     "name": "Georgia",
+    "profiles": 113,
+    "profile_types": {
+      "Olympic": 60,
+      "Paralympic": 16,
+      "Hopeful": 37
+    },
     "olympians": 113,
     "medals": 85,
     "gold": 36,
@@ -691,8 +827,15 @@
         "n": 6
       }
     ],
-    "nfhs_total": 234627,
-    "nfhs_history": [
+    "nfhs_total": 211177,
+    "nfhs_participation_slots": 211177,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 123636,
+    "nfhs_girls": 87541,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 185796
@@ -734,6 +877,12 @@
   "HI": {
     "abbr": "HI",
     "name": "Hawaii",
+    "profiles": 52,
+    "profile_types": {
+      "Olympic": 19,
+      "Paralympic": 5,
+      "Hopeful": 28
+    },
     "olympians": 52,
     "medals": 20,
     "gold": 9,
@@ -759,8 +908,15 @@
         "n": 4
       }
     ],
-    "nfhs_total": 28262,
-    "nfhs_history": [
+    "nfhs_total": 36884,
+    "nfhs_participation_slots": 36884,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 20758,
+    "nfhs_girls": 16126,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 22377
@@ -802,6 +958,12 @@
   "IA": {
     "abbr": "IA",
     "name": "Iowa",
+    "profiles": 23,
+    "profile_types": {
+      "Olympic": 11,
+      "Paralympic": 7,
+      "Hopeful": 5
+    },
     "olympians": 23,
     "medals": 13,
     "gold": 10,
@@ -827,8 +989,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 74300,
-    "nfhs_history": [
+    "nfhs_total": 139344,
+    "nfhs_participation_slots": 139344,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 80088,
+    "nfhs_girls": 59256,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 59856
@@ -870,6 +1039,12 @@
   "ID": {
     "abbr": "ID",
     "name": "Idaho",
+    "profiles": 27,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 7,
+      "Hopeful": 8
+    },
     "olympians": 27,
     "medals": 19,
     "gold": 11,
@@ -895,8 +1070,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 41975,
-    "nfhs_history": [
+    "nfhs_total": 54863,
+    "nfhs_participation_slots": 54863,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 31440,
+    "nfhs_girls": 23423,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 34111
@@ -938,6 +1120,12 @@
   "IL": {
     "abbr": "IL",
     "name": "Illinois",
+    "profiles": 201,
+    "profile_types": {
+      "Olympic": 86,
+      "Paralympic": 27,
+      "Hopeful": 88
+    },
     "olympians": 201,
     "medals": 151,
     "gold": 70,
@@ -963,8 +1151,15 @@
         "n": 8
       }
     ],
-    "nfhs_total": 298716,
-    "nfhs_history": [
+    "nfhs_total": 328362,
+    "nfhs_participation_slots": 328362,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 187357,
+    "nfhs_girls": 141005,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 233329
@@ -1006,6 +1201,12 @@
   "IN": {
     "abbr": "IN",
     "name": "Indiana",
+    "profiles": 93,
+    "profile_types": {
+      "Olympic": 43,
+      "Paralympic": 17,
+      "Hopeful": 33
+    },
     "olympians": 93,
     "medals": 78,
     "gold": 37,
@@ -1031,8 +1232,15 @@
         "n": 6
       }
     ],
-    "nfhs_total": 145446,
-    "nfhs_history": [
+    "nfhs_total": 162012,
+    "nfhs_participation_slots": 162012,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 96322,
+    "nfhs_girls": 65690,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 114809
@@ -1074,6 +1282,12 @@
   "KS": {
     "abbr": "KS",
     "name": "Kansas",
+    "profiles": 32,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 8,
+      "Hopeful": 14
+    },
     "olympians": 32,
     "medals": 23,
     "gold": 8,
@@ -1099,8 +1313,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 63645,
-    "nfhs_history": [
+    "nfhs_total": 114389,
+    "nfhs_participation_slots": 114389,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 63435,
+    "nfhs_girls": 50953,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 51380
@@ -1142,6 +1363,12 @@
   "KY": {
     "abbr": "KY",
     "name": "Kentucky",
+    "profiles": 22,
+    "profile_types": {
+      "Olympic": 11,
+      "Paralympic": 3,
+      "Hopeful": 8
+    },
     "olympians": 22,
     "medals": 35,
     "gold": 20,
@@ -1167,8 +1394,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 90018,
-    "nfhs_history": [
+    "nfhs_total": 118194,
+    "nfhs_participation_slots": 118194,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 65419,
+    "nfhs_girls": 52775,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 72793
@@ -1210,6 +1444,12 @@
   "LA": {
     "abbr": "LA",
     "name": "Louisiana",
+    "profiles": 19,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 5,
+      "Hopeful": 2
+    },
     "olympians": 19,
     "medals": 20,
     "gold": 8,
@@ -1235,8 +1475,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 96604,
-    "nfhs_history": [
+    "nfhs_total": 103368,
+    "nfhs_participation_slots": 103368,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 65566,
+    "nfhs_girls": 37802,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 78179
@@ -1278,6 +1525,12 @@
   "MA": {
     "abbr": "MA",
     "name": "Massachusetts",
+    "profiles": 145,
+    "profile_types": {
+      "Olympic": 77,
+      "Paralympic": 17,
+      "Hopeful": 51
+    },
     "olympians": 145,
     "medals": 67,
     "gold": 28,
@@ -1303,8 +1556,15 @@
         "n": 5
       }
     ],
-    "nfhs_total": 170246,
-    "nfhs_history": [
+    "nfhs_total": 222231,
+    "nfhs_participation_slots": 222231,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 126405,
+    "nfhs_girls": 95826,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 128113
@@ -1346,6 +1606,12 @@
   "MD": {
     "abbr": "MD",
     "name": "Maryland",
+    "profiles": 118,
+    "profile_types": {
+      "Olympic": 40,
+      "Paralympic": 16,
+      "Hopeful": 62
+    },
     "olympians": 118,
     "medals": 149,
     "gold": 92,
@@ -1371,8 +1637,15 @@
         "n": 5
       }
     ],
-    "nfhs_total": 153334,
-    "nfhs_history": [
+    "nfhs_total": 126507,
+    "nfhs_participation_slots": 126507,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 69873,
+    "nfhs_girls": 56634,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 113117
@@ -1414,6 +1687,12 @@
   "ME": {
     "abbr": "ME",
     "name": "Maine",
+    "profiles": 26,
+    "profile_types": {
+      "Olympic": 10,
+      "Paralympic": 6,
+      "Hopeful": 10
+    },
     "olympians": 26,
     "medals": 8,
     "gold": 4,
@@ -1439,8 +1718,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 29014,
-    "nfhs_history": [
+    "nfhs_total": 52666,
+    "nfhs_participation_slots": 52666,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 29286,
+    "nfhs_girls": 23380,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 23032
@@ -1482,6 +1768,12 @@
   "MI": {
     "abbr": "MI",
     "name": "Michigan",
+    "profiles": 133,
+    "profile_types": {
+      "Olympic": 69,
+      "Paralympic": 23,
+      "Hopeful": 41
+    },
     "olympians": 133,
     "medals": 84,
     "gold": 39,
@@ -1507,8 +1799,15 @@
         "n": 6
       }
     ],
-    "nfhs_total": 227478,
-    "nfhs_history": [
+    "nfhs_total": 298246,
+    "nfhs_participation_slots": 298246,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 173320,
+    "nfhs_girls": 124926,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 174335
@@ -1550,6 +1849,12 @@
   "MN": {
     "abbr": "MN",
     "name": "Minnesota",
+    "profiles": 229,
+    "profile_types": {
+      "Olympic": 91,
+      "Paralympic": 22,
+      "Hopeful": 116
+    },
     "olympians": 229,
     "medals": 118,
     "gold": 54,
@@ -1575,8 +1880,15 @@
         "n": 5
       }
     ],
-    "nfhs_total": 138018,
-    "nfhs_history": [
+    "nfhs_total": 232347,
+    "nfhs_participation_slots": 232347,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 128748,
+    "nfhs_girls": 103599,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 107182
@@ -1618,6 +1930,12 @@
   "MO": {
     "abbr": "MO",
     "name": "Missouri",
+    "profiles": 65,
+    "profile_types": {
+      "Olympic": 29,
+      "Paralympic": 11,
+      "Hopeful": 25
+    },
     "olympians": 65,
     "medals": 31,
     "gold": 15,
@@ -1643,8 +1961,15 @@
         "n": 3
       }
     ],
-    "nfhs_total": 133767,
-    "nfhs_history": [
+    "nfhs_total": 179168,
+    "nfhs_participation_slots": 179168,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 103322,
+    "nfhs_girls": 75846,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 108409
@@ -1686,6 +2011,12 @@
   "MS": {
     "abbr": "MS",
     "name": "Mississippi",
+    "profiles": 17,
+    "profile_types": {
+      "Olympic": 11,
+      "Paralympic": 2,
+      "Hopeful": 4
+    },
     "olympians": 17,
     "medals": 16,
     "gold": 5,
@@ -1711,8 +2042,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 62190,
-    "nfhs_history": [
+    "nfhs_total": 121604,
+    "nfhs_participation_slots": 121604,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 71547,
+    "nfhs_girls": 50057,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 49923
@@ -1754,6 +2092,12 @@
   "MT": {
     "abbr": "MT",
     "name": "Montana",
+    "profiles": 25,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 2,
+      "Hopeful": 11
+    },
     "olympians": 25,
     "medals": 15,
     "gold": 5,
@@ -1779,8 +2123,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 21124,
-    "nfhs_history": [
+    "nfhs_total": 33906,
+    "nfhs_participation_slots": 33906,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 19149,
+    "nfhs_girls": 14757,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 16924
@@ -1822,6 +2173,12 @@
   "NC": {
     "abbr": "NC",
     "name": "North Carolina",
+    "profiles": 101,
+    "profile_types": {
+      "Olympic": 35,
+      "Paralympic": 19,
+      "Hopeful": 47
+    },
     "olympians": 101,
     "medals": 51,
     "gold": 18,
@@ -1847,8 +2204,15 @@
         "n": 7
       }
     ],
-    "nfhs_total": 233046,
-    "nfhs_history": [
+    "nfhs_total": 207548,
+    "nfhs_participation_slots": 207548,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 121331,
+    "nfhs_girls": 86217,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 179684
@@ -1890,6 +2254,12 @@
   "ND": {
     "abbr": "ND",
     "name": "North Dakota",
+    "profiles": 27,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 0,
+      "Hopeful": 24
+    },
     "olympians": 27,
     "medals": 7,
     "gold": 3,
@@ -1911,8 +2281,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 21789,
-    "nfhs_history": [
+    "nfhs_total": 31497,
+    "nfhs_participation_slots": 31497,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 17744,
+    "nfhs_girls": 13753,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 17375
@@ -1954,6 +2331,12 @@
   "NE": {
     "abbr": "NE",
     "name": "Nebraska",
+    "profiles": 26,
+    "profile_types": {
+      "Olympic": 8,
+      "Paralympic": 6,
+      "Hopeful": 12
+    },
     "olympians": 26,
     "medals": 21,
     "gold": 6,
@@ -1979,8 +2362,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 42387,
-    "nfhs_history": [
+    "nfhs_total": 82121,
+    "nfhs_participation_slots": 82121,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 47741,
+    "nfhs_girls": 34380,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 34234
@@ -2022,6 +2412,12 @@
   "NH": {
     "abbr": "NH",
     "name": "New Hampshire",
+    "profiles": 27,
+    "profile_types": {
+      "Olympic": 13,
+      "Paralympic": 5,
+      "Hopeful": 9
+    },
     "olympians": 27,
     "medals": 33,
     "gold": 14,
@@ -2047,8 +2443,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 31050,
-    "nfhs_history": [
+    "nfhs_total": 42030,
+    "nfhs_participation_slots": 42030,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 23286,
+    "nfhs_girls": 18744,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 23868
@@ -2090,6 +2493,12 @@
   "NJ": {
     "abbr": "NJ",
     "name": "New Jersey",
+    "profiles": 143,
+    "profile_types": {
+      "Olympic": 77,
+      "Paralympic": 16,
+      "Hopeful": 50
+    },
     "olympians": 143,
     "medals": 96,
     "gold": 57,
@@ -2115,8 +2524,15 @@
         "n": 7
       }
     ],
-    "nfhs_total": 234273,
-    "nfhs_history": [
+    "nfhs_total": 281971,
+    "nfhs_participation_slots": 281971,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 162533,
+    "nfhs_girls": 119438,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 176343
@@ -2158,6 +2574,12 @@
   "NM": {
     "abbr": "NM",
     "name": "New Mexico",
+    "profiles": 14,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 5,
+      "Hopeful": 6
+    },
     "olympians": 14,
     "medals": 11,
     "gold": 6,
@@ -2183,8 +2605,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 41082,
-    "nfhs_history": [
+    "nfhs_total": 53116,
+    "nfhs_participation_slots": 53116,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 30042,
+    "nfhs_girls": 23074,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 33491
@@ -2226,6 +2655,12 @@
   "NV": {
     "abbr": "NV",
     "name": "Nevada",
+    "profiles": 51,
+    "profile_types": {
+      "Olympic": 25,
+      "Paralympic": 4,
+      "Hopeful": 22
+    },
     "olympians": 51,
     "medals": 32,
     "gold": 6,
@@ -2251,8 +2686,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 61691,
-    "nfhs_history": [
+    "nfhs_total": 44758,
+    "nfhs_participation_slots": 44758,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 26290,
+    "nfhs_girls": 18468,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 50195
@@ -2294,6 +2736,12 @@
   "NY": {
     "abbr": "NY",
     "name": "New York",
+    "profiles": 269,
+    "profile_types": {
+      "Olympic": 130,
+      "Paralympic": 25,
+      "Hopeful": 114
+    },
     "olympians": 269,
     "medals": 128,
     "gold": 72,
@@ -2319,8 +2767,15 @@
         "n": 11
       }
     ],
-    "nfhs_total": 478789,
-    "nfhs_history": [
+    "nfhs_total": 327068,
+    "nfhs_participation_slots": 327068,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 183822,
+    "nfhs_girls": 143246,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 361025
@@ -2362,6 +2817,12 @@
   "OH": {
     "abbr": "OH",
     "name": "Ohio",
+    "profiles": 147,
+    "profile_types": {
+      "Olympic": 54,
+      "Paralympic": 14,
+      "Hopeful": 79
+    },
     "olympians": 147,
     "medals": 70,
     "gold": 38,
@@ -2387,8 +2848,15 @@
         "n": 6
       }
     ],
-    "nfhs_total": 270058,
-    "nfhs_history": [
+    "nfhs_total": 335808,
+    "nfhs_participation_slots": 335808,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 184522,
+    "nfhs_girls": 151286,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 210002
@@ -2430,6 +2898,12 @@
   "OK": {
     "abbr": "OK",
     "name": "Oklahoma",
+    "profiles": 25,
+    "profile_types": {
+      "Olympic": 9,
+      "Paralympic": 8,
+      "Hopeful": 8
+    },
     "olympians": 25,
     "medals": 25,
     "gold": 12,
@@ -2455,8 +2929,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 85170,
-    "nfhs_history": [
+    "nfhs_total": 113438,
+    "nfhs_participation_slots": 113438,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 64694,
+    "nfhs_girls": 48744,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 68869
@@ -2498,6 +2979,12 @@
   "OR": {
     "abbr": "OR",
     "name": "Oregon",
+    "profiles": 67,
+    "profile_types": {
+      "Olympic": 34,
+      "Paralympic": 12,
+      "Hopeful": 21
+    },
     "olympians": 67,
     "medals": 54,
     "gold": 26,
@@ -2523,8 +3010,15 @@
         "n": 3
       }
     ],
-    "nfhs_total": 87257,
-    "nfhs_history": [
+    "nfhs_total": 106445,
+    "nfhs_participation_slots": 106445,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 59713,
+    "nfhs_girls": 46732,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 68703
@@ -2566,6 +3060,12 @@
   "PA": {
     "abbr": "PA",
     "name": "Pennsylvania",
+    "profiles": 207,
+    "profile_types": {
+      "Olympic": 96,
+      "Paralympic": 22,
+      "Hopeful": 89
+    },
     "olympians": 207,
     "medals": 63,
     "gold": 29,
@@ -2591,8 +3091,15 @@
         "n": 8
       }
     ],
-    "nfhs_total": 327379,
-    "nfhs_history": [
+    "nfhs_total": 333123,
+    "nfhs_participation_slots": 333123,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 178338,
+    "nfhs_girls": 154785,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 250310
@@ -2634,6 +3141,12 @@
   "RI": {
     "abbr": "RI",
     "name": "Rhode Island",
+    "profiles": 9,
+    "profile_types": {
+      "Olympic": 6,
+      "Paralympic": 1,
+      "Hopeful": 2
+    },
     "olympians": 9,
     "medals": 4,
     "gold": 0,
@@ -2659,8 +3172,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 23456,
-    "nfhs_history": [
+    "nfhs_total": 32693,
+    "nfhs_participation_slots": 32693,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 18838,
+    "nfhs_girls": 13855,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 17830
@@ -2702,6 +3222,12 @@
   "SC": {
     "abbr": "SC",
     "name": "South Carolina",
+    "profiles": 30,
+    "profile_types": {
+      "Olympic": 12,
+      "Paralympic": 5,
+      "Hopeful": 13
+    },
     "olympians": 30,
     "medals": 14,
     "gold": 9,
@@ -2727,8 +3253,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 104180,
-    "nfhs_history": [
+    "nfhs_total": 110856,
+    "nfhs_participation_slots": 110856,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 68314,
+    "nfhs_girls": 42542,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 83779
@@ -2770,6 +3303,12 @@
   "SD": {
     "abbr": "SD",
     "name": "South Dakota",
+    "profiles": 9,
+    "profile_types": {
+      "Olympic": 3,
+      "Paralympic": 1,
+      "Hopeful": 5
+    },
     "olympians": 9,
     "medals": 3,
     "gold": 1,
@@ -2795,8 +3334,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 21180,
-    "nfhs_history": [
+    "nfhs_total": 33652,
+    "nfhs_participation_slots": 33652,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 18846,
+    "nfhs_girls": 14806,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 17101
@@ -2838,6 +3384,12 @@
   "TN": {
     "abbr": "TN",
     "name": "Tennessee",
+    "profiles": 32,
+    "profile_types": {
+      "Olympic": 15,
+      "Paralympic": 5,
+      "Hopeful": 12
+    },
     "olympians": 32,
     "medals": 19,
     "gold": 10,
@@ -2863,8 +3415,15 @@
         "n": 2
       }
     ],
-    "nfhs_total": 138151,
-    "nfhs_history": [
+    "nfhs_total": 123510,
+    "nfhs_participation_slots": 123510,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 75771,
+    "nfhs_girls": 47739,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 110763
@@ -2906,6 +3465,12 @@
   "TX": {
     "abbr": "TX",
     "name": "Texas",
+    "profiles": 307,
+    "profile_types": {
+      "Olympic": 122,
+      "Paralympic": 28,
+      "Hopeful": 157
+    },
     "olympians": 307,
     "medals": 141,
     "gold": 76,
@@ -2931,8 +3496,15 @@
         "n": 12
       }
     ],
-    "nfhs_total": 667503,
-    "nfhs_history": [
+    "nfhs_total": 879403,
+    "nfhs_participation_slots": 879403,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 515383,
+    "nfhs_girls": 364020,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 530277
@@ -2974,6 +3546,12 @@
   "UT": {
     "abbr": "UT",
     "name": "Utah",
+    "profiles": 101,
+    "profile_types": {
+      "Olympic": 57,
+      "Paralympic": 14,
+      "Hopeful": 30
+    },
     "olympians": 101,
     "medals": 62,
     "gold": 18,
@@ -2999,8 +3577,15 @@
         "n": 6
       }
     ],
-    "nfhs_total": 77884,
-    "nfhs_history": [
+    "nfhs_total": 97498,
+    "nfhs_participation_slots": 97498,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 55781,
+    "nfhs_girls": 41717,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 62096
@@ -3042,6 +3627,12 @@
   "VA": {
     "abbr": "VA",
     "name": "Virginia",
+    "profiles": 128,
+    "profile_types": {
+      "Olympic": 50,
+      "Paralympic": 14,
+      "Hopeful": 64
+    },
     "olympians": 128,
     "medals": 51,
     "gold": 27,
@@ -3067,8 +3658,15 @@
         "n": 7
       }
     ],
-    "nfhs_total": 202652,
-    "nfhs_history": [
+    "nfhs_total": 181110,
+    "nfhs_participation_slots": 181110,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 105170,
+    "nfhs_girls": 75940,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 153303
@@ -3110,6 +3708,12 @@
   "VT": {
     "abbr": "VT",
     "name": "Vermont",
+    "profiles": 44,
+    "profile_types": {
+      "Olympic": 26,
+      "Paralympic": 3,
+      "Hopeful": 15
+    },
     "olympians": 44,
     "medals": 16,
     "gold": 5,
@@ -3135,8 +3739,15 @@
         "n": 3
       }
     ],
-    "nfhs_total": 15122,
-    "nfhs_history": [
+    "nfhs_total": 10043,
+    "nfhs_participation_slots": 10043,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 5614,
+    "nfhs_girls": 4429,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 11685
@@ -3178,6 +3789,12 @@
   "WA": {
     "abbr": "WA",
     "name": "Washington",
+    "profiles": 153,
+    "profile_types": {
+      "Olympic": 59,
+      "Paralympic": 32,
+      "Hopeful": 62
+    },
     "olympians": 153,
     "medals": 96,
     "gold": 33,
@@ -3203,8 +3820,15 @@
         "n": 7
       }
     ],
-    "nfhs_total": 162065,
-    "nfhs_history": [
+    "nfhs_total": 181077,
+    "nfhs_participation_slots": 181077,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 102057,
+    "nfhs_girls": 79020,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 130678
@@ -3246,6 +3870,12 @@
   "WI": {
     "abbr": "WI",
     "name": "Wisconsin",
+    "profiles": 146,
+    "profile_types": {
+      "Olympic": 54,
+      "Paralympic": 22,
+      "Hopeful": 70
+    },
     "olympians": 146,
     "medals": 74,
     "gold": 44,
@@ -3271,8 +3901,15 @@
         "n": 7
       }
     ],
-    "nfhs_total": 135488,
-    "nfhs_history": [
+    "nfhs_total": 186542,
+    "nfhs_participation_slots": 186542,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 111308,
+    "nfhs_girls": 75234,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 105349
@@ -3314,6 +3951,12 @@
   "WV": {
     "abbr": "WV",
     "name": "West Virginia",
+    "profiles": 4,
+    "profile_types": {
+      "Olympic": 1,
+      "Paralympic": 2,
+      "Hopeful": 1
+    },
     "olympians": 4,
     "medals": 6,
     "gold": 2,
@@ -3335,8 +3978,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 34572,
-    "nfhs_history": [
+    "nfhs_total": 36482,
+    "nfhs_participation_slots": 36482,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 21374,
+    "nfhs_girls": 15108,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 27936
@@ -3378,6 +4028,12 @@
   "WY": {
     "abbr": "WY",
     "name": "Wyoming",
+    "profiles": 6,
+    "profile_types": {
+      "Olympic": 4,
+      "Paralympic": 0,
+      "Hopeful": 2
+    },
     "olympians": 6,
     "medals": 4,
     "gold": 1,
@@ -3403,8 +4059,15 @@
         "n": 1
       }
     ],
-    "nfhs_total": 14227,
-    "nfhs_history": [
+    "nfhs_total": 22217,
+    "nfhs_participation_slots": 22217,
+    "nfhs_year": 2025,
+    "nfhs_source": "https://a-us.storyblok.com/f/1022696/x/85a6414d04/2024-25-nfhs-high-school-athletics-participation-survey.pdf",
+    "nfhs_source_label": "2024-25 official NFHS state totals",
+    "nfhs_boys": 12196,
+    "nfhs_girls": 10021,
+    "nfhs_history": [],
+    "nfhs_estimated_history": [
       {
         "year": 1995,
         "n": 11430

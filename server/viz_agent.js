@@ -77,12 +77,13 @@ Layout requirements every figure must satisfy:
 
 **Atlas vocabulary** you should use accurately:
 - "Factories" = small towns punching above weight (Plate II, e.g. Park City UT, Winthrop WA).
-- "Halos" = athletes within 25/50/100/200 mi of a USOPC-recognized facility (Plate IV).
+- "Halos" = Team USA profiles within 25/50/100/200 mi of a curated tracked training-facility geography (Plate IV).
 - "OPTC" = Olympic & Paralympic Training Center, USOPC-operated. Only **2** exist
-  (Colorado Springs, Lake Placid). The other 8 are USOPC-affiliated training sites.
+  (Colorado Springs, Lake Placid). The Plate IV roster is curated and is not the complete current USOPC training-site list.
 - "Köppen zones" = climate categories used in Plate VI.
-- "Per capita" = Olympians per 100k residents (Plate IX).
-- "HS conversion" = Olympians per million high-school sports participants (Plate X).
+- "Per capita" = Team USA profiles per 100k residents (Plate IX).
+- "HS slot density" (legacy key: "HS conversion") = Team USA profiles per million official NFHS participation slots (Plate X). Do not describe it as a longitudinal athlete-development rate.
+- "Era presence" = Team USA profiles with parsed active years, counted in each overlapping decade (Plate XI). This is not a complete historical census, migration model, or infrastructure-causality model.
 
 **NIL constraint:** the underlying athlete data is anonymised. Never label any
 individual athlete by name in axis labels, annotations, or narration. Aggregate

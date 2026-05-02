@@ -330,8 +330,8 @@ common civic centre.
 `compute_olympian_roots.py` loads both files at build time:
 
 ```python
-geocodes = load_csv("datasets/teamusa_hometown_geocodes.csv")   # auto, 1,994 rows
-manual   = load_csv("datasets/teamusa_hometown_manual.csv")     # manual, 346 rows
+geocodes = load_csv("data/teamusa_hometown_geocodes.csv")   # auto, 1,994 rows
+manual   = load_csv("data/teamusa_hometown_manual.csv")     # manual, 346 rows
 
 geo_lookup = {}
 for r in manual + geocodes:       # manual inserted first → wins on collision

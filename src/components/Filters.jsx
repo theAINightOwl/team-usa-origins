@@ -1,10 +1,10 @@
 import React from "react";
 
 const METRICS = [
-  { value: "olympians", label: "Olympians produced" },
+  { value: "olympians", label: "Team USA profiles" },
   { value: "medals",    label: "Total medals won" },
   { value: "income",    label: "Median household income" },
-  { value: "nfhs",      label: "HS sports participation" },
+  { value: "nfhs",      label: "HS participation slots" },
   { value: "temp",      label: "Average annual temperature" },
   { value: "snow",      label: "Average annual snowfall" },
 ];
@@ -118,7 +118,7 @@ export default function Filters({
           >
             <div>
               <span className="label">Feeder colleges</span>
-              <span className="sub">NCAA programs, sized by alumni</span>
+              <span className="sub">College programs, sized by matched profiles</span>
             </div>
             <span className="switch" />
           </div>

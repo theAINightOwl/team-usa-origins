@@ -10,11 +10,12 @@
  *     else if (evt.type === "error") setError(evt.message);
  *   }
  */
-export async function* streamChat({ messages, signal } = {}) {
-  const resp = await fetch("/api/chat", {
+
+async function* streamSse(path, body, signal) {
+  const resp = await fetch(path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify(body),
     signal,
   });
 
@@ -36,7 +37,6 @@ export async function* streamChat({ messages, signal } = {}) {
     if (done) break;
     buf += decoder.decode(value, { stream: true });
 
-    // SSE frames are separated by a blank line ("\n\n").
     let sep;
     while ((sep = buf.indexOf("\n\n")) !== -1) {
       const frame = buf.slice(0, sep);
@@ -52,4 +52,12 @@ export async function* streamChat({ messages, signal } = {}) {
       }
     }
   }
+}
+
+export async function* streamChat({ messages, signal } = {}) {
+  yield* streamSse("/api/chat", { messages }, signal);
+}
+
+export async function* streamPersonal({ hometown, residence, signal } = {}) {
+  yield* streamSse("/api/personal", { hometown, residence }, signal);
 }

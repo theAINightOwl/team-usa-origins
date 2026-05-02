@@ -3,9 +3,9 @@
 Compute pre-baked JSON data for the `olympian-roots` map app.
 
 Athlete list is taken **directly from the Team USA website scrape**
-(`team_usa_athletes.csv`, 8,651 rows) — no Olympedia or Paralympic.org
+(`team_usa_athletes.csv`, 8,526 rows) — no Olympedia or Paralympic.org
 blending. Hometown coordinates are looked up from
-`datasets/teamusa_hometown_geocodes.csv`, produced by the stand-alone
+`data/teamusa_hometown_geocodes.csv`, produced by the stand-alone
 `geocode_teamusa_hometowns.py` script (matches Team USA hometowns against
 the 2023 U.S. Census Gazetteer).
 
@@ -35,6 +35,8 @@ DATA_DIR = Path("data")
 TEAMUSA_CSV = DATA_DIR / "team_usa_athletes.csv"          # <- canonical athlete list
 GEOCODES_CSV = DATA_DIR / "teamusa_hometown_geocodes.csv" # <- from geocode_teamusa_hometowns.py
 MANUAL_CSV = DATA_DIR / "teamusa_hometown_manual.csv"     # <- hand-curated; see _notes.md
+NFHS_ESTIMATED_CSV = DATA_DIR / "nfhs_participation.csv"  # <- legacy estimated history
+NFHS_STATE_TOTALS_CSV = DATA_DIR / "nfhs_state_totals.csv" # <- official 2024-25 totals
 OUT_DIR = Path("src/data")
 
 FAMILY_COLORS = {
@@ -99,15 +101,34 @@ def norm_text(v):
 
 
 def norm_name(s):
-    """Normalized school/institution name for fuzzy matching."""
     if not s:
         return ""
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
     s = s.lower()
-    s = re.sub(r"\b(university|college|the|of|at)\b", " ", s)
     s = re.sub(r"[^a-z0-9 ]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
+
+def dedupe_institutions(rows):
+    out = {}
+    for r in rows:
+        key = norm_name(r.get("institution_name", ""))
+        if key and key not in out:
+            out[key] = r
+    return list(out.values())
+
+
+def normalize_school_matches(value):
+    if isinstance(value, str):
+        return [value] if value else []
+    if isinstance(value, list):
+        out = []
+        for item in value:
+            if isinstance(item, str) and item and item not in out:
+                out.append(item)
+        return out
+    return []
 
 
 def norm_city_key(city, state):
@@ -174,7 +195,8 @@ def main():
     family_map = load_csv(DATA_DIR / "sport_family_mapping.csv")
     centers = load_csv(DATA_DIR / "training_centers.csv")
     colleges_raw = load_csv(DATA_DIR / "eada_college_sports.csv")
-    nfhs = load_csv(DATA_DIR / "nfhs_participation.csv")
+    nfhs = load_csv(NFHS_ESTIMATED_CSV)
+    nfhs_official = load_csv(NFHS_STATE_TOTALS_CSV) if NFHS_STATE_TOTALS_CSV.exists() else []
     demog = load_csv(DATA_DIR / "hometown_demographics.csv")
     climate = load_csv(DATA_DIR / "hometown_climate.csv")
 
@@ -183,7 +205,8 @@ def main():
     print(f"Loaded {len(manual):,} manually-corrected hometowns "
           f"({'missing — optional' if not manual else 'overrides auto'})")
     print(f"Loaded {len(family_map)} sport-family rows, {len(centers)} training centers, "
-          f"{len(colleges_raw):,} EADA rows, {len(nfhs):,} NFHS rows, "
+          f"{len(colleges_raw):,} EADA rows, {len(nfhs):,} legacy estimated NFHS rows, "
+          f"{len(nfhs_official):,} official NFHS state-total rows, "
           f"{len(demog):,} demographics rows, {len(climate)} climate rows")
 
     # ── (city, state) → (lat, lng) lookup ─────────────────────────────
@@ -327,29 +350,40 @@ def main():
 
     # ── 3. colleges.json ────────────────────────────────────────────────
     latest_year = max(to_int(r.get("year")) or 0 for r in colleges_raw)
-    latest_rows = [r for r in colleges_raw if to_int(r.get("year")) == latest_year]
-    institution_names = {norm_name(r["institution_name"]): r["institution_name"] for r in latest_rows}
+    latest_rows_raw = [r for r in colleges_raw if to_int(r.get("year")) == latest_year]
+    latest_rows = dedupe_institutions(latest_rows_raw)
+    multi_school_matches_path = DATA_DIR / "school_multi_matches.json"
+    school_matches_path = DATA_DIR / "school_matches.json"
+    if multi_school_matches_path.exists():
+        with open(multi_school_matches_path) as f:
+            school_matches = json.load(f)
+        school_match_source = multi_school_matches_path
+    elif school_matches_path.exists():
+        with open(school_matches_path) as f:
+            school_matches = json.load(f)
+        school_match_source = school_matches_path
+    else:
+        school_matches = {}
+        school_match_source = None
 
-    olympians_by_school = Counter()
+    profile_types_by_school = defaultdict(Counter)
+    total_by_school = Counter()
     for a in out_athletes:
         school = a.get("school", "")
         if not school:
             continue
-        n = norm_name(school)
-        if not n:
-            continue
-        if n in institution_names:
-            olympians_by_school[institution_names[n]] += 1
-            continue
-        tokens = set(n.split())
-        for key, canon in institution_names.items():
-            key_tokens = set(key.split())
-            if key_tokens and key_tokens.issubset(tokens):
-                olympians_by_school[canon] += 1
-                break
+        matches = normalize_school_matches(school_matches.get(school))
+        for canon in matches:
+            total_by_school[canon] += 1
+            profile_types_by_school[canon][a.get("type") or "Team USA"] += 1
 
     out_colleges = []
     for r in latest_rows:
+        type_counts = profile_types_by_school.get(r["institution_name"], Counter())
+        olympic = type_counts.get("Olympic", 0)
+        paralympic = type_counts.get("Paralympic", 0)
+        hopeful = type_counts.get("Hopeful", 0)
+        matched_profiles = total_by_school.get(r["institution_name"], 0)
         out_colleges.append({
             "name": r["institution_name"],
             "state": norm_state(r.get("state", "")),
@@ -359,27 +393,56 @@ def main():
             "women": to_int(r.get("total_athletes_women")) or 0,
             "sports": to_int(r.get("total_sports")) or 0,
             "budget_m": to_float(r.get("athletic_budget_millions")),
-            "olympians": olympians_by_school.get(r["institution_name"], 0),
+            "matched_profiles": matched_profiles,
+            "profile_types": {
+                "Olympic": olympic,
+                "Paralympic": paralympic,
+                "Hopeful": hopeful,
+            },
+            "olympians": olympic,
+            "paralympians": paralympic,
+            "hopefuls": hopeful,
         })
-    out_colleges.sort(key=lambda x: -x["olympians"])
+    out_colleges.sort(key=lambda x: -x["matched_profiles"])
     with open(OUT_DIR / "colleges.json", "w") as f:
         json.dump(out_colleges, f, indent=2)
-    print(f"Wrote {len(out_colleges)} colleges (year={latest_year}); "
-          f"{sum(1 for c in out_colleges if c['olympians'] > 0)} matched to Team USA athletes")
+    print(f"Wrote {len(out_colleges)} colleges (year={latest_year}; "
+          f"{len(latest_rows_raw) - len(latest_rows)} duplicate EADA spellings collapsed); "
+          f"{sum(1 for c in out_colleges if c['matched_profiles'] > 0)} matched to Team USA profiles")
+    if school_match_source:
+        print(f"  school matches: {school_match_source}")
 
     # ── 4. states.json ──────────────────────────────────────────────────
-    nfhs_latest_year = max(to_int(r.get("year")) or 0 for r in nfhs)
+    nfhs_latest_year = max((to_int(r.get("year")) or 0 for r in nfhs), default=0)
     nfhs_by_state = defaultdict(int)
-    nfhs_history = defaultdict(dict)
+    nfhs_estimated_history = defaultdict(dict)
     for r in nfhs:
         yr = to_int(r.get("year"))
         if yr is None:
             continue
         st = norm_state(r.get("state", ""))
         p = to_int(r.get("participants")) or 0
-        nfhs_history[st][yr] = nfhs_history[st].get(yr, 0) + p
+        nfhs_estimated_history[st][yr] = nfhs_estimated_history[st].get(yr, 0) + p
         if yr == nfhs_latest_year:
             nfhs_by_state[st] += p
+
+    nfhs_official_year = max((to_int(r.get("year")) or 0 for r in nfhs_official), default=0)
+    nfhs_official_by_state = {}
+    for r in nfhs_official:
+        yr = to_int(r.get("year"))
+        if yr != nfhs_official_year:
+            continue
+        st = norm_state(r.get("state", ""))
+        total = to_int(r.get("total")) or 0
+        if not (st and total):
+            continue
+        nfhs_official_by_state[st] = {
+            "year": yr,
+            "boys": to_int(r.get("boys")) or 0,
+            "girls": to_int(r.get("girls")) or 0,
+            "total": total,
+            "source": r.get("source", ""),
+        }
 
     dem_years_with_income = sorted({
         to_int(r.get("year"))
@@ -419,6 +482,10 @@ def main():
         gold = sum(a["gold"] for a in arrivals)
         sports_counter = Counter(a["sport"] for a in arrivals if a["sport"])
         top_sports = [{"sport": s, "n": n} for s, n in sports_counter.most_common(5)]
+        profile_type_counts = Counter(a.get("type") or "Team USA" for a in arrivals)
+        nfhs_row = nfhs_official_by_state.get(st)
+        nfhs_is_official = bool(nfhs_row)
+        nfhs_total = nfhs_row["total"] if nfhs_is_official else nfhs_by_state.get(st, 0)
 
         inc_row = dem_state.get(st)
         median_income = (
@@ -429,13 +496,33 @@ def main():
         out_states[st] = {
             "abbr": st,
             "name": ABBR_STATE.get(st, st),
+            "profiles": len(arrivals),
+            "profile_types": {
+                "Olympic": profile_type_counts.get("Olympic", 0),
+                "Paralympic": profile_type_counts.get("Paralympic", 0),
+                "Hopeful": profile_type_counts.get("Hopeful", 0),
+            },
             "olympians": len(arrivals),
             "medals": medals,
             "gold": gold,
             "top_sports": top_sports,
-            "nfhs_total": nfhs_by_state.get(st, 0),
-            "nfhs_history": [
-                {"year": y, "n": n} for y, n in sorted(nfhs_history.get(st, {}).items())
+            "nfhs_total": nfhs_total,
+            "nfhs_participation_slots": nfhs_total,
+            "nfhs_year": nfhs_row["year"] if nfhs_is_official else nfhs_latest_year,
+            "nfhs_source": (
+                nfhs_row.get("source", "") if nfhs_is_official else str(NFHS_ESTIMATED_CSV)
+            ),
+            "nfhs_source_label": (
+                "2024-25 official NFHS state totals"
+                if nfhs_is_official
+                else "legacy estimated NFHS support table"
+            ),
+            "nfhs_boys": nfhs_row["boys"] if nfhs_is_official else None,
+            "nfhs_girls": nfhs_row["girls"] if nfhs_is_official else None,
+            "nfhs_history": [],
+            "nfhs_estimated_history": [
+                {"year": y, "n": n}
+                for y, n in sorted(nfhs_estimated_history.get(st, {}).items())
             ],
             "median_income": median_income,
             "climate": climate_by_state.get(st, {}),
@@ -443,8 +530,13 @@ def main():
         }
     with open(OUT_DIR / "states.json", "w") as f:
         json.dump(out_states, f, indent=2)
+    nfhs_rollup_label = (
+        f"official NFHS year={nfhs_official_year}"
+        if nfhs_official_by_state
+        else f"legacy estimated NFHS year={nfhs_latest_year}"
+    )
     print(f"Wrote {len(out_states)} state rollups "
-          f"(nfhs year={nfhs_latest_year}, demographics year={dem_year})")
+          f"({nfhs_rollup_label}, demographics year={dem_year})")
 
     # ── 5. sport_families.json ──────────────────────────────────────────
     families = sorted({v["family"] for v in sport_to_family.values()})

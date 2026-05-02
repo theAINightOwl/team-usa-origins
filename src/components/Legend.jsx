@@ -58,7 +58,7 @@ export default function Legend({ families, familyColors, familyCounts }) {
           <svg width="16" height="16" viewBox="-10 -10 20 20">
             <circle r="8" fill="rgba(93,55,35,0.18)" stroke="rgba(26,20,16,0.55)" strokeWidth="0.6" />
           </svg>
-          College alumni (∝ count)
+          Matched college profiles (∝ count)
         </div>
       </section>
     </aside>

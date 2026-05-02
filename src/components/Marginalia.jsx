@@ -28,7 +28,7 @@ export default function Marginalia({ totals }) {
 
       <p>
         The dots are athletes. The stars are training centers. The circles are colleges. The choropleth
-        can be any of six metrics — from Olympians produced to average annual snowfall — and each one
+          can be any of six metrics — from Team USA profiles to average annual snowfall — and each one
         rearranges the country in its own particular way.
       </p>
 
@@ -44,13 +44,14 @@ export default function Marginalia({ totals }) {
           state rollup but not as individual dots.
         </p>
         <p>
-          <sup>2</sup> Training-center roster from the USOPC. Feeder-college counts are fuzzy-matched
-          against the EADA public dataset for the 2023 reporting year.
+          <sup>2</sup> Training-center roster is curated from official facility pages. Feeder-college
+          counts use conservative multi-school matches against the EADA public dataset for the 2023 reporting year.
         </p>
         <p>
-          <sup>3</sup> High-school participation is estimated from published NFHS summaries, allocated
-          to states in proportion to high-school enrollment with regional adjustments for
-          climate-bound sports.
+          <sup>3</sup> High-school participation uses official 2024-25 NFHS state totals.
+          NFHS counts participation slots, not unique students; a multisport student can
+          count more than once. The old estimated history table remains legacy support data
+          and is not used for Plate X.
         </p>
         <p>
           <sup>4</sup> County-level income is from the Census ACS 5-year, 2022 vintage, weighted by

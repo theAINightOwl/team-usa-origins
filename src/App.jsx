@@ -14,7 +14,7 @@ import Filters from "./components/Filters.jsx";
 import Legend from "./components/Legend.jsx";
 import StatePanel from "./components/StatePanel.jsx";
 import AthleteCard from "./components/AthleteCard.jsx";
-import Plates from "./components/Plates.jsx";
+import Plates, { PlateStory } from "./components/Plates.jsx";
 import ChatBot from "./components/ChatBot.jsx";
 
 const MAP_WIDTH = 975;
@@ -130,7 +130,7 @@ export default function App() {
           </h1>
           <p className="subhead">
             A cartography of hometowns and the support systems — training centers, colleges,
-            high-school pipelines, wages, and weather — that produce American olympians.
+            high-school pipelines, wages, and weather — behind Team USA profiles.
           </p>
         </div>
         <div className="plate">
@@ -163,24 +163,24 @@ export default function App() {
           </span>
         </div>
         <div className="cell">
-          <span className="label">USOPC training centers</span>
+          <span className="label">Official OPTCs</span>
           <span className="value num">
             {trainingCentersData.filter((c) => c.type === "OPTC").length}
             <span className="unit">official OPTCs</span>
           </span>
         </div>
         <div className="cell">
-          <span className="label">Affiliated sites</span>
+          <span className="label">Tracked training sites</span>
           <span className="value num">
             {trainingCentersData.filter((c) => c.type !== "OPTC").length}
-            <span className="unit">USOPC-recognized</span>
+            <span className="unit">curated roster</span>
           </span>
         </div>
         <div className="cell">
           <span className="label">Feeder colleges</span>
           <span className="value num">
-            {collegesData.filter((c) => c.olympians > 0).length}
-            <span className="unit">NCAA matched</span>
+            {collegesData.filter((c) => c.matched_profiles > 0).length}
+            <span className="unit">college matched</span>
           </span>
         </div>
         <div className="cell">
@@ -193,23 +193,30 @@ export default function App() {
       </div>
 
       <div className="main">
-        <Filters
-          metric={metric}
-          setMetric={setMetric}
-          families={allFamilies}
-          selectedFamilies={selectedFamilies}
-          toggleFamily={toggleFamily}
-          familyColors={sportFamiliesData.colors}
-          familyCounts={sportFamiliesData.counts}
-          medalOnly={medalOnly}
-          setMedalOnly={setMedalOnly}
-          eraRange={eraRange}
-          setEraRange={setEraRange}
-          overlays={overlays}
-          setOverlay={setOverlay}
-        />
+        <div className="left-col">
+          <Filters
+            metric={metric}
+            setMetric={setMetric}
+            families={allFamilies}
+            selectedFamilies={selectedFamilies}
+            toggleFamily={toggleFamily}
+            familyColors={sportFamiliesData.colors}
+            familyCounts={sportFamiliesData.counts}
+            medalOnly={medalOnly}
+            setMedalOnly={setMedalOnly}
+            eraRange={eraRange}
+            setEraRange={setEraRange}
+            overlays={overlays}
+            setOverlay={setOverlay}
+          />
+          <Legend
+            families={allFamilies}
+            familyColors={sportFamiliesData.colors}
+            familyCounts={sportFamiliesData.counts}
+          />
+        </div>
 
-        <div>
+        <div className="center-col">
           <USMap
             features={topoState.features}
             path={path}
@@ -233,16 +240,10 @@ export default function App() {
             hoveredFactory={hoveredFactory}
             onHoverFactory={setHoveredFactory}
           />
-          <div style={{ marginTop: 24 }}>
-            <Legend
-              families={allFamilies}
-              familyColors={sportFamiliesData.colors}
-              familyCounts={sportFamiliesData.counts}
-            />
-          </div>
+          <PlateStory plateKey={activePlate} />
         </div>
 
-        <div>
+        <aside className="right-col">
           {selectedAthlete ? (
             <AthleteCard
               athlete={selectedAthlete}
@@ -266,7 +267,7 @@ export default function App() {
               onHoverFactory={setHoveredFactory}
             />
           )}
-        </div>
+        </aside>
       </div>
 
       <ChatBot />

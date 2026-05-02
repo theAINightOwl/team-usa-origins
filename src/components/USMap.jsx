@@ -8,7 +8,7 @@ import React, { useMemo, useState, useCallback } from "react";
  *   • state choropleth (fill from `metric`)
  *   • athlete hometown dots (coloured by sport family)
  *   • training-center markers (gold/rust stars)
- *   • college circles at state centroids (size ∝ olympians)
+ *   • college circles at state centroids (size ∝ matched Team USA profiles)
  *
  * Hover surfaces a minimal tooltip; click fires onSelectState / onSelectAthlete.
  */
@@ -111,12 +111,14 @@ export default function USMap({
     if (!showColleges || !projection) return [];
     const byState = new Map();
     for (const col of colleges) {
-      if (col.olympians <= 0) continue;
+      const matched = col.matched_profiles ?? col.olympians ?? 0;
+      if (matched <= 0) continue;
       const st = col.state;
       if (!st || !centroids[st]) continue;
       const cur = byState.get(st) || { state: st, total: 0, top: col };
-      cur.total += col.olympians;
-      if (col.olympians > cur.top.olympians) cur.top = col;
+      cur.total += matched;
+      const topMatched = cur.top.matched_profiles ?? cur.top.olympians ?? 0;
+      if (matched > topMatched) cur.top = col;
       byState.set(st, cur);
     }
     return Array.from(byState.values())
@@ -465,7 +467,7 @@ function Tooltip({ t, familyColors }) {
       <div className="tooltip" style={style}>
         <div className="t-name">#{f.rank} · {f.city}, {f.state}</div>
         <div className="t-line">
-          <b>{f.olympians}</b> olympians from <b>{f.population.toLocaleString()}</b> residents
+          <b>{f.athletes}</b> Team USA profiles from <b>{f.population.toLocaleString()}</b> residents
         </div>
         <div className="t-line">
           <b>{f.rate.toFixed(1)}</b> per 10,000 — top sport: {f.top_sport}
@@ -477,7 +479,7 @@ function Tooltip({ t, familyColors }) {
     const b = t.data;
     return (
       <div className="tooltip" style={style}>
-        <div className="t-name">{b.state} — {b.total} olympians</div>
+        <div className="t-name">{b.state} — {b.total} matched profiles</div>
         <div className="t-line">top program: <b>{b.top.name}</b></div>
       </div>
     );
@@ -500,10 +502,10 @@ function extractMetric(st, metric) {
 
 export function metricLabel(m) {
   return {
-    olympians: "olympians produced",
+    olympians: "Team USA profiles",
     medals: "total medals",
     income: "median household income",
-    nfhs: "HS sports participants",
+    nfhs: "HS participation slots",
     temp: "avg annual temp °F",
     snow: "avg annual snow in.",
   }[m] || m;
@@ -514,12 +516,12 @@ function plateCaption(p) {
     case "factories":     return "Plate II — Small-town factories";
     case "concentration": return "Plate III — Where each sport lives";
     case "halos":         return "Plate IV — Reach of the training centers";
-    case "distance":      return "Plate V — Distance to nearest training center";
+    case "distance":      return "Plate V — Distance to nearest sport-serving facility";
     case "climate":       return "Plate VI — Climate × sport family";
     case "paralympic":    return "Plate VII — Paralympic geography";
-    case "colleges":      return "Plate VIII — Olympians per athletic dollar";
-    case "per_capita":    return "Plate IX — Olympians per 100k residents";
-    case "hs_conversion": return "Plate X — High-school pipeline";
+    case "colleges":      return "Plate VIII — Team USA profiles per athletic dollar";
+    case "per_capita":    return "Plate IX — Team USA profiles per 100k residents";
+    case "hs_conversion": return "Plate X — NFHS slot density";
     case "era":           return "Plate XI — How the map moved";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }

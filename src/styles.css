@@ -199,6 +199,16 @@ h1.wordmark em {
   gap: 28px;
   align-items: start;
 }
+.left-col,
+.center-col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+.right-col {
+  min-width: 0;
+}
 
 aside.panel {
   font-family: var(--mono);
@@ -1025,8 +1035,10 @@ input[type="range"]::-webkit-slider-thumb {
   position: relative;
 }
 .div-row .div-bar.tall { height: 11px; }
+.div-row .div-bar .stack { height: 100%; display: flex; }
 .div-row .div-bar .o { background: var(--ink); height: 100%; }
 .div-row .div-bar .p { background: var(--rust); height: 100%; }
+.div-row .div-bar .h { background: var(--gold); height: 100%; }
 .div-row .div-bar .solo { background: var(--rust); height: 100%; }
 .div-row .div-bar .solo.gold { background: var(--gold); }
 .div-row .num {
@@ -1099,6 +1111,147 @@ input[type="range"]::-webkit-slider-thumb {
   filter: drop-shadow(0 0 4px rgba(200, 152, 55, 0.7));
 }
 .halos-layer circle { pointer-events: none; }
+
+/* ── Plate XII — "Your atlas" personalized briefing ───────────────── */
+
+.you-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 14px;
+}
+.you-field { display: flex; flex-direction: column; gap: 4px; }
+.you-lab {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.you-form input[type="text"] {
+  font-family: var(--serif);
+  font-size: 14.5px;
+  font-variation-settings: "opsz" 16;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.13s ease;
+}
+.you-form input[type="text"]:focus { border-color: var(--ink); }
+.you-actions { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+.you-submit {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--rust);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.13s ease;
+}
+.you-submit:hover:not(:disabled) { background: var(--rust-deep); }
+.you-submit:disabled { background: var(--ink-4); cursor: not-allowed; }
+.you-cancel {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: transparent;
+  border: none;
+  padding: 6px 4px;
+  cursor: pointer;
+}
+.you-cancel:hover { color: var(--ink); }
+.you-error {
+  margin: 6px 0 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--rust);
+  border-left: 2px solid var(--rust);
+  padding: 4px 0 4px 8px;
+}
+
+.you-result { display: flex; flex-direction: column; gap: 12px; }
+.you-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--hair);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+.you-meta-row { display: inline-flex; flex-direction: column; gap: 1px; }
+.you-meta-lab {
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.you-meta-val {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-variation-settings: "opsz" 14;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.you-edit {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.you-edit:hover { border-color: var(--rust); }
+
+.you-thinking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+.you-thinking-lab {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.you-foot {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-4);
+  letter-spacing: 0.04em;
+  margin: 4px 0 0;
+}
+.you-reset {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--hair);
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: color 0.13s ease, border-color 0.13s ease;
+}
+.you-reset:hover { color: var(--ink); border-color: var(--ink); }
 
 /* ── Plate Story (expandable journalist context) ─────────────────── */
 
