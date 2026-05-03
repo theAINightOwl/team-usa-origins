@@ -27,7 +27,7 @@ function getModel() {
   return process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
 }
 
-const SYSTEM_INSTRUCTION = `You are a data visualization specialist working in the visual style of
+export const SYSTEM_INSTRUCTION = `You are a data visualization specialist working in the visual style of
 the "Olympian Roots" editorial / printed-magazine aesthetic. When asked, run
 Python via the code-execution tool to build a **Plotly** figure. Use
 plotly.graph_objects. Do NOT use plotly templates (no template=...).
@@ -142,33 +142,74 @@ const RESPONSE_SCHEMA = {
  * Run the viz agent once.
  * @param {string} userQuestion — natural language ask
  * @param {object} dataset — JSON object injected as context (analytics + state summary)
- * @param {Array<{name:string,mimeType:string,data:string}>} [files] — base64-encoded reference files
+ * @param {object} [opts]
+ * @param {Array<{name:string,mimeType:string,data:string}>} [opts.files] — base64-encoded reference files (used when no cache is provided; fallback)
+ * @param {string} [opts.cachedContent] — Gemini cache name; when set, the system instruction + files + tool config are read from the cache
+ * @param {() => void} [opts.onCacheMiss] — called once if a request fails with a cache-miss; the helper retries the call without the cache (using `files` if provided)
  * @returns {Promise<{ text: string, code: string, stdout: string, figures: unknown[] }>}
  */
-export async function runVizAgent(userQuestion, dataset, files = []) {
+export async function runVizAgent(userQuestion, dataset, opts = {}) {
   const ai = getAi();
   if (!ai) throw new Error("GEMINI_API_KEY is not configured on the server.");
+
+  const { files = [], cachedContent, onCacheMiss } = opts;
 
   const userText =
     `${userQuestion}\n\n` +
     `Available Olympian Roots dataset (the same analytics that power the 11 plates):\n` +
     "```json\n" + JSON.stringify(dataset) + "\n```";
 
-  const fileParts = files.flatMap((f) => [
-    { text: `File: ${f.name}` },
-    { inlineData: { mimeType: f.mimeType, data: f.data } },
-  ]);
+  const callOnce = async (cacheName) => {
+    if (cacheName) {
+      // Cached path: systemInstruction, tools, and file parts all live in the
+      // cache. Per-call config carries only the cache reference + response
+      // schema. Per-call contents carry only the user turn (question +
+      // dataset).
+      return ai.models.generateContent({
+        model: getModel(),
+        contents: [{ role: "user", parts: [{ text: userText }] }],
+        config: {
+          cachedContent: cacheName,
+          responseMimeType: "application/json",
+          responseJsonSchema: RESPONSE_SCHEMA,
+        },
+      });
+    }
+    // Inline fallback path (unchanged from the previous plan).
+    const fileParts = files.flatMap((f) => [
+      { text: `File: ${f.name}` },
+      { inlineData: { mimeType: f.mimeType, data: f.data } },
+    ]);
+    return ai.models.generateContent({
+      model: getModel(),
+      contents: [{ role: "user", parts: [...fileParts, { text: userText }] }],
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+        tools: [{ codeExecution: {} }],
+        responseMimeType: "application/json",
+        responseJsonSchema: RESPONSE_SCHEMA,
+      },
+    });
+  };
 
-  const response = await ai.models.generateContent({
-    model: getModel(),
-    contents: [{ role: "user", parts: [...fileParts, { text: userText }] }],
-    config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
-      tools: [{ codeExecution: {} }],
-      responseMimeType: "application/json",
-      responseJsonSchema: RESPONSE_SCHEMA,
-    },
-  });
+  let response;
+  try {
+    response = await callOnce(cachedContent);
+  } catch (err) {
+    const msg = String(err?.message || err);
+    const looksLikeCacheMiss = /cache.*(not found|expired|invalid)|cachedcontent/i.test(msg);
+    if (cachedContent && looksLikeCacheMiss) {
+      console.warn("[viz] cache miss, falling back to inline:", msg);
+      if (onCacheMiss) onCacheMiss();
+      response = await callOnce(undefined); // one fallback attempt without the cache
+    } else {
+      throw err;
+    }
+  }
+
+  if (response.usageMetadata) {
+    console.log("[viz] usage:", JSON.stringify(response.usageMetadata));
+  }
 
   let code = "";
   let stdout = "";
