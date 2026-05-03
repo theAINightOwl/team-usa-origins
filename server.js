@@ -39,6 +39,7 @@ setGlobalDispatcher(new Agent({
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
 import { runVizAgent } from "./server/viz_agent.js";
+import { loadVizFiles } from "./server/viz_data.js";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -189,6 +190,10 @@ function buildVizDataset() {
   return { analytics, states: stateSummary };
 }
 
+// Load once at boot. Cached inside loadVizFiles, but pinning it here makes
+// the boot-time loading log fire deterministically before the first request.
+const VIZ_FILES = loadVizFiles();
+
 const REQUEST_CHART_DECL = {
   name: "request_chart",
   description:
@@ -319,7 +324,7 @@ app.post("/api/chat", async (req, res) => {
 
       let vizResult;
       try {
-        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset());
+        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset(), VIZ_FILES);
       } catch (err) {
         console.error("[chat] viz agent error:", err);
         vizResult = {
@@ -456,7 +461,7 @@ app.post("/api/viz", async (req, res) => {
   }
 
   try {
-    const result = await runVizAgent(question, buildVizDataset());
+    const result = await runVizAgent(question, buildVizDataset(), VIZ_FILES);
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);
