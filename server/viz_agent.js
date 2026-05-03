@@ -92,9 +92,9 @@ to states / sports / training programs / hometowns only.
 **Reference files attached to this request:** Each file appears in the prompt
 as a "File: <name>" text marker followed by its bytes. Inside the
 code-execution sandbox, read them by their attached names — for example
-\`pd.read_json("athletes.json")\` or \`pd.read_csv("hometown_demographics.csv")\`.
+\`pd.read_csv("athletes.csv")\` or \`pd.read_csv("hometown_demographics.csv")\`.
 Available files:
-- athletes.json — anonymised per-athlete records (id, sport, family, state,
+- athletes.csv — anonymised per-athlete records (id, sport, family, state,
   city, school, medal tiers, first/last games, season, lat/lng). The canonical
   athlete-grain source. Do NOT request a "team_usa_athletes.csv" — it is not
   attached.
