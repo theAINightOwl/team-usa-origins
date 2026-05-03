@@ -38,8 +38,9 @@ setGlobalDispatcher(new Agent({
 }));
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
-import { runVizAgent } from "./server/viz_agent.js";
+import { runVizAgent, SYSTEM_INSTRUCTION } from "./server/viz_agent.js";
 import { loadVizFiles } from "./server/viz_data.js";
+import { getOrCreateVizCache, invalidateVizCache } from "./server/viz_cache.js";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -190,9 +191,27 @@ function buildVizDataset() {
   return { analytics, states: stateSummary };
 }
 
-// Load once at boot. Cached inside loadVizFiles, but pinning it here makes
-// the boot-time loading log fire deterministically before the first request.
+// Files always loaded so the inline fallback path works on cache miss.
 const VIZ_FILES = loadVizFiles();
+
+// Boot-time prewarm of the Gemini cache. Lazy + non-blocking: if it fails,
+// requests fall through to the inline path automatically.
+const VIZ_CACHE_ENABLED = !process.env.VIZ_CACHE_DISABLED;
+const VIZ_MODEL_NAME = process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
+let VIZ_CACHE_NAME = null;
+async function ensureVizCache() {
+  if (!VIZ_CACHE_ENABLED || !ai) return null;
+  if (VIZ_CACHE_NAME) return VIZ_CACHE_NAME;
+  try {
+    VIZ_CACHE_NAME = await getOrCreateVizCache(ai, VIZ_MODEL_NAME, SYSTEM_INSTRUCTION);
+    return VIZ_CACHE_NAME;
+  } catch (err) {
+    console.warn("[viz] cache prewarm failed (will fall back to inline):", err?.message || err);
+    VIZ_CACHE_NAME = null;
+    return null;
+  }
+}
+ensureVizCache(); // fire-and-forget at boot
 
 const REQUEST_CHART_DECL = {
   name: "request_chart",
@@ -324,7 +343,12 @@ app.post("/api/chat", async (req, res) => {
 
       let vizResult;
       try {
-        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset(), VIZ_FILES);
+        const cacheName = await ensureVizCache();
+        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset(), {
+          files: VIZ_FILES,
+          cachedContent: cacheName || undefined,
+          onCacheMiss: invalidateVizCache,
+        });
       } catch (err) {
         console.error("[chat] viz agent error:", err);
         vizResult = {
@@ -461,7 +485,12 @@ app.post("/api/viz", async (req, res) => {
   }
 
   try {
-    const result = await runVizAgent(question, buildVizDataset(), VIZ_FILES);
+    const cacheName = await ensureVizCache();
+    const result = await runVizAgent(question, buildVizDataset(), {
+      files: VIZ_FILES,
+      cachedContent: cacheName || undefined,
+      onCacheMiss: invalidateVizCache,
+    });
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);
