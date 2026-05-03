@@ -87,7 +87,31 @@ Layout requirements every figure must satisfy:
 
 **NIL constraint:** the underlying athlete data is anonymised. Never label any
 individual athlete by name in axis labels, annotations, or narration. Aggregate
-to states / sports / training programs / hometowns only.`;
+to states / sports / training programs / hometowns only.
+
+**Reference files attached to this request:** Each file appears in the prompt
+as a "File: <name>" text marker followed by its bytes. Inside the
+code-execution sandbox, read them by their attached names — for example
+\`pd.read_json("athletes.json")\` or \`pd.read_csv("hometown_demographics.csv")\`.
+Available files:
+- athletes.json — anonymised per-athlete records (id, sport, family, state,
+  city, school, medal tiers, first/last games, season, lat/lng). The canonical
+  athlete-grain source. Do NOT request a "team_usa_athletes.csv" — it is not
+  attached.
+- hometown_demographics.csv — per-city demographics (population, income, etc.)
+- nfhs_participation.csv — NFHS high-school sport participation by year /
+  state / sport (the raw grain behind Plate X "HS slot density").
+- teamusa_hometown_geocodes.csv — city/state → lat/lng lookup.
+- eada_college_sports.csv — EADA college-sports dataset.
+- nfhs_state_totals.csv — annual NFHS totals per state.
+- sport_family_mapping.csv — sport → family taxonomy used everywhere else
+  in the atlas.
+- training_centers.csv — curated training-center directory.
+- hometown_climate.csv — Köppen climate zones per hometown.
+
+The pre-aggregated \`analytics\` and \`states\` JSON in the prompt remains the
+fastest path for high-level plate-style questions; reach for the raw files only
+when the question needs joins or grain not present in the analytics.`;
 
 const RESPONSE_SCHEMA = {
   type: "object",
@@ -119,9 +143,10 @@ const RESPONSE_SCHEMA = {
  * Run the viz agent once.
  * @param {string} userQuestion — natural language ask
  * @param {object} dataset — JSON object injected as context (analytics + state summary)
+ * @param {Array<{name:string,mimeType:string,data:string}>} [files] — base64-encoded reference files
  * @returns {Promise<{ text: string, code: string, stdout: string, figures: unknown[] }>}
  */
-export async function runVizAgent(userQuestion, dataset) {
+export async function runVizAgent(userQuestion, dataset, files = []) {
   const ai = getAi();
   if (!ai) throw new Error("GEMINI_API_KEY is not configured on the server.");
 
@@ -130,9 +155,14 @@ export async function runVizAgent(userQuestion, dataset) {
     `Available Olympian Roots dataset (the same analytics that power the 11 plates):\n` +
     "```json\n" + JSON.stringify(dataset) + "\n```";
 
+  const fileParts = files.flatMap((f) => [
+    { text: `File: ${f.name}` },
+    { inlineData: { mimeType: f.mimeType, data: f.data } },
+  ]);
+
   const response = await ai.models.generateContent({
     model: getModel(),
-    contents: [{ role: "user", parts: [{ text: userText }] }],
+    contents: [{ role: "user", parts: [...fileParts, { text: userText }] }],
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
       tools: [{ codeExecution: {} }],
@@ -141,9 +171,6 @@ export async function runVizAgent(userQuestion, dataset) {
     },
   });
 
-  // The intermediate code-execution turns leave executableCode +
-  // codeExecutionResult parts in the response — surface them so the
-  // existing <details> disclosure still works.
   let code = "";
   let stdout = "";
   for (const part of response.candidates?.[0]?.content?.parts ?? []) {
