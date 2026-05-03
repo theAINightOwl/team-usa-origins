@@ -5,8 +5,11 @@ import React from "react";
  * Shows counts, climate, NFHS context, top sports, and top feeder colleges
  * for that state.
  */
-export default function StatePanel({ state, colleges, onClose }) {
+export default function StatePanel({ state, colleges, onClose, profileType, lensStateCounts }) {
   if (!state) return null;
+
+  const lens = (lensStateCounts && lensStateCounts[state.abbr]) || { count: 0, medals: 0 };
+  const lensWord = profileType === "paralympic" ? "Paralympians" : "Olympians";
 
   const stateColleges = colleges
     .filter((c) => c.state === state.abbr && (c.matched_profiles ?? c.olympians ?? 0) > 0)
@@ -31,16 +34,16 @@ export default function StatePanel({ state, colleges, onClose }) {
 
       <div className="stats">
         <div className="cell">
-          <div className="label">Profiles</div>
-          <div className="value rust num">{(state.profiles ?? state.olympians ?? 0).toLocaleString()}</div>
+          <div className="label">{lensWord}</div>
+          <div className="value rust num">{lens.count.toLocaleString()}</div>
         </div>
         <div className="cell">
           <div className="label">Medals</div>
-          <div className="value gold num">{(state.medals || 0).toLocaleString()}</div>
+          <div className="value gold num">{lens.medals.toLocaleString()}</div>
         </div>
         <div className="cell">
-          <div className="label">Gold</div>
-          <div className="value num">{(state.gold || 0).toLocaleString()}</div>
+          <div className="label">All profiles</div>
+          <div className="value num">{(state.profiles ?? state.olympians ?? 0).toLocaleString()}</div>
         </div>
       </div>
 

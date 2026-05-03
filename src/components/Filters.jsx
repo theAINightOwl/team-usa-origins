@@ -1,4 +1,7 @@
 import React from "react";
+import trainingCentersData from "../data/training_centers.json";
+
+const TC_COUNT = trainingCentersData.length;
 
 const METRICS = [
   { value: "olympians", label: "Team USA profiles" },
@@ -53,7 +56,10 @@ export default function Filters({
                     className="swatch"
                     style={{ background: familyColors[f] || "#555" }}
                   />
-                  {f}
+                  <span className="chip-label">
+                    <span className="chip-name">{f}</span>
+                    <span className="chip-count">{(familyCounts[f] || 0).toLocaleString()}</span>
+                  </span>
                 </button>
               );
             })}
@@ -108,7 +114,7 @@ export default function Filters({
           >
             <div>
               <span className="label">USOPC training centers</span>
-              <span className="sub">12 facilities, rust = paralympic</span>
+              <span className="sub">{TC_COUNT} facilities, rust = paralympic</span>
             </div>
             <span className="switch" />
           </div>

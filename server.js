@@ -48,7 +48,11 @@ const DATA_DIR = join(__dirname, "src", "data");
 // ── Load static data context once at boot ───────────────────────────────
 const analytics = JSON.parse(readFileSync(join(DATA_DIR, "analytics.json"), "utf-8"));
 const states = JSON.parse(readFileSync(join(DATA_DIR, "states.json"), "utf-8"));
-const plateBriefs = buildPlateBriefs(analytics, states);
+// Pre-build plate briefs for both lenses so per-request prompt assembly is cheap.
+const plateBriefsByLens = {
+  olympic: buildPlateBriefs(analytics, states, "olympic"),
+  paralympic: buildPlateBriefs(analytics, states, "paralympic"),
+};
 
 // ── Gemini setup ────────────────────────────────────────────────────────
 const API_KEY = process.env.GEMINI_API_KEY;
@@ -80,15 +84,21 @@ const BASE_RULES = [
 
 const ATLAS_INTRO = "You are an analytical assistant embedded in **Olympian Roots**, an editorial atlas of Team USA hometowns and the support systems that produce American Olympians and Paralympians.";
 
-function systemPrompt() {
+function resolveLens(profileType) {
+  return profileType === "paralympic" ? "paralympic" : "olympic";
+}
+
+function systemPrompt(profileType) {
+  const lens = resolveLens(profileType);
+  const lensLabel = lens === "paralympic" ? "Paralympic" : "Olympic";
   return [
     ATLAS_INTRO,
     "",
-    "The user is currently looking at a US map with 11 plates of pre-computed findings. Your job is to answer their questions about the data and the broader context.",
+    `The user is currently looking at a US map with the **${lensLabel} lens active**. Every plate below is filtered to ${lensLabel} athletes only — Hopefuls are excluded under both lenses. If the user asks about athletes or numbers without specifying, default to the active lens. If they explicitly ask about the other lens, answer from general knowledge or note the limitation.`,
     "",
-    "**What the user can already see — the 11 plates:**",
+    "**What the user can already see — the plates (lens-specific):**",
     "",
-    plateBriefs,
+    plateBriefsByLens[lens],
     "",
     "**Raw data you can quote from:**",
     "",
@@ -99,25 +109,28 @@ function systemPrompt() {
     BASE_RULES,
     "",
     "**Chat-specific notes:**",
+    `- **Active lens:** ${lensLabel}. Always frame answers around ${lensLabel} athletes unless the user asks otherwise.`,
     "- **Use Google Search for context.** For deep-dive 'why' questions — history, training programs, individual towns, sport culture, recent news — call the googleSearch tool and ground your answer in real sources. Do not pull named athletes or performance stats back from the web either.",
     "- **Cite web sources** inline as `[short title](url)` at the relevant spot.",
     "- **Be concise.** Markdown is welcome (lists, **bold**, headers). Keep most answers under ~200 words unless the user asks for a deep dive.",
   ].join("\n");
 }
 
-function personalSystemPrompt({ hometown, residence }) {
+function personalSystemPrompt({ hometown, residence, profileType }) {
+  const lens = resolveLens(profileType);
+  const lensLabel = lens === "paralympic" ? "Paralympic" : "Olympic";
   return [
     ATLAS_INTRO,
     "",
-    "A visitor has shared two pieces of geography and you are writing a short personalized briefing for **just them**, weaving the atlas's existing data around their hometown and current residence.",
+    `A visitor has shared two pieces of geography and you are writing a short personalized briefing for **just them**, weaving the atlas's existing data around their hometown and current residence. The atlas is currently set to the **${lensLabel} lens**, so all the per-plate numbers you cite should reflect that lens.`,
     "",
     "**Visitor input:**",
     `- Hometown (where they grew up): ${hometown || "(not provided)"}`,
     `- Current residence: ${residence || "(not provided)"}`,
     "",
-    "**The 11 plates of pre-computed findings you can draw from:**",
+    `**The plates of pre-computed findings you can draw from (${lensLabel} lens):**`,
     "",
-    plateBriefs,
+    plateBriefsByLens[lens],
     "",
     "**Raw data you can quote from:**",
     "",
@@ -207,7 +220,7 @@ const REQUEST_CHART_DECL = {
 };
 
 app.post("/api/chat", async (req, res) => {
-  const { messages = [] } = req.body || {};
+  const { messages = [], profileType } = req.body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
     res.status(400).json({ error: "Pass { messages: [{role,text},...] } in body." });
     return;
@@ -256,7 +269,7 @@ app.post("/api/chat", async (req, res) => {
 
   // Gemini 3 supports `thinkingConfig`; Gemini 2.5 and earlier reject it.
   const config = {
-    systemInstruction: systemPrompt(),
+    systemInstruction: systemPrompt(profileType),
     tools: [{
       googleSearch: {},
       functionDeclarations: [REQUEST_CHART_DECL],
@@ -388,6 +401,7 @@ app.post("/api/chat", async (req, res) => {
 app.post("/api/personal", async (req, res) => {
   const hometown = (req.body?.hometown || "").toString().trim().slice(0, 120);
   const residence = (req.body?.residence || "").toString().trim().slice(0, 120);
+  const profileType = req.body?.profileType;
 
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache, no-transform");
@@ -419,7 +433,7 @@ app.post("/api/personal", async (req, res) => {
         parts: [{ text: `Hometown: ${hometown || "(not provided)"}\nResidence: ${residence || "(not provided)"}\n\nWrite my personalized atlas briefing now, following the format rules above.` }],
       }],
       config: {
-        systemInstruction: personalSystemPrompt({ hometown, residence }),
+        systemInstruction: personalSystemPrompt({ hometown, residence, profileType }),
       },
     });
 
@@ -460,6 +474,130 @@ app.post("/api/viz", async (req, res) => {
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);
+    res.status(500).json({ error: err?.message || String(err) });
+  }
+});
+
+// ── Standalone AI-controls-the-dashboard demo ──────────────────────────
+// Two tiny endpoints powering public/ai-filter-demo.html. The page sends
+// the user's natural-language ask + the current filter state; we hand
+// Gemini an `apply_filters` function and return whatever patch it picks
+// (plus a one-line reply). The page applies the patch to its own state.
+
+let _demoAthletes = null;
+function loadDemoAthletes() {
+  if (_demoAthletes) return _demoAthletes;
+  const raw = JSON.parse(readFileSync(join(DATA_DIR, "athletes.json"), "utf-8"));
+  _demoAthletes = raw.map((a) => ({
+    id: a.id,
+    sport: a.sport,
+    family: a.family,
+    state: a.state,
+    city: a.city,
+    first: a.first,
+    last: a.last,
+    medals: a.total_medals || 0,
+    type: a.type,
+    lat: a.lat,
+    lng: a.lng,
+  }));
+  return _demoAthletes;
+}
+
+app.get("/api/demo-data", (_req, res) => {
+  const families = JSON.parse(readFileSync(join(DATA_DIR, "sport_families.json"), "utf-8"));
+  res.json({
+    athletes: loadDemoAthletes(),
+    familyColors: families.colors,
+    familyCounts: families.counts,
+  });
+});
+
+const APPLY_FILTERS_DECL = {
+  name: "apply_filters",
+  description:
+    "Update the dashboard's filter state to match what the user asked for. Only include keys you intend to change. Pass `families: null` to clear the family filter (i.e. show all families).",
+  parameters: {
+    type: "object",
+    properties: {
+      families: {
+        type: "array",
+        nullable: true,
+        description:
+          "Sport families to show. Allowed values exactly: Aquatic, Team Ball, Combat, Track & Field, Endurance, Gymnastics, Winter, Precision, Equestrian, Racket, Strength, Other. Pass null to mean 'all families'.",
+        items: { type: "string" },
+      },
+      medalOnly: {
+        type: "boolean",
+        description: "If true, hide athletes with zero career medals.",
+      },
+      eraStart: {
+        type: "integer",
+        description: "Lower bound of the era slider (>= 1896).",
+      },
+      eraEnd: {
+        type: "integer",
+        description: "Upper bound of the era slider (<= 2026).",
+      },
+      type: {
+        type: "string",
+        enum: ["all", "Olympic", "Paralympic"],
+        description: "Restrict to Olympic-only, Paralympic-only, or both ('all').",
+      },
+      reset: {
+        type: "boolean",
+        description: "If true, reset every filter to its default (all families, no medal filter, full era, both types).",
+      },
+    },
+  },
+};
+
+app.post("/api/filter-command", async (req, res) => {
+  const message = (req.body?.message || "").toString().trim();
+  const state = req.body?.state || {};
+  if (!message) {
+    res.status(400).json({ error: "Pass { message, state } in body." });
+    return;
+  }
+  if (!ai) {
+    res.status(500).json({ error: "GEMINI_API_KEY is not configured on the server." });
+    return;
+  }
+
+  const sys =
+    "You control an Olympian Roots dashboard via the apply_filters function. " +
+    "When the user asks to filter, narrow, broaden, or reset the view, CALL apply_filters with " +
+    "only the keys you want to change. After calling the tool, write ONE short sentence (<= 20 words) " +
+    "confirming the change in plain English. If the user is just chatting and not asking for a filter " +
+    "change, reply in one sentence and do NOT call the tool. Never invent family names — only use the " +
+    "12 allowed families from the schema.";
+
+  const userText =
+    `User said: "${message}"\n\n` +
+    `Current filter state: ${JSON.stringify(state)}`;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: MODEL,
+      contents: [{ role: "user", parts: [{ text: userText }] }],
+      config: {
+        systemInstruction: sys,
+        tools: [{ functionDeclarations: [APPLY_FILTERS_DECL] }],
+      },
+    });
+
+    let patch = null;
+    let reply = "";
+    for (const part of response.candidates?.[0]?.content?.parts ?? []) {
+      if (part.functionCall?.name === "apply_filters") {
+        patch = part.functionCall.args || {};
+      }
+      if (part.text) reply += part.text;
+    }
+    if (!reply) reply = patch ? "Done." : "(no response)";
+    res.json({ patch, reply: reply.trim() });
+  } catch (err) {
+    console.error("[filter-demo] error:", err);
     res.status(500).json({ error: err?.message || String(err) });
   }
 });

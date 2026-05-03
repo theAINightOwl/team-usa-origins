@@ -11,10 +11,9 @@ import analyticsData from "./data/analytics.json";
 
 import USMap, { NAME_TO_ABBR } from "./components/USMap.jsx";
 import Filters from "./components/Filters.jsx";
-import Legend from "./components/Legend.jsx";
 import StatePanel from "./components/StatePanel.jsx";
 import AthleteCard from "./components/AthleteCard.jsx";
-import Plates, { PlateStory } from "./components/Plates.jsx";
+import Plates, { PlateStory, LensToggle } from "./components/Plates.jsx";
 import ChatBot from "./components/ChatBot.jsx";
 
 const MAP_WIDTH = 975;
@@ -59,6 +58,17 @@ export default function App() {
   const [eraRange, setEraRange] = useState([1896, 2026]);
   const [overlays, setOverlays] = useState({ dots: true, centers: true, colleges: false });
 
+  const PROFILE_TYPE_KEY = "olympian-roots:profileType";
+  const [profileType, setProfileTypeState] = useState(() => {
+    if (typeof localStorage === "undefined") return "olympic";
+    const stored = localStorage.getItem(PROFILE_TYPE_KEY);
+    return stored === "paralympic" ? "paralympic" : "olympic";
+  });
+  const setProfileType = (next) => {
+    setProfileTypeState(next);
+    if (typeof localStorage !== "undefined") localStorage.setItem(PROFILE_TYPE_KEY, next);
+  };
+
   const toggleFamily = (f) => {
     setSelectedFamilies((prev) => {
       const next = new Set(prev);
@@ -87,6 +97,7 @@ export default function App() {
   // ── Filtered athlete set for the map & panels ────────────────────
   const filteredAthletes = useMemo(() => {
     return athletesData.filter((a) => {
+      if ((a.type || "").toLowerCase() !== profileType) return false;
       if (!selectedFamilies.has(a.family)) return false;
       if (medalOnly && !(a.total_medals > 0)) return false;
       if (a.first != null) {
@@ -97,18 +108,37 @@ export default function App() {
       }
       return true;
     });
-  }, [selectedFamilies, medalOnly, eraRange]);
+  }, [profileType, selectedFamilies, medalOnly, eraRange]);
 
-  const totals = useMemo(
-    () => ({
+  const totals = useMemo(() => {
+    const lensTotal = athletesData.filter(
+      (a) => (a.type || "").toLowerCase() === profileType
+    ).length;
+    return {
       athletes: 8526, // total athletes scraped from teamusa.com
       geocoded: athletesData.length,
+      lensGeocoded: lensTotal,
       filtered: filteredAthletes.length,
       medals: filteredAthletes.reduce((s, a) => s + (a.total_medals || 0), 0),
       states: new Set(filteredAthletes.map((a) => a.state).filter(Boolean)).size,
-    }),
-    [filteredAthletes]
-  );
+    };
+  }, [filteredAthletes, profileType]);
+
+  // Per-state aggregate filtered ONLY by lens (not by other filters), so the
+  // choropleth + StatePanel reflect the active Olympic/Paralympic view without
+  // jumping around as the user toggles family/era filters.
+  const lensStateCounts = useMemo(() => {
+    const agg = {};
+    for (const a of athletesData) {
+      if ((a.type || "").toLowerCase() !== profileType) continue;
+      const st = a.state;
+      if (!st) continue;
+      if (!agg[st]) agg[st] = { count: 0, medals: 0 };
+      agg[st].count += 1;
+      agg[st].medals += a.total_medals || 0;
+    }
+    return agg;
+  }, [profileType]);
 
   const selectedAthlete = useMemo(
     () => (selectedAthleteId ? athletesData.find((a) => a.id === selectedAthleteId) : null),
@@ -142,9 +172,9 @@ export default function App() {
 
       <div className="metastrip">
         <div className="cell">
-          <span className="label">Athletes located</span>
+          <span className="label">{profileType === "paralympic" ? "Paralympians located" : "Olympians located"}</span>
           <span className="value num">
-            {totals.geocoded.toLocaleString()}
+            {totals.lensGeocoded.toLocaleString()}
             <span className="unit">geocoded</span>
           </span>
         </div>
@@ -209,11 +239,6 @@ export default function App() {
             overlays={overlays}
             setOverlay={setOverlay}
           />
-          <Legend
-            families={allFamilies}
-            familyColors={sportFamiliesData.colors}
-            familyCounts={sportFamiliesData.counts}
-          />
         </div>
 
         <div className="center-col">
@@ -236,14 +261,17 @@ export default function App() {
             onSelectState={handleSelectState}
             onSelectAthlete={handleSelectAthlete}
             activePlate={activePlate}
-            factories={analyticsData.factories}
+            factories={(analyticsData[`factories_${profileType}`] || analyticsData.factories)}
             hoveredFactory={hoveredFactory}
             onHoverFactory={setHoveredFactory}
+            profileType={profileType}
+            lensStateCounts={lensStateCounts}
           />
-          <PlateStory plateKey={activePlate} />
+          <PlateStory plateKey={activePlate} profileType={profileType} />
         </div>
 
         <aside className="right-col">
+          <LensToggle profileType={profileType} setProfileType={setProfileType} />
           {selectedAthlete ? (
             <AthleteCard
               athlete={selectedAthlete}
@@ -257,6 +285,8 @@ export default function App() {
               state={selectedStateObj}
               colleges={collegesData}
               onClose={() => setSelectedState(null)}
+              profileType={profileType}
+              lensStateCounts={lensStateCounts}
             />
           ) : (
             <Plates
@@ -265,12 +295,13 @@ export default function App() {
               totals={totals}
               hoveredFactory={hoveredFactory}
               onHoverFactory={setHoveredFactory}
+              profileType={profileType}
             />
           )}
         </aside>
       </div>
 
-      <ChatBot />
+      <ChatBot profileType={profileType} />
     </div>
   );
 }

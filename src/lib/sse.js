@@ -54,10 +54,10 @@ async function* streamSse(path, body, signal) {
   }
 }
 
-export async function* streamChat({ messages, signal } = {}) {
-  yield* streamSse("/api/chat", { messages }, signal);
+export async function* streamChat({ messages, profileType, signal } = {}) {
+  yield* streamSse("/api/chat", { messages, profileType }, signal);
 }
 
-export async function* streamPersonal({ hometown, residence, signal } = {}) {
-  yield* streamSse("/api/personal", { hometown, residence }, signal);
+export async function* streamPersonal({ hometown, residence, profileType, signal } = {}) {
+  yield* streamSse("/api/personal", { hometown, residence, profileType }, signal);
 }

@@ -223,6 +223,12 @@ def merged_center_rows(centers):
 
 
 # ── Per-plate computations ────────────────────────────────────────────
+def filter_by_type(athletes, profile_type):
+    """Return athletes whose `type` matches the given lens ('olympic' or 'paralympic')."""
+    target = profile_type.lower()
+    return [a for a in athletes if (a.get("type") or "").strip().lower() == target]
+
+
 def plate_factories(athletes, place_pop):
     """#1 — small-town factories (per-capita Team USA athlete profiles by hometown)."""
     by_city = defaultdict(list)
@@ -686,11 +692,20 @@ def plate_paralympic(athletes):
     return rows
 
 
-def plate_college_efficiency(colleges):
-    """#8 — matched Team USA profiles vs athletic budget."""
+def plate_college_efficiency(colleges, profile_type=None):
+    """#8 — matched Team USA profiles vs athletic budget.
+
+    If `profile_type` is given ('olympic' or 'paralympic'), the matched-profile
+    count is restricted to that lens via each college's profile_types dict.
+    """
     pts = []
+    type_key = profile_type.capitalize() if profile_type else None
     for c in colleges:
-        matched = c.get("matched_profiles", c.get("olympians", 0)) or 0
+        type_counts = c.get("profile_types") or {}
+        if type_key:
+            matched = type_counts.get(type_key, 0) or 0
+        else:
+            matched = c.get("matched_profiles", c.get("olympians", 0)) or 0
         if c.get("budget_m") and matched > 0:
             type_counts = c.get("profile_types") or {}
             pts.append({
@@ -730,17 +745,25 @@ def plate_college_efficiency(colleges):
     }
 
 
-def plate_per_capita(states_data, state_pop):
-    """#9 — per-capita Team USA profiles per state per 100k residents."""
+def plate_per_capita(states_data, state_pop, profile_type=None):
+    """#9 — per-capita Team USA profiles per state per 100k residents.
+
+    If `profile_type` is given ('olympic' or 'paralympic'), the numerator is
+    restricted to that lens via each state's profile_types dict.
+    """
+    type_key = profile_type.capitalize() if profile_type else None
     rows = []
     for st, info in states_data.items():
         pop = state_pop.get(st)
         if not pop or pop < 50_000:
             continue
-        profiles = info.get("profiles", info.get("olympians", 0)) or 0
+        type_counts = info.get("profile_types") or {}
+        if type_key:
+            profiles = type_counts.get(type_key, 0) or 0
+        else:
+            profiles = info.get("profiles", info.get("olympians", 0)) or 0
         if profiles == 0:
             continue
-        type_counts = info.get("profile_types") or {}
         per100k = profiles / pop * 100_000
         rows.append({
             "state": st,
@@ -764,8 +787,13 @@ def plate_per_capita(states_data, state_pop):
     return rows
 
 
-def plate_hs_conversion(states_data):
-    """#10 — Team USA profiles per official NFHS participation slot."""
+def plate_hs_conversion(states_data, profile_type=None):
+    """#10 — Team USA profiles per official NFHS participation slot.
+
+    If `profile_type` is given ('olympic' or 'paralympic'), the numerator is
+    restricted to that lens.
+    """
+    type_key = profile_type.capitalize() if profile_type else None
     rows = []
     for st, info in states_data.items():
         nfhs_slots = (
@@ -774,11 +802,14 @@ def plate_hs_conversion(states_data):
             or 0
         )
         type_counts = info.get("profile_types") or {}
-        profiles = (
-            info.get("profiles")
-            or sum(type_counts.values())
-            or info.get("olympians", 0)
-        )
+        if type_key:
+            profiles = type_counts.get(type_key, 0) or 0
+        else:
+            profiles = (
+                info.get("profiles")
+                or sum(type_counts.values())
+                or info.get("olympians", 0)
+            )
         if nfhs_slots and profiles:
             ratio = profiles / nfhs_slots * 1_000_000
             rows.append({
@@ -1102,6 +1133,25 @@ def main():
         "era": plate_era(athletes),
     }
     out["meta"] = build_meta(out)
+
+    # ── Per-lens slices (Olympic / Paralympic) ────────────────────────
+    print("\nComputing per-lens slices …")
+    ath_o = filter_by_type(athletes, "olympic")
+    ath_p = filter_by_type(athletes, "paralympic")
+    print(f"  filtered: {len(ath_o)} olympic, {len(ath_p)} paralympic")
+
+    for lens, ath_lens in (("olympic", ath_o), ("paralympic", ath_p)):
+        suffix = f"_{lens}"
+        print(f"  ── {lens} lens ──")
+        out[f"factories{suffix}"] = plate_factories(ath_lens, place_pop)
+        out[f"concentration{suffix}"] = plate_concentration(ath_lens, families)
+        out[f"halos{suffix}"] = plate_halos(ath_lens, centers)
+        out[f"climate_sport{suffix}"] = plate_climate_sport(ath_lens, states)
+        out[f"distance{suffix}"] = plate_distance(ath_lens, centers)
+        out[f"per_capita{suffix}"] = plate_per_capita(states, state_pop, profile_type=lens)
+        out[f"college_efficiency{suffix}"] = plate_college_efficiency(colleges, profile_type=lens)
+        out[f"hs_conversion{suffix}"] = plate_hs_conversion(states, profile_type=lens)
+        out[f"era{suffix}"] = plate_era(ath_lens)
 
     OUT.write_text(json.dumps(out, separators=(",", ":")))
     print(f"\nWrote analytics.json ({OUT.stat().st_size:,} bytes)")

@@ -5,7 +5,7 @@ import { useGeminiLive } from "../hooks/useGeminiLive.js";
 import { renderFigure } from "../lib/plotly-render.js";
 
 /*
- * ChatBot — "Ask the atlas" floating drawer (Plate XIII).
+ * ChatBot — "Ask the Atlas" floating drawer.
  *
  * One conversation thread. The user types or speaks; the chat agent decides
  * whether to answer in prose or invoke a `request_chart` tool that fans out
@@ -20,7 +20,7 @@ const STARTERS = [
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
-export default function ChatBot() {
+export default function ChatBot({ profileType = "olympic" }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [pendingVoice, setPendingVoice] = useState(null); // { role, text } in-flight voice fragment
@@ -186,7 +186,7 @@ export default function ChatBot() {
     }
 
     try {
-      for await (const evt of streamChat({ messages: history, signal: ctrl.signal })) {
+      for await (const evt of streamChat({ messages: history, profileType, signal: ctrl.signal })) {
         if (evt.type === "text") {
           acc += evt.delta;
           patch(inFlightId, { text: acc, pending: true });
@@ -279,18 +279,43 @@ export default function ChatBot() {
         <button
           className="chat-launcher"
           onClick={() => setOpen(true)}
-          aria-label="Open Ask the atlas"
+          aria-label="Open Ask the Atlas"
         >
-          <span className="r">XIII</span>
-          <span className="s">Ask the atlas</span>
+          <span className="chat-launcher-icon" aria-hidden>
+            <svg width="32" height="32" viewBox="0 0 32 32">
+              {/* antenna */}
+              <line x1="16" y1="3" x2="16" y2="7" stroke="#1a1410" strokeWidth="1.2" strokeLinecap="round" />
+              <circle cx="16" cy="2.5" r="1.4" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8">
+                <animate attributeName="opacity" values="1;0.4;1" dur="1.6s" repeatCount="indefinite" />
+              </circle>
+              {/* head */}
+              <rect x="5.5" y="7" width="21" height="18" rx="3.5" fill="#f6e8c8" stroke="#1a1410" strokeWidth="1.2" />
+              {/* screen panel */}
+              <rect x="8.5" y="11" width="15" height="8" rx="1.5" fill="#1a1410" />
+              {/* eyes */}
+              <circle cx="12.5" cy="15" r="1.6" fill="#f6e8c8" />
+              <circle cx="19.5" cy="15" r="1.6" fill="#f6e8c8" />
+              <circle cx="12.7" cy="14.7" r="0.5" fill="#1a1410" />
+              <circle cx="19.7" cy="14.7" r="0.5" fill="#1a1410" />
+              {/* smile */}
+              <path d="M12.5 22 Q16 23.6 19.5 22" fill="none" stroke="#1a1410" strokeWidth="1.1" strokeLinecap="round" />
+              {/* ear bolts */}
+              <circle cx="5" cy="16" r="1.1" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8" />
+              <circle cx="27" cy="16" r="1.1" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8" />
+            </svg>
+          </span>
+          <span className="chat-launcher-label">
+            <span className="chat-launcher-eyebrow">Ask the Atlas</span>
+            <span className="chat-launcher-sub">type · talk · chart</span>
+          </span>
         </button>
       )}
 
       {open && (
-        <div className="chat-drawer" role="dialog" aria-label="Ask the atlas">
+        <div className="chat-drawer" role="dialog" aria-label="Ask the Atlas">
           <header className="chat-head">
             <div>
-              <p className="eyebrow">Plate XIII · Ask the atlas</p>
+              <p className="eyebrow">Ask the Atlas</p>
               <h3>
                 Type, talk, or <em>chart</em>.
               </h3>
@@ -359,7 +384,19 @@ export default function ChatBot() {
                 className="mic-ring"
                 style={{ transform: `scale(${1 + live.micLevel * 1.1})` }}
               />
-              <span className="mic-glyph" aria-hidden>{isLive ? "■" : "●"}</span>
+              <span className="mic-glyph" aria-hidden>
+                {isLive ? (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="6" width="12" height="12" rx="1.5" />
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="3" width="6" height="11" rx="3" />
+                    <path d="M5 11a7 7 0 0 0 14 0" />
+                    <path d="M12 18v3" />
+                  </svg>
+                )}
+              </span>
             </button>
             <textarea
               ref={taRef}

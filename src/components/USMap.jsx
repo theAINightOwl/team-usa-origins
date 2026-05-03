@@ -68,6 +68,9 @@ export default function USMap({
   factories,
   hoveredFactory,
   onHoverFactory,
+  // Lens (Olympic/Paralympic) — used for the choropleth + tooltip
+  profileType,
+  lensStateCounts,
 }) {
   const [tooltip, setTooltip] = useState(null);
 
@@ -75,11 +78,11 @@ export default function USMap({
   // scale isn't flattened by empty values.
   const [metricMin, metricMax] = useMemo(() => {
     const vs = Object.values(states)
-      .map((s) => extractMetric(s, metric))
+      .map((s) => extractMetric(s, metric, lensStateCounts))
       .filter((v) => v != null && !isNaN(v) && v > 0);
     if (!vs.length) return [0, 1];
     return [Math.min(...vs), Math.max(...vs)];
-  }, [states, metric]);
+  }, [states, metric, lensStateCounts]);
 
   // Pre-project athlete coordinates once per filter change.
   const athleteDots = useMemo(() => {
@@ -198,7 +201,8 @@ export default function USMap({
               const name = feat.properties.name;
               const abbr = NAME_TO_ABBR[name];
               const st = states[abbr];
-              const value = extractMetric(st, metric);
+              const value = extractMetric(st, metric, lensStateCounts);
+              const lens = lensStateCounts && lensStateCounts[abbr];
               const fill = fillFor(value, metricMin, metricMax);
               const isSelected = selectedState === abbr;
               return (
@@ -216,6 +220,9 @@ export default function USMap({
                       data: st,
                       metric,
                       value,
+                      lensCount: lens?.count ?? 0,
+                      lensMedals: lens?.medals ?? 0,
+                      profileType,
                       cx: 0,
                       cy: 0,
                     })
@@ -414,14 +421,15 @@ function Tooltip({ t, familyColors }) {
     // Skip the choropleth metric line when it's already shown above
     // (olympians/medals are always shown by default).
     const metricRedundant = t.metric === "olympians" || t.metric === "medals";
+    const lensWord = t.profileType === "paralympic" ? "paralympians" : "olympians";
     return (
       <div className="tooltip" style={style}>
         <div className="t-name">{t.name}</div>
         <div className="t-line">
-          <b>{(t.data?.olympians ?? 0).toLocaleString()}</b> olympians
+          <b>{(t.lensCount ?? 0).toLocaleString()}</b> {lensWord}
         </div>
         <div className="t-line">
-          <b>{(t.data?.medals ?? 0).toLocaleString()}</b> medals won
+          <b>{(t.lensMedals ?? 0).toLocaleString()}</b> medals won
         </div>
         {!metricRedundant && (
           <div className="t-line">
@@ -487,16 +495,19 @@ function Tooltip({ t, familyColors }) {
   return null;
 }
 
-function extractMetric(st, metric) {
+function extractMetric(st, metric, lensStateCounts) {
   if (!st) return null;
+  // Lens-aware values — count and medals are filtered to the active
+  // Olympic/Paralympic lens via the lensStateCounts aggregate built in App.
+  const lens = lensStateCounts && lensStateCounts[st.abbr];
   switch (metric) {
-    case "olympians": return st.olympians;
-    case "medals":    return st.medals;
+    case "olympians": return lens ? lens.count : 0;
+    case "medals":    return lens ? lens.medals : 0;
     case "income":    return st.median_income;
     case "nfhs":      return st.nfhs_total;
     case "temp":      return st.climate?.temp_f;
     case "snow":      return st.climate?.snow_in;
-    default:          return st.olympians;
+    default:          return lens ? lens.count : 0;
   }
 }
 
@@ -513,16 +524,15 @@ export function metricLabel(m) {
 
 function plateCaption(p) {
   switch (p) {
-    case "factories":     return "Plate II — Small-town factories";
+    case "factories":     return "Plate II — Tiny towns, big rosters";
     case "concentration": return "Plate III — Where each sport lives";
     case "halos":         return "Plate IV — Reach of the training centers";
-    case "distance":      return "Plate V — Distance to nearest sport-serving facility";
+    case "distance":      return "Plate V — How far Team USA grew up from a training center";
     case "climate":       return "Plate VI — Climate × sport family";
-    case "paralympic":    return "Plate VII — Paralympic geography";
-    case "colleges":      return "Plate VIII — Team USA profiles per athletic dollar";
-    case "per_capita":    return "Plate IX — Team USA profiles per 100k residents";
-    case "hs_conversion": return "Plate X — NFHS slot density";
-    case "era":           return "Plate XI — How the map moved";
+    case "per_capita":    return "Plate VII — Profiles per 100k residents";
+    case "colleges":      return "Plate VIII — Profiles per athletic dollar";
+    case "hs_conversion": return "Plate IX — NFHS slot density";
+    case "era":           return "Plate X — How the map moved";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }
 }

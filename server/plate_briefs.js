@@ -1,58 +1,68 @@
 /*
- * plate_briefs.js — assembles a markdown summary of all 11 plates from the
- * computed analytics.json. The system prompt embeds this so Gemini can
+ * plate_briefs.js — assembles a markdown summary of the atlas plates from
+ * the computed analytics.json. The system prompt embeds this so Gemini can
  * answer questions about the data without re-deriving it.
  *
- * Pure function: input = analytics.json + states.json. Output = a single
- * markdown string ready to drop into the system prompt.
+ * Pure function: input = analytics.json + states.json + profileType.
+ * Output = a single markdown string ready to drop into the system prompt.
+ *
+ * The atlas has a binary lens (Olympic / Paralympic). Most plates have
+ * lens-specific slices (e.g. analytics.factories_olympic). We pick the
+ * right slice up front, fall back to the lumped key if the slice is
+ * absent (shouldn't happen post-Phase-1 but kept defensive).
  */
 
-export function buildPlateBriefs(analytics, states) {
+function pick(analytics, baseKey, profileType) {
+  return analytics[`${baseKey}_${profileType}`] || analytics[baseKey];
+}
+
+export function buildPlateBriefs(analytics, states, profileType = "olympic") {
+  const lensLabel = profileType === "paralympic" ? "Paralympic" : "Olympic";
   const sections = [
-    plateI(),
-    plateII(analytics.factories),
-    plateIII(analytics.concentration),
-    plateIV(analytics.halos, analytics.training_gap),
-    plateV(analytics.distance),
-    plateVI(analytics.climate_sport),
-    plateVII(analytics.paralympic, analytics.meta?.paralympic),
-    plateVIII(analytics.college_efficiency),
-    plateIX(analytics.per_capita, analytics.meta?.per_capita),
-    plateX(analytics.hs_conversion, analytics.meta?.hs_conversion),
-    plateXI(analytics.era),
+    plateI(lensLabel),
+    plateII(pick(analytics, "factories", profileType), lensLabel),
+    plateIII(pick(analytics, "concentration", profileType), lensLabel),
+    plateIV(pick(analytics, "halos", profileType), analytics.training_gap, lensLabel),
+    plateV(pick(analytics, "distance", profileType), lensLabel),
+    plateVI(pick(analytics, "climate_sport", profileType), lensLabel),
+    plateVII(pick(analytics, "per_capita", profileType), lensLabel),
+    plateVIII(pick(analytics, "college_efficiency", profileType), lensLabel),
+    plateIX(pick(analytics, "hs_conversion", profileType), analytics.meta?.hs_conversion, lensLabel),
+    plateX(pick(analytics, "era", profileType), lensLabel),
   ];
   return sections.join("\n\n");
 }
 
-function plateI() {
+function plateI(lens) {
   return [
-    "## Plate I — Reference",
+    `## Plate I — Reference (${lens} lens active)`,
     "Editorial intro to the atlas. Roster scraped from teamusa.com (5,201 athletes geocoded out of 8,526 profiles).",
     "Coordinates from the 2023 U.S. Census Gazetteer, augmented by 346 hand-curated corrections.",
+    `**Active lens:** ${lens}. The user has set the global lens toggle to ${lens}, so every plate below shows the ${lens}-only slice. Hopefuls are excluded under both lenses.`,
   ].join("\n");
 }
 
-function plateII(rows) {
-  if (!rows?.length) return "## Plate II — Factories\n(no data)";
+function plateII(rows, lens) {
+  if (!rows?.length) return `## Plate II — Factories (${lens})\n(no data)`;
   const top10 = rows.slice(0, 10);
   return [
-    "## Plate II — Small-Town Factories",
-    "Team USA athlete profiles per 10,000 residents, by hometown. Filter: town pop ≥ 500 and ≥ 2 athletes.",
-    "Population from Census PEP `sub-est2023.csv`. Surfaces winter-sports / Olympic-pipeline towns.",
+    `## Plate II — Small-Town Factories (${lens})`,
+    `${lens} athletes per 10,000 residents, by hometown. Filter: town pop ≥ 500 and ≥ 2 athletes.`,
+    "Population from Census PEP `sub-est2023.csv`.",
     "",
     "**Top 10 factories (rate per 10k):**",
     ...top10.map((r, i) =>
-      `${i + 1}. **${r.city}, ${r.state}** — ${r.athletes} Team USA profiles ÷ ${r.population.toLocaleString()} pop = **${r.rate.toFixed(1)}/10k** (top sport: ${r.top_sport})`
+      `${i + 1}. **${r.city}, ${r.state}** — ${r.athletes} ${lens} athletes ÷ ${r.population.toLocaleString()} pop = **${r.rate.toFixed(1)}/10k** (top sport: ${r.top_sport})`
     ),
   ].join("\n");
 }
 
-function plateIII(rows) {
-  if (!rows?.length) return "## Plate III — Concentration\n(no data)";
-  const filt = rows.filter((r) => r.n_athletes >= 7).slice(0, 10);
+function plateIII(rows, lens) {
+  if (!rows?.length) return `## Plate III — Concentration (${lens})\n(no data)`;
+  const filt = rows.filter((r) => r.n_athletes >= 5).slice(0, 10);
   return [
-    "## Plate III — Sport Geographic Concentration",
-    "Herfindahl index per sport: sum of squared state shares across Team USA profile hometowns. 1.0 = single state, 0.02 = perfectly spread.",
+    `## Plate III — Sport Geographic Concentration (${lens})`,
+    `Herfindahl index per ${lens} sport: sum of squared state shares across hometowns. 1.0 = single state, 0.02 = perfectly spread.`,
     "",
     "**Most concentrated sports:**",
     ...filt.map((r) => {
@@ -62,17 +72,17 @@ function plateIII(rows) {
   ].join("\n");
 }
 
-function plateIV(rows, gap) {
-  if (!rows?.length) return "## Plate IV — Halos\n(no data)";
+function plateIV(rows, gap, lens) {
+  if (!rows?.length) return `## Plate IV — Halos (${lens})\n(no data)`;
   const top = [...rows].sort((a, b) => (b.cumulative.at(-1) ?? 0) - (a.cumulative.at(-1) ?? 0)).slice(0, 6);
   const trackedFacilities = rows.reduce((s, r) => s + (r.facility_count || 1), 0);
   const optcs = rows.filter((r) => r.type === "OPTC").length;
   return [
-    "## Plate IV — Training-Center Halos",
-    `Team USA profiles within 25/50/100/200 mi of each curated training-facility geography. Cumulative — wider rings include closer ones. ${trackedFacilities} tracked facilities collapse to ${rows.length} map locations; ${optcs} are USOPC-operated OPTCs.`,
-    "This is not the complete current USOPC training-site list. Each row also reports direct sport-served profiles based on the facility's sports_served field.",
+    `## Plate IV — Training-Center Halos (${lens})`,
+    `${lens} athletes within 25/50/100/200 mi of each curated training-facility geography. Cumulative — wider rings include closer ones. ${trackedFacilities} tracked facilities collapse to ${rows.length} map locations; ${optcs} are USOPC-operated OPTCs.`,
+    `Direct sport-served counts use each facility's sports_served field. Note: the tracked facility roster was built around Olympic disciplines, so direct sport-served counts are typically smaller under the Paralympic lens.`,
     gap
-      ? `Gap scan: ${gap.far_profiles.toLocaleString()} profiles (${Math.round(gap.share * 100)}%) are more than ${gap.threshold_km}km from the nearest tracked facility geography. Top far metro: ${gap.top_metros?.[0]?.city}, ${gap.top_metros?.[0]?.state} (${gap.top_metros?.[0]?.n}).`
+      ? `Gap scan (lumped, not lens-specific): ${gap.far_profiles.toLocaleString()} profiles (${Math.round(gap.share * 100)}%) are more than ${gap.threshold_km}km from the nearest tracked facility. Top far metro: ${gap.top_metros?.[0]?.city}, ${gap.top_metros?.[0]?.state} (${gap.top_metros?.[0]?.n}).`
       : "",
     "",
     "**Centers ranked by 200-mi reach:**",
@@ -85,44 +95,46 @@ function plateIV(rows, gap) {
   ].join("\n");
 }
 
-function plateV(d) {
-  if (!d?.families) return "## Plate V — Distance\n(no data)";
-  const fams = Object.entries(d.families).sort((a, b) => b[1].n_med - a[1].n_med).slice(0, 6);
-  const overallRates = d.overall?.medalist_rate || [];
+function plateV(d, lens) {
+  if (!d?.families) return `## Plate V — Distance (${lens})\n(no data)`;
+  const fams = Object.entries(d.families)
+    .map(([fam, x]) => ({ fam, ...x, total: (x.n_med || 0) + (x.n_non || 0) }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 8);
   const scope = d.scope || {};
-  const excludedHopefuls = scope.excluded_profile_types?.Hopeful || 0;
   return [
-    "## Plate V — Distance to Nearest Sport-Serving Facility",
-    "Buckets: ≤25, ≤50, ≤100, ≤200, ≤400, ≤800, >800 miles. Compares medalist rates and ≤200mi proximity premiums for Olympic/Paralympic profiles only.",
+    `## Plate V — Distance to Nearest Sport-Serving Facility (${lens})`,
+    `Buckets: ≤25, ≤50, ≤100, ≤200, ≤400, ≤800, >800 miles. Distance from each ${lens} athlete's hometown to the nearest tracked training site that lists their sport.`,
     scope.included_profiles
-      ? `Scope: ${scope.included_profiles.toLocaleString()} profiles with a tracked sport-serving facility; excludes ${excludedHopefuls.toLocaleString()} Hopeful profiles and ${(scope.unserved_profiles || 0).toLocaleString()} Olympic/Paralympic profiles whose sport is not listed on the tracked facility roster.`
-      : "",
-    overallRates.length
-      ? `Overall medalist rate by bucket: ${overallRates.map((r, i) => `${d.bins[i]} ${(r * 100).toFixed(1)}%`).join(", ")}.`
+      ? `Scope: ${scope.included_profiles.toLocaleString()} ${lens} athletes included; ${(scope.unserved_profiles || 0).toLocaleString()} excluded because their sport has no tracked sport-serving facility.`
       : "",
     "",
-    "**By family (medalist count / non-medalist count / ≤200mi premium):**",
-    ...fams.map(([fam, x]) => {
-      const premium = x.premium_within_200_pp || 0;
-      return `- **${fam}**: ${x.n_med} medalists / ${x.n_non} non-medalists / ${premium > 0 ? "+" : ""}${premium.toFixed(1)}pp`;
+    "**By family (athletes total, share within 200mi, share beyond 800mi):**",
+    ...fams.map(({ fam, medalist, nonmedalist, total }) => {
+      const totals = (medalist || []).map((m, i) => m + ((nonmedalist && nonmedalist[i]) || 0));
+      const close = totals.slice(0, 4).reduce((s, n) => s + n, 0);
+      const far = totals[6] || 0;
+      return `- **${fam}** (n=${total}): ${total ? Math.round(close / total * 100) : 0}% within 200mi, ${total ? Math.round(far / total * 100) : 0}% beyond 800mi`;
     }),
   ].join("\n");
 }
 
-function plateVI(d) {
-  if (!d?.matrix?.length) return "## Plate VI — Climate × Sport\n(no data)";
+function plateVI(d, lens) {
+  if (!d?.matrix?.length) return `## Plate VI — Climate × Sport (${lens})\n(no data)`;
   const scope = d.scope || {};
-  const lines = ["## Plate VI — Climate × Sport Family",
-    "Share of each sport family's Team USA profiles from state-level climate-zone labels in data/hometown_climate.csv, assigned by athlete hometown state.",
+  const lines = [
+    `## Plate VI — Climate × Sport Family (${lens})`,
+    `Share of each ${lens} sport family's hometowns from state-level climate-zone labels in data/hometown_climate.csv.`,
     scope.included_profiles
-      ? `Scope: ${scope.included_profiles.toLocaleString()} profiles (${Object.entries(scope.profile_type_counts || {}).map(([type, n]) => `${type} ${n.toLocaleString()}`).join(", ")}).`
+      ? `Scope: ${scope.included_profiles.toLocaleString()} ${lens} athletes.`
       : "",
     "",
-    "**Each family's dominant climate zone:**"];
+    "**Each family's dominant climate zone:**",
+  ];
   for (const row of d.matrix) {
     const peak = row.zones.reduce((m, z) => (z.share > m.share ? z : m), { share: 0 });
     if (peak.share > 0) {
-      lines.push(`- **${row.family}** → ${peak.zone} (${Math.round(peak.share * 100)}% of ${row.total} profiles)`);
+      lines.push(`- **${row.family}** → ${peak.zone} (${Math.round(peak.share * 100)}% of ${row.total})`);
     }
   }
   if (d.residuals?.length) {
@@ -134,73 +146,58 @@ function plateVI(d) {
   return lines.join("\n");
 }
 
-function plateVII(rows, meta = {}) {
-  if (!rows?.length) return "## Plate VII — Paralympic\n(no data)";
-  const threshold = meta.display_threshold_total || 10;
-  const excludedHopefuls = meta.excluded_profile_types?.Hopeful || 0;
-  const top = rows.filter((r) => r.total >= threshold).slice(0, 8);
-  return [
-    "## Plate VII — Paralympic Geography",
-    `Each state's Paralympic share of Olympic+Paralympic profiles. Hopeful profiles are excluded (${excludedHopefuls.toLocaleString()}); filter: ≥ ${threshold} included profiles.`,
-    meta.national_share
-      ? `National baseline: ${(meta.national_share * 100).toFixed(1)}% Paralympic (${meta.national_paralympians?.toLocaleString()} of ${meta.national_total?.toLocaleString()} included profiles).`
-      : "",
-    "",
-    "**Highest Paralympic share by state:**",
-    ...top.map((r) => `- **${r.state}** — ${(r.para_share * 100).toFixed(0)}% Paralympic (${r.paralympic} of ${r.total}; ${r.hopeful_excluded || 0} Hopeful excluded)`),
-  ].join("\n");
-}
-
-function plateVIII(d) {
-  if (!d?.points?.length) return "## Plate VIII — Colleges\n(no data)";
-  const top = d.points.filter((p) => p.matched_profiles >= 2).slice(0, 10);
-  return [
-    "## Plate VIII — College Efficiency (Team USA Profiles per Athletic $M)",
-    "College programs ranked by matched Team USA profiles ÷ athletic budget ($M). Filter: ≥ 2 matched profiles.",
-    "Surfaces efficient mid-budget programs alongside the giants.",
-    "",
-    "**Top efficient programs:**",
-    ...top.map((r, i) => `${i + 1}. **${r.name}** (${r.state}) — ${r.matched_profiles} profiles ÷ $${r.budget_m}M = **${r.ratio.toFixed(2)}/$M** (O ${r.olympians}, P ${r.paralympians}, H ${r.hopefuls})`),
-  ].join("\n");
-}
-
-function plateIX(rows, meta) {
-  if (!rows?.length) return "## Plate IX — Per Capita\n(no data)";
+function plateVII(rows, lens) {
+  if (!rows?.length) return `## Plate VII — Per Capita (${lens})\n(no data)`;
   const top = rows.slice(0, 12);
-  const natl = meta?.national_per_100k ??
-    (rows.reduce((s, r) => s + r.profiles, 0) /
-      rows.reduce((s, r) => s + r.population, 0) * 100_000);
+  const totalProfiles = rows.reduce((s, r) => s + (r.profiles || 0), 0);
+  const totalPop = rows.reduce((s, r) => s + (r.population || 0), 0);
+  const natl = totalPop ? (totalProfiles / totalPop) * 100_000 : 0;
+  const lensWord = lens === "Paralympic" ? "Paralympians" : "Olympians";
   return [
-    "## Plate IX — Team USA Profiles per 100k Residents",
-    `National average ≈ ${natl.toFixed(2)} profiles per 100k. Population from Census PEP 2023; Olympic, Paralympic, and Hopeful profiles included.`,
+    `## Plate VII — ${lensWord} per 100k Residents`,
+    `National average ≈ ${natl.toFixed(2)} ${lensWord.toLowerCase()} per 100k. Population from Census PEP 2023.`,
     "Reorders the country: big states sink, mountain & northeastern states rise.",
     "",
     "**Top 12 states per capita:**",
-    ...top.map((r, i) => `${i + 1}. **${r.state}** (${r.name}) — ${r.profiles} profiles ÷ ${r.population.toLocaleString()} = **${r.per_100k.toFixed(2)}/100k** (O ${r.olympians}, P ${r.paralympians}, H ${r.hopefuls})`),
+    ...top.map((r, i) => `${i + 1}. **${r.state}** (${r.name}) — ${r.profiles} ${lensWord.toLowerCase()} ÷ ${(r.population ?? 0).toLocaleString()} = **${(r.per_100k ?? 0).toFixed(2)}/100k**`),
   ].join("\n");
 }
 
-function plateX(rows, meta = {}) {
-  if (!rows?.length) return "## Plate X — NFHS Slot Density\n(no data)";
+function plateVIII(d, lens) {
+  if (!d?.points?.length) return `## Plate VIII — Colleges (${lens})\n(no data)`;
+  const top = d.points.filter((p) => p.matched_profiles >= 2).slice(0, 10);
+  return [
+    `## Plate VIII — College Efficiency (${lens} matches per Athletic $M)`,
+    `College programs ranked by matched ${lens} athletes ÷ athletic budget ($M). Filter: ≥ 2 matched ${lens} profiles.`,
+    `Under the Paralympic lens this surfaces dedicated adaptive-athletics programs (Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois). Under the Olympic lens it surfaces sport-specific NCAA / NAIA / NJCAA pipelines.`,
+    "",
+    "**Top efficient programs:**",
+    ...top.map((r, i) => `${i + 1}. **${r.name}** (${r.state}) — ${r.matched_profiles} ${lens} matches ÷ $${r.budget_m}M = **${r.ratio.toFixed(2)}/$M** (full mix O ${r.olympians} / P ${r.paralympians} / H ${r.hopefuls})`),
+  ].join("\n");
+}
+
+function plateIX(rows, _meta = {}, lens) {
+  if (!rows?.length) return `## Plate IX — NFHS Slot Density (${lens})\n(no data)`;
   const top = rows
     .filter((r) => (r.nfhs_participation_slots ?? r.nfhs) >= 5000)
     .slice(0, 12);
-  const national = meta?.national_per_million_hs;
   return [
-    "## Plate X — Team USA Profiles per NFHS Participation Slot",
-    "Team USA profiles per 1,000,000 NFHS participation slots in the state.",
-    "Uses 2024-25 official NFHS state totals. Participation slots are not unique students.",
-    national ? `National profile density ≈ ${national.toFixed(0)}/M slots.` : "",
+    `## Plate IX — ${lens} Athletes per NFHS Participation Slot`,
+    `${lens} athletes per 1,000,000 NFHS participation slots in the state. Uses 2024-25 official NFHS state totals; participation slots are not unique students.`,
+    lens === "Paralympic"
+      ? "**Caveat:** the NFHS denominator is built around Olympic-pathway sports, so the Paralympic version of this chart is conceptually mismatched — most Paralympic disciplines have no high-school pipeline. Treat as directional only."
+      : "",
     "",
-    "**Highest profile density per NFHS slot:**",
-    ...top.map((r, i) => `${i + 1}. **${r.state}** — ${r.profiles} profiles ÷ ${(r.nfhs_participation_slots ?? r.nfhs).toLocaleString()} slots = **${r.per_million_hs.toFixed(0)}/M** (O ${r.olympians}, P ${r.paralympians}, H ${r.hopefuls})`),
+    "**Highest density per NFHS slot:**",
+    ...top.map((r, i) => `${i + 1}. **${r.state}** — ${r.profiles} ${lens.toLowerCase()} athletes ÷ ${(r.nfhs_participation_slots ?? r.nfhs).toLocaleString()} slots = **${r.per_million_hs.toFixed(0)}/M**`),
   ].filter(Boolean).join("\n");
 }
 
-function plateXI(d) {
-  if (!d?.per_state) return "## Plate XI — Era\n(no data)";
+function plateX(d, lens) {
+  if (!d?.per_state) return `## Plate X — Era (${lens})\n(no data)`;
   const decades = d.decades.map((x) => x.label);
-  const ranked = (d.swing_rankings || Object.entries(d.per_state)
+  const minTotal = lens === "Paralympic" ? 5 : 30;
+  const ranked = Object.entries(d.per_state)
     .map(([st, counts]) => {
       const early = counts[0] + counts[1];
       const late = counts[3] + counts[4];
@@ -208,21 +205,22 @@ function plateXI(d) {
       const swing = (late + 1) / (early + 1);
       return { state: st, counts, total, swing };
     })
-    .filter((r) => r.total >= 30)
-    .sort((a, b) => b.swing - a.swing))
-    .slice(0, 10)
-    .map((r) => ({ st: r.state, counts: r.counts, total: r.total, swing: r.swing }));
+    .filter((r) => r.total >= minTotal)
+    .sort((a, b) => b.swing - a.swing)
+    .slice(0, 10);
   const scope = d.scope || {};
   return [
-    "## Plate XI — Era Presence",
-    `Team USA profiles with parsed active years, counted in each overlapping decade (${decades.join(" / ")}). Sorted by late-vs-early swing: ${d.swing_metric?.label || "(2010s + 2020s + 1) / (1980s + 1990s + 1)"}.`,
+    `## Plate X — Era Presence (${lens})`,
+    `${lens} athletes with parsed active years, counted in each overlapping decade (${decades.join(" / ")}). Sorted by late-vs-early swing: (2010s + 2020s + 1) / (1980s + 1990s + 1).`,
     scope.included_profiles_with_parsed_year != null
-      ? `Scope: ${scope.included_profiles_with_parsed_year.toLocaleString()} profiles included; ${(scope.excluded_no_parsed_year || 0).toLocaleString()} geocoded profiles have no parsed year and are excluded.`
+      ? `Scope: ${scope.included_profiles_with_parsed_year.toLocaleString()} ${lens.toLowerCase()} profiles included; ${(scope.excluded_no_parsed_year || 0).toLocaleString()} excluded with no parsed year.`
       : "",
-    "Caveat: the Team USA roster skews to currently-active profiles, so this is not a complete historical census or a migration model.",
+    lens === "Paralympic"
+      ? "**Caveat:** the Paralympic Games started in 1960 (Summer) / 1976 (Winter), and teamusa.com's Paralympic coverage skews to currently-active athletes — early decades are often empty or near-empty by roster artifact."
+      : "Caveat: the Team USA roster skews to currently-active profiles, so this is not a complete historical census.",
     "",
     "**Biggest late-vs-early swing states:**",
-    ...ranked.map((r) => `- **${r.st}** — counts ${r.counts.join("/")}, swing ×${r.swing.toFixed(1)}`),
+    ...ranked.map((r) => `- **${r.state}** — counts ${r.counts.join("/")}, swing ×${r.swing.toFixed(1)}`),
     "",
     `National row: ${d.national.join(" / ")}`,
   ].filter(Boolean).join("\n");

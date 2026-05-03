@@ -24,25 +24,96 @@ const TRACKED_OPTC_COUNT = analytics.halos?.filter((c) => c.type === "OPTC").len
 
 export const PLATE_DEFS = [
   { key: "ref", roman: "I", short: "Reference", title: "A century of hometowns" },
-  { key: "factories", roman: "II", short: "Factories", title: "The smallest factories" },
+  { key: "factories", roman: "II", short: "Factories", title: "Tiny towns, big rosters" },
   { key: "concentration", roman: "III", short: "Concentration", title: "Where each sport lives" },
   { key: "halos", roman: "IV", short: "Halos", title: "Reach of the training centers" },
-  { key: "distance", roman: "V", short: "Distance", title: "Closer to the right facility?" },
+  { key: "distance", roman: "V", short: "Distance", title: "How far from a center?" },
   { key: "climate", roman: "VI", short: "Climate", title: "Climate × sport family" },
-  { key: "paralympic", roman: "VII", short: "Paralympic", title: "Paralympic geography" },
-  { key: "colleges", roman: "VIII", short: "Colleges", title: "Team USA profiles per athletic dollar" },
-  { key: "per_capita", roman: "IX", short: "Per Capita", title: "Team USA profiles per 100k residents" },
-  { key: "hs_conversion", roman: "X", short: "NFHS Slots", title: "Team USA profiles per NFHS slot" },
-  { key: "era", roman: "XI", short: "Era", title: "Era presence by decade" },
-  { key: "you", roman: "XII", short: "You", title: "Your atlas — fun facts about your geography" },
+  { key: "per_capita", roman: "VII", short: "Per Capita", title: "Profiles per 100k residents" },
+  { key: "colleges", roman: "VIII", short: "Colleges", title: "Profiles per athletic dollar" },
+  { key: "hs_conversion", roman: "IX", short: "NFHS Slots", title: "Profiles per high-school slot" },
+  { key: "era", roman: "X", short: "Era", title: "Roster presence by decade" },
+  { key: "you", roman: "XI", short: "You", title: "Your geography, your facts" },
 ];
 
-export default function Plates({ activePlate, setActivePlate, totals, onHoverFactory, hoveredFactory }) {
+const TOGGLE_AWARE = new Set([
+  "factories",
+  "concentration",
+  "halos",
+  "distance",
+  "climate",
+  "per_capita",
+  "colleges",
+  "hs_conversion",
+  "era",
+]);
+
+function lensSlice(key, profileType) {
+  // Map plate key to analytics key, then suffix with the active lens.
+  const ANALYTICS_KEY = {
+    factories: "factories",
+    concentration: "concentration",
+    halos: "halos",
+    distance: "distance",
+    climate: "climate_sport",
+    per_capita: "per_capita",
+    colleges: "college_efficiency",
+    hs_conversion: "hs_conversion",
+    era: "era",
+  };
+  const base = ANALYTICS_KEY[key];
+  if (!base) return null;
+  return analytics[`${base}_${profileType}`] || analytics[base];
+}
+
+export default function Plates({
+  activePlate,
+  setActivePlate,
+  totals,
+  onHoverFactory,
+  hoveredFactory,
+  profileType,
+}) {
   const plate = PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0];
   return (
     <div className="detail">
       <PlateSelector active={activePlate} setActive={setActivePlate} />
-      <PlateBody plate={plate} totals={totals} onHoverFactory={onHoverFactory} hoveredFactory={hoveredFactory} />
+      <PlateBody
+        plate={plate}
+        totals={totals}
+        onHoverFactory={onHoverFactory}
+        hoveredFactory={hoveredFactory}
+        profileType={profileType}
+      />
+    </div>
+  );
+}
+
+/* ── Lens toggle (Olympic / Paralympic) ────────────────────────────── */
+// Exported so App can render it ABOVE the right-column conditional, so it
+// stays visible whether the user is looking at Plates, StatePanel, or
+// AthleteCard.
+
+export function LensToggle({ profileType, setProfileType }) {
+  return (
+    <div className="lens-toggle" role="radiogroup" aria-label="Profile type">
+      <span className="lens-toggle-lab">Lens</span>
+      <button
+        type="button"
+        className={`lens-btn ${profileType === "olympic" ? "on" : ""}`}
+        onClick={() => setProfileType("olympic")}
+        aria-pressed={profileType === "olympic"}
+      >
+        Olympic
+      </button>
+      <button
+        type="button"
+        className={`lens-btn ${profileType === "paralympic" ? "on" : ""}`}
+        onClick={() => setProfileType("paralympic")}
+        aria-pressed={profileType === "paralympic"}
+      >
+        Paralympic
+      </button>
     </div>
   );
 }
@@ -61,8 +132,11 @@ function PlateSelector({ active, setActive }) {
             onClick={() => setActive(p.key)}
             title={p.title}
           >
-            <span className="r">{p.roman}</span>
-            <span className="s">{p.short}</span>
+            <span className="chip-row">
+              <span className="r">{p.roman}</span>
+              <span className="s">{p.short}</span>
+            </span>
+            <span className="t">{p.title}</span>
           </button>
         ))}
       </div>
@@ -72,20 +146,24 @@ function PlateSelector({ active, setActive }) {
 
 /* ── Plate dispatcher ──────────────────────────────────────────────── */
 
-function PlateBody({ plate, totals, onHoverFactory, hoveredFactory }) {
-  switch (plate.key) {
+function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, profileType }) {
+  const k = plate.key;
+  // Each toggle-aware plate gets its lens-specific slice + roman numeral.
+  const sliceProps = TOGGLE_AWARE.has(k)
+    ? { profileType, slice: lensSlice(k, profileType), roman: plate.roman }
+    : { roman: plate.roman };
+  switch (k) {
     case "ref":           return <PlateReference totals={totals} />;
-    case "factories":     return <PlateFactories onHoverFactory={onHoverFactory} hoveredFactory={hoveredFactory} />;
-    case "concentration": return <PlateConcentration />;
-    case "halos":         return <PlateHalos />;
-    case "climate":       return <PlateClimate />;
-    case "distance":      return <PlateDistance />;
-    case "paralympic":    return <PlateParalympic />;
-    case "colleges":      return <PlateColleges />;
-    case "per_capita":    return <PlatePerCapita />;
-    case "hs_conversion": return <PlateHSConversion />;
-    case "era":           return <PlateEra />;
-    case "you":           return <PlateYou />;
+    case "factories":     return <PlateFactories onHoverFactory={onHoverFactory} hoveredFactory={hoveredFactory} {...sliceProps} />;
+    case "concentration": return <PlateConcentration {...sliceProps} />;
+    case "halos":         return <PlateHalos {...sliceProps} />;
+    case "climate":       return <PlateClimate {...sliceProps} />;
+    case "distance":      return <PlateDistance {...sliceProps} />;
+    case "colleges":      return <PlateColleges {...sliceProps} />;
+    case "per_capita":    return <PlatePerCapita {...sliceProps} />;
+    case "hs_conversion": return <PlateHSConversion {...sliceProps} />;
+    case "era":           return <PlateEra {...sliceProps} />;
+    case "you":           return <PlateYou profileType={profileType} />;
     default:              return null;
   }
 }
@@ -107,9 +185,10 @@ function PlateHeader({ roman, eyebrow, title, italic }) {
  * map while the plate selector + per-plate analytics live in the right
  * column. Plate bodies no longer render their own story — App owns it.
  */
-export function PlateStory({ plateKey }) {
+export function PlateStory({ plateKey, profileType }) {
   const [open, setOpen] = useState(false);
-  const text = STORIES[plateKey];
+  const text =
+    (profileType && STORIES[`${plateKey}_${profileType}`]) || STORIES[plateKey];
   if (!text) return null;
   return (
     <section className={`plate-story ${open ? "open" : ""}`}>
@@ -133,6 +212,10 @@ export function PlateStory({ plateKey }) {
 
 function fmt(n) { return n != null ? n.toLocaleString() : "—"; }
 function pct(x) { return (x * 100).toFixed(1) + "%"; }
+function lensEyebrow(base, profileType) {
+  if (!profileType) return base;
+  return `${base} · ${profileType === "paralympic" ? "Paralympic" : "Olympic"}`;
+}
 
 const FAMILY_COLOR_HINT = {
   "Aquatic":        "#2d5f7f",
@@ -178,15 +261,17 @@ function PlateReference({ totals }) {
 
 /* ── Plate II — Small-Town Factories ───────────────────────────────── */
 
-function PlateFactories({ onHoverFactory, hoveredFactory }) {
-  const rows = analytics.factories.slice(0, 25);
+function PlateFactories({ onHoverFactory, hoveredFactory, slice, roman, profileType }) {
+  const data = slice || analytics.factories;
+  const rows = data.slice(0, 25);
   return (
     <>
-      <PlateHeader roman="II" eyebrow="Per-Capita" title="The smallest " italic="factories." />
+      <PlateHeader roman={roman || "II"} eyebrow={lensEyebrow("Per-Capita", profileType)} title="Tiny towns, " italic="big rosters." />
       <p className="plate-lede">
         Towns ranked by Team USA athlete profiles per <span className="num">10,000</span> residents.
-        Filtered to places ≥ 500 population with ≥ 2 athletes — the rest is statistical noise.
-        Hover a row to find its gold pin on the map.
+        Limited to places with at least <span className="num">500</span> people and{" "}
+        <span className="num">2</span> athletes — below that, one extra athlete swings the rate
+        too far to compare fairly. Hover a row to find its gold pin on the map.
       </p>
       <ol className="rank-list">
         {rows.map((r, i) => (
@@ -216,16 +301,16 @@ function PlateFactories({ onHoverFactory, hoveredFactory }) {
 
 /* ── Plate III — Sport Concentration ───────────────────────────────── */
 
-function PlateConcentration() {
-  const rows = analytics.concentration.filter((r) => r.n_athletes >= 7).slice(0, 24);
+function PlateConcentration({ slice, roman, profileType }) {
+  const data = slice || analytics.concentration;
+  const rows = data.filter((r) => r.n_athletes >= 7).slice(0, 24);
   return (
     <>
-      <PlateHeader roman="III" eyebrow="Geography" title="Where each sport " italic="lives." />
+      <PlateHeader roman={roman || "III"} eyebrow={lensEyebrow("Geography", profileType)} title="Where each sport " italic="lives." />
       <p className="plate-lede">
-        Herfindahl index: the sum of squared state shares for each sport's Team USA profiles.
-        <span className="num"> 1.0</span> means every profile is from one state;
-        <span className="num"> 0.02</span> means perfectly spread across all 51.
-        Sorted most → least concentrated.
+        How concentrated each sport's hometowns are. A score of{" "}
+        <span className="num">1.00</span> means every Team USA profile comes from a single state;
+        <span className="num"> 0.05</span> means the sport is spread evenly across the country.
       </p>
       <ul className="rank-list">
         {rows.map((r) => (
@@ -251,22 +336,32 @@ function PlateConcentration() {
           </li>
         ))}
       </ul>
+      <p className="plate-foot">
+        The score is the <em>Herfindahl-Hirschman Index</em>, a standard
+        concentration measure (the sum of each state's squared share of a sport's profiles).
+        It runs from <span className="num">0</span> — perfectly spread across all 51 states — to{" "}
+        <span className="num">1</span> — every profile from one state.
+      </p>
     </>
   );
 }
 
 /* ── Plate IV — Training-Center Halos ──────────────────────────────── */
 
-function PlateHalos() {
-  const rows = analytics.halos;
+function PlateHalos({ slice, roman, profileType }) {
+  const rows = slice || analytics.halos;
   const maxCum = Math.max(...rows.map((r) => r.cumulative[r.cumulative.length - 1]));
   return (
     <>
-      <PlateHeader roman="IV" eyebrow="Influence" title="Reach of the " italic="training centers." />
+      <PlateHeader roman={roman || "IV"} eyebrow={lensEyebrow("Influence", profileType)} title="Reach of the " italic="training centers." />
       <p className="plate-lede">
-        Team USA profiles within <span className="num">25 / 50 / 100 / 200</span> miles of each tracked facility geography.
-        The curated roster includes {TRACKED_FACILITY_COUNT} facilities collapsed to {TRACKED_GEOGRAPHY_COUNT} map locations;
-        <strong> {TRACKED_OPTC_COUNT} are USOPC-operated OPTCs</strong> (badged below). Cumulative — wider rings include all closer ones.
+        How many Team USA athletes live within{" "}
+        <span className="num">25 / 50 / 100 / 200</span> miles of each tracked training site.
+        Each ring includes everyone in the closer rings, so the 200-mile count is the total within
+        200 miles. <strong>Sport-served</strong> counts only athletes whose sport that site
+        actually trains — a tighter measure than raw proximity. {TRACKED_FACILITY_COUNT} sites are
+        collapsed onto {TRACKED_GEOGRAPHY_COUNT} map locations where they share a campus, and
+        <strong> {TRACKED_OPTC_COUNT} are official USOPC training centers</strong> (badged below).
       </p>
       <ul className="halo-list">
         {rows.map((r) => {
@@ -308,54 +403,109 @@ function PlateHalos() {
 
 /* ── Plate V — Distance to Training Center ─────────────────────────── */
 
-function PlateDistance() {
-  const { bins, families, scope } = analytics.distance;
-  // sort families by # medalists
-  const ordered = Object.entries(families)
-    .sort((a, b) => b[1].n_med - a[1].n_med)
-    .slice(0, 8);
+function PlateDistance({ slice, roman, profileType }) {
+  const { bins, families, scope } = slice || analytics.distance;
+  // For each family, collapse the 7 bins into 3 zones: ≤200, 200-800, >800.
+  // Sort by total athletes, descending.
+  const rows = Object.entries(families)
+    .map(([fam, d]) => {
+      const totals = bins.map((_, i) => (d.medalist[i] || 0) + (d.nonmedalist[i] || 0));
+      const total = totals.reduce((s, n) => s + n, 0);
+      const close = totals[0] + totals[1] + totals[2] + totals[3]; // ≤200
+      const mid = totals[4] + totals[5];                            // 200-800
+      const far = totals[6];                                        // >800
+      return { fam, total, close, mid, far };
+    })
+    .filter((r) => r.total >= 25)
+    .sort((a, b) => b.total - a.total);
+  const grandTotal = rows.reduce((s, r) => s + r.total, 0);
+  const grandClose = rows.reduce((s, r) => s + r.close, 0);
+  const grandMid = rows.reduce((s, r) => s + r.mid, 0);
+  const grandFar = rows.reduce((s, r) => s + r.far, 0);
   return (
     <>
-      <PlateHeader roman="V" eyebrow="Proximity" title="Closer to the right facility, " italic="more medals?" />
+      <PlateHeader roman={roman || "V"} eyebrow={lensEyebrow("Hometowns", profileType)} title="How far from a " italic="training center?" />
       <p className="plate-lede">
-        Distance from each Olympic/Paralympic hometown to the nearest tracked facility geography
-        that lists the athlete's sport, bucketed by family. Bars show each bucket's{" "}
-        <span className="rust-tag">medalist rate</span>; the right edge shows the ≤200mi proximity
-        premium versus non-medalists. Sports outside the tracked facility roster are excluded
-        ({(scope?.unserved_profiles || 0).toLocaleString()} profiles).
+        For each Olympic and Paralympic athlete, the distance from their hometown to the nearest
+        tracked training site that actually serves their sport, grouped by sport family. Sports with
+        no tracked facility are excluded ({(scope?.unserved_profiles || 0).toLocaleString()} athletes).
       </p>
-      <div className="dist-list">
-        {ordered.map(([fam, d]) => {
-          const premium = d.premium_within_200_pp || 0;
+      <ul className="dist-stack-list">
+        {rows.map(({ fam, total, close, mid, far }) => {
+          const cp = (close / total) * 100;
+          const mp = (mid / total) * 100;
+          const fp = (far / total) * 100;
           return (
-            <div className="dist-row" key={fam}>
+            <li className="dist-stack-row" key={fam}>
               <div className="dist-fam">
                 <span className="dot" style={{ background: FAMILY_COLOR_HINT[fam] || "#555" }} />
                 {fam}
-                <span className="dist-counts">
-                  {premium > 0 ? "+" : ""}{premium.toFixed(1)}<span className="sep">pp</span> ≤200
-                </span>
+                <span className="dist-counts num">{total} athletes</span>
               </div>
-              <div className="dist-bars">
-                {bins.map((b, i) => {
-                  const med = d.medalist[i] || 0;
-                  const non = d.nonmedalist[i] || 0;
-                  const rate = d.medalist_rate?.[i] || 0;
-                  return (
-                    <div key={b} className="dist-col">
-                      <div
-                        className="med"
-                        style={{ height: `${rate * 100}%` }}
-                        title={`${b}: ${(rate * 100).toFixed(1)}% medalist rate (${med} medalists, ${non} non-medalists)`}
-                      />
-                      <div className="lab">{b}</div>
-                    </div>
-                  );
-                })}
+              <div className="dist-stack-bar">
+                {cp > 0 && (
+                  <span
+                    className="seg close"
+                    style={{ width: `${cp}%` }}
+                    title={`${close} within 200mi (${cp.toFixed(1)}%)`}
+                  >
+                    {cp >= 8 ? `${Math.round(cp)}%` : ""}
+                  </span>
+                )}
+                {mp > 0 && (
+                  <span
+                    className="seg mid"
+                    style={{ width: `${mp}%` }}
+                    title={`${mid} 200–800mi (${mp.toFixed(1)}%)`}
+                  >
+                    {mp >= 8 ? `${Math.round(mp)}%` : ""}
+                  </span>
+                )}
+                {fp > 0 && (
+                  <span
+                    className="seg far"
+                    style={{ width: `${fp}%` }}
+                    title={`${far} more than 800mi (${fp.toFixed(1)}%)`}
+                  >
+                    {fp >= 8 ? `${Math.round(fp)}%` : ""}
+                  </span>
+                )}
               </div>
-            </div>
+            </li>
           );
         })}
+        <li className="dist-stack-row total">
+          <div className="dist-fam">
+            <span className="dot" style={{ background: "#222" }} />
+            <strong>All families</strong>
+            <span className="dist-counts num">{grandTotal} athletes</span>
+          </div>
+          <div className="dist-stack-bar">
+            <span
+              className="seg close"
+              style={{ width: `${(grandClose / grandTotal) * 100}%` }}
+            >
+              {Math.round((grandClose / grandTotal) * 100)}%
+            </span>
+            <span
+              className="seg mid"
+              style={{ width: `${(grandMid / grandTotal) * 100}%` }}
+            >
+              {Math.round((grandMid / grandTotal) * 100)}%
+            </span>
+            <span
+              className="seg far"
+              style={{ width: `${(grandFar / grandTotal) * 100}%` }}
+            >
+              {Math.round((grandFar / grandTotal) * 100)}%
+            </span>
+          </div>
+        </li>
+      </ul>
+      <div className="dist-legend">
+        <span><span className="swatch close" /> within 200 mi</span>
+        <span><span className="swatch mid" /> 200–800 mi</span>
+        <span><span className="swatch far" /> 800+ mi</span>
       </div>
     </>
   );
@@ -363,12 +513,12 @@ function PlateDistance() {
 
 /* ── Plate VI — Climate × Sport ────────────────────────────────────── */
 
-function PlateClimate() {
-  const { zones, matrix, scope } = analytics.climate_sport;
+function PlateClimate({ slice, roman, profileType }) {
+  const { zones, matrix, scope } = slice || analytics.climate_sport;
   // For each family row, pick the dominant zone to highlight
   return (
     <>
-      <PlateHeader roman="VI" eyebrow="Atmosphere" title="Climate × " italic="sport family." />
+      <PlateHeader roman={roman || "VI"} eyebrow={lensEyebrow("Atmosphere", profileType)} title="Climate × " italic="sport family." />
       <p className="plate-lede">
         Share of each sport family's Team USA profiles from each state-level climate zone.
         Cell darkness = share; residuals compare each cell to the all-roster climate mix.
@@ -417,53 +567,20 @@ function PlateClimate() {
   );
 }
 
-/* ── Plate VII — Paralympic Geography ──────────────────────────────── */
-
-function PlateParalympic() {
-  const meta = analytics.meta?.paralympic || {};
-  const threshold = meta.display_threshold_total || 10;
-  const excludedHopefuls = meta.excluded_profile_types?.Hopeful || 0;
-  const rows = analytics.paralympic.filter((r) => r.total >= threshold);
-  return (
-    <>
-      <PlateHeader roman="VII" eyebrow="Two Games" title="Paralympic " italic="geography." />
-      <p className="plate-lede">
-        Each state's <span className="rust-tag">Paralympic</span> share of Olympic+Paralympic
-        profiles. Hopeful profiles are excluded ({excludedHopefuls.toLocaleString()}); chart shows
-        states with at least {threshold} included profiles.
-      </p>
-      <ul className="div-list">
-        {rows.map((r) => {
-          const oWidth = (r.olympic / r.total) * 100;
-          const pWidth = (r.paralympic / r.total) * 100;
-          return (
-            <li key={r.state} className="div-row">
-              <span className="lab">{r.state}</span>
-              <span className="div-bar">
-                <span className="o" style={{ width: `${oWidth}%` }} title={`${r.olympic} Olympic profiles`} />
-                <span className="p" style={{ width: `${pWidth}%` }} title={`${r.paralympic} Paralympic profiles`} />
-              </span>
-              <span className="num para-pct">{(r.para_share * 100).toFixed(0)}%</span>
-            </li>
-          );
-        })}
-      </ul>
-    </>
-  );
-}
-
 /* ── Plate VIII — College Efficiency ───────────────────────────────── */
 
-function PlateColleges() {
-  const rows = analytics.college_efficiency.points
+function PlateColleges({ slice, roman, profileType }) {
+  const data = slice || analytics.college_efficiency;
+  const rows = data.points
     .filter((p) => p.matched_profiles >= 2)
     .slice(0, 20);
+  const lensLabel = profileType === "paralympic" ? "Paralympic" : "Olympic";
   return (
     <>
-      <PlateHeader roman="VIII" eyebrow="Per Dollar" title="Team USA profiles per " italic="athletic dollar." />
+      <PlateHeader roman={roman || "VIII"} eyebrow={lensEyebrow("Per Dollar", profileType)} title={`${lensLabel} profiles per `} italic="athletic dollar." />
       <p className="plate-lede">
-        College programs by <b>matched Team USA profiles ÷ athletic budget ($M)</b>.
-        Filter ≥ 2 matched profiles. Olympic, Paralympic, and Hopeful records are shown in the type mix.
+        College programs by <b>matched {lensLabel} profiles ÷ athletic budget ($M)</b>.
+        Filter ≥ 2 matched profiles in this lens. Hover a row to see the full Olympic / Paralympic / Hopeful split.
       </p>
       <ul className="rank-list">
         {rows.map((r, i) => (
@@ -489,50 +606,45 @@ function PlateColleges() {
   );
 }
 
-/* ── Plate IX — Per-Capita State Rankings ──────────────────────────── */
+/* ── Plate VII — Per-Capita State Rankings (merged Olympic/Paralympic) ── */
 
-function PlatePerCapita() {
-  const rows = analytics.per_capita.slice(0, 25);
-  const max = rows[0].per_100k;
-  const national = analytics.meta?.per_capita?.national_per_100k ??
-    (analytics.per_capita.reduce((s, r) => s + r.profiles, 0) /
-      analytics.per_capita.reduce((s, r) => s + r.population, 0) * 100000);
+function PlatePerCapita({ slice, roman, profileType }) {
+  const lensLabel = profileType === "paralympic" ? "Paralympians" : "Olympians";
+  const all = slice || analytics.per_capita;
+  // Filter out zero-row states for the active lens; sort by per-100k desc
+  const sorted = [...all].sort((a, b) => b.per_100k - a.per_100k);
+  const rows = sorted.slice(0, 25);
+  const max = rows.length ? rows[0].per_100k : 1;
+  const totalProfiles = all.reduce((s, r) => s + (r.profiles || 0), 0);
+  const totalPop = all.reduce((s, r) => s + (r.population || 0), 0);
+  const national = totalPop ? (totalProfiles / totalPop) * 100_000 : 0;
   return (
     <>
-      <PlateHeader roman="IX" eyebrow="Density" title="Team USA profiles per " italic="100k residents." />
+      <PlateHeader roman={roman || "VII"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="100k residents." />
       <p className="plate-lede">
-        Same map, new metric. Big states sink, mountain &amp; northeastern states rise.
-        All profile types are included; state population from Census PEP 2023.
+        {lensLabel} per <span className="num">100,000</span> state residents. State
+        population from Census PEP 2023. National baseline:{" "}
+        <strong>{national.toFixed(2)} per 100k</strong>.
       </p>
       <ul className="div-list">
-        {rows.map((r) => {
-          const profiles = r.profiles || 1;
-          return (
-            <li
-              key={r.state}
-              className="div-row"
-              title={`Olympic ${r.olympians} / Paralympic ${r.paralympians} / Hopeful ${r.hopefuls}`}
-            >
-              <span className="lab strong">{r.state}</span>
-              <span className="div-bar tall">
-                <span
-                  className="stack"
-                  style={{ width: `${(r.per_100k / max) * 100}%` }}
-                >
-                  <span className="o" style={{ width: `${(r.olympians / profiles) * 100}%` }} />
-                  <span className="p" style={{ width: `${(r.paralympians / profiles) * 100}%` }} />
-                  <span className="h" style={{ width: `${(r.hopefuls / profiles) * 100}%` }} />
-                </span>
-              </span>
-              <span className="num">
-                <b>{r.per_100k.toFixed(2)}</b>
-              </span>
-            </li>
-          );
-        })}
+        {rows.map((r) => (
+          <li
+            key={r.state}
+            className="div-row"
+            title={`${r.profiles} ${lensLabel} · ${r.population.toLocaleString()} residents`}
+          >
+            <span className="lab strong">{r.state}</span>
+            <span className="div-bar tall">
+              <span className="solo" style={{ width: `${(r.per_100k / max) * 100}%` }} />
+            </span>
+            <span className="num">
+              <b>{r.per_100k.toFixed(2)}</b>
+            </span>
+          </li>
+        ))}
       </ul>
       <p className="plate-foot">
-        Rate per 100,000 Team USA profiles. National average ≈ {national.toFixed(2)}. Bars split Olympic / Paralympic / Hopeful.
+        {lensLabel} from teamusa.com; population from Census PEP 2023. Switch the lens toggle above to swap between Olympic and Paralympic.
       </p>
     </>
   );
@@ -540,14 +652,16 @@ function PlatePerCapita() {
 
 /* ── Plate X — NFHS participation-slot density ─────────────────────── */
 
-function PlateHSConversion() {
-  const rows = analytics.hs_conversion
+function PlateHSConversion({ slice, roman, profileType }) {
+  const data = slice || analytics.hs_conversion;
+  const lensLabel = profileType === "paralympic" ? "Paralympians" : "Olympians";
+  const rows = data
     .filter((r) => (r.nfhs_participation_slots ?? r.nfhs) >= 5000)
     .slice(0, 25);
-  const max = rows[0].per_million_hs;
+  const max = rows.length ? rows[0].per_million_hs : 1;
   return (
     <>
-      <PlateHeader roman="X" eyebrow="Density" title="Team USA profiles per " italic="NFHS slot." />
+      <PlateHeader roman={roman || "IX"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="NFHS slot." />
       <p className="plate-lede">
         Team USA profiles per <span className="num">1,000,000</span> NFHS participation
         slots. Uses 2024-25 official NFHS state totals; slots are not unique students.
@@ -589,10 +703,13 @@ function PlateHSConversion() {
 
 /* ── Plate XI — Era Presence ───────────────────────────────────────── */
 
-function PlateEra() {
-  const { decades, per_state, national, scope = {}, swing_metric = {} } = analytics.era;
-  // Largest relative growth: (2010s + 2020s + 1) / (1980s + 1990s + 1).
-  const ranked = (analytics.era.swing_rankings || Object.entries(per_state)
+function PlateEra({ slice, roman, profileType }) {
+  const data = slice || analytics.era;
+  const { decades, per_state, national, scope = {}, swing_metric = {} } = data;
+  const minTotal = profileType === "paralympic" ? 5 : 30;
+  // Recompute the ranking client-side so we can use a lens-appropriate threshold
+  // (Paralympic totals are smaller than Olympic, so the upstream min_total=30 cuts too much).
+  const ranked = Object.entries(per_state)
     .map(([st, counts]) => {
       const early = counts[0] + counts[1];
       const late = counts[3] + counts[4];
@@ -600,14 +717,14 @@ function PlateEra() {
       const swing = (late + 1) / (early + 1);
       return { state: st, counts, total, swing };
     })
-    .filter((r) => r.total >= 30)
-    .sort((a, b) => b.swing - a.swing))
+    .filter((r) => r.total >= minTotal)
+    .sort((a, b) => b.swing - a.swing)
     .slice(0, 14)
     .map((r) => ({ st: r.state, counts: r.counts, total: r.total, swing: r.swing }));
   const colMax = decades.map((_, i) => Math.max(...ranked.map((r) => r.counts[i]), 1));
   return (
     <>
-      <PlateHeader roman="XI" eyebrow="Time" title="Era presence " italic="by decade." />
+      <PlateHeader roman={roman || "X"} eyebrow={lensEyebrow("Time", profileType)} title="Era presence " italic="by decade." />
       <p className="plate-lede">
         Team USA profiles with parsed active years, counted in every overlapping decade.
         Sorted by {swing_metric.label || "(2010s + 2020s + 1) / (1980s + 1990s + 1)"};
@@ -681,7 +798,7 @@ function saveYouState(value) {
   }
 }
 
-function PlateYou() {
+function PlateYou({ profileType = "olympic" }) {
   const cached = loadYouState();
   const [hometown, setHometown] = useState(cached?.hometown || "");
   const [residence, setResidence] = useState(cached?.residence || "");
@@ -708,7 +825,7 @@ function PlateYou() {
     let acc = "";
 
     try {
-      for await (const evt of streamPersonal({ hometown: h, residence: r, signal: ctrl.signal })) {
+      for await (const evt of streamPersonal({ hometown: h, residence: r, profileType, signal: ctrl.signal })) {
         if (evt.type === "text") {
           acc += evt.delta;
           setResponse(acc);
@@ -754,7 +871,7 @@ function PlateYou() {
 
   return (
     <>
-      <PlateHeader roman="XII" eyebrow="For You" title="Your " italic="atlas." />
+      <PlateHeader roman="XI" eyebrow="For You" title="Your " italic="atlas." />
       <p className="plate-lede">
         Tell the atlas where you grew up and where you live now. It will
         thread the same data behind the other 11 plates around your
