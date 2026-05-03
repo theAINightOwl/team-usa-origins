@@ -13,6 +13,7 @@ import { WebSocketServer } from "ws";
 import { GeminiLive } from "./gemini-live.mts";
 import { buildPlateBriefs } from "../server/plate_briefs.js";
 import { runVizAgent } from "../server/viz_agent.js";
+import { loadVizFiles } from "../server/viz_data.js";
 // Model Armor (disabled — re-enable by uncommenting here and the blocks below)
 // import { sanitizePrompt, logArmorBanner } from "../server/armor.js";
 
@@ -100,6 +101,8 @@ function buildVizDataset() {
   return { analytics, states: stateSummary };
 }
 
+const VIZ_FILES = loadVizFiles();
+
 const httpServer = createServer((req, res) => {
   if (req.url === "/health") {
     res.writeHead(200, { "Content-Type": "application/json" });
@@ -161,7 +164,7 @@ wss.on("connection", async (ws) => {
   const toolMapping = {
     request_chart: async ({ prompt }: { prompt?: string }) => {
       try {
-        const result: any = await runVizAgent(prompt || "", buildVizDataset());
+        const result: any = await runVizAgent(prompt || "", buildVizDataset(), VIZ_FILES);
         if (ws.readyState === ws.OPEN) {
           ws.send(JSON.stringify({
             type: "chart",
