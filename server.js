@@ -211,6 +211,13 @@ async function ensureVizCache() {
     return null;
   }
 }
+// Clear both the helper's memo and our local one, then re-prewarm so the
+// next request sees a fresh cache without paying the recreate latency inline.
+function clearVizCache() {
+  invalidateVizCache();
+  VIZ_CACHE_NAME = null;
+  ensureVizCache();
+}
 ensureVizCache(); // fire-and-forget at boot
 
 const REQUEST_CHART_DECL = {
@@ -347,7 +354,7 @@ app.post("/api/chat", async (req, res) => {
         vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset(), {
           files: VIZ_FILES,
           cachedContent: cacheName || undefined,
-          onCacheMiss: invalidateVizCache,
+          onCacheMiss: clearVizCache,
         });
       } catch (err) {
         console.error("[chat] viz agent error:", err);
@@ -489,7 +496,7 @@ app.post("/api/viz", async (req, res) => {
     const result = await runVizAgent(question, buildVizDataset(), {
       files: VIZ_FILES,
       cachedContent: cacheName || undefined,
-      onCacheMiss: invalidateVizCache,
+      onCacheMiss: clearVizCache,
     });
     res.json(result);
   } catch (err) {

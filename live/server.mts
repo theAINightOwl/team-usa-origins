@@ -130,6 +130,13 @@ async function ensureVizCache(): Promise<string | null> {
     return null;
   }
 }
+// Clear both the helper's memo and our local one, then re-prewarm so the
+// next request sees a fresh cache without paying the recreate latency inline.
+function clearVizCache(): void {
+  invalidateVizCache();
+  VIZ_CACHE_NAME = null;
+  ensureVizCache();
+}
 ensureVizCache(); // fire-and-forget at boot
 
 const httpServer = createServer((req, res) => {
@@ -197,7 +204,7 @@ wss.on("connection", async (ws) => {
         const result: any = await runVizAgent(prompt || "", buildVizDataset(), {
           files: VIZ_FILES,
           cachedContent: cacheName || undefined,
-          onCacheMiss: invalidateVizCache,
+          onCacheMiss: clearVizCache,
         });
         if (ws.readyState === ws.OPEN) {
           ws.send(JSON.stringify({
