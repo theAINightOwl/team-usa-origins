@@ -8,12 +8,17 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { config as loadEnv } from "dotenv";
+import { GoogleGenAI } from "@google/genai";
 import { WebSocketServer } from "ws";
 
 import { GeminiLive } from "./gemini-live.mts";
 import { buildPlateBriefs } from "../server/plate_briefs.js";
-import { runVizAgent } from "../server/viz_agent.js";
+import {
+  runVizAgent,
+  SYSTEM_INSTRUCTION as VIZ_SYSTEM_INSTRUCTION,
+} from "../server/viz_agent.js";
 import { loadVizFiles } from "../server/viz_data.js";
+import { getOrCreateVizCache, invalidateVizCache } from "../server/viz_cache.js";
 // Model Armor (disabled — re-enable by uncommenting here and the blocks below)
 // import { sanitizePrompt, logArmorBanner } from "../server/armor.js";
 
@@ -25,6 +30,10 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error("\n⚠️  GEMINI_API_KEY missing from olympian-roots/.env — Plate XIII will not work.\n");
 }
+
+// Top-level GoogleGenAI client used solely for the viz cache prewarm.
+// (The live voice session has its own client inside GeminiLive.)
+const ai = GEMINI_API_KEY ? new GoogleGenAI({ apiKey: GEMINI_API_KEY }) : null;
 const MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
 const VOICE = process.env.GEMINI_LIVE_VOICE ?? "Puck";
 const PORT = Number(process.env.LIVE_PORT ?? 8765);
@@ -101,7 +110,27 @@ function buildVizDataset() {
   return { analytics, states: stateSummary };
 }
 
+// Files always loaded so the inline fallback path works on cache miss.
 const VIZ_FILES = loadVizFiles();
+
+// Boot-time prewarm of the Gemini cache. Lazy + non-blocking: if it fails,
+// requests fall through to the inline path automatically.
+const VIZ_CACHE_ENABLED = !process.env.VIZ_CACHE_DISABLED;
+const VIZ_MODEL_NAME = process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
+let VIZ_CACHE_NAME: string | null = null;
+async function ensureVizCache(): Promise<string | null> {
+  if (!VIZ_CACHE_ENABLED || !ai) return null;
+  if (VIZ_CACHE_NAME) return VIZ_CACHE_NAME;
+  try {
+    VIZ_CACHE_NAME = await getOrCreateVizCache(ai, VIZ_MODEL_NAME, VIZ_SYSTEM_INSTRUCTION);
+    return VIZ_CACHE_NAME;
+  } catch (err: any) {
+    console.warn("[viz] cache prewarm failed (will fall back to inline):", err?.message || err);
+    VIZ_CACHE_NAME = null;
+    return null;
+  }
+}
+ensureVizCache(); // fire-and-forget at boot
 
 const httpServer = createServer((req, res) => {
   if (req.url === "/health") {
@@ -164,7 +193,12 @@ wss.on("connection", async (ws) => {
   const toolMapping = {
     request_chart: async ({ prompt }: { prompt?: string }) => {
       try {
-        const result: any = await runVizAgent(prompt || "", buildVizDataset(), VIZ_FILES);
+        const cacheName = await ensureVizCache();
+        const result: any = await runVizAgent(prompt || "", buildVizDataset(), {
+          files: VIZ_FILES,
+          cachedContent: cacheName || undefined,
+          onCacheMiss: invalidateVizCache,
+        });
         if (ws.readyState === ws.OPEN) {
           ws.send(JSON.stringify({
             type: "chart",
