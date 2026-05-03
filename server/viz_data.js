@@ -19,7 +19,6 @@ const SPEC = [
     asName: "athletes.csv",
     transform: (buf) => jsonArrayToCsv(JSON.parse(buf.toString("utf-8"))),
   },
-  { path: join(RAW, "hometown_demographics.csv"),     mimeType: "text/csv" },
   { path: join(RAW, "nfhs_participation.csv"),        mimeType: "text/csv" },
   { path: join(RAW, "teamusa_hometown_geocodes.csv"), mimeType: "text/csv" },
   { path: join(RAW, "eada_college_sports.csv"),       mimeType: "text/csv" },

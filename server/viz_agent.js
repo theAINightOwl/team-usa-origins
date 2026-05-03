@@ -92,13 +92,12 @@ to states / sports / training programs / hometowns only.
 **Reference files attached to this request:** Each file appears in the prompt
 as a "File: <name>" text marker followed by its bytes. Inside the
 code-execution sandbox, read them by their attached names — for example
-\`pd.read_csv("athletes.csv")\` or \`pd.read_csv("hometown_demographics.csv")\`.
+\`pd.read_csv("athletes.csv")\` or \`pd.read_csv("nfhs_participation.csv")\`.
 Available files:
 - athletes.csv — anonymised per-athlete records (id, sport, family, state,
   city, school, medal tiers, first/last games, season, lat/lng). The canonical
   athlete-grain source. Do NOT request a "team_usa_athletes.csv" — it is not
   attached.
-- hometown_demographics.csv — per-city demographics (population, income, etc.)
 - nfhs_participation.csv — NFHS high-school sport participation by year /
   state / sport (the raw grain behind Plate X "HS slot density").
 - teamusa_hometown_geocodes.csv — city/state → lat/lng lookup.
