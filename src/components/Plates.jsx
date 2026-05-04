@@ -250,10 +250,10 @@ function PlateReference({ totals }) {
         per capita, by climate, by tracked-facility proximity, decade by decade.
       </p>
       <div className="footnote">
-        <p><sup>1</sup> Athlete roster scraped from <em>teamusa.com/api/athletes</em>; hometowns, sports, medals, and other analytic fields come from the Team USA profile payload. The shipped app bundle strips first and last names.</p>
-        <p><sup>2</sup> Hometown coordinates from the 2023 U.S. Census Gazetteer, augmented by hand-curated entries (see <em>data/teamusa_hometown_manual.csv</em>).</p>
+        <p><sup>1</sup> Athlete roster scraped from teamusa.com; hometowns, sports, medals, and other analytic fields come from the Team USA profile payload. The shipped app bundle strips first and last names.</p>
+        <p><sup>2</sup> Hometown coordinates from the 2023 U.S. Census Gazetteer, augmented by hand-curated entries.</p>
         <p><sup>3</sup> Training-facility roster is curated from official facility pages. Feeder-college counts use conservative multi-school matches against the EADA public dataset (2023).</p>
-        <p><sup>4</sup> Place population for the per-capita plates from the Census PEP <em>sub-est2023.csv</em> file.</p>
+        <p><sup>4</sup> Place population for the per-capita plates from the U.S. Census Population Estimates Program (2023).</p>
       </div>
     </div>
   );
