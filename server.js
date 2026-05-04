@@ -182,25 +182,10 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// Build the dataset payload the viz agent will receive when the chat agent
-// invokes its `request_chart` function. Same shape as /api/viz uses below;
-// extracted so both code paths stay in sync.
-function buildVizDataset() {
-  const stateSummary = Object.fromEntries(
-    Object.entries(states).map(([abbr, s]) => [
-      abbr,
-      {
-        name: s.name,
-        olympians: s.olympians,
-        medals: s.medals,
-        gold: s.gold,
-        top_sports: s.top_sports,
-        training_centers: s.training_centers,
-      },
-    ])
-  );
-  return { analytics, states: stateSummary };
-}
+// Warm DuckDB at boot so the first chart turn doesn't pay the load latency.
+import("./server/viz_db.js").then((m) => m.getVizDb()).catch((err) => {
+  console.warn("[viz] DuckDB warm failed (will retry on first request):", err?.message || err);
+});
 
 const REQUEST_CHART_DECL = {
   name: "request_chart",
@@ -332,7 +317,7 @@ app.post("/api/chat", async (req, res) => {
 
       let vizResult;
       try {
-        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset());
+        vizResult = await runVizAgent(fc.args?.prompt || "");
       } catch (err) {
         console.error("[chat] viz agent error:", err);
         vizResult = {
@@ -470,7 +455,7 @@ app.post("/api/viz", async (req, res) => {
   }
 
   try {
-    const result = await runVizAgent(question, buildVizDataset());
+    const result = await runVizAgent(question);
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);

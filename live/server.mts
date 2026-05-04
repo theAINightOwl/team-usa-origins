@@ -24,6 +24,7 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error("\n⚠️  GEMINI_API_KEY missing from olympian-roots/.env — Plate XIII will not work.\n");
 }
+
 const MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
 const VOICE = process.env.GEMINI_LIVE_VOICE ?? "Puck";
 const PORT = Number(process.env.LIVE_PORT ?? 8765);
@@ -81,24 +82,10 @@ const TOOLS: any[] = [{
   functionDeclarations: [REQUEST_CHART_DECL],
 }];
 
-// Same dataset shape that /api/viz uses — keeps text and voice charts on
-// identical footing so the model can't tell which surface invoked it.
-function buildVizDataset() {
-  const stateSummary = Object.fromEntries(
-    Object.entries(states as Record<string, any>).map(([abbr, s]: [string, any]) => [
-      abbr,
-      {
-        name: s.name,
-        olympians: s.olympians,
-        medals: s.medals,
-        gold: s.gold,
-        top_sports: s.top_sports,
-        training_centers: s.training_centers,
-      },
-    ])
-  );
-  return { analytics, states: stateSummary };
-}
+// Warm DuckDB at boot so the first chart turn doesn't pay the load latency.
+import("../server/viz_db.js").then((m) => m.getVizDb()).catch((err) => {
+  console.warn("[viz] DuckDB warm failed (will retry on first request):", err?.message || err);
+});
 
 const httpServer = createServer((req, res) => {
   if (req.url === "/health") {
@@ -161,7 +148,7 @@ wss.on("connection", async (ws) => {
   const toolMapping = {
     request_chart: async ({ prompt }: { prompt?: string }) => {
       try {
-        const result: any = await runVizAgent(prompt || "", buildVizDataset());
+        const result: any = await runVizAgent(prompt || "");
         if (ws.readyState === ws.OPEN) {
           ws.send(JSON.stringify({
             type: "chart",
