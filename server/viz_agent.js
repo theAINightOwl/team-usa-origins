@@ -466,8 +466,12 @@ export async function runVizAgent(userQuestion) {
   let accumulatedStdout = "";
   let turn = 0;
 
-  while (turn++ < 10) {
-    const resp = await ai.models.generateContent({
+  // Transport-level retry: Gemini occasionally takes longer than the undici
+  // headersTimeout to send the first response byte (notably on the chart-
+  // emission turn after structured-output reasoning). One retry resolves it
+  // most of the time; bail on the second failure.
+  async function generateOnce() {
+    return ai.models.generateContent({
       model: getModel(),
       contents,
       config: {
@@ -478,6 +482,20 @@ export async function runVizAgent(userQuestion) {
         responseJsonSchema: RESPONSE_SCHEMA,
       },
     });
+  }
+
+  while (turn++ < 10) {
+    let resp;
+    try {
+      resp = await generateOnce();
+    } catch (err) {
+      const msg = String(err?.message || err);
+      const cause = String(err?.cause?.code || err?.cause?.message || "");
+      const isTransport = /fetch failed|HeadersTimeoutError|UND_ERR_/.test(msg + " " + cause);
+      if (!isTransport) throw err;
+      console.warn(`[viz] transport error on turn ${turn}, retrying once: ${msg}`);
+      resp = await generateOnce();
+    }
 
     if (resp.usageMetadata) {
       console.log("[viz] usage:", JSON.stringify(resp.usageMetadata));
