@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI Filter Demo · Olympian Roots</title>
+<style>
+  :root {
+    --paper: #f4ede1;
+    --ink: #1a1410;
+    --ink-3: #6b5e4d;
+    --ink-4: #8a7c6a;
+    --rust: #c63d2f;
+    --hair: rgba(26, 20, 16, 0.14);
+    --grid: rgba(26, 20, 16, 0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    display: grid;
+    grid-template-columns: 280px 1fr 380px;
+    gap: 18px;
+    padding: 18px;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  h1 em { color: var(--rust); font-style: italic; }
+  .lede { color: var(--ink-3); font-size: 13px; margin: 0 0 16px; line-height: 1.4; }
+  .panel {
+    background: #ece3d2;
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .panel + .panel { margin-top: 14px; }
+  .ghead {
+    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    appearance: none;
+    border: 1px solid var(--hair);
+    background: var(--paper);
+    color: var(--ink-3);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.18s;
+  }
+  .chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .chip .swatch {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ink-4);
+  }
+  .chip-count {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+  .toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 10px;
+    border: 1px solid var(--hair);
+    border-radius: 5px;
+    background: var(--paper);
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  .toggle.on { border-color: var(--ink); }
+  .switch {
+    width: 28px; height: 16px;
+    background: var(--ink-4);
+    border-radius: 999px;
+    position: relative;
+    transition: background 0.18s;
+  }
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    transition: transform 0.18s;
+  }
+  .toggle.on .switch { background: var(--rust); }
+  .toggle.on .switch::after { transform: translateX(12px); }
+  .era-row { display: flex; flex-direction: column; gap: 6px; }
+  .era-row input { width: 100%; }
+  .era-readout {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    display: flex; justify-content: space-between;
+  }
+  .map-card {
+    background: #ece3d2;
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .stat-row {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 10px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+  .stat-row strong { color: var(--ink); font-size: 18px; font-family: "Fraunces", serif; font-weight: 500; }
+  svg.usmap { width: 100%; height: auto; flex: 1; }
+  svg.usmap path.state { fill: #e6dac4; stroke: var(--paper); stroke-width: 1; }
+  svg.usmap circle.athlete { opacity: 0.55; }
+  .chat-card {
+    display: flex; flex-direction: column;
+    height: calc(100vh - 36px);
+    background: #ece3d2;
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .chat-card h2 { margin: 0 0 6px; font-size: 16px; }
+  .chat-card .lede { margin: 0 0 12px; font-size: 12px; }
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex; flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+  }
+  .bubble {
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    max-width: 90%;
+  }
+  .bubble.user { align-self: flex-end; background: var(--ink); color: var(--paper); border-bottom-right-radius: 2px; }
+  .bubble.model { align-self: flex-start; background: var(--paper); border: 1px solid var(--hair); border-bottom-left-radius: 2px; }
+  .bubble .patch {
+    margin-top: 6px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    background: rgba(0,0,0,0.04);
+    padding: 4px 6px;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  form.composer {
+    display: flex; gap: 6px; margin-top: 10px;
+  }
+  form.composer textarea {
+    flex: 1;
+    resize: none;
+    border: 1px solid var(--hair);
+    border-radius: 5px;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 38px;
+    max-height: 100px;
+  }
+  form.composer button {
+    appearance: none;
+    background: var(--rust);
+    color: var(--paper);
+    border: 0;
+    border-radius: 5px;
+    padding: 0 14px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  form.composer button:disabled { opacity: 0.5; cursor: wait; }
+  .starters { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .starter {
+    appearance: none;
+    background: var(--paper);
+    border: 1px solid var(--hair);
+    border-radius: 999px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--ink-3);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .starter:hover { border-color: var(--ink); color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="left">
+    <h1>AI <em>Filter</em> Demo</h1>
+    <p class="lede">Type filter intent in plain English on the right. Gemini calls a single <code>apply_filters</code> tool; the page applies the patch.</p>
+
+    <div class="panel">
+      <span class="ghead">Sport families</span>
+      <div class="chips" id="family-chips"></div>
+    </div>
+
+    <div class="panel">
+      <span class="ghead">Era</span>
+      <div class="era-row">
+        <input type="range" min="1896" max="2026" value="1896" id="era-min" />
+        <input type="range" min="1896" max="2026" value="2026" id="era-max" />
+        <div class="era-readout"><span id="era-label-min">1896</span><span id="era-label-max">2026</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <span class="ghead">Toggles</span>
+      <div class="toggle" id="medal-toggle">
+        <span>Medalists only</span>
+        <span class="switch"></span>
+      </div>
+      <div class="toggle" id="type-olympic">
+        <span>Olympic only</span>
+        <span class="switch"></span>
+      </div>
+      <div class="toggle" id="type-paralympic">
+        <span>Paralympic only</span>
+        <span class="switch"></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="center">
+    <div class="map-card">
+      <div class="stat-row">
+        <span><strong id="stat-shown">—</strong><br/>shown</span>
+        <span><strong id="stat-medals">—</strong><br/>medals</span>
+        <span><strong id="stat-states">—</strong><br/>states</span>
+      </div>
+      <svg class="usmap" id="usmap" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </main>
+
+  <aside class="right">
+    <div class="chat-card">
+      <h2>Ask the atlas</h2>
+      <p class="lede">Try: "Show only aquatic sports" · "Just winter medalists" · "Reset the filters" · "Olympics 2000–present, combat & gymnastics"</p>
+      <div class="messages" id="messages"></div>
+      <div class="starters" id="starters"></div>
+      <form class="composer" id="composer">
+        <textarea id="composer-input" placeholder="Tell the dashboard what to do…" rows="1"></textarea>
+        <button type="submit" id="send-btn">Send</button>
+      </form>
+    </div>
+  </aside>
+</div>
+
+<script type="module">
+import * as topojson from "https://esm.sh/topojson-client@3";
+import { geoAlbersUsa, geoPath } from "https://esm.sh/d3-geo@3";
+
+const ALLOWED_FAMILIES = [
+  "Aquatic","Team Ball","Combat","Track & Field","Endurance",
+  "Gymnastics","Winter","Precision","Equestrian","Racket","Strength","Other",
+];
+
+const state = {
+  families: new Set(ALLOWED_FAMILIES),
+  medalOnly: false,
+  eraStart: 1896,
+  eraEnd: 2026,
+  type: "all",
+};
+
+let DATA = { athletes: [], familyColors: {}, familyCounts: {} };
+let TOPO = null;
+
+const $ = (id) => document.getElementById(id);
+
+// ── Bootstrap data ──────────────────────────────────────────────────────
+async function bootstrap() {
+  const [demo, topoRaw] = await Promise.all([
+    fetch("/api/demo-data").then((r) => r.json()),
+    fetch("/us-states-10m.json").then((r) => r.json()),
+  ]);
+  DATA = demo;
+  TOPO = topoRaw;
+  renderFamilyChips();
+  renderMap();
+  renderAll();
+}
+
+// ── Family chips ────────────────────────────────────────────────────────
+function renderFamilyChips() {
+  const wrap = $("family-chips");
+  wrap.innerHTML = "";
+  for (const f of ALLOWED_FAMILIES) {
+    const btn = document.createElement("button");
+    btn.className = "chip" + (state.families.has(f) ? " on" : "");
+    btn.dataset.family = f;
+    btn.innerHTML =
+      `<span class="swatch" style="background:${DATA.familyColors[f] || "#555"}"></span>` +
+      `<span>${f}</span>` +
+      `<span class="chip-count">${(DATA.familyCounts[f] || 0).toLocaleString()}</span>`;
+    btn.onclick = () => {
+      if (state.families.has(f)) state.families.delete(f);
+      else state.families.add(f);
+      renderAll();
+    };
+    wrap.appendChild(btn);
+  }
+}
+
+// ── Map ─────────────────────────────────────────────────────────────────
+let projection;
+function renderMap() {
+  const svg = $("usmap");
+  svg.innerHTML = "";
+  projection = geoAlbersUsa().scale(1280).translate([975 / 2, 610 / 2 + 10]);
+  const path = geoPath(projection);
+  const fc = topojson.feature(TOPO, TOPO.objects.states);
+  const ns = "http://www.w3.org/2000/svg";
+  const gStates = document.createElementNS(ns, "g");
+  for (const f of fc.features) {
+    const p = document.createElementNS(ns, "path");
+    p.setAttribute("d", path(f));
+    p.setAttribute("class", "state");
+    gStates.appendChild(p);
+  }
+  svg.appendChild(gStates);
+  const gDots = document.createElementNS(ns, "g");
+  gDots.setAttribute("id", "dots-layer");
+  svg.appendChild(gDots);
+}
+
+function renderDots(athletes) {
+  const layer = $("usmap").querySelector("#dots-layer");
+  if (!layer) return;
+  const ns = "http://www.w3.org/2000/svg";
+  layer.innerHTML = "";
+  for (const a of athletes) {
+    if (a.lat == null || a.lng == null) continue;
+    const xy = projection([a.lng, a.lat]);
+    if (!xy) continue;
+    const c = document.createElementNS(ns, "circle");
+    c.setAttribute("cx", xy[0]);
+    c.setAttribute("cy", xy[1]);
+    c.setAttribute("r", 1.6);
+    c.setAttribute("class", "athlete");
+    c.setAttribute("fill", DATA.familyColors[a.family] || "#555");
+    layer.appendChild(c);
+  }
+}
+
+// ── Filtering & stats ───────────────────────────────────────────────────
+function applyFilter() {
+  return DATA.athletes.filter((a) => {
+    if (!state.families.has(a.family)) return false;
+    if (state.medalOnly && a.medals <= 0) return false;
+    if (a.first != null && a.first > state.eraEnd) return false;
+    if (a.last != null && a.last < state.eraStart) return false;
+    if (state.type !== "all" && a.type && a.type !== state.type) return false;
+    return true;
+  });
+}
+
+function renderAll() {
+  // chips
+  document.querySelectorAll(".chip").forEach((c) => {
+    c.classList.toggle("on", state.families.has(c.dataset.family));
+  });
+  // era
+  $("era-min").value = state.eraStart;
+  $("era-max").value = state.eraEnd;
+  $("era-label-min").textContent = state.eraStart;
+  $("era-label-max").textContent = state.eraEnd;
+  // toggles
+  $("medal-toggle").classList.toggle("on", state.medalOnly);
+  $("type-olympic").classList.toggle("on", state.type === "Olympic");
+  $("type-paralympic").classList.toggle("on", state.type === "Paralympic");
+  // filtered output
+  const filtered = applyFilter();
+  $("stat-shown").textContent = filtered.length.toLocaleString();
+  $("stat-medals").textContent = filtered.reduce((s, a) => s + a.medals, 0).toLocaleString();
+  $("stat-states").textContent = new Set(filtered.map((a) => a.state).filter(Boolean)).size;
+  if (TOPO) renderDots(filtered);
+}
+
+// ── Manual control wiring ───────────────────────────────────────────────
+$("era-min").addEventListener("input", (e) => {
+  const v = +e.target.value;
+  state.eraStart = Math.min(v, state.eraEnd);
+  renderAll();
+});
+$("era-max").addEventListener("input", (e) => {
+  const v = +e.target.value;
+  state.eraEnd = Math.max(v, state.eraStart);
+  renderAll();
+});
+$("medal-toggle").addEventListener("click", () => {
+  state.medalOnly = !state.medalOnly;
+  renderAll();
+});
+$("type-olympic").addEventListener("click", () => {
+  state.type = state.type === "Olympic" ? "all" : "Olympic";
+  renderAll();
+});
+$("type-paralympic").addEventListener("click", () => {
+  state.type = state.type === "Paralympic" ? "all" : "Paralympic";
+  renderAll();
+});
+
+// ── Patch application from AI ───────────────────────────────────────────
+function applyPatch(patch) {
+  if (!patch) return;
+  if (patch.reset) {
+    state.families = new Set(ALLOWED_FAMILIES);
+    state.medalOnly = false;
+    state.eraStart = 1896;
+    state.eraEnd = 2026;
+    state.type = "all";
+  }
+  if (patch.families === null) {
+    state.families = new Set(ALLOWED_FAMILIES);
+  } else if (Array.isArray(patch.families)) {
+    const valid = patch.families.filter((f) => ALLOWED_FAMILIES.includes(f));
+    if (valid.length) state.families = new Set(valid);
+  }
+  if (typeof patch.medalOnly === "boolean") state.medalOnly = patch.medalOnly;
+  if (Number.isFinite(patch.eraStart)) state.eraStart = Math.max(1896, Math.min(2026, patch.eraStart));
+  if (Number.isFinite(patch.eraEnd)) state.eraEnd = Math.max(1896, Math.min(2026, patch.eraEnd));
+  if (state.eraStart > state.eraEnd) [state.eraStart, state.eraEnd] = [state.eraEnd, state.eraStart];
+  if (patch.type === "all" || patch.type === "Olympic" || patch.type === "Paralympic") {
+    state.type = patch.type;
+  }
+  renderAll();
+}
+
+// ── Chat ────────────────────────────────────────────────────────────────
+const messagesEl = $("messages");
+function bubble(role, text, patch) {
+  const el = document.createElement("div");
+  el.className = `bubble ${role}`;
+  el.textContent = text;
+  if (patch && Object.keys(patch).length) {
+    const p = document.createElement("div");
+    p.className = "patch";
+    p.textContent = JSON.stringify(patch, null, 2);
+    el.appendChild(p);
+  }
+  messagesEl.appendChild(el);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+async function send(message) {
+  bubble("user", message);
+  const btn = $("send-btn");
+  btn.disabled = true;
+  try {
+    const stateForServer = {
+      families: state.families.size === ALLOWED_FAMILIES.length ? "all" : [...state.families],
+      medalOnly: state.medalOnly,
+      eraStart: state.eraStart,
+      eraEnd: state.eraEnd,
+      type: state.type,
+    };
+    const r = await fetch("/api/filter-command", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ message, state: stateForServer }),
+    });
+    const data = await r.json();
+    if (data.error) {
+      bubble("model", `Error: ${data.error}`);
+      return;
+    }
+    if (data.patch) applyPatch(data.patch);
+    bubble("model", data.reply || "Done.", data.patch);
+  } catch (err) {
+    bubble("model", `Network error: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+$("composer").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const ta = $("composer-input");
+  const v = ta.value.trim();
+  if (!v) return;
+  ta.value = "";
+  send(v);
+});
+$("composer-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    $("composer").requestSubmit();
+  }
+});
+
+const STARTERS = [
+  "Show only aquatic sports",
+  "Winter medalists since 2010",
+  "Paralympic only, all eras",
+  "Reset",
+];
+for (const s of STARTERS) {
+  const b = document.createElement("button");
+  b.className = "starter";
+  b.textContent = s;
+  b.onclick = () => send(s);
+  $("starters").appendChild(b);
+}
+
+bootstrap().catch((e) => {
+  bubble("model", `Failed to load demo: ${e.message}`);
+});
+</script>
+</body>
+</html>
