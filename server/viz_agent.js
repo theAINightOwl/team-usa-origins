@@ -265,25 +265,20 @@ Use these terms accurately when answering plate-style questions:
 
 ────────────────────────── CHART STYLE ──────────────────────────
 
-Colors (use exactly these hex strings):
-  paper bg #f4ede1   plot bg #f4ede1
-  ink #1a1410   ink_3 #6b5e4d   ink_4 #8a7c6a
-  rust #c63d2f (highlight)   gold #c89837 (secondary)
-  hair rgba(26,20,16,0.14)   grid rgba(26,20,16,0.05)
+The platform automatically applies the editorial style — paper background, Fraunces serif title, hair-thin axes, mono tick fonts, paper hover labels, margins, default trace fills. You DO NOT need to set:
+- paper_bgcolor, plot_bgcolor, font, margin, showlegend
+- xaxis/yaxis basic styling (showline, ticks, tickfont, gridcolor, axis title font)
+- hoverlabel
+- title.font, title.x, title.xanchor (just provide title.text and the platform handles positioning)
 
-Layout (every figure):
-- paper_bgcolor and plot_bgcolor both #f4ede1
-- font.family "Fraunces, Iowan Old Style, Georgia, serif"; font.color #1a1410; font.size 12
-- title: font serif size 16 color #1a1410, x=0.02, xanchor "left"
-- legend: font mono size 10 color #6b5e4d, transparent bg
-- margin l=70 r=30 t=70 b=60
-- both axes: showline true, linecolor hair, ticks "outside",
-  tickcolor hair, ticklen 4, zeroline false; tickfont mono size 10 color #6b5e4d
-- value axis: showgrid true, gridcolor grid; category axis: showgrid false
-- For ranked/sorted charts paint the #1 item in rust, others in ink_4.
-- Hovertemplates terse with empty <extra></extra>.
+You DO need to set:
+- All data: x, y, type, orientation, mode, etc.
+- title.text — a short serif headline. Keep under 60 chars.
+- For BAR charts: marker.color as an array — paint the #1 highlighted item in rust "#c63d2f", the rest in ink_4 "#8a7c6a". For non-ranked bars, omit marker.color entirely (platform fills ink_4).
+- For LINE charts with one focus series: that series' line.color = rust "#c63d2f", others = ink_4 "#8a7c6a".
+- hovertemplate — terse, ending in <extra></extra> to suppress the trace label.
 
-EXACT FIGURE DICT SHAPE (deviate and Plotly.js will throw "Cannot read properties of null"):
+EXACT FIGURE DICT SHAPE (preserve null-avoidance — never set a key to null; omit it instead):
 
   {
     "data": [
@@ -291,27 +286,13 @@ EXACT FIGURE DICT SHAPE (deviate and Plotly.js will throw "Cannot read propertie
         "type": "bar",
         "x": [...],
         "y": [...],
-        "orientation": "h",                                           // "h" for horizontal bar charts
-        "marker": { "color": ["#c63d2f", "#8a7c6a", "#8a7c6a", ...] }, // marker is an OBJECT with a "color" key — never a flat array
+        "orientation": "h",
+        "marker": { "color": ["#c63d2f", "#8a7c6a", "#8a7c6a", ...] },
         "hovertemplate": "<b>%{y}</b>: %{x}<extra></extra>"
       }
     ],
     "layout": {
-      "title": { "text": "Top 8 …", "x": 0.02, "xanchor": "left",
-                 "font": { "family": "Fraunces, Iowan Old Style, Georgia, serif", "size": 16, "color": "#1a1410" } },
-      "paper_bgcolor": "#f4ede1",
-      "plot_bgcolor": "#f4ede1",
-      "font": { "family": "Fraunces, Iowan Old Style, Georgia, serif", "color": "#1a1410", "size": 12 },
-      "margin": { "l": 70, "r": 30, "t": 70, "b": 60 },
-      "xaxis": { "showline": true, "linecolor": "rgba(26,20,16,0.14)", "ticks": "outside",
-                 "tickcolor": "rgba(26,20,16,0.14)", "ticklen": 4, "zeroline": false,
-                 "tickfont": { "family": "JetBrains Mono, ui-monospace, monospace", "size": 10, "color": "#6b5e4d" },
-                 "showgrid": true, "gridcolor": "rgba(26,20,16,0.05)" },
-      "yaxis": { "showline": true, "linecolor": "rgba(26,20,16,0.14)", "ticks": "outside",
-                 "tickcolor": "rgba(26,20,16,0.14)", "ticklen": 4, "zeroline": false,
-                 "tickfont": { "family": "JetBrains Mono, ui-monospace, monospace", "size": 10, "color": "#6b5e4d" },
-                 "showgrid": false },
-      "showlegend": false
+      "title": { "text": "Top 8 …" }
     }
   }
 
@@ -363,6 +344,110 @@ function stripNulls(value) {
     return out;
   }
   return value;
+}
+
+// Editorial design tokens — keep in sync with src/styles.css.
+const STYLE = {
+  paper:    "#f4ede1",
+  paper2:   "#ece3d2",
+  ink:      "#1a1410",
+  ink2:     "#463a2e",
+  ink3:     "#6b5e4d",
+  ink4:     "#8a7c6a",
+  rust:     "#c63d2f",
+  gold:     "#c89837",
+  hair:     "rgba(26,20,16,0.14)",
+  grid:     "rgba(26,20,16,0.05)",
+  serif:    "Fraunces, Iowan Old Style, Georgia, serif",
+  mono:     "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace",
+};
+
+const AXIS_BASE = {
+  showline: true,
+  linecolor: STYLE.hair,
+  linewidth: 1,
+  ticks: "outside",
+  tickcolor: STYLE.hair,
+  ticklen: 4,
+  zeroline: false,
+  tickfont: { family: STYLE.mono, size: 10, color: STYLE.ink3 },
+  title: { font: { family: STYLE.serif, size: 11, color: STYLE.ink2 } },
+};
+const VALUE_AXIS = { ...AXIS_BASE, showgrid: true, gridcolor: STYLE.grid, gridwidth: 1 };
+const CATEGORY_AXIS = { ...AXIS_BASE, showgrid: false };
+
+const LAYOUT_DEFAULTS = {
+  paper_bgcolor: STYLE.paper,
+  plot_bgcolor: STYLE.paper,
+  font: { family: STYLE.serif, color: STYLE.ink, size: 12 },
+  margin: { l: 70, r: 30, t: 70, b: 60 },
+  hoverlabel: {
+    bgcolor: STYLE.paper2,
+    bordercolor: STYLE.ink,
+    font: { family: STYLE.mono, size: 11, color: STYLE.ink },
+  },
+  showlegend: false,
+};
+
+const TITLE_DEFAULTS = {
+  font: { family: STYLE.serif, size: 16, color: STYLE.ink },
+  x: 0.02,
+  xanchor: "left",
+};
+
+const TRACE_DEFAULTS_BY_TYPE = {
+  bar:     { marker: { color: STYLE.ink4 }, hovertemplate: "%{label}: %{value}<extra></extra>" },
+  line:    { line:   { color: STYLE.ink, width: 2 }, marker: { color: STYLE.ink, size: 6 } },
+  scatter: { marker: { color: STYLE.ink4, size: 8 } },
+};
+
+// Deep-merge: model values win over defaults at every level. Arrays from the
+// model replace defaults entirely (we don't try to merge bar-color arrays).
+function mergeStyle(defaults, override) {
+  if (override === null || override === undefined) return defaults;
+  if (Array.isArray(override)) return override;
+  if (typeof override !== "object") return override;
+  const out = { ...defaults };
+  for (const [k, v] of Object.entries(override)) {
+    out[k] = mergeStyle(defaults?.[k], v);
+  }
+  return out;
+}
+
+// Bars with horizontal orientation: x is value, y is category.
+// Default (vertical bars, line, scatter): x is category, y is value.
+function pickAxisDefaults(figure) {
+  const trace = figure?.data?.[0];
+  const isHBar = trace?.type === "bar" && trace?.orientation === "h";
+  return isHBar
+    ? { xaxis: VALUE_AXIS, yaxis: CATEGORY_AXIS }
+    : { xaxis: CATEGORY_AXIS, yaxis: VALUE_AXIS };
+}
+
+// Coerce common model regressions back to Plotly-correct shapes.
+// - marker as a flat color array → { color: [...] }
+// - line as a flat color array → { color: [...] } (less common but possible)
+function normalizeTrace(trace) {
+  if (!trace || typeof trace !== "object") return trace;
+  const out = { ...trace };
+  if (Array.isArray(out.marker)) out.marker = { color: out.marker };
+  if (Array.isArray(out.line)) out.line = { color: out.line };
+  return out;
+}
+
+function applyEditorialStyle(figure) {
+  if (!figure || typeof figure !== "object") return figure;
+
+  const data = Array.isArray(figure.data)
+    ? figure.data.map((trace) => mergeStyle(TRACE_DEFAULTS_BY_TYPE[trace?.type] || {}, normalizeTrace(trace)))
+    : figure.data;
+
+  const axisDefaults = pickAxisDefaults(figure);
+  const baseLayout = { ...LAYOUT_DEFAULTS, ...axisDefaults };
+  if (figure?.layout?.title) baseLayout.title = TITLE_DEFAULTS;
+  const layout = mergeStyle(baseLayout, figure.layout || {});
+
+  return { ...figure, data, layout };
 }
 
 /**
@@ -419,7 +504,9 @@ export async function runVizAgent(userQuestion) {
           figures: [],
         };
       }
-      const figures = Array.isArray(parsed.figures) ? parsed.figures.map(stripNulls) : [];
+      const figures = Array.isArray(parsed.figures)
+        ? parsed.figures.map(stripNulls).map(applyEditorialStyle)
+        : [];
       return {
         text: (parsed.narration || "").trim(),
         code: accumulatedCode,
