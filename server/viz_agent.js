@@ -424,14 +424,19 @@ function pickAxisDefaults(figure) {
     : { xaxis: CATEGORY_AXIS, yaxis: VALUE_AXIS };
 }
 
-// Coerce common model regressions back to Plotly-correct shapes.
-// - marker as a flat color array → { color: [...] }
-// - line as a flat color array → { color: [...] } (less common but possible)
+// Coerce common model regressions back to Plotly-correct shapes. The model
+// occasionally emits marker/line/error_x/error_y as a flat color array OR a
+// single color string when Plotly expects an object with a `color` key.
+// Either form crashes Plotly with errors like "Cannot use 'in' operator to
+// search for 'line' in color" when it iterates the trace's nested config.
 function normalizeTrace(trace) {
   if (!trace || typeof trace !== "object") return trace;
   const out = { ...trace };
-  if (Array.isArray(out.marker)) out.marker = { color: out.marker };
-  if (Array.isArray(out.line)) out.line = { color: out.line };
+  for (const key of ["marker", "line", "error_x", "error_y"]) {
+    const v = out[key];
+    if (Array.isArray(v)) out[key] = { color: v };
+    else if (typeof v === "string") out[key] = { color: v };
+  }
   return out;
 }
 
