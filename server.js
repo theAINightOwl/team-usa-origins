@@ -38,9 +38,7 @@ setGlobalDispatcher(new Agent({
 }));
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
-import { runVizAgent, SYSTEM_INSTRUCTION } from "./server/viz_agent.js";
-import { loadVizFiles } from "./server/viz_data.js";
-import { getOrCreateVizCache, invalidateVizCache } from "./server/viz_cache.js";
+import { runVizAgent } from "./server/viz_agent.js";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -171,54 +169,10 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// Build the dataset payload the viz agent will receive when the chat agent
-// invokes its `request_chart` function. Same shape as /api/viz uses below;
-// extracted so both code paths stay in sync.
-function buildVizDataset() {
-  const stateSummary = Object.fromEntries(
-    Object.entries(states).map(([abbr, s]) => [
-      abbr,
-      {
-        name: s.name,
-        olympians: s.olympians,
-        medals: s.medals,
-        gold: s.gold,
-        top_sports: s.top_sports,
-        training_centers: s.training_centers,
-      },
-    ])
-  );
-  return { analytics, states: stateSummary };
-}
-
-// Files always loaded so the inline fallback path works on cache miss.
-const VIZ_FILES = loadVizFiles();
-
-// Boot-time prewarm of the Gemini cache. Lazy + non-blocking: if it fails,
-// requests fall through to the inline path automatically.
-const VIZ_CACHE_ENABLED = !process.env.VIZ_CACHE_DISABLED;
-const VIZ_MODEL_NAME = process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
-let VIZ_CACHE_NAME = null;
-async function ensureVizCache() {
-  if (!VIZ_CACHE_ENABLED || !ai) return null;
-  if (VIZ_CACHE_NAME) return VIZ_CACHE_NAME;
-  try {
-    VIZ_CACHE_NAME = await getOrCreateVizCache(ai, VIZ_MODEL_NAME, SYSTEM_INSTRUCTION);
-    return VIZ_CACHE_NAME;
-  } catch (err) {
-    console.warn("[viz] cache prewarm failed (will fall back to inline):", err?.message || err);
-    VIZ_CACHE_NAME = null;
-    return null;
-  }
-}
-// Clear both the helper's memo and our local one, then re-prewarm so the
-// next request sees a fresh cache without paying the recreate latency inline.
-function clearVizCache() {
-  invalidateVizCache();
-  VIZ_CACHE_NAME = null;
-  ensureVizCache();
-}
-ensureVizCache(); // fire-and-forget at boot
+// Warm DuckDB at boot so the first chart turn doesn't pay the load latency.
+import("./server/viz_db.js").then((m) => m.getVizDb()).catch((err) => {
+  console.warn("[viz] DuckDB warm failed (will retry on first request):", err?.message || err);
+});
 
 const REQUEST_CHART_DECL = {
   name: "request_chart",
@@ -350,12 +304,7 @@ app.post("/api/chat", async (req, res) => {
 
       let vizResult;
       try {
-        const cacheName = await ensureVizCache();
-        vizResult = await runVizAgent(fc.args?.prompt || "", buildVizDataset(), {
-          files: VIZ_FILES,
-          cachedContent: cacheName || undefined,
-          onCacheMiss: clearVizCache,
-        });
+        vizResult = await runVizAgent(fc.args?.prompt || "");
       } catch (err) {
         console.error("[chat] viz agent error:", err);
         vizResult = {
@@ -492,12 +441,7 @@ app.post("/api/viz", async (req, res) => {
   }
 
   try {
-    const cacheName = await ensureVizCache();
-    const result = await runVizAgent(question, buildVizDataset(), {
-      files: VIZ_FILES,
-      cachedContent: cacheName || undefined,
-      onCacheMiss: clearVizCache,
-    });
+    const result = await runVizAgent(question);
     res.json(result);
   } catch (err) {
     console.error("[viz] agent error:", err);
