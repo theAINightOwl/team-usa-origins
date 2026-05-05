@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { geoAlbersUsa, geoPath, geoCentroid } from "d3-geo";
 import { feature } from "topojson-client";
 
@@ -78,6 +78,75 @@ export default function App() {
     });
   };
   const setOverlay = (k, v) => setOverlays((o) => ({ ...o, [k]: v }));
+
+  // ── Atlas patch dispatcher (called by ChatBot when the agent updates view) ─
+  const applyAtlasPatch = useCallback((patch) => {
+    if (!patch || typeof patch !== "object") return;
+
+    if (patch.reset === true) {
+      setSelectedFamilies(new Set(allFamilies));
+      setMedalOnly(false);
+      setEraRange([1896, 2026]);
+      setMetric("none");
+      setOverlays({ dots: true, centers: true, colleges: false });
+      setActivePlate("ref");
+      setSelectedState(null);
+      setSelectedAthleteId(null);
+      // Lens is intentionally preserved on reset.
+    }
+
+    if (patch.families === null) {
+      setSelectedFamilies(new Set(allFamilies));
+    } else if (Array.isArray(patch.families)) {
+      const valid = patch.families.filter((f) => allFamilies.includes(f));
+      if (valid.length) setSelectedFamilies(new Set(valid));
+    }
+
+    if (typeof patch.medalOnly === "boolean") setMedalOnly(patch.medalOnly);
+
+    if (Number.isFinite(patch.eraStart) || Number.isFinite(patch.eraEnd)) {
+      setEraRange(([curStart, curEnd]) => {
+        let s = Number.isFinite(patch.eraStart) ? patch.eraStart : curStart;
+        let e = Number.isFinite(patch.eraEnd)   ? patch.eraEnd   : curEnd;
+        s = Math.max(1896, Math.min(2026, s));
+        e = Math.max(1896, Math.min(2026, e));
+        if (s > e) [s, e] = [e, s];
+        return [s, e];
+      });
+    }
+
+    if (patch.lens === "Olympic") setProfileType("olympic");
+    else if (patch.lens === "Paralympic") setProfileType("paralympic");
+
+    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation"];
+    if (typeof patch.metric === "string" && ALLOWED_METRICS.includes(patch.metric)) {
+      setMetric(patch.metric);
+    }
+
+    if (patch.overlays && typeof patch.overlays === "object") {
+      setOverlays((prev) => {
+        const next = { ...prev };
+        for (const k of ["dots", "centers", "colleges"]) {
+          if (typeof patch.overlays[k] === "boolean") next[k] = patch.overlays[k];
+        }
+        return next;
+      });
+    }
+
+    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","era","altitude","you"];
+    if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
+      setActivePlate(patch.plate);
+    }
+
+    if (typeof patch.state === "string") {
+      if (patch.state === "") {
+        setSelectedState(null);
+      } else if (Object.values(NAME_TO_ABBR).includes(patch.state)) {
+        setSelectedAthleteId(null);
+        setSelectedState(patch.state);
+      }
+    }
+  }, [allFamilies]);
 
   // ── Selection state ──────────────────────────────────────────────
   const [selectedState, setSelectedState] = useState(null);
@@ -257,7 +326,7 @@ export default function App() {
         </aside>
       </div>
 
-      <ChatBot profileType={profileType} />
+      <ChatBot profileType={profileType} onApplyPatch={applyAtlasPatch} />
     </div>
   );
 }

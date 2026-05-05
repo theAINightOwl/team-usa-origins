@@ -13,6 +13,11 @@ import { WebSocketServer } from "ws";
 import { GeminiLive } from "./gemini-live.mts";
 import { buildPlateBriefs } from "../server/plate_briefs.js";
 import { runVizAgent } from "../server/viz_agent.js";
+import {
+  UPDATE_ATLAS_DECL,
+  ATLAS_CONTROLS_INSTRUCTIONS,
+  summarizePatch,
+} from "../server/atlas_tool.js";
 // Model Armor (disabled — re-enable by uncommenting here and the blocks below)
 // import { sanitizePrompt, logArmorBanner } from "../server/armor.js";
 
@@ -58,6 +63,8 @@ const SYSTEM_INSTRUCTION = [
   "WHAT THE USER IS LOOKING AT:",
   "",
   plateBriefs,
+  "",
+  ATLAS_CONTROLS_INSTRUCTIONS,
 ].join("\n");
 
 const REQUEST_CHART_DECL = {
@@ -79,7 +86,7 @@ const REQUEST_CHART_DECL = {
 
 const TOOLS: any[] = [{
   googleSearch: {},
-  functionDeclarations: [REQUEST_CHART_DECL],
+  functionDeclarations: [REQUEST_CHART_DECL, UPDATE_ATLAS_DECL],
 }];
 
 // Warm DuckDB at boot so the first chart turn doesn't pay the load latency.
@@ -160,6 +167,23 @@ wss.on("connection", async (ws) => {
         return `Chart rendered with ${(result.figures || []).length} figure(s). Narration: ${result.text || "(none)"}`;
       } catch (e: any) {
         const msg = `Chart generation failed: ${e?.message ?? e}`;
+        if (ws.readyState === ws.OPEN) {
+          ws.send(JSON.stringify({ type: "error", error: msg }));
+        }
+        return msg;
+      }
+    },
+    // Voice version of update_atlas: push the patch to the browser; client
+    // validates and applies it locally. Returned string is what the model
+    // gets back, which it uses to compose its short spoken confirmation.
+    update_atlas: async (patch: any) => {
+      try {
+        if (ws.readyState === ws.OPEN) {
+          ws.send(JSON.stringify({ type: "view_patch", patch: patch || {} }));
+        }
+        return `Atlas updated: ${summarizePatch(patch || {})}`;
+      } catch (e: any) {
+        const msg = `Atlas update failed: ${e?.message ?? e}`;
         if (ws.readyState === ws.OPEN) {
           ws.send(JSON.stringify({ type: "error", error: msg }));
         }

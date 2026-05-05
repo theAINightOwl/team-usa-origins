@@ -39,6 +39,7 @@ setGlobalDispatcher(new Agent({
 
 import { buildPlateBriefs } from "./server/plate_briefs.js";
 import { runVizAgent } from "./server/viz_agent.js";
+import { UPDATE_ATLAS_DECL, ATLAS_CONTROLS_INSTRUCTIONS } from "./server/atlas_tool.js";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -113,6 +114,8 @@ function systemPrompt(profileType) {
     "- **Use Google Search for context.** For deep-dive 'why' questions — history, training programs, individual towns, sport culture, recent news — call the googleSearch tool and ground your answer in real sources. Do not pull named athletes or performance stats back from the web either.",
     "- **Cite web sources** inline as `[short title](url)` at the relevant spot.",
     "- **Be concise.** Markdown is welcome (lists, **bold**, headers). Keep most answers under ~200 words unless the user asks for a deep dive.",
+    "",
+    ATLAS_CONTROLS_INSTRUCTIONS,
   ].join("\n");
 }
 
@@ -257,7 +260,7 @@ app.post("/api/chat", async (req, res) => {
     systemInstruction: systemPrompt(profileType),
     tools: [{
       googleSearch: {},
-      functionDeclarations: [REQUEST_CHART_DECL],
+      functionDeclarations: [REQUEST_CHART_DECL, UPDATE_ATLAS_DECL],
     }],
     // Required when combining built-in tools (googleSearch) with custom
     // functionDeclarations on Gemini 3.
@@ -290,7 +293,7 @@ app.post("/api/chat", async (req, res) => {
       }
       const parts = chunk?.candidates?.[0]?.content?.parts || [];
       for (const p of parts) {
-        if (p.functionCall?.name === "request_chart") {
+        if (p.functionCall?.name === "request_chart" || p.functionCall?.name === "update_atlas") {
           // Keep the WHOLE part — it carries the thoughtSignature.
           functionCallPart = p;
         }
@@ -312,28 +315,44 @@ app.post("/api/chat", async (req, res) => {
     let { fc, modelTurnParts } = await streamTurn(contents);
 
     while (fc) {
-      // Tell the client a chart is being prepared so it can show a placeholder.
-      sseSend(res, { type: "chart_pending" });
+      let functionResponseResult;
 
-      let vizResult;
-      try {
-        vizResult = await runVizAgent(fc.args?.prompt || "");
-      } catch (err) {
-        console.error("[chat] viz agent error:", err);
-        vizResult = {
-          text: `*Chart could not be generated: ${err?.message || String(err)}*`,
-          figures: [],
-          code: "",
-          stdout: "",
+      if (fc.name === "request_chart") {
+        // Tell the client a chart is being prepared so it can show a placeholder.
+        sseSend(res, { type: "chart_pending" });
+
+        let vizResult;
+        try {
+          vizResult = await runVizAgent(fc.args?.prompt || "");
+        } catch (err) {
+          console.error("[chat] viz agent error:", err);
+          vizResult = {
+            text: `*Chart could not be generated: ${err?.message || String(err)}*`,
+            figures: [],
+            code: "",
+            stdout: "",
+          };
+        }
+
+        sseSend(res, {
+          type: "chart",
+          figures: vizResult.figures || [],
+          narration: vizResult.text || "",
+          code: vizResult.code || "",
+        });
+
+        functionResponseResult = {
+          rendered: true,
+          figure_count: (vizResult.figures || []).length,
+          narration: vizResult.text || "",
         };
+      } else if (fc.name === "update_atlas") {
+        // Send the patch to the client; it validates and applies it locally.
+        sseSend(res, { type: "view_patch", patch: fc.args || {} });
+        functionResponseResult = { applied: true };
+      } else {
+        functionResponseResult = { error: `Unknown tool: ${fc.name}` };
       }
-
-      sseSend(res, {
-        type: "chart",
-        figures: vizResult.figures || [],
-        narration: vizResult.text || "",
-        code: vizResult.code || "",
-      });
 
       // Echo the model's full turn back (includes thoughtSignature) and
       // append our functionResponse, then resume streaming so the chat agent
@@ -345,14 +364,8 @@ app.post("/api/chat", async (req, res) => {
           {
             functionResponse: {
               id: fc.id,
-              name: "request_chart",
-              response: {
-                result: {
-                  rendered: true,
-                  figure_count: (vizResult.figures || []).length,
-                  narration: vizResult.text || "",
-                },
-              },
+              name: fc.name,
+              response: { result: functionResponseResult },
             },
           },
         ],

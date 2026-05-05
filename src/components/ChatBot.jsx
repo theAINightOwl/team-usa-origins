@@ -20,7 +20,7 @@ const STARTERS = [
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
-export default function ChatBot({ profileType = "olympic" }) {
+export default function ChatBot({ profileType = "olympic", onApplyPatch }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [pendingVoice, setPendingVoice] = useState(null); // { role, text } in-flight voice fragment
@@ -103,7 +103,22 @@ export default function ChatBot({ profileType = "olympic" }) {
         },
       ]);
     },
-  }), [appendFragment, commitPending, nextId]);
+    onViewPatch: (patch) => {
+      // Flush whatever the model was speaking before the patch chip lands.
+      commitPending();
+      if (onApplyPatch) onApplyPatch(patch || {});
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: nextId(),
+          role: "model",
+          kind: "view_patch",
+          patch: patch || {},
+          via: "voice",
+        },
+      ]);
+    },
+  }), [appendFragment, commitPending, nextId, onApplyPatch]);
 
   const live = useGeminiLive(liveOpts);
 
@@ -168,12 +183,12 @@ export default function ChatBot({ profileType = "olympic" }) {
     // plus this user message. Voice transcript turns participate too — they
     // were committed as kind:text already.
     const history = [...messages, userMsg]
-      .filter((m) => m.kind === "text" || m.kind === "chart")
-      .map((m) =>
-        m.kind === "chart"
-          ? { role: "model", text: `[chart rendered] ${m.narration || ""}` }
-          : { role: m.role, text: m.text }
-      );
+      .filter((m) => m.kind === "text" || m.kind === "chart" || m.kind === "view_patch")
+      .map((m) => {
+        if (m.kind === "chart") return { role: "model", text: `[chart rendered] ${m.narration || ""}` };
+        if (m.kind === "view_patch") return { role: "model", text: `[atlas updated] ${JSON.stringify(m.patch || {})}` };
+        return { role: m.role, text: m.text };
+      });
 
     let inFlightId = modelPlaceholderId;
     let acc = "";
@@ -217,6 +232,28 @@ export default function ChatBot({ profileType = "olympic" }) {
           });
           // Prepare a new text bubble for the wrap-up the chat agent emits
           // after the functionResponse.
+          const wrapUpId = nextId();
+          setMessages((prev) => [
+            ...prev,
+            { id: wrapUpId, role: "model", kind: "text", text: "", pending: true },
+          ]);
+          inFlightId = wrapUpId;
+          acc = "";
+        } else if (evt.type === "view_patch") {
+          // Apply the patch to the live atlas immediately, and finalize / drop
+          // any in-flight text bubble so the wrap-up sentence can land cleanly.
+          if (onApplyPatch) onApplyPatch(evt.patch || {});
+          if (acc.trim()) {
+            patch(inFlightId, { text: acc, pending: false });
+          } else {
+            dropEmpty(inFlightId);
+          }
+          // Insert a small "atlas updated" bubble showing what changed.
+          setMessages((prev) => [
+            ...prev,
+            { id: nextId(), role: "model", kind: "view_patch", patch: evt.patch || {} },
+          ]);
+          // Prepare a new text bubble for the model's confirmation sentence.
           const wrapUpId = nextId();
           setMessages((prev) => [
             ...prev,
@@ -461,6 +498,17 @@ function ChartFigure({ fig }) {
 function Message({ m }) {
   const isUser = m.role === "user";
   const isChart = m.kind === "chart";
+  const isPatch = m.kind === "view_patch";
+  if (isPatch) {
+    return (
+      <div className="chat-msg a patch">
+        <div className="patch-bubble">
+          <span className="patch-eyebrow">atlas updated</span>
+          <PatchSummary patch={m.patch} />
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       className={`chat-msg ${isUser ? "u" : "a"} ${m.error ? "err" : ""} ${m.via === "voice" ? "voice" : ""}`}
@@ -506,5 +554,60 @@ function Message({ m }) {
         </div>
       )}
     </div>
+  );
+}
+
+/* ── view_patch summary chip ───────────────────────────────────────── */
+
+const PLATE_LABEL = {
+  ref: "Plate I — Reference",
+  factories: "Plate II — Factories",
+  concentration: "Plate III — Concentration",
+  halos: "Plate IV — Halos",
+  distance: "Plate V — Distance",
+  climate: "Plate VI — Climate",
+  per_capita: "Plate VII — Per Capita",
+  colleges: "Plate VIII — Colleges",
+  hs_conversion: "Plate IX — HS Slots",
+  era: "Plate X — Era",
+  altitude: "Plate XI — Altitude",
+  you: "Plate XII — You",
+};
+const METRIC_LABEL = {
+  none: "no shading",
+  olympians: "Team USA profiles",
+  medals: "total medals",
+  income: "median income",
+  nfhs: "HS participation",
+  temp: "avg temperature",
+  snow: "avg snowfall",
+  elevation: "hometown elevation",
+};
+
+function PatchSummary({ patch = {} }) {
+  const lines = [];
+  if (patch.reset) lines.push("Reset all controls");
+  if (patch.lens) lines.push(`Lens → ${patch.lens}`);
+  if (patch.families === null) lines.push("Families → all");
+  else if (Array.isArray(patch.families)) lines.push(`Families → ${patch.families.join(", ")}`);
+  if (typeof patch.medalOnly === "boolean") lines.push(patch.medalOnly ? "Medalists only" : "All athletes");
+  if (Number.isFinite(patch.eraStart) || Number.isFinite(patch.eraEnd)) {
+    const s = Number.isFinite(patch.eraStart) ? patch.eraStart : "…";
+    const e = Number.isFinite(patch.eraEnd) ? patch.eraEnd : "…";
+    lines.push(`Era → ${s}–${e}`);
+  }
+  if (typeof patch.metric === "string") lines.push(`Choropleth → ${METRIC_LABEL[patch.metric] || patch.metric}`);
+  if (patch.overlays && typeof patch.overlays === "object") {
+    for (const [k, v] of Object.entries(patch.overlays)) {
+      if (typeof v === "boolean") lines.push(`${k.charAt(0).toUpperCase() + k.slice(1)} overlay → ${v ? "on" : "off"}`);
+    }
+  }
+  if (typeof patch.plate === "string") lines.push(`Open ${PLATE_LABEL[patch.plate] || patch.plate}`);
+  if (typeof patch.state === "string") lines.push(patch.state ? `Zoom → ${patch.state}` : "Clear state selection");
+  if (lines.length === 0) lines.push("(no-op)");
+  return (
+    <ul className="patch-list">
+      {lines.map((l, i) => <li key={i}>{l}</li>)}
+    </ul>
   );
 }

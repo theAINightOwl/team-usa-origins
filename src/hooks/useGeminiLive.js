@@ -14,6 +14,8 @@
  *   onTurnComplete()         — server signaled end of a turn
  *   onInterrupted()          — user interrupted the model mid-speech
  *   onChart({figures, narration, code}) — voice agent invoked request_chart
+ *   onViewPatch(patch)       — voice agent invoked update_atlas; patch is the
+ *                              raw tool args (validated client-side by App)
  *   onError(msg)
  *
  * status transitions: idle → connecting → connected → ending → idle
@@ -116,6 +118,13 @@ export function useGeminiLive(opts = {}) {
                 });
               } catch (err) {
                 console.warn("[live] onChart handler threw:", err);
+              }
+              break;
+            case "view_patch":
+              try {
+                cb.onViewPatch?.(evt.patch || {});
+              } catch (err) {
+                console.warn("[live] onViewPatch handler threw:", err);
               }
               break;
             case "error":
