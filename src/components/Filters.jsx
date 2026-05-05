@@ -4,12 +4,14 @@ import trainingCentersData from "../data/training_centers.json";
 const TC_COUNT = trainingCentersData.length;
 
 const METRICS = [
+  { value: "none",      label: "None (no state shading)" },
   { value: "olympians", label: "Team USA profiles" },
   { value: "medals",    label: "Total medals won" },
   { value: "income",    label: "Median household income" },
   { value: "nfhs",      label: "HS participation slots" },
   { value: "temp",      label: "Average annual temperature" },
   { value: "snow",      label: "Average annual snowfall" },
+  { value: "elevation", label: "Average hometown elevation" },
 ];
 
 export default function Filters({

@@ -66,18 +66,8 @@ body {
   align-items: end;
   gap: 24px;
   padding-bottom: 18px;
-  border-bottom: 1.5px solid var(--ink);
+  margin-bottom: 22px;
   position: relative;
-}
-.masthead::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 1px;
-  background: var(--ink);
-  opacity: 0.4;
 }
 
 .dateline {
@@ -500,30 +490,75 @@ input[type="range"]::-webkit-slider-thumb {
   letter-spacing: 0.08em;
 }
 
-.map-footer {
+.map-scale {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--hair);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   font-family: var(--mono);
   font-size: 9.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
-.map-footer .scale {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.scale-bar {
-  width: 120px;
+.map-scale .scale-bar {
+  flex: 0 0 140px;
   height: 6px;
   background: linear-gradient(90deg, var(--paper-2), var(--rust));
   border: 1px solid var(--ink);
 }
-.scale-ticks { display: flex; justify-content: space-between; width: 120px; font-size: 8.5px; }
+.map-scale .scale-ticks {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+  font-size: 8.5px;
+}
+
+.map-stats {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.map-stats .cell {
+  padding: 0 14px;
+  border-left: 1px solid var(--hair-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.map-stats .cell:first-child { border-left: none; padding-left: 0; }
+.map-stats .cell .label {
+  color: var(--ink-4);
+  font-size: 9.5px;
+}
+.map-stats .cell .value {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 48;
+}
+.map-stats .cell .value .unit {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
 
 /* ── Tooltip ────────────────────────────────────────────────────── */
 .tooltip {

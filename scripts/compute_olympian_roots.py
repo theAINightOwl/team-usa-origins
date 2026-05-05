@@ -199,6 +199,8 @@ def main():
     nfhs_official = load_csv(NFHS_STATE_TOTALS_CSV) if NFHS_STATE_TOTALS_CSV.exists() else []
     demog = load_csv(DATA_DIR / "hometown_demographics.csv")
     climate = load_csv(DATA_DIR / "hometown_climate.csv")
+    elev_csv = DATA_DIR / "hometown_elevation.csv"
+    elevation = load_csv(elev_csv) if elev_csv.exists() else []
 
     print(f"Loaded {len(teamusa):,} athletes (Team USA website)")
     print(f"Loaded {len(geocodes):,} auto-geocoded hometowns (Census Gazetteer)")
@@ -473,6 +475,45 @@ def main():
             "precip_in": to_float(r.get("avg_precip_annual_in")),
         }
 
+    # Mean / median hometown elevation per state, weighted by athlete count.
+    # Elevation rows are keyed by (lat, lng) rounded to 5 decimals; athletes
+    # carry coordinates rounded to 4 decimals from the geocoder, so we round
+    # both sides to a common 4-decimal grid for the join.
+    elev_lookup = {}
+    for r in elevation:
+        lat = to_float(r.get("lat"))
+        lng = to_float(r.get("lng"))
+        ft = to_float(r.get("elevation_ft"))
+        if lat is None or lng is None or ft is None:
+            continue
+        elev_lookup[(round(lat, 4), round(lng, 4))] = ft
+
+    elevation_by_state = {}
+    for st, arrivals in state_athletes.items():
+        feet = []
+        for a in arrivals:
+            lat = a.get("lat")
+            lng = a.get("lng")
+            if lat is None or lng is None:
+                continue
+            ft = elev_lookup.get((round(lat, 4), round(lng, 4)))
+            if ft is not None:
+                feet.append(ft)
+        if not feet:
+            continue
+        feet_sorted = sorted(feet)
+        n = len(feet_sorted)
+        median = (
+            feet_sorted[n // 2]
+            if n % 2 == 1
+            else (feet_sorted[n // 2 - 1] + feet_sorted[n // 2]) / 2
+        )
+        elevation_by_state[st] = {
+            "mean_ft": round(sum(feet) / n, 1),
+            "median_ft": round(median, 1),
+            "n_athletes": n,
+        }
+
     tc_counts = Counter(c["state"] for c in out_centers if c["state"])
 
     out_states = {}
@@ -526,6 +567,7 @@ def main():
             ],
             "median_income": median_income,
             "climate": climate_by_state.get(st, {}),
+            "elevation": elevation_by_state.get(st, {}),
             "training_centers": tc_counts.get(st, 0),
         }
     with open(OUT_DIR / "states.json", "w") as f:

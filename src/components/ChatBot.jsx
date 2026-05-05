@@ -15,7 +15,7 @@ import { renderFigure } from "../lib/plotly-render.js";
 
 const STARTERS = [
   "Why does Park City UT produce so many olympians?",
-  "Bar chart of medals by sport family, highlight the top family in rust.",
+  "Bar chart of medals by sport family.",
   "Which states have the highest paralympic share?",
   "Plot Team USA profiles per 100k by state, top 10.",
 ];

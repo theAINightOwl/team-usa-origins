@@ -71,6 +71,7 @@ export default function USMap({
   // Lens (Olympic/Paralympic) — used for the choropleth + tooltip
   profileType,
   lensStateCounts,
+  stats,
 }) {
   const [tooltip, setTooltip] = useState(null);
 
@@ -183,7 +184,6 @@ export default function USMap({
     <div className="map-wrap" onMouseMove={handleMove} onMouseLeave={() => setTooltip(null)}>
       <div className="map-cap">
         <span className="title">{plateCaption(activePlate)}</span>
-        <span className="subt">Albers equal-area · {plateSubcaption(activePlate)}</span>
       </div>
 
       <div className="map-figure">
@@ -203,7 +203,9 @@ export default function USMap({
               const st = states[abbr];
               const value = extractMetric(st, metric, lensStateCounts);
               const lens = lensStateCounts && lensStateCounts[abbr];
-              const fill = fillFor(value, metricMin, metricMax);
+              const fill = metric === "none"
+                ? "rgb(236,226,204)"
+                : fillFor(value, metricMin, metricMax);
               const isSelected = selectedState === abbr;
               return (
                 <path
@@ -391,21 +393,31 @@ export default function USMap({
         {tooltip && <Tooltip t={tooltip} familyColors={familyColors} />}
       </div>
 
-      <div className="map-footer">
-        <span>{athleteDots.length.toLocaleString()} hometowns plotted</span>
-        <div className="scale">
-          <span>0</span>
-          <div>
-            <div className="scale-bar" />
-            <div className="scale-ticks">
-              <span>low</span>
-              <span>—</span>
-              <span>high</span>
-            </div>
-          </div>
+      {metric !== "none" && (
+        <div className="map-scale">
           <span>{metricLabel(metric)}</span>
+          <div className="scale-bar" />
+          <div className="scale-ticks">
+            <span>low</span>
+            <span>—</span>
+            <span>high</span>
+          </div>
         </div>
-      </div>
+      )}
+
+      {stats && stats.length > 0 && (
+        <div className="map-stats">
+          {stats.map((s) => (
+            <div className="cell" key={s.label}>
+              <span className="label">{s.label}</span>
+              <span className="value num">
+                {s.value}
+                <span className="unit">{s.unit}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -507,6 +519,7 @@ function extractMetric(st, metric, lensStateCounts) {
     case "nfhs":      return st.nfhs_total;
     case "temp":      return st.climate?.temp_f;
     case "snow":      return st.climate?.snow_in;
+    case "elevation": return st.elevation?.mean_ft;
     default:          return lens ? lens.count : 0;
   }
 }
@@ -519,6 +532,7 @@ export function metricLabel(m) {
     nfhs: "HS participation slots",
     temp: "avg annual temp °F",
     snow: "avg annual snow in.",
+    elevation: "mean hometown elevation",
   }[m] || m;
 }
 
@@ -533,6 +547,7 @@ function plateCaption(p) {
     case "colleges":      return "Plate VIII — Profiles per athletic dollar";
     case "hs_conversion": return "Plate IX — NFHS slot density";
     case "era":           return "Plate X — How the map moved";
+    case "altitude":      return "Plate XI — Sport family × elevation";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }
 }
@@ -549,6 +564,7 @@ function fmtMetric(v, m) {
   if (m === "income") return `$${v.toLocaleString()}`;
   if (m === "temp") return `${v.toFixed(1)}°F`;
   if (m === "snow") return `${v.toFixed(1)}″`;
+  if (m === "elevation") return `${Math.round(v).toLocaleString()} ft`;
   return v.toLocaleString();
 }
 

@@ -13,7 +13,7 @@ import USMap, { NAME_TO_ABBR } from "./components/USMap.jsx";
 import Filters from "./components/Filters.jsx";
 import StatePanel from "./components/StatePanel.jsx";
 import AthleteCard from "./components/AthleteCard.jsx";
-import Plates, { PlateStory, LensToggle } from "./components/Plates.jsx";
+import Plates, { PlateStory, LensToggle, PLATE_DEFS } from "./components/Plates.jsx";
 import ChatBot from "./components/ChatBot.jsx";
 
 const MAP_WIDTH = 975;
@@ -52,7 +52,7 @@ export default function App() {
 
   // ── Filter state ─────────────────────────────────────────────────
   const allFamilies = sportFamiliesData.families;
-  const [metric, setMetric] = useState("olympians");
+  const [metric, setMetric] = useState("none");
   const [selectedFamilies, setSelectedFamilies] = useState(() => new Set(allFamilies));
   const [medalOnly, setMedalOnly] = useState(false);
   const [eraRange, setEraRange] = useState([1896, 2026]);
@@ -164,63 +164,11 @@ export default function App() {
           </p>
         </div>
         <div className="plate">
-          Plate <span className="big">I</span>
+          Plate <span className="big">{(PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0]).roman}</span>
           <br />
-          Hometowns · United States
+          {(PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0]).title}
         </div>
       </header>
-
-      <div className="metastrip">
-        <div className="cell">
-          <span className="label">{profileType === "paralympic" ? "Paralympians located" : "Olympians located"}</span>
-          <span className="value num">
-            {totals.lensGeocoded.toLocaleString()}
-            <span className="unit">geocoded</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">After filters</span>
-          <span className="value num">
-            {totals.filtered.toLocaleString()}
-            <span className="unit">shown</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">Medals earned</span>
-          <span className="value num">
-            {totals.medals.toLocaleString()}
-            <span className="unit">career total</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">Official OPTCs</span>
-          <span className="value num">
-            {trainingCentersData.filter((c) => c.type === "OPTC").length}
-            <span className="unit">official OPTCs</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">Tracked training sites</span>
-          <span className="value num">
-            {trainingCentersData.filter((c) => c.type !== "OPTC").length}
-            <span className="unit">curated roster</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">Feeder colleges</span>
-          <span className="value num">
-            {collegesData.filter((c) => c.matched_profiles > 0).length}
-            <span className="unit">college matched</span>
-          </span>
-        </div>
-        <div className="cell">
-          <span className="label">States covered</span>
-          <span className="value num">
-            {totals.states}
-            <span className="unit">of 51</span>
-          </span>
-        </div>
-      </div>
 
       <div className="main">
         <div className="left-col">
@@ -266,6 +214,14 @@ export default function App() {
             onHoverFactory={setHoveredFactory}
             profileType={profileType}
             lensStateCounts={lensStateCounts}
+            stats={[
+              {
+                label: profileType === "paralympic" ? "Paralympians located" : "Olympians located",
+                value: totals.lensGeocoded.toLocaleString(),
+                unit: "geocoded",
+              },
+              { label: "States covered", value: totals.states, unit: "of 51" },
+            ]}
           />
           <PlateStory plateKey={activePlate} profileType={profileType} />
         </div>

@@ -33,7 +33,8 @@ export const PLATE_DEFS = [
   { key: "colleges", roman: "VIII", short: "Colleges", title: "Profiles per athletic dollar" },
   { key: "hs_conversion", roman: "IX", short: "NFHS Slots", title: "Profiles per high-school slot" },
   { key: "era", roman: "X", short: "Era", title: "Roster presence by decade" },
-  { key: "you", roman: "XI", short: "You", title: "Your geography, your facts" },
+  { key: "altitude", roman: "XI", short: "Altitude", title: "Sport family × elevation" },
+  { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
 ];
 
 const TOGGLE_AWARE = new Set([
@@ -46,6 +47,7 @@ const TOGGLE_AWARE = new Set([
   "colleges",
   "hs_conversion",
   "era",
+  "altitude",
 ]);
 
 function lensSlice(key, profileType) {
@@ -60,6 +62,7 @@ function lensSlice(key, profileType) {
     colleges: "college_efficiency",
     hs_conversion: "hs_conversion",
     era: "era",
+    altitude: "elevation_sport",
   };
   const base = ANALYTICS_KEY[key];
   if (!base) return null;
@@ -163,6 +166,7 @@ function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, profileType 
     case "per_capita":    return <PlatePerCapita {...sliceProps} />;
     case "hs_conversion": return <PlateHSConversion {...sliceProps} />;
     case "era":           return <PlateEra {...sliceProps} />;
+    case "altitude":      return <PlateAltitude {...sliceProps} />;
     case "you":           return <PlateYou profileType={profileType} />;
     default:              return null;
   }
@@ -770,6 +774,105 @@ function PlateEra({ slice, roman, profileType }) {
         {" "}
         {(scope.excluded_no_parsed_year || 0).toLocaleString()} geocoded profiles have no parsed year and are excluded.
         Current-profile roster bias means this is not a complete historical census.
+      </p>
+    </>
+  );
+}
+
+/* ── Plate XI — Altitude × sport family ───────────────────────────── */
+
+function PlateAltitude({ slice, roman, profileType }) {
+  const data = slice || analytics.elevation_sport;
+  const { tiers = [], matrix = [], top_high_towns = [], scope = {} } = data || {};
+  // Sort families by mean elevation, descending — the strongest editorial signal.
+  const rows = [...matrix].sort(
+    (a, b) => (b.mean_ft || 0) - (a.mean_ft || 0)
+  );
+  return (
+    <>
+      <PlateHeader
+        roman={roman || "XI"}
+        eyebrow={lensEyebrow("Altitude", profileType)}
+        title="Sport family × "
+        italic="elevation."
+      />
+      <p className="plate-lede">
+        Share of each sport family's Team USA profiles by hometown elevation tier.
+        Cell darkness = share of the family's roster at that altitude. Per-hometown
+        elevations are pulled from <em>USGS EPQS</em> for every geocoded city.
+      </p>
+      <table className="climate-grid">
+        <thead>
+          <tr>
+            <th></th>
+            {tiers.map((t) => (
+              <th key={t} title={`${t} ft`}>{t}</th>
+            ))}
+            <th className="swing">avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => {
+            const dominant = row.tiers.reduce(
+              (m, t) => (t.share > m.share ? t : m),
+              { share: 0 }
+            );
+            return (
+              <tr key={row.family}>
+                <th className="fam">
+                  <span className="dot" style={{ background: FAMILY_COLOR_HINT[row.family] || "#555" }} />
+                  {row.family}
+                </th>
+                {row.tiers.map((t) => {
+                  const a = t.share;
+                  const isMax = t.tier === dominant.tier && a > 0.05;
+                  const bg = a === 0 ? "transparent" : `rgba(74, 93, 126, ${Math.min(1, a * 1.6)})`;
+                  return (
+                    <td key={t.tier} style={{ background: bg }} className={isMax ? "peak" : ""}>
+                      {a > 0.04 ? Math.round(a * 100) : ""}
+                    </td>
+                  );
+                })}
+                <td className="swing num" title={`mean ${row.mean_ft || "—"} ft`}>
+                  {row.mean_ft != null ? `${Math.round(row.mean_ft).toLocaleString()}` : "—"}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      {top_high_towns.length > 0 && (
+        <>
+          <p className="plate-lede" style={{ marginTop: 18 }}>
+            <strong>The high-altitude pipeline.</strong> Hometowns above{" "}
+            <span className="num">4,000 ft</span> with at least <span className="num">4</span>{" "}
+            Team USA profiles, ranked by athlete count.
+          </p>
+          <ol className="rank-list">
+            {top_high_towns.map((t, i) => (
+              <li key={`${t.city}-${t.state}`} className="rank-row">
+                <span className="rk">{i + 1}</span>
+                <span className="rb">
+                  <span className="city">{t.city}, <i>{t.state}</i></span>
+                  <span className="sub">
+                    {t.ft.toLocaleString()} ft · top family {t.top_family}
+                  </span>
+                </span>
+                <span className="rv">
+                  <b>{t.n}</b>
+                  <span className="u">athletes</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
+      <p className="plate-foot">
+        Elevation values come from the U.S. Geological Survey Elevation Point Query Service
+        applied to each hometown's lat/lng ({(scope.included_profiles || 0).toLocaleString()}{" "}
+        profiles included; {(scope.skipped_profiles || 0).toLocaleString()} skipped without coordinates).
       </p>
     </>
   );

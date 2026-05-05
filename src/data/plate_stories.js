@@ -8,7 +8,7 @@
  *
  * Toggle-aware plates have BOTH `<key>_olympic` and `<key>_paralympic`
  * versions. PlateStory looks up the lens-specific key first and falls
- * back to the plain key. Plate I (`ref`) and XI (`you`) ignore the toggle.
+ * back to the plain key. Plate I (`ref`) and XII (`you`) ignore the toggle.
  */
 
 export const STORIES = {
@@ -464,5 +464,48 @@ For Paralympic federations, the era table works less as a historical comparison 
 The actionable extension is to study those states' Paralympic ecosystems alongside the Plate VII per-capita and Plate VIII college-efficiency findings: **Colorado** (NSCD + UCCS + Para residency programs), **Illinois** (University of Illinois adaptive-sport program, the longest-running in the country), **Wisconsin** (Whitewater, plus Wheelchair Curling concentration), and **California** (population scale + multiple adaptive-sport networks). What works in these states should be the basis for replicating Paralympic infrastructure in the southern under-producers.
 
 A real comparison of Paralympic history would require joining this roster with USOPC historical Paralympic team rosters dating back to the 1960s — a dataset upgrade, not something this atlas can resolve on its own.
+`,
+
+  /* ─────────────────────────────────────────────────────────────────
+   * Plate XI — Sport family × elevation
+   * ───────────────────────────────────────────────────────────────── */
+  altitude_olympic: `
+## The atlas climbs
+
+Run a USGS lookup on every geocoded hometown in this roster — **1,994 cities, zero misses** — and a clean vertical signal falls out of the data. Across the full Team USA roster the mean Olympic-lens hometown sits at about **1,170 ft**, but that average hides a five-fold spread by sport family. **Endurance leads at 2,435 ft** (mean), with Winter close behind; Equestrian and Racket finish below 500 ft. The sports that ride and aim sit on the coastal plain; the sports that climb and slide are produced in the mountains.
+
+The shift is sharpest as you read the table left to right. At sea level, **Aquatic alone supplies 21% of the roster** and Winter only 9.7%. Above 5,000 ft those proportions invert: **Winter is 47% of the high-altitude roster**, while Aquatic falls to 8%. The plate's strongest single cell is **Winter × ≤500 ft** — only 27% of Winter Olympians come from sea-level hometowns, the lowest sea-level share of any large family. The strongest opposite is **Racket × ≤500 ft at 66%** — tennis, badminton, and squash are coastal sports.
+
+## The high-altitude pipeline is mostly Colorado and Utah
+
+Of the ten Olympic-lens hometowns above 4,000 ft with at least four profiles, **eight sit in Colorado or Utah**. **Park City, UT leads at 7,154 ft with 28 Olympians**, almost all in Winter. **Colorado Springs is second with 18 Olympians from 6,338 ft** — and notably, its top family is **Track & Field, not Winter**, a one-of-its-kind anomaly driven by the U.S. Olympic & Paralympic Training Center pulling distance, race-walk, and field athletes *to* altitude rather than producing them locally. Steamboat Springs, Aspen, Vail, and Mammoth Lakes are the more familiar Winter pattern: pipelines anchored by lifts, jumps, and Nordic trails the towns built around themselves.
+
+The most telling outlier is **Boulder, Colorado at 5,270 ft, where Endurance is the top family** — the only Olympic top-ten high town where distance running and triathlon dominate. Boulder isn't producing endurance athletes from local schools; it's importing them as adults to train at altitude. That's why Endurance has the bimodal signature in the table: a **median hometown elevation under 1,000 ft** (most distance runners grow up at sea level), but a long upper tail anchored at altitude — Boulder, Mammoth Lakes, Flagstaff.
+
+## Where to look next
+
+The honest read is that altitude doesn't *cause* Olympic production for most sports. The two families with a real elevation signal — Winter and Endurance — are signal because of **deliberate facility geography**: ski jumps and biathlon ranges go where snow stays long, and altitude camps go where the air thins. Everything else is incidental. A sea-level kid in Florida still has a better statistical chance of making the Olympic roster (per capita) than a kid born above 5,000 ft, simply because that's where the population is.
+
+What altitude *is* useful for is identifying **where the federations have voted with their dollars**. Colorado Springs, Park City, and Lake Placid are altitude-and-mountain legacies of past Games and the residency programs that followed. The under-tapped question is whether any non-Colorado high-elevation region — northern New Mexico, eastern Oregon, the Sierra spine — could anchor a fourth such cluster. The current data says no comparable pipeline exists outside the Rockies. The map says there's room for one.
+`,
+
+  altitude_paralympic: `
+## The atlas climbs, with sharper edges
+
+The Paralympic-lens elevation table is a smaller dataset (**603 profiles** with mappable hometowns) but tells a more concentrated version of the same story. The Paralympic mean hometown elevation is **1,315 ft — slightly higher than the Olympic mean of 1,169 ft** — driven almost entirely by the Para Alpine and Para Nordic residency programs that sit in the Rockies.
+
+Within the table, **Winter is again the dominant high-altitude family**: 19% of Para-Winter profiles come from hometowns above 5,000 ft, and the family's mean elevation is **2,334 ft**. Endurance is the only other family that climbs significantly. Below the snow line, **Team Ball anchors the middle tiers** because its top sport in this lens — Wheelchair Basketball — clusters around adaptive-sport residency programs at universities (Illinois, Whitewater, Texas-Arlington), most of which sit between 600 and 1,200 ft.
+
+## The Paralympic high-altitude towns are very small — and very Colorado
+
+The lens-filtered high-elevation hometown list is short and almost entirely Front Range. **Colorado Springs leads at 6,338 ft with 13 Paralympians**, but the top family there is **Aquatic, not Winter** — that's the Para Swimming residency program at the U.S. Olympic & Paralympic Training Center, the same OTC anomaly the Olympic-lens table shows in track form. **Denver, Salt Lake City, Park City UT, and Winter Park CO at 10,127 ft** round out the visible Paralympic high-altitude towns, each with four to six Paralympians.
+
+**Winter Park** is the most concentrated case in the entire atlas. Population 1,149, sitting above 10,000 ft, with four Paralympians all in Para Alpine — the National Sports Center for the Disabled has been the Paralympic Alpine team's residency program for decades. Where the Olympic high-altitude pipeline runs through several legacy facilities (USOPC OTC, Park City U.S. Ski & Snowboard, Steamboat Springs Winter Sports Club), the **Paralympic high-altitude pipeline collapses into NSCD plus the Para wing of the OTC**. Lose either program and most of the Paralympic Winter or Para Aquatic high-altitude column would disappear from this atlas.
+
+## Where to look next
+
+The actionable read for Paralympic federations is the inverse of the Olympic story. **Most Paralympic athletes still come from sea-level and lowland hometowns** — Wheelchair Basketball, Para Athletics, Para Swimming, Para Cycling are coastal and inland-suburban sports. The high-altitude column is small but disproportionate in winter medals.
+
+The risk in this picture is **single-program fragility**. The Paralympic high-altitude pipeline doesn't have the institutional redundancy the Olympic version has — lose NSCD or the OTC's Para programs and most of the high-altitude Paralympic column in this atlas thins out, because no comparable second program exists at altitude. The Olympic side leans on at least four anchored institutions (USOPC OTC, Park City U.S. Ski & Snowboard, Steamboat Springs Winter Sports Club, Lake Placid). Building a second high-altitude Paralympic anchor — at a site with comparable lift access and trained adaptive coaches — would be the single most resilient move available to the Paralympic winter program.
 `,
 };

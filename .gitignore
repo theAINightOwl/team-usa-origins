@@ -9,6 +9,7 @@ __pycache__/
 
 # Local caches (e.g. Census Gazetteer zip for geocoding)
 .cache/
+data/.elevation_cache.json
 
 # Environment
 .env

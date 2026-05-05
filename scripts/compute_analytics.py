@@ -518,6 +518,146 @@ def plate_climate_sport(athletes, states):
     }
 
 
+ELEVATION_CSV = Path("data/hometown_elevation.csv")
+ELEVATION_TIERS = [
+    ("≤500 ft",       0,    500),
+    ("500–1,500",   500,  1500),
+    ("1,500–3,000", 1500, 3000),
+    ("3,000–5,000", 3000, 5000),
+    (">5,000",      5000, 99999),
+]
+
+
+def _load_elevation_lookup():
+    if not ELEVATION_CSV.exists():
+        return {}
+    lookup = {}
+    with ELEVATION_CSV.open() as f:
+        for r in csv.DictReader(f):
+            try:
+                lat = round(float(r["lat"]), 4)
+                lng = round(float(r["lng"]), 4)
+                ft = float(r["elevation_ft"])
+            except (TypeError, ValueError, KeyError):
+                continue
+            lookup[(lat, lng)] = ft
+    return lookup
+
+
+def plate_elevation_sport(athletes):
+    """Elevation × sport family heatmap (share of family from each tier)."""
+    elev = _load_elevation_lookup()
+    if not elev:
+        return {
+            "tiers": [t[0] for t in ELEVATION_TIERS],
+            "families": [],
+            "matrix": [],
+            "top_high_towns": [],
+            "scope": {
+                "included_profiles": 0,
+                "skipped_profiles": len(athletes),
+                "elevation_source": "data/hometown_elevation.csv (missing)",
+            },
+        }
+
+    tier_labels = [t[0] for t in ELEVATION_TIERS]
+
+    def to_tier(ft):
+        for label, lo, hi in ELEVATION_TIERS:
+            if lo <= ft < hi:
+                return label
+        return None
+
+    by_family = defaultdict(Counter)  # family → tier → count
+    profile_type_counts = Counter()
+    skipped = 0
+    town_counts = defaultdict(lambda: {"n": 0, "ft": 0.0, "state": "", "fams": Counter()})
+
+    for a in athletes:
+        fam = a.get("family")
+        lat = a.get("lat")
+        lng = a.get("lng")
+        if fam is None or lat is None or lng is None:
+            skipped += 1
+            continue
+        ft = elev.get((round(lat, 4), round(lng, 4)))
+        if ft is None:
+            skipped += 1
+            continue
+        tier = to_tier(ft)
+        if tier is None:
+            skipped += 1
+            continue
+        by_family[fam][tier] += 1
+        profile_type_counts[a.get("type") or "Unknown"] += 1
+        city = a.get("city") or ""
+        st = a.get("state") or ""
+        key = (city, st)
+        rec = town_counts[key]
+        rec["n"] += 1
+        rec["ft"] = ft
+        rec["state"] = st
+        rec["fams"][fam] += 1
+
+    families_sorted = sorted(by_family.keys())
+    family_totals = {f: sum(by_family[f].values()) for f in families_sorted}
+    tier_totals = {t: sum(by_family[f].get(t, 0) for f in families_sorted) for t in tier_labels}
+    grand_total = sum(family_totals.values())
+
+    matrix = []
+    for fam in families_sorted:
+        row = {"family": fam, "tiers": []}
+        total = family_totals[fam]
+        for tier in tier_labels:
+            n = by_family[fam].get(tier, 0)
+            expected = (total * tier_totals[tier] / grand_total) if grand_total else 0
+            standardized = ((n - expected) / math.sqrt(expected)) if expected > 0 else 0
+            row["tiers"].append({
+                "tier": tier,
+                "n": n,
+                "share": round(n / total, 4) if total else 0,
+                "expected": round(expected, 1),
+                "standardized_residual": round(standardized, 1),
+            })
+        row["total"] = total
+        row["mean_ft"] = None
+        # mean elevation per family — feet, weighted by athlete count
+        feet = []
+        for a in athletes:
+            if a.get("family") != fam: continue
+            lat = a.get("lat"); lng = a.get("lng")
+            if lat is None or lng is None: continue
+            ft = elev.get((round(lat, 4), round(lng, 4)))
+            if ft is not None: feet.append(ft)
+        if feet:
+            row["mean_ft"] = round(sum(feet) / len(feet), 0)
+            row["median_ft"] = round(sorted(feet)[len(feet) // 2], 0)
+        matrix.append(row)
+
+    top_high = sorted(
+        ({"city": c, "state": v["state"], "ft": round(v["ft"]), "n": v["n"],
+          "top_family": v["fams"].most_common(1)[0][0]}
+         for (c, _), v in town_counts.items() if v["ft"] >= 4000 and v["n"] >= 4),
+        key=lambda r: -r["n"],
+    )[:10]
+
+    print(f"  elevation_sport: {len(families_sorted)} families × {len(tier_labels)} tiers "
+          f"(grand_total={grand_total}, skipped={skipped})")
+    return {
+        "tiers": tier_labels,
+        "families": families_sorted,
+        "matrix": matrix,
+        "top_high_towns": top_high,
+        "scope": {
+            "included_profiles": grand_total,
+            "profile_type_counts": dict(sorted(profile_type_counts.items())),
+            "skipped_profiles": skipped,
+            "elevation_source": "data/hometown_elevation.csv (USGS EPQS, falls back to Open-Elevation)",
+            "assignment": "athlete hometown coordinates",
+        },
+    }
+
+
 def plate_distance(athletes, centers):
     """#5 — distance to nearest sport-serving tracked facility geography."""
     cs = merged_center_rows(centers)
@@ -1125,6 +1265,7 @@ def main():
         "halos": halos,
         "training_gap": plate_training_gap(athletes, halos),
         "climate_sport": plate_climate_sport(athletes, states),
+        "elevation_sport": plate_elevation_sport(athletes),
         "distance": plate_distance(athletes, centers),
         "paralympic": plate_paralympic(athletes),
         "college_efficiency": plate_college_efficiency(colleges),
@@ -1147,6 +1288,7 @@ def main():
         out[f"concentration{suffix}"] = plate_concentration(ath_lens, families)
         out[f"halos{suffix}"] = plate_halos(ath_lens, centers)
         out[f"climate_sport{suffix}"] = plate_climate_sport(ath_lens, states)
+        out[f"elevation_sport{suffix}"] = plate_elevation_sport(ath_lens)
         out[f"distance{suffix}"] = plate_distance(ath_lens, centers)
         out[f"per_capita{suffix}"] = plate_per_capita(states, state_pop, profile_type=lens)
         out[f"college_efficiency{suffix}"] = plate_college_efficiency(colleges, profile_type=lens)

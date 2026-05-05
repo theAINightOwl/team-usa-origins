@@ -38,6 +38,8 @@ export function getVizDb() {
     await conn.run(`CREATE TABLE training_centers AS SELECT * FROM read_csv_auto('${q(join(RAW, "training_centers.csv"))}', header=true)`);
     // Köppen climate zones per hometown.
     await conn.run(`CREATE TABLE hometown_climate AS SELECT * FROM read_csv_auto('${q(join(RAW, "hometown_climate.csv"))}', header=true)`);
+    // Per-hometown elevation in feet (USGS EPQS, falls back to Open-Elevation).
+    await conn.run(`CREATE TABLE hometown_elevation AS SELECT * FROM read_csv_auto('${q(join(RAW, "hometown_elevation.csv"))}', header=true)`);
 
     _counts = await tableCounts(conn);
     const summary = Object.entries(_counts).map(([t, n]) => `${t}=${n}`).join(", ");
@@ -56,6 +58,7 @@ async function tableCounts(conn) {
     "athletes", "hometown_demographics", "nfhs_participation",
     "nfhs_state_totals", "teamusa_hometown_geocodes", "eada_college_sports",
     "sport_family_mapping", "training_centers", "hometown_climate",
+    "hometown_elevation",
   ];
   const out = {};
   for (const t of tables) {
