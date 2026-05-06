@@ -20,8 +20,8 @@ const STARTERS = [
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
-export default function ChatBot({ profileType = "olympic", onApplyPatch }) {
-  const [open, setOpen] = useState(false);
+export default function ChatBot({ profileType = "olympic", onApplyPatch, embedded = false }) {
+  const [open, setOpen] = useState(embedded);
   const [messages, setMessages] = useState([]);
   const [pendingVoice, setPendingVoice] = useState(null); // { role, text } in-flight voice fragment
   const [input, setInput] = useState("");
@@ -312,7 +312,7 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch }) {
   // ── Render ──────────────────────────────────────────────────────────
   return (
     <>
-      {!open && (
+      {!open && !embedded && (
         <button
           className="chat-launcher"
           onClick={() => setOpen(true)}
@@ -349,7 +349,7 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch }) {
       )}
 
       {open && (
-        <div className="chat-drawer" role="dialog" aria-label="Ask the Atlas">
+        <div className={`chat-drawer ${embedded ? "embedded" : ""}`} role="dialog" aria-label="Ask the Atlas">
           <header className="chat-head">
             <div>
               <p className="eyebrow">Ask the Atlas</p>
@@ -357,9 +357,11 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch }) {
                 Type, talk, or <em>chart</em>.
               </h3>
             </div>
-            <div className="chat-head-actions">
-              <button className="close-btn" onClick={() => setOpen(false)}>close</button>
-            </div>
+            {!embedded && (
+              <div className="chat-head-actions">
+                <button className="close-btn" onClick={() => setOpen(false)}>close</button>
+              </div>
+            )}
           </header>
 
           {live.error && (

@@ -774,6 +774,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .lens-btn {
   flex: 1;
+  min-width: 7.5em;
+  text-align: center;
   background: transparent;
   border: 1px solid var(--hair);
   padding: 7px 10px;
@@ -2166,3 +2168,447 @@ a { color: var(--rust); }
   .app { padding: 24px 20px 48px; }
   h1.wordmark { font-size: 64px; }
 }
+
+/* ── V2 layout (sub-page at /v2) ────────────────────────────────────── */
+
+.app.v2 { display: flex; flex-direction: column; gap: 22px; }
+
+.v2-header { display: flex; flex-direction: column; gap: 10px; }
+.v2-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+/* The wordmark uses a 0.85 line-height that crops the line box well
+   above the descenders of 'p' / 'y'. Restore the bottom space the
+   classic header keeps so the subhead doesn't sit on top of them. */
+.v2-header h1.wordmark { margin: 0 0 22px; }
+.v2-header .subhead {
+  max-width: 760px;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.v2-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+.v2-route-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--hair);
+  padding-bottom: 2px;
+}
+.v2-route-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* Plate selector recast as a 6-col × 2-row grid in v2 so all 12 chips are
+   the same width and the editorial title is visible (mirrors the classic
+   3-col selector but laid out wider for the horizontal masthead). */
+.v2-plate-nav .plate-nav { gap: 8px; }
+.v2-plate-nav .plate-nav-list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+.v2-plate-nav .plate-chip {
+  min-height: 56px;
+  padding: 8px 10px;
+}
+
+/* Two-column grid: left column stacks the map+filters card on top of the
+   plate-body card; the chat aside spans both rows on the right. */
+.v2-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  grid-template-rows: auto 1fr;
+  gap: 22px;
+  align-items: stretch;
+  min-height: calc(100vh - 320px);
+}
+
+.v2-stage {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  padding: 18px 22px;
+  position: relative;
+}
+.v2-stage::before,
+.v2-stage::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.2px solid var(--gold);
+  pointer-events: none;
+}
+.v2-stage::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.v2-stage::after  { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+/* Strip the inner map-wrap's own framing so the stage card is the single
+   bordered container around the map + filters. */
+.v2-stage .map-wrap { border: none; padding: 0; background: transparent; box-shadow: none; }
+.v2-stage .map-wrap::before,
+.v2-stage .map-wrap::after { display: none; }
+
+/* Shrink the map figure to ~60% of the column so there's room for the
+   filters block under it without the card feeling oversized. */
+.app.v2 .map-figure {
+  max-width: 62%;
+  margin: 0 auto;
+}
+.app.v2 .map-cap,
+.app.v2 .map-scale {
+  max-width: 62%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Stats sit below the legend/scale strip — give them their own breathing
+   room and a hairline so they don't collide with the legend above. */
+.app.v2 .map-stats {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hair);
+}
+
+/* Lens switcher docked to the top-left of the stage card — sits in its
+   own row above the map caption so it never overlaps the title. */
+.v2-stage-lens {
+  align-self: flex-start;
+  margin-bottom: -4px;
+}
+
+.v2-filters-strip {
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-lens-row { display: flex; justify-content: flex-end; }
+/* Reset Filters' aside styling so it fits inside the stage card. */
+.v2-filters-strip .panel { padding: 0; background: transparent; border: none; }
+.v2-filters-strip .panel.compact h2 { display: none; }
+.v2-filters-strip .panel.compact > section { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+.v2-filters-strip .panel.compact > section > .group { margin-bottom: 0 !important; }
+/* Strip the boxed outline from the metric / family picker so they read as
+   inline controls on the stage canvas rather than nested mini-cards. */
+.v2-filters-strip .family-picker { border: none; padding: 0; }
+.v2-filters-strip .family-picker[open] { padding-bottom: 6px; }
+
+/* Family picker — a <details> element that opens to show the chip grid. */
+.family-picker { border: 1px solid var(--hair-soft); padding: 6px 10px; }
+.family-picker > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.family-picker > summary::-webkit-details-marker { display: none; }
+.family-picker > summary .ghead { margin: 0; flex: 0 0 auto; }
+.family-picker > summary .family-summary {
+  margin-left: auto;
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.family-picker > summary .caret {
+  font-family: var(--mono);
+  color: var(--ink-3);
+  transition: transform 0.18s;
+}
+.family-picker[open] > summary .caret { transform: rotate(180deg); }
+.family-picker-body {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--hair-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.family-picker-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+}
+.family-picker-actions .link-btn {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font: inherit;
+  color: var(--rust);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.family-picker-actions .link-btn:hover:not(:disabled) { color: var(--ink); }
+.family-picker-actions .link-btn:disabled { color: var(--ink-4); cursor: default; }
+.family-picker-actions .sep { color: var(--ink-4); }
+
+/* Compact metric picker reuses the family-picker chrome but lists the
+   metric labels as full-width radio-style buttons. */
+.metric-picker .family-picker-body { gap: 0; }
+.metric-options { list-style: none; padding: 0; margin: 0; }
+.metric-options li { margin: 0; }
+.metric-options .metric-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  border-bottom: 1px dashed var(--hair-soft);
+}
+.metric-options li:last-child .metric-option { border-bottom: none; }
+.metric-options .metric-option:hover { background: rgba(198, 61, 47, 0.06); }
+.metric-options .metric-option.on {
+  color: var(--rust);
+  font-weight: 500;
+}
+.metric-options .metric-option.on::before {
+  content: "✓ ";
+  color: var(--rust);
+}
+
+/* Compact era control: label on the left, single long slider taking the
+   rest of the row. Uses grid (not flex) so the slider gets a definite
+   width to grow into without circular flex sizing. */
+.panel.compact .era-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+.panel.compact .era-row .ghead { white-space: nowrap; }
+.panel.compact .era-row .era-bounds {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+/* Era row: two-thumb slider on a single horizontal track. The first input
+   stays in normal flow (sets the wrap width); the second is absolutely
+   positioned over it. Both have transparent backgrounds + pointer-events
+   only on their thumbs so each handle is independently draggable. */
+.panel.compact .era-row .range-wrap {
+  width: 100%;
+  position: relative;
+  display: block;
+  height: 22px;
+  min-width: 0;
+}
+.panel.compact .era-row .range-wrap input[type="range"] {
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+}
+.panel.compact .era-row .range-wrap input[type="range"]:nth-of-type(2) {
+  position: absolute;
+  inset: 0;
+}
+.panel.compact .era-row .range-wrap input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+.panel.compact .era-row .range-wrap input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+}
+.v2-filters-strip .panel.compact .era-row { grid-column: 1 / -1; }
+
+.v2-chat {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  min-height: 600px;
+}
+
+/* Embedded chat: render inline in its parent column instead of as a fixed
+   floating drawer. */
+.chat-drawer.embedded {
+  position: static;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  height: 100%;
+  z-index: auto;
+  box-shadow: none;
+  animation: none;
+}
+.chat-drawer.embedded::before,
+.chat-drawer.embedded::after { display: none; }
+
+/* Bottom-of-left-column scrollable region: holds plate body or selected-
+   state/athlete card. Sized to fill remaining grid row. */
+.v2-plate-scroll {
+  grid-column: 1;
+  grid-row: 2;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  padding: 18px 22px;
+  overflow-y: auto;
+  position: relative;
+  min-height: 320px;
+}
+.v2-plate-scroll::before,
+.v2-plate-scroll::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.2px solid var(--gold);
+  pointer-events: none;
+}
+.v2-plate-scroll::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.v2-plate-scroll::after  { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.v2-plate-body { display: flex; flex-direction: column; gap: 18px; }
+
+/* Cross-route link from the classic page back to v2 (and vice versa). */
+.route-link-floating {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 60;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  padding: 6px 10px;
+  text-decoration: none;
+}
+.route-link-floating:hover { color: var(--ink); border-color: var(--ink); }
+
+@media (max-width: 1100px) {
+  .v2-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: 0;
+  }
+  .v2-stage { grid-column: 1; grid-row: 1; }
+  .v2-plate-scroll { grid-column: 1; grid-row: 2; }
+  .v2-chat { grid-column: 1; grid-row: 3; min-height: 520px; }
+  .app.v2 .map-figure,
+  .app.v2 .map-cap,
+  .app.v2 .map-stats,
+  .app.v2 .map-scale { max-width: 100%; }
+}
+
+/* ── Plate-driven map overlays ─────────────────────────────────────
+   Legend, dimming, hover-glow, and the choropleth-locked metric hint
+   used by the per-plate visualizations layered on top of USMap. */
+
+.state-path.dim { opacity: 0.32; }
+.state-path.selected, .div-row.hover .lab.strong { color: var(--ink); }
+
+.map-figure { position: relative; }
+/* Compact horizontal legend strip below the map (sibling of .map-scale).
+   Lives in the column flow so it never sits over the geography it describes. */
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.map-legend .leg-title {
+  flex: 0 0 auto;
+  color: var(--ink-3);
+}
+.map-legend .leg-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.map-legend .leg-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  border: 0.5px solid rgba(26, 20, 16, 0.35);
+}
+.map-legend .leg-label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--serif);
+  font-size: 11px;
+  color: var(--ink);
+}
+
+/* Hover-row glow shared across plates with row-hover sync. */
+.halo-row.hover,
+.dist-stack-row.hover,
+.div-row.hover {
+  background: rgba(200, 152, 55, 0.10);
+}
+.climate-grid tr.hover th.fam,
+.climate-grid tr.hover td,
+.era-grid tr.hover th,
+.era-grid tr.hover td,
+.era-grid th.era-col.hover {
+  background: rgba(200, 152, 55, 0.18);
+  cursor: default;
+}
+.era-grid th.era-col { cursor: default; }
+
+/* College bubble lift on row hover. */
+.college-circle.hover {
+  fill: rgba(200, 152, 55, 0.34);
+  stroke: var(--ink);
+  stroke-width: 1.1;
+}
+
+/* Choropleth-locked hint shown next to the picker when a plate has
+   commandeered the metric. */
+.metric-lock-hint {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.family-picker.metric-picker.locked > summary {
+  cursor: default;
+  opacity: 0.7;
+}
+.family-picker.metric-picker.locked > summary .caret { color: var(--ink-4); }
+.select:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Altitude pin pulse on hover (CSS only — class toggled in USMap). */
+.altitude-pin.hover path { filter: drop-shadow(0 0 4px rgba(198, 61, 47, 0.55)); }

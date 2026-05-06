@@ -9,12 +9,17 @@ import React, { useMemo, useState, useCallback } from "react";
  *   • athlete hometown dots (coloured by sport family)
  *   • training-center markers (gold/rust stars)
  *   • college circles at state centroids (size ∝ matched Team USA profiles)
+ *   • per-plate overlays driven by `activePlate`
  *
  * Hover surfaces a minimal tooltip; click fires onSelectState / onSelectAthlete.
  */
 
 const WIDTH = 975;
 const HEIGHT = 610;
+
+// Approx miles → SVG units at projection scale 1280 (Albers USA conus
+// ≈ 2500 mi wide ≈ 770 svg units → ~0.31 svg/mi).
+const SVG_PER_MI = 0.31;
 
 // Monotone choropleth ramp: aged paper → deep rust.
 const RAMP_LOW = [236, 226, 204];  // --land
@@ -45,6 +50,63 @@ function starPath(r) {
   return `M${pts.join("L")}Z`;
 }
 
+// Haversine distance in miles between two [lng, lat] points.
+function haversineMi(a, b) {
+  if (!a || !b) return Infinity;
+  const R = 3958.8;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(b[1] - a[1]);
+  const dLng = toRad(b[0] - a[0]);
+  const lat1 = toRad(a[1]);
+  const lat2 = toRad(b[1]);
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+// Categorical climate-zone palette — desaturated atlas tones.
+const CLIMATE_COLORS = {
+  "Cold":              "#7d96b3",
+  "Continental":       "#9bb09a",
+  "Mild":              "#d6c277",
+  "Humid Subtropical": "#c89370",
+  "Arid":              "#c8a06c",
+  "Tropical":          "#a36a4f",
+};
+function climateFill(zone) {
+  return CLIMATE_COLORS[zone] || "rgb(236,226,204)";
+}
+
+// Distance-from-center bucket palette (Plate V).
+const DISTANCE_BUCKETS = [
+  { key: "near", maxMi: 200,    color: "#5a7a3f", label: "≤200 mi" },
+  { key: "mid",  maxMi: 800,    color: "#c89837", label: "200–800 mi" },
+  { key: "far",  maxMi: Infinity, color: "#722f37", label: "800+ mi" },
+];
+
+// Elevation tier palette (Plate XI). Tied to state-mean elevation since
+// athletes.json doesn't carry per-hometown elevation today.
+const ELEVATION_TIERS = [
+  { max: 500,    color: "#c8d3b3", label: "≤500 ft" },
+  { max: 1500,   color: "#a8c4a3", label: "500–1.5k" },
+  { max: 3000,   color: "#7e9c8d", label: "1.5–3k" },
+  { max: 5000,   color: "#5a7c7c", label: "3k–5k" },
+  { max: Infinity, color: "#3a5e7a", label: "5k+" },
+];
+function tierForElevation(ft) {
+  if (ft == null || isNaN(ft)) return null;
+  return ELEVATION_TIERS.find((t) => ft <= t.max);
+}
+
+const ERA_DECADES = [
+  { label: "1980s", lo: 1980, hi: 1989 },
+  { label: "1990s", lo: 1990, hi: 1999 },
+  { label: "2000s", lo: 2000, hi: 2009 },
+  { label: "2010s", lo: 2010, hi: 2019 },
+  { label: "2020s", lo: 2020, hi: 2029 },
+];
+
 export default function USMap({
   features,
   path,
@@ -68,6 +130,16 @@ export default function USMap({
   factories,
   hoveredFactory,
   onHoverFactory,
+  // Cross-plate hover sync (concentration / per_capita / hs / era / colleges / altitude / distance / climate / halos)
+  hover = {},
+  // Per-plate analytics slices (passed by App / AppV2)
+  concentrationData,
+  perCapitaData,
+  hsConversionData,
+  eraData,
+  altitudeData,
+  // YOU plate user marker
+  userHome,
   // Lens (Olympic/Paralympic) — used for the choropleth + tooltip
   profileType,
   lensStateCounts,
@@ -75,15 +147,39 @@ export default function USMap({
 }) {
   const [tooltip, setTooltip] = useState(null);
 
-  // Compute metric range for the choropleth, excluding zero states so the
-  // scale isn't flattened by empty values.
+  // Build a fast index of analytics data keyed by state — used by extractMetric
+  // for the new per_capita / hs_per_million / era_swing metrics so the existing
+  // choropleth machinery can color states without bespoke render code.
+  const perCapitaByState = useMemo(() => {
+    const m = {};
+    for (const r of perCapitaData || []) m[r.state] = r;
+    return m;
+  }, [perCapitaData]);
+  const hsByState = useMemo(() => {
+    const m = {};
+    for (const r of hsConversionData || []) m[r.state] = r;
+    return m;
+  }, [hsConversionData]);
+  const eraSwingByState = useMemo(() => {
+    const m = {};
+    const ps = eraData?.per_state || {};
+    for (const [st, counts] of Object.entries(ps)) {
+      const early = (counts[0] || 0) + (counts[1] || 0);
+      const late  = (counts[3] || 0) + (counts[4] || 0);
+      m[st] = (late + 1) / (early + 1);
+    }
+    return m;
+  }, [eraData]);
+
   const [metricMin, metricMax] = useMemo(() => {
-    const vs = Object.values(states)
-      .map((s) => extractMetric(s, metric, lensStateCounts))
+    const vs = Object.keys(states)
+      .map((abbr) => extractMetric(states[abbr], metric, lensStateCounts, {
+        perCapitaByState, hsByState, eraSwingByState, abbr,
+      }))
       .filter((v) => v != null && !isNaN(v) && v > 0);
     if (!vs.length) return [0, 1];
     return [Math.min(...vs), Math.max(...vs)];
-  }, [states, metric, lensStateCounts]);
+  }, [states, metric, lensStateCounts, perCapitaByState, hsByState, eraSwingByState]);
 
   // Pre-project athlete coordinates once per filter change.
   const athleteDots = useMemo(() => {
@@ -96,6 +192,33 @@ export default function USMap({
     }
     return out;
   }, [athletes, projection, showDots]);
+
+  // For Plate V — for each athlete, distance to nearest training center that
+  // serves their sport. Indexed by athlete id.
+  const distanceByAthlete = useMemo(() => {
+    if (activePlate !== "distance") return null;
+    const sportToCenters = new Map();
+    for (const c of trainingCenters) {
+      if (c.lat == null || c.lng == null) continue;
+      const sports = (c.sports_served || "").split(";").map((s) => s.trim()).filter(Boolean);
+      for (const sp of sports) {
+        if (!sportToCenters.has(sp)) sportToCenters.set(sp, []);
+        sportToCenters.get(sp).push(c);
+      }
+    }
+    const out = {};
+    for (const a of athletes) {
+      const ctrs = sportToCenters.get(a.sport) || [];
+      if (!ctrs.length) { out[a.id] = null; continue; }
+      let best = Infinity;
+      for (const c of ctrs) {
+        const d = haversineMi([a.lng, a.lat], [c.lng, c.lat]);
+        if (d < best) best = d;
+      }
+      out[a.id] = best;
+    }
+    return out;
+  }, [activePlate, athletes, trainingCenters]);
 
   // Pre-project training centers.
   const centerDots = useMemo(() => {
@@ -152,18 +275,92 @@ export default function USMap({
         if (c.lat == null || c.lng == null) return null;
         const p = projection([c.lng, c.lat]);
         if (!p) return null;
-        // Approximate miles → SVG pixels at projection scale 1280.
-        // Albers USA conus ≈ 2500 mi wide ≈ 770 svg units here → ~0.31 svg/mi.
-        const px = 0.31;
         return {
           ...c,
           x: p[0],
           y: p[1],
-          rings: [25, 50, 100, 200].map((mi) => mi * px),
+          rings: [25, 50, 100, 200].map((mi) => mi * SVG_PER_MI),
         };
       })
       .filter(Boolean);
   }, [trainingCenters, projection, activePlate]);
+
+  // Plate III — Concentration: focus on the active sport (hovered or top
+  // by HHI) and surface its top-3 states with rank numerals.
+  const concentrationFocus = useMemo(() => {
+    if (activePlate !== "concentration" || !concentrationData?.length) return null;
+    const sport = hover.sport
+      ? concentrationData.find((r) => r.sport === hover.sport)
+      : concentrationData[0];
+    if (!sport) return null;
+    return {
+      sport,
+      states: (sport.top_states || []).slice(0, 3).map((s, i) => {
+        const c = centroids[s.state];
+        if (!c) return null;
+        const p = projection(c);
+        if (!p) return null;
+        return { abbr: s.state, share: s.share, rank: i + 1, x: p[0], y: p[1] };
+      }).filter(Boolean),
+    };
+  }, [activePlate, concentrationData, centroids, projection, hover.sport]);
+
+  // Plate VII / IX — top-5 ranked state centroids for label numerals.
+  const rankCentroids = useMemo(() => {
+    if (!projection) return [];
+    let rows = null;
+    if (activePlate === "per_capita") rows = perCapitaData;
+    else if (activePlate === "hs_conversion") rows = hsConversionData;
+    if (!rows) return [];
+    const sortKey = activePlate === "per_capita" ? "per_100k" : "per_million_hs";
+    return [...rows]
+      .filter((r) => r[sortKey] > 0)
+      .sort((a, b) => b[sortKey] - a[sortKey])
+      .slice(0, 5)
+      .map((r, i) => {
+        const c = centroids[r.state];
+        if (!c) return null;
+        const p = projection(c);
+        if (!p) return null;
+        return { abbr: r.state, rank: i + 1, value: r[sortKey], x: p[0], y: p[1] };
+      })
+      .filter(Boolean);
+  }, [activePlate, perCapitaData, hsConversionData, centroids, projection]);
+
+  // Plate XI — high-altitude town pins.
+  const altitudePins = useMemo(() => {
+    if (activePlate !== "altitude" || !projection || !altitudeData?.top_high_towns) return [];
+    return altitudeData.top_high_towns
+      .map((t) => {
+        // Look up coordinates from athletes.json by city+state match.
+        const match = athletes.find((a) => a.city === t.city && a.state === t.state);
+        const lng = match?.lng;
+        const lat = match?.lat;
+        if (lng == null || lat == null) return null;
+        const p = projection([lng, lat]);
+        if (!p) return null;
+        return { ...t, x: p[0], y: p[1] };
+      })
+      .filter(Boolean);
+  }, [activePlate, altitudeData, athletes, projection]);
+
+  // Plate XII — user's submitted hometown marker.
+  const userPin = useMemo(() => {
+    if (activePlate !== "you" || !projection || !userHome) return null;
+    let pt = null;
+    if (Number.isFinite(userHome.lng) && Number.isFinite(userHome.lat)) {
+      pt = projection([userHome.lng, userHome.lat]);
+    } else if (userHome.state && centroids[userHome.state]) {
+      pt = projection(centroids[userHome.state]);
+    }
+    if (!pt) return null;
+    return {
+      x: pt[0],
+      y: pt[1],
+      label: userHome.label || `${userHome.city || ""}${userHome.state ? `, ${userHome.state}` : ""}`.trim(),
+      ring: 200 * SVG_PER_MI,
+    };
+  }, [activePlate, projection, userHome, centroids]);
 
   const handleMove = useCallback((e) => {
     if (tooltip) setTooltip((t) => ({ ...t, cx: e.clientX, cy: e.clientY }));
@@ -176,6 +373,83 @@ export default function USMap({
           <span className="title">Loading atlas…</span>
         </div>
         <div className="map-figure" />
+      </div>
+    );
+  }
+
+  // Decide a state's fill: most plates use the metric choropleth, but the
+  // climate plate paints a categorical climate-zone palette and the
+  // concentration plate dims non-top-3 states.
+  function fillForState(abbr, st, value) {
+    if (activePlate === "climate") {
+      return climateFill(st?.climate?.zone);
+    }
+    if (metric === "none") return "rgb(236,226,204)";
+    return fillFor(value, metricMin, metricMax);
+  }
+
+  // Concentration plate dims dots that aren't in the focused sport.
+  function dotIsDim(a) {
+    if (activePlate === "concentration" && concentrationFocus?.sport) {
+      return a.sport !== concentrationFocus.sport.sport;
+    }
+    if ((activePlate === "distance" || activePlate === "climate" || activePlate === "altitude")
+        && hover.family) {
+      return a.family !== hover.family;
+    }
+    if (activePlate === "era" && hover.decade) {
+      const dec = ERA_DECADES.find((d) => d.label === hover.decade);
+      if (dec) {
+        const first = a.first ?? -Infinity;
+        const last  = a.last  ?? Infinity;
+        return last < dec.lo || first > dec.hi;
+      }
+    }
+    return false;
+  }
+
+  // Athlete dot color override per plate (distance buckets, altitude tiers).
+  function dotColor(a) {
+    if (activePlate === "distance" && distanceByAthlete) {
+      const d = distanceByAthlete[a.id];
+      if (d == null || d === Infinity) return "rgb(180,170,150)";
+      const bucket = DISTANCE_BUCKETS.find((b) => d <= b.maxMi);
+      return bucket ? bucket.color : "#555";
+    }
+    if (activePlate === "altitude") {
+      const ft = states[a.state]?.elevation?.mean_ft;
+      const tier = tierForElevation(ft);
+      return tier ? tier.color : "rgb(180,170,150)";
+    }
+    return familyColors[a.family] || "#555";
+  }
+
+  // Plate-specific legend rendered as a thin horizontal strip BELOW the
+  // map (lives on the same level as .map-scale) so it never sits on top of
+  // the geography it explains.
+  function renderLegend() {
+    let title = null;
+    let items = null;
+    if (activePlate === "distance") {
+      title = "Miles to nearest sport-serving center";
+      items = DISTANCE_BUCKETS.map((b) => ({ key: b.key, color: b.color, label: b.label }));
+    } else if (activePlate === "climate") {
+      title = "State climate zone";
+      items = Object.entries(CLIMATE_COLORS).map(([z, color]) => ({ key: z, color, label: z }));
+    } else if (activePlate === "altitude") {
+      title = "State-mean hometown elevation";
+      items = ELEVATION_TIERS.map((t) => ({ key: t.label, color: t.color, label: t.label }));
+    }
+    if (!items) return null;
+    return (
+      <div className="map-legend">
+        <span className="leg-title">{title}</span>
+        {items.map((it) => (
+          <span className="leg-row" key={it.key}>
+            <span className="leg-swatch" style={{ background: it.color }} />
+            <span className="leg-label">{it.label}</span>
+          </span>
+        ))}
       </div>
     );
   }
@@ -201,16 +475,28 @@ export default function USMap({
               const name = feat.properties.name;
               const abbr = NAME_TO_ABBR[name];
               const st = states[abbr];
-              const value = extractMetric(st, metric, lensStateCounts);
+              const value = extractMetric(st, metric, lensStateCounts, {
+                perCapitaByState, hsByState, eraSwingByState, abbr,
+              });
               const lens = lensStateCounts && lensStateCounts[abbr];
-              const fill = metric === "none"
-                ? "rgb(236,226,204)"
-                : fillFor(value, metricMin, metricMax);
+              const fill = fillForState(abbr, st, value);
               const isSelected = selectedState === abbr;
+              // State-level dimming for plate hover sync.
+              const dim = (() => {
+                if (activePlate === "concentration" && concentrationFocus) {
+                  const inTop = concentrationFocus.states.some((s) => s.abbr === abbr);
+                  return !inTop;
+                }
+                if ((activePlate === "per_capita" || activePlate === "hs_conversion" || activePlate === "era" || activePlate === "colleges")
+                    && hover.state) {
+                  return hover.state !== abbr;
+                }
+                return false;
+              })();
               return (
                 <path
                   key={feat.id || name}
-                  className={`state-path ${isSelected ? "selected" : ""}`}
+                  className={`state-path ${isSelected ? "selected" : ""} ${dim ? "dim" : ""}`}
                   d={path(feat)}
                   fill={fill}
                   onClick={() => onSelectState(abbr)}
@@ -239,17 +525,18 @@ export default function USMap({
             <g>
               {athleteDots.map((a) => {
                 const r = 1.5 + Math.min(4, Math.sqrt(a.total_medals || 0));
-                const color = familyColors[a.family] || "#555";
+                const color = dotColor(a);
                 const isSelected = selectedAthlete === a.id;
+                const dim = dotIsDim(a);
                 return (
                   <circle
                     key={a.id}
-                    className={`dot ${a.total_medals > 0 ? "medal" : ""}`}
+                    className={`dot ${a.total_medals > 0 ? "medal" : ""} ${dim ? "dim" : ""}`}
                     cx={a.x}
                     cy={a.y}
                     r={isSelected ? r + 2 : r}
                     fill={color}
-                    opacity={isSelected ? 1 : 0.78}
+                    opacity={isSelected ? 1 : (dim ? 0.18 : 0.78)}
                     onClick={(e) => {
                       e.stopPropagation();
                       onSelectAthlete(a.id);
@@ -268,13 +555,14 @@ export default function USMap({
             <g>
               {collegeBubbles.map((b) => {
                 const r = 4 + Math.sqrt(b.total) * 2.3;
+                const isHover = hover.state === b.state;
                 return (
                   <g key={b.state}>
                     <circle
-                      className="college-circle"
+                      className={`college-circle ${isHover ? "hover" : ""}`}
                       cx={b.x}
                       cy={b.y}
-                      r={r}
+                      r={isHover ? r + 3 : r}
                       onMouseEnter={() =>
                         setTooltip({ kind: "college", data: b, cx: 0, cy: 0 })
                       }
@@ -312,8 +600,9 @@ export default function USMap({
           {/* Plate IV — halo rings around training centers */}
           {activePlate === "halos" && (
             <g className="halos-layer">
-              {haloCenters.map((c) =>
-                c.rings.map((r, i) => (
+              {haloCenters.map((c) => {
+                const isHover = hover.center && hover.center === c.name;
+                return c.rings.map((r, i) => (
                   <circle
                     key={`${c.name}-${i}`}
                     cx={c.x}
@@ -321,13 +610,12 @@ export default function USMap({
                     r={r}
                     fill="none"
                     stroke="#c89837"
-                    strokeWidth={2.2 - i * 0.35}
+                    strokeWidth={(isHover ? 3.4 : 2.2) - i * 0.35}
                     strokeDasharray={i === 0 ? "" : i === 1 ? "4 3" : "2 4"}
-                    opacity={0.95 - i * 0.18}
+                    opacity={isHover ? 1 : (0.95 - i * 0.18)}
                   />
-                ))
-              )}
-              {/* center dots painted on top so they're visible above the rings */}
+                ));
+              })}
               {haloCenters.map((c) => (
                 <circle
                   key={`hub-${c.name}`}
@@ -381,6 +669,120 @@ export default function USMap({
             </g>
           )}
 
+          {/* Plate III — Concentration: rank circles on the focused sport's
+              top-3 states. */}
+          {activePlate === "concentration" && concentrationFocus && (
+            <g className="concentration-layer">
+              {concentrationFocus.states.map((s) => (
+                <g key={`conc-${s.abbr}`} transform={`translate(${s.x} ${s.y})`}>
+                  <circle r={14} fill="rgba(200, 152, 55, 0.18)" stroke="#c89837" strokeWidth={1.4} />
+                  <text
+                    textAnchor="middle"
+                    dy="0.34em"
+                    fontFamily="EB Garamond, Georgia, serif"
+                    fontStyle="italic"
+                    fontSize="14"
+                    fill="#1a1410"
+                  >
+                    {s.rank}
+                  </text>
+                </g>
+              ))}
+              <text
+                x={WIDTH / 2}
+                y={HEIGHT - 16}
+                textAnchor="middle"
+                fontFamily="JetBrains Mono"
+                fontSize="10"
+                fill="#1a1410"
+                letterSpacing="1.5"
+              >
+                {`TOP STATES · ${concentrationFocus.sport.sport.toUpperCase()} (HHI ${concentrationFocus.sport.hhi.toFixed(2)})`}
+              </text>
+            </g>
+          )}
+
+          {/* Plate VII / IX — rank labels on top-5 state centroids. */}
+          {(activePlate === "per_capita" || activePlate === "hs_conversion") && (
+            <g className="rank-layer">
+              {rankCentroids.map((r) => (
+                <g key={`rnk-${r.abbr}`} transform={`translate(${r.x} ${r.y})`}>
+                  <circle r={12} fill="rgba(244, 237, 225, 0.9)" stroke="#1a1410" strokeWidth={0.9} />
+                  <text
+                    textAnchor="middle"
+                    dy="0.34em"
+                    fontFamily="EB Garamond, Georgia, serif"
+                    fontStyle="italic"
+                    fontSize="13"
+                    fill="#1a1410"
+                  >
+                    {r.rank}
+                  </text>
+                </g>
+              ))}
+            </g>
+          )}
+
+          {/* Plate XI — high-altitude town triangle pins. */}
+          {activePlate === "altitude" && (
+            <g className="altitude-layer">
+              {altitudePins.map((t) => {
+                const isHover = hover.town && hover.town.city === t.city && hover.town.state === t.state;
+                const size = isHover ? 9 : 6;
+                return (
+                  <g key={`alt-${t.city}-${t.state}`} transform={`translate(${t.x} ${t.y})`} className={`altitude-pin ${isHover ? "hover" : ""}`}>
+                    <path
+                      d={`M0,${-size} L${size},${size * 0.85} L${-size},${size * 0.85} Z`}
+                      fill={isHover ? "#c63d2f" : "rgba(198, 61, 47, 0.85)"}
+                      stroke="#1a1410"
+                      strokeWidth={0.7}
+                    />
+                    {isHover && (
+                      <text
+                        x={0}
+                        y={-size - 4}
+                        textAnchor="middle"
+                        fontFamily="JetBrains Mono"
+                        fontSize="9"
+                        fill="#1a1410"
+                      >
+                        {`${t.city.toUpperCase()} · ${t.ft.toLocaleString()}ft`}
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
+            </g>
+          )}
+
+          {/* Plate XII — user's hometown marker + 200mi halo. */}
+          {activePlate === "you" && userPin && (
+            <g className="you-layer">
+              <circle
+                cx={userPin.x}
+                cy={userPin.y}
+                r={userPin.ring}
+                fill="rgba(198, 61, 47, 0.06)"
+                stroke="#c63d2f"
+                strokeWidth={1.2}
+                strokeDasharray="3 4"
+              />
+              <g transform={`translate(${userPin.x} ${userPin.y})`}>
+                <circle r="6" fill="#c63d2f" stroke="#1a1410" strokeWidth={0.8} />
+                <text
+                  y={-14}
+                  textAnchor="middle"
+                  fontFamily="JetBrains Mono"
+                  fontSize="10"
+                  fill="#1a1410"
+                  letterSpacing="0.6"
+                >
+                  {userPin.label || "YOU"}
+                </text>
+              </g>
+            </g>
+          )}
+
           {/* Compass rose (top-right corner decoration) */}
           <g transform={`translate(${WIDTH - 52} 48)`} opacity="0.7">
             <circle r="18" fill="none" stroke="#1a1410" strokeWidth="0.5" />
@@ -393,7 +795,9 @@ export default function USMap({
         {tooltip && <Tooltip t={tooltip} familyColors={familyColors} />}
       </div>
 
-      {metric !== "none" && (
+      {renderLegend()}
+
+      {metric !== "none" && activePlate !== "climate" && (
         <div className="map-scale">
           <span>{metricLabel(metric)}</span>
           <div className="scale-bar" />
@@ -424,15 +828,14 @@ export default function USMap({
 
 function Tooltip({ t, familyColors }) {
   if (!t) return null;
-  // Avoid the tooltip clipping off the right edge.
   const x = Math.min((typeof window !== "undefined" ? window.innerWidth : 1200) - 260, t.cx + 14);
   const y = t.cy + 14;
   const style = { left: x, top: y };
 
   if (t.kind === "state") {
-    // Skip the choropleth metric line when it's already shown above
-    // (olympians/medals are always shown by default).
-    const metricRedundant = t.metric === "olympians" || t.metric === "medals";
+    // Skip the third metric line entirely when no choropleth is set, or when
+    // it'd just repeat the olympians/medals counts already printed above.
+    const metricRedundant = !t.metric || t.metric === "none" || t.metric === "olympians" || t.metric === "medals";
     const lensWord = t.profileType === "paralympic" ? "paralympians" : "olympians";
     return (
       <div className="tooltip" style={style}>
@@ -507,32 +910,36 @@ function Tooltip({ t, familyColors }) {
   return null;
 }
 
-function extractMetric(st, metric, lensStateCounts) {
+function extractMetric(st, metric, lensStateCounts, ctx = {}) {
   if (!st) return null;
-  // Lens-aware values — count and medals are filtered to the active
-  // Olympic/Paralympic lens via the lensStateCounts aggregate built in App.
   const lens = lensStateCounts && lensStateCounts[st.abbr];
   switch (metric) {
-    case "olympians": return lens ? lens.count : 0;
-    case "medals":    return lens ? lens.medals : 0;
-    case "income":    return st.median_income;
-    case "nfhs":      return st.nfhs_total;
-    case "temp":      return st.climate?.temp_f;
-    case "snow":      return st.climate?.snow_in;
-    case "elevation": return st.elevation?.mean_ft;
-    default:          return lens ? lens.count : 0;
+    case "olympians":      return lens ? lens.count : 0;
+    case "medals":         return lens ? lens.medals : 0;
+    case "income":         return st.median_income;
+    case "nfhs":           return st.nfhs_total;
+    case "temp":           return st.climate?.temp_f;
+    case "snow":           return st.climate?.snow_in;
+    case "elevation":      return st.elevation?.mean_ft;
+    case "per_capita":     return ctx.perCapitaByState?.[ctx.abbr]?.per_100k;
+    case "hs_per_million": return ctx.hsByState?.[ctx.abbr]?.per_million_hs;
+    case "era_swing":      return ctx.eraSwingByState?.[ctx.abbr];
+    default:               return lens ? lens.count : 0;
   }
 }
 
 export function metricLabel(m) {
   return {
-    olympians: "Team USA profiles",
-    medals: "total medals",
-    income: "median household income",
-    nfhs: "HS participation slots",
-    temp: "avg annual temp °F",
-    snow: "avg annual snow in.",
-    elevation: "mean hometown elevation",
+    olympians:      "Team USA profiles",
+    medals:         "total medals",
+    income:         "median household income",
+    nfhs:           "HS participation slots",
+    temp:           "avg annual temp °F",
+    snow:           "avg annual snow in.",
+    elevation:      "mean hometown elevation",
+    per_capita:     "Team USA per 100k residents",
+    hs_per_million: "Team USA per 1M NFHS slots",
+    era_swing:      "decade swing (recent ÷ early)",
   }[m] || m;
 }
 
@@ -542,20 +949,14 @@ function plateCaption(p) {
     case "concentration": return "Plate III — Where each sport lives";
     case "halos":         return "Plate IV — Reach of the training centers";
     case "distance":      return "Plate V — How far Team USA grew up from a training center";
-    case "climate":       return "Plate VI — Climate × sport family";
+    case "climate":       return "Plate VI — Sport family × climate";
     case "per_capita":    return "Plate VII — Profiles per 100k residents";
     case "colleges":      return "Plate VIII — Profiles per athletic dollar";
     case "hs_conversion": return "Plate IX — NFHS slot density";
     case "era":           return "Plate X — How the map moved";
-    case "altitude":      return "Plate XI — Sport family × elevation";
+    case "altitude":      return "Plate XI — Sport family × altitude";
+    case "you":           return "Plate XII — Your geography, your atlas";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
-  }
-}
-function plateSubcaption(p) {
-  switch (p) {
-    case "factories": return "ranked gold pins mark towns ≥ 500 pop, ≥ 2 athletes";
-    case "halos":     return "concentric rings: 25, 50, 100, 200 mi from each center";
-    default:          return "coordinates from U.S. Census Gazetteer";
   }
 }
 
@@ -565,6 +966,9 @@ function fmtMetric(v, m) {
   if (m === "temp") return `${v.toFixed(1)}°F`;
   if (m === "snow") return `${v.toFixed(1)}″`;
   if (m === "elevation") return `${Math.round(v).toLocaleString()} ft`;
+  if (m === "per_capita") return `${v.toFixed(2)} / 100k`;
+  if (m === "hs_per_million") return `${Math.round(v).toLocaleString()} / 1M`;
+  if (m === "era_swing") return `${v.toFixed(2)}×`;
   return v.toLocaleString();
 }
 

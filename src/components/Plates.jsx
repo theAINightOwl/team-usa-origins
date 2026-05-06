@@ -28,12 +28,12 @@ export const PLATE_DEFS = [
   { key: "concentration", roman: "III", short: "Concentration", title: "Where each sport lives" },
   { key: "halos", roman: "IV", short: "Halos", title: "Reach of the training centers" },
   { key: "distance", roman: "V", short: "Distance", title: "How far from a center?" },
-  { key: "climate", roman: "VI", short: "Climate", title: "Climate × sport family" },
+  { key: "climate", roman: "VI", short: "Climate", title: "Sport family × climate" },
   { key: "per_capita", roman: "VII", short: "Per Capita", title: "Profiles per 100k residents" },
   { key: "colleges", roman: "VIII", short: "Colleges", title: "Profiles per athletic dollar" },
   { key: "hs_conversion", roman: "IX", short: "NFHS Slots", title: "Profiles per high-school slot" },
   { key: "era", roman: "X", short: "Era", title: "Roster presence by decade" },
-  { key: "altitude", roman: "XI", short: "Altitude", title: "Sport family × elevation" },
+  { key: "altitude", roman: "XI", short: "Altitude", title: "Sport family × altitude" },
   { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
 ];
 
@@ -75,6 +75,9 @@ export default function Plates({
   totals,
   onHoverFactory,
   hoveredFactory,
+  hover,
+  setHoverField,
+  onUserHome,
   profileType,
 }) {
   const plate = PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0];
@@ -86,6 +89,9 @@ export default function Plates({
         totals={totals}
         onHoverFactory={onHoverFactory}
         hoveredFactory={hoveredFactory}
+        hover={hover}
+        setHoverField={setHoverField}
+        onUserHome={onUserHome}
         profileType={profileType}
       />
     </div>
@@ -123,7 +129,7 @@ export function LensToggle({ profileType, setProfileType }) {
 
 /* ── Plate selector strip ──────────────────────────────────────────── */
 
-function PlateSelector({ active, setActive }) {
+export function PlateSelector({ active, setActive }) {
   return (
     <nav className="plate-nav">
       <div className="plate-nav-label">Plates</div>
@@ -149,25 +155,27 @@ function PlateSelector({ active, setActive }) {
 
 /* ── Plate dispatcher ──────────────────────────────────────────────── */
 
-function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, profileType }) {
+export function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, hover, setHoverField, onUserHome, profileType }) {
   const k = plate.key;
   // Each toggle-aware plate gets its lens-specific slice + roman numeral.
   const sliceProps = TOGGLE_AWARE.has(k)
     ? { profileType, slice: lensSlice(k, profileType), roman: plate.roman }
     : { roman: plate.roman };
+  // Hover-sync helpers — every list-style plate gets these.
+  const setHover = setHoverField || (() => {});
   switch (k) {
     case "ref":           return <PlateReference totals={totals} />;
     case "factories":     return <PlateFactories onHoverFactory={onHoverFactory} hoveredFactory={hoveredFactory} {...sliceProps} />;
-    case "concentration": return <PlateConcentration {...sliceProps} />;
-    case "halos":         return <PlateHalos {...sliceProps} />;
-    case "climate":       return <PlateClimate {...sliceProps} />;
-    case "distance":      return <PlateDistance {...sliceProps} />;
-    case "colleges":      return <PlateColleges {...sliceProps} />;
-    case "per_capita":    return <PlatePerCapita {...sliceProps} />;
-    case "hs_conversion": return <PlateHSConversion {...sliceProps} />;
-    case "era":           return <PlateEra {...sliceProps} />;
-    case "altitude":      return <PlateAltitude {...sliceProps} />;
-    case "you":           return <PlateYou profileType={profileType} />;
+    case "concentration": return <PlateConcentration setHover={setHover} hover={hover} {...sliceProps} />;
+    case "halos":         return <PlateHalos setHover={setHover} hover={hover} {...sliceProps} />;
+    case "climate":       return <PlateClimate setHover={setHover} hover={hover} {...sliceProps} />;
+    case "distance":      return <PlateDistance setHover={setHover} hover={hover} {...sliceProps} />;
+    case "colleges":      return <PlateColleges setHover={setHover} hover={hover} {...sliceProps} />;
+    case "per_capita":    return <PlatePerCapita setHover={setHover} hover={hover} {...sliceProps} />;
+    case "hs_conversion": return <PlateHSConversion setHover={setHover} hover={hover} {...sliceProps} />;
+    case "era":           return <PlateEra setHover={setHover} hover={hover} {...sliceProps} />;
+    case "altitude":      return <PlateAltitude setHover={setHover} hover={hover} {...sliceProps} />;
+    case "you":           return <PlateYou profileType={profileType} onUserHome={onUserHome} />;
     default:              return null;
   }
 }
@@ -305,7 +313,7 @@ function PlateFactories({ onHoverFactory, hoveredFactory, slice, roman, profileT
 
 /* ── Plate III — Sport Concentration ───────────────────────────────── */
 
-function PlateConcentration({ slice, roman, profileType }) {
+function PlateConcentration({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.concentration;
   const rows = data.filter((r) => r.n_athletes >= 7).slice(0, 24);
   return (
@@ -315,10 +323,16 @@ function PlateConcentration({ slice, roman, profileType }) {
         How concentrated each sport's hometowns are. A score of{" "}
         <span className="num">1.00</span> means every Team USA profile comes from a single state;
         <span className="num"> 0.05</span> means the sport is spread evenly across the country.
+        Hover a row to see its top three states glow on the map.
       </p>
       <ul className="rank-list">
         {rows.map((r) => (
-          <li key={r.sport} className="rank-row tall">
+          <li
+            key={r.sport}
+            className={`rank-row tall ${hover?.sport === r.sport ? "hover" : ""}`}
+            onMouseEnter={() => setHover && setHover("sport", r.sport)}
+            onMouseLeave={() => setHover && setHover("sport", null)}
+          >
             <span className="rk dot" style={{ background: FAMILY_COLOR_HINT[r.family] || "#555" }} />
             <span className="rb">
               <span className="city">{r.sport}</span>
@@ -352,7 +366,7 @@ function PlateConcentration({ slice, roman, profileType }) {
 
 /* ── Plate IV — Training-Center Halos ──────────────────────────────── */
 
-function PlateHalos({ slice, roman, profileType }) {
+function PlateHalos({ slice, roman, profileType, setHover, hover }) {
   const rows = slice || analytics.halos;
   const maxCum = Math.max(...rows.map((r) => r.cumulative[r.cumulative.length - 1]));
   return (
@@ -372,7 +386,12 @@ function PlateHalos({ slice, roman, profileType }) {
           const isOptc = r.type === "OPTC" || CENTER_TYPE_BY_NAME.get(r.name) === "OPTC";
           const direct = r.direct_cumulative?.[r.direct_cumulative.length - 1] || 0;
           return (
-          <li key={r.name + r.lat} className={`halo-row${isOptc ? " optc" : ""}`}>
+          <li
+            key={r.name + r.lat}
+            className={`halo-row${isOptc ? " optc" : ""}${hover?.center === r.name ? " hover" : ""}`}
+            onMouseEnter={() => setHover && setHover("center", r.name)}
+            onMouseLeave={() => setHover && setHover("center", null)}
+          >
             <div className="halo-name">
               <span className="name">
                 {r.name.replace(/^U\.S\. (Olympic & Paralympic )?/, "")}
@@ -407,7 +426,7 @@ function PlateHalos({ slice, roman, profileType }) {
 
 /* ── Plate V — Distance to Training Center ─────────────────────────── */
 
-function PlateDistance({ slice, roman, profileType }) {
+function PlateDistance({ slice, roman, profileType, setHover, hover }) {
   const { bins, families, scope } = slice || analytics.distance;
   // For each family, collapse the 7 bins into 3 zones: ≤200, 200-800, >800.
   // Sort by total athletes, descending.
@@ -440,7 +459,12 @@ function PlateDistance({ slice, roman, profileType }) {
           const mp = (mid / total) * 100;
           const fp = (far / total) * 100;
           return (
-            <li className="dist-stack-row" key={fam}>
+            <li
+              className={`dist-stack-row ${hover?.family === fam ? "hover" : ""}`}
+              key={fam}
+              onMouseEnter={() => setHover && setHover("family", fam)}
+              onMouseLeave={() => setHover && setHover("family", null)}
+            >
               <div className="dist-fam">
                 <span className="dot" style={{ background: FAMILY_COLOR_HINT[fam] || "#555" }} />
                 {fam}
@@ -517,12 +541,12 @@ function PlateDistance({ slice, roman, profileType }) {
 
 /* ── Plate VI — Climate × Sport ────────────────────────────────────── */
 
-function PlateClimate({ slice, roman, profileType }) {
+function PlateClimate({ slice, roman, profileType, setHover, hover }) {
   const { zones, matrix, scope } = slice || analytics.climate_sport;
   // For each family row, pick the dominant zone to highlight
   return (
     <>
-      <PlateHeader roman={roman || "VI"} eyebrow={lensEyebrow("Atmosphere", profileType)} title="Climate × " italic="sport family." />
+      <PlateHeader roman={roman || "VI"} eyebrow={lensEyebrow("Atmosphere", profileType)} title="Sport family × " italic="climate." />
       <p className="plate-lede">
         Share of each sport family's Team USA profiles from each state-level climate zone.
         Cell darkness = share; residuals compare each cell to the all-roster climate mix.
@@ -543,7 +567,12 @@ function PlateClimate({ slice, roman, profileType }) {
           {matrix.map((row) => {
             const dominant = row.zones.reduce((m, z) => (z.share > m.share ? z : m), { share: 0 });
             return (
-              <tr key={row.family}>
+              <tr
+                key={row.family}
+                className={hover?.family === row.family ? "hover" : ""}
+                onMouseEnter={() => setHover && setHover("family", row.family)}
+                onMouseLeave={() => setHover && setHover("family", null)}
+              >
                 <th className="fam">
                   <span className="dot" style={{ background: FAMILY_COLOR_HINT[row.family] || "#555" }} />
                   {row.family}
@@ -573,7 +602,7 @@ function PlateClimate({ slice, roman, profileType }) {
 
 /* ── Plate VIII — College Efficiency ───────────────────────────────── */
 
-function PlateColleges({ slice, roman, profileType }) {
+function PlateColleges({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.college_efficiency;
   const rows = data.points
     .filter((p) => p.matched_profiles >= 2)
@@ -588,7 +617,12 @@ function PlateColleges({ slice, roman, profileType }) {
       </p>
       <ul className="rank-list">
         {rows.map((r, i) => (
-          <li key={r.name} className="rank-row">
+          <li
+            key={r.name}
+            className={`rank-row ${hover?.state === r.state ? "hover" : ""}`}
+            onMouseEnter={() => setHover && setHover("state", r.state)}
+            onMouseLeave={() => setHover && setHover("state", null)}
+          >
             <span className="rk">{i + 1}</span>
             <span className="rb">
               <span className="city">{r.name}</span>
@@ -612,7 +646,7 @@ function PlateColleges({ slice, roman, profileType }) {
 
 /* ── Plate VII — Per-Capita State Rankings (merged Olympic/Paralympic) ── */
 
-function PlatePerCapita({ slice, roman, profileType }) {
+function PlatePerCapita({ slice, roman, profileType, setHover, hover }) {
   const lensLabel = profileType === "paralympic" ? "Paralympians" : "Olympians";
   const all = slice || analytics.per_capita;
   // Filter out zero-row states for the active lens; sort by per-100k desc
@@ -634,8 +668,10 @@ function PlatePerCapita({ slice, roman, profileType }) {
         {rows.map((r) => (
           <li
             key={r.state}
-            className="div-row"
+            className={`div-row ${hover?.state === r.state ? "hover" : ""}`}
             title={`${r.profiles} ${lensLabel} · ${r.population.toLocaleString()} residents`}
+            onMouseEnter={() => setHover && setHover("state", r.state)}
+            onMouseLeave={() => setHover && setHover("state", null)}
           >
             <span className="lab strong">{r.state}</span>
             <span className="div-bar tall">
@@ -656,7 +692,7 @@ function PlatePerCapita({ slice, roman, profileType }) {
 
 /* ── Plate X — NFHS participation-slot density ─────────────────────── */
 
-function PlateHSConversion({ slice, roman, profileType }) {
+function PlateHSConversion({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.hs_conversion;
   const lensLabel = profileType === "paralympic" ? "Paralympians" : "Olympians";
   const rows = data
@@ -676,8 +712,10 @@ function PlateHSConversion({ slice, roman, profileType }) {
           return (
             <li
               key={r.state}
-              className="div-row"
+              className={`div-row ${hover?.state === r.state ? "hover" : ""}`}
               title={`Olympic ${r.olympians} / Paralympic ${r.paralympians} / Hopeful ${r.hopefuls}`}
+              onMouseEnter={() => setHover && setHover("state", r.state)}
+              onMouseLeave={() => setHover && setHover("state", null)}
             >
               <span className="lab strong">{r.state}</span>
               <span className="div-bar tall">
@@ -707,7 +745,7 @@ function PlateHSConversion({ slice, roman, profileType }) {
 
 /* ── Plate XI — Era Presence ───────────────────────────────────────── */
 
-function PlateEra({ slice, roman, profileType }) {
+function PlateEra({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.era;
   const { decades, per_state, national, scope = {}, swing_metric = {} } = data;
   const minTotal = profileType === "paralympic" ? 5 : 30;
@@ -739,14 +777,26 @@ function PlateEra({ slice, roman, profileType }) {
           <tr>
             <th></th>
             {decades.map((d) => (
-              <th key={d.label}>{d.label}</th>
+              <th
+                key={d.label}
+                className={`era-col ${hover?.decade === d.label ? "hover" : ""}`}
+                onMouseEnter={() => setHover && setHover("decade", d.label)}
+                onMouseLeave={() => setHover && setHover("decade", null)}
+              >
+                {d.label}
+              </th>
             ))}
             <th className="swing">×</th>
           </tr>
         </thead>
         <tbody>
           {ranked.map((r) => (
-            <tr key={r.st}>
+            <tr
+              key={r.st}
+              className={hover?.state === r.st ? "hover" : ""}
+              onMouseEnter={() => setHover && setHover("state", r.st)}
+              onMouseLeave={() => setHover && setHover("state", null)}
+            >
               <th>{r.st}</th>
               {r.counts.map((n, i) => {
                 const intensity = colMax[i] ? n / colMax[i] : 0;
@@ -781,7 +831,7 @@ function PlateEra({ slice, roman, profileType }) {
 
 /* ── Plate XI — Altitude × sport family ───────────────────────────── */
 
-function PlateAltitude({ slice, roman, profileType }) {
+function PlateAltitude({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.elevation_sport;
   const { tiers = [], matrix = [], top_high_towns = [], scope = {} } = data || {};
   // Sort families by mean elevation, descending — the strongest editorial signal.
@@ -794,7 +844,7 @@ function PlateAltitude({ slice, roman, profileType }) {
         roman={roman || "XI"}
         eyebrow={lensEyebrow("Altitude", profileType)}
         title="Sport family × "
-        italic="elevation."
+        italic="altitude."
       />
       <p className="plate-lede">
         Share of each sport family's Team USA profiles by hometown elevation tier.
@@ -818,7 +868,12 @@ function PlateAltitude({ slice, roman, profileType }) {
               { share: 0 }
             );
             return (
-              <tr key={row.family}>
+              <tr
+                key={row.family}
+                className={hover?.family === row.family ? "hover" : ""}
+                onMouseEnter={() => setHover && setHover("family", row.family)}
+                onMouseLeave={() => setHover && setHover("family", null)}
+              >
                 <th className="fam">
                   <span className="dot" style={{ background: FAMILY_COLOR_HINT[row.family] || "#555" }} />
                   {row.family}
@@ -850,21 +905,29 @@ function PlateAltitude({ slice, roman, profileType }) {
             Team USA profiles, ranked by athlete count.
           </p>
           <ol className="rank-list">
-            {top_high_towns.map((t, i) => (
-              <li key={`${t.city}-${t.state}`} className="rank-row">
-                <span className="rk">{i + 1}</span>
-                <span className="rb">
-                  <span className="city">{t.city}, <i>{t.state}</i></span>
-                  <span className="sub">
-                    {t.ft.toLocaleString()} ft · top family {t.top_family}
+            {top_high_towns.map((t, i) => {
+              const isHover = hover?.town && hover.town.city === t.city && hover.town.state === t.state;
+              return (
+                <li
+                  key={`${t.city}-${t.state}`}
+                  className={`rank-row ${isHover ? "hover" : ""}`}
+                  onMouseEnter={() => setHover && setHover("town", { city: t.city, state: t.state })}
+                  onMouseLeave={() => setHover && setHover("town", null)}
+                >
+                  <span className="rk">{i + 1}</span>
+                  <span className="rb">
+                    <span className="city">{t.city}, <i>{t.state}</i></span>
+                    <span className="sub">
+                      {t.ft.toLocaleString()} ft · top family {t.top_family}
+                    </span>
                   </span>
-                </span>
-                <span className="rv">
-                  <b>{t.n}</b>
-                  <span className="u">athletes</span>
-                </span>
-              </li>
-            ))}
+                  <span className="rv">
+                    <b>{t.n}</b>
+                    <span className="u">athletes</span>
+                  </span>
+                </li>
+              );
+            })}
           </ol>
         </>
       )}
@@ -901,7 +964,41 @@ function saveYouState(value) {
   }
 }
 
-function PlateYou({ profileType = "olympic" }) {
+// Extract a 2-letter US state code from a "City, ST" string. Returns null if
+// none of the known abbreviations or full state names appear at the tail.
+const STATE_NAMES = {
+  alabama: "AL", alaska: "AK", arizona: "AZ", arkansas: "AR", california: "CA",
+  colorado: "CO", connecticut: "CT", delaware: "DE", florida: "FL", georgia: "GA",
+  hawaii: "HI", idaho: "ID", illinois: "IL", indiana: "IN", iowa: "IA",
+  kansas: "KS", kentucky: "KY", louisiana: "LA", maine: "ME", maryland: "MD",
+  massachusetts: "MA", michigan: "MI", minnesota: "MN", mississippi: "MS", missouri: "MO",
+  montana: "MT", nebraska: "NE", nevada: "NV", "new hampshire": "NH", "new jersey": "NJ",
+  "new mexico": "NM", "new york": "NY", "north carolina": "NC", "north dakota": "ND",
+  ohio: "OH", oklahoma: "OK", oregon: "OR", pennsylvania: "PA", "rhode island": "RI",
+  "south carolina": "SC", "south dakota": "SD", tennessee: "TN", texas: "TX", utah: "UT",
+  vermont: "VT", virginia: "VA", washington: "WA", "west virginia": "WV", wisconsin: "WI",
+  wyoming: "WY",
+};
+const VALID_ABBR = new Set(Object.values(STATE_NAMES));
+function parseHometown(raw) {
+  if (!raw) return null;
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+  const parts = trimmed.split(",").map((s) => s.trim()).filter(Boolean);
+  let city = null, state = null;
+  if (parts.length >= 2) {
+    city = parts[0];
+    const tail = parts[parts.length - 1].toLowerCase();
+    state = STATE_NAMES[tail] || (VALID_ABBR.has(tail.toUpperCase()) ? tail.toUpperCase() : null);
+  } else {
+    const tail = trimmed.toLowerCase();
+    state = STATE_NAMES[tail] || (VALID_ABBR.has(trimmed.toUpperCase()) ? trimmed.toUpperCase() : null);
+  }
+  if (!state) return null;
+  return { city, state, label: trimmed };
+}
+
+function PlateYou({ profileType = "olympic", onUserHome }) {
   const cached = loadYouState();
   const [hometown, setHometown] = useState(cached?.hometown || "");
   const [residence, setResidence] = useState(cached?.residence || "");
@@ -910,6 +1007,14 @@ function PlateYou({ profileType = "olympic" }) {
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState(null);
   const abortRef = useRef(null);
+
+  // Surface a parsed marker for the map any time the persisted hometown changes.
+  useEffect(() => {
+    if (!onUserHome) return;
+    onUserHome(parseHometown(hometown) || parseHometown(residence) || null);
+    return () => onUserHome(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hometown, residence]);
 
   async function submit() {
     const h = hometown.trim();
@@ -974,7 +1079,7 @@ function PlateYou({ profileType = "olympic" }) {
 
   return (
     <>
-      <PlateHeader roman="XI" eyebrow="For You" title="Your " italic="atlas." />
+      <PlateHeader roman="XII" eyebrow="For You" title="Your " italic="atlas." />
       <p className="plate-lede">
         Tell the atlas where you grew up and where you live now. It will
         thread the same data behind the other 11 plates around your
