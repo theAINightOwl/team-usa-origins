@@ -29,11 +29,11 @@ export const PLATE_DEFS = [
   { key: "halos", roman: "IV", short: "Halos", title: "Reach of the training centers" },
   { key: "distance", roman: "V", short: "Distance", title: "How far from a center?" },
   { key: "climate", roman: "VI", short: "Climate", title: "Sport family × climate" },
-  { key: "per_capita", roman: "VII", short: "Per Capita", title: "Profiles per 100k residents" },
-  { key: "colleges", roman: "VIII", short: "Colleges", title: "Profiles per athletic dollar" },
-  { key: "hs_conversion", roman: "IX", short: "NFHS Slots", title: "Profiles per high-school slot" },
-  { key: "era", roman: "X", short: "Era", title: "Roster presence by decade" },
-  { key: "altitude", roman: "XI", short: "Altitude", title: "Sport family × altitude" },
+  { key: "altitude", roman: "VII", short: "Altitude", title: "Sport family × altitude" },
+  { key: "per_capita", roman: "VIII", short: "Per Capita", title: "Profiles per 100k residents" },
+  { key: "colleges", roman: "IX", short: "Colleges", title: "Profiles per athletic dollar" },
+  { key: "hs_conversion", roman: "X", short: "NFHS Slots", title: "Profiles per high-school slot" },
+  { key: "era", roman: "XI", short: "Era", title: "Roster presence by decade" },
   { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
 ];
 
@@ -600,7 +600,7 @@ function PlateClimate({ slice, roman, profileType, setHover, hover }) {
   );
 }
 
-/* ── Plate VIII — College Efficiency ───────────────────────────────── */
+/* ── Plate IX — College Efficiency ───────────────────────────────── */
 
 function PlateColleges({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.college_efficiency;
@@ -610,7 +610,7 @@ function PlateColleges({ slice, roman, profileType, setHover, hover }) {
   const lensLabel = profileType === "paralympic" ? "Paralympic" : "Olympic";
   return (
     <>
-      <PlateHeader roman={roman || "VIII"} eyebrow={lensEyebrow("Per Dollar", profileType)} title={`${lensLabel} profiles per `} italic="athletic dollar." />
+      <PlateHeader roman={roman || "IX"} eyebrow={lensEyebrow("Per Dollar", profileType)} title={`${lensLabel} profiles per `} italic="athletic dollar." />
       <p className="plate-lede">
         College programs by <b>matched {lensLabel} profiles ÷ athletic budget ($M)</b>.
         Filter ≥ 2 matched profiles in this lens. Hover a row to see the full Olympic / Paralympic / Hopeful split.
@@ -644,7 +644,7 @@ function PlateColleges({ slice, roman, profileType, setHover, hover }) {
   );
 }
 
-/* ── Plate VII — Per-Capita State Rankings (merged Olympic/Paralympic) ── */
+/* ── Plate VIII — Per-Capita State Rankings (merged Olympic/Paralympic) ── */
 
 function PlatePerCapita({ slice, roman, profileType, setHover, hover }) {
   const lensLabel = profileType === "paralympic" ? "Paralympians" : "Olympians";
@@ -658,7 +658,7 @@ function PlatePerCapita({ slice, roman, profileType, setHover, hover }) {
   const national = totalPop ? (totalProfiles / totalPop) * 100_000 : 0;
   return (
     <>
-      <PlateHeader roman={roman || "VII"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="100k residents." />
+      <PlateHeader roman={roman || "VIII"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="100k residents." />
       <p className="plate-lede">
         {lensLabel} per <span className="num">100,000</span> state residents. State
         population from Census PEP 2023. National baseline:{" "}
@@ -701,7 +701,7 @@ function PlateHSConversion({ slice, roman, profileType, setHover, hover }) {
   const max = rows.length ? rows[0].per_million_hs : 1;
   return (
     <>
-      <PlateHeader roman={roman || "IX"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="NFHS slot." />
+      <PlateHeader roman={roman || "X"} eyebrow={lensEyebrow("Density", profileType)} title={`${lensLabel} per `} italic="NFHS slot." />
       <p className="plate-lede">
         Team USA profiles per <span className="num">1,000,000</span> NFHS participation
         slots. Uses 2024-25 official NFHS state totals; slots are not unique students.
@@ -766,7 +766,7 @@ function PlateEra({ slice, roman, profileType, setHover, hover }) {
   const colMax = decades.map((_, i) => Math.max(...ranked.map((r) => r.counts[i]), 1));
   return (
     <>
-      <PlateHeader roman={roman || "X"} eyebrow={lensEyebrow("Time", profileType)} title="Era presence " italic="by decade." />
+      <PlateHeader roman={roman || "XI"} eyebrow={lensEyebrow("Time", profileType)} title="Era presence " italic="by decade." />
       <p className="plate-lede">
         Team USA profiles with parsed active years, counted in every overlapping decade.
         Sorted by {swing_metric.label || "(2010s + 2020s + 1) / (1980s + 1990s + 1)"};
@@ -829,7 +829,7 @@ function PlateEra({ slice, roman, profileType, setHover, hover }) {
   );
 }
 
-/* ── Plate XI — Altitude × sport family ───────────────────────────── */
+/* ── Plate VII — Altitude × sport family ──────────────────────────── */
 
 function PlateAltitude({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.elevation_sport;
@@ -841,7 +841,7 @@ function PlateAltitude({ slice, roman, profileType, setHover, hover }) {
   return (
     <>
       <PlateHeader
-        roman={roman || "XI"}
+        roman={roman || "VII"}
         eyebrow={lensEyebrow("Altitude", profileType)}
         title="Sport family × "
         italic="altitude."

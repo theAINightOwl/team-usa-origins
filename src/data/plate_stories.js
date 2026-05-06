@@ -260,7 +260,7 @@ The actionable read is to identify states where the climate is permissive but th
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VII — Profiles per 100k residents (merged)
+   * Plate VIII — Profiles per 100k residents (merged)
    * ───────────────────────────────────────────────────────────────── */
   per_capita_olympic: `
 ## Olympians per 100k residents
@@ -309,7 +309,7 @@ For the USOPC and the national federations, the actionable opportunity is the bo
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VIII — Profiles per athletic dollar
+   * Plate IX — Profiles per athletic dollar
    * ───────────────────────────────────────────────────────────────── */
   colleges_olympic: `
 ## Olympic profiles per athletic dollar
@@ -352,11 +352,11 @@ Compare to the Ivies again. **Princeton** has effectively zero Paralympic alumni
 
 The Paralympic college-efficiency shortlist is concrete and small: **Wisconsin-Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois, and a handful of NCAA D-III adaptive-sport programs.** That's the entire visible Paralympic college pipeline in this dataset.
 
-For Paralympic federations, that's both an opportunity and a warning: the existing pipeline is concentrated in fewer than ten institutions. Scaling Paralympic recruiting means either deepening partnerships with the existing programs or **investing in new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate VII per-capita gap is largest.
+For Paralympic federations, that's both an opportunity and a warning: the existing pipeline is concentrated in fewer than ten institutions. Scaling Paralympic recruiting means either deepening partnerships with the existing programs or **investing in new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate VIII per-capita gap is largest.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate IX — Profiles per high-school slot
+   * Plate X — Profiles per high-school slot
    * ───────────────────────────────────────────────────────────────── */
   hs_conversion_olympic: `
 ## Olympians per NFHS slot
@@ -399,13 +399,13 @@ That said, the resulting ranking is still informative as a relative measure:
 | 4 | Washington | 177 |
 | 5 | Utah | 144 |
 
-Colorado leads, consistent with the Plate VII per-capita finding. Vermont and Alaska remain near the top. The pattern is that states already producing Paralympic athletes at high rates per resident also produce them at high rates per high-school slot — which makes sense, because NFHS slots scale with state population and high-school participation.
+Colorado leads, consistent with the Plate VIII per-capita finding. Vermont and Alaska remain near the top. The pattern is that states already producing Paralympic athletes at high rates per resident also produce them at high rates per high-school slot — which makes sense, because NFHS slots scale with state population and high-school participation.
 
 The bottom of the chart for Paralympic-per-NFHS shows the same southern under-producers as the per-capita plate: Tennessee, Louisiana, South Carolina, Texas, and Ohio.
 
 ## Where to look next
 
-The actionable takeaway here is the same as Plate VII (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator is the wrong baseline entirely.** A more useful future analysis would divide Paralympic athletes by:
+The actionable takeaway here is the same as Plate VIII (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator is the wrong baseline entirely.** A more useful future analysis would divide Paralympic athletes by:
 
 - The **disabled-population** of each state (Census ACS)
 - The number of **Move United / BlazeSports chapter members** per state
@@ -416,7 +416,7 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate X — Era presence by decade
+   * Plate XI — Era presence by decade
    * ───────────────────────────────────────────────────────────────── */
   era_olympic: `
 ## Olympic presence by decade
@@ -461,13 +461,13 @@ The interesting non-finding: even in the top Paralympic-growth states, the 1980s
 
 For Paralympic federations, the era table works less as a historical comparison and more as a **current-pipeline signal**. The states with the largest 2010s + 2020s columns — California, Colorado, Florida, Illinois, New York — are where the modern Paralympic infrastructure visibly works.
 
-The actionable extension is to study those states' Paralympic ecosystems alongside the Plate VII per-capita and Plate VIII college-efficiency findings: **Colorado** (NSCD + UCCS + Para residency programs), **Illinois** (University of Illinois adaptive-sport program, the longest-running in the country), **Wisconsin** (Whitewater, plus Wheelchair Curling concentration), and **California** (population scale + multiple adaptive-sport networks). What works in these states should be the basis for replicating Paralympic infrastructure in the southern under-producers.
+The actionable extension is to study those states' Paralympic ecosystems alongside the Plate VIII per-capita and Plate IX college-efficiency findings: **Colorado** (NSCD + UCCS + Para residency programs), **Illinois** (University of Illinois adaptive-sport program, the longest-running in the country), **Wisconsin** (Whitewater, plus Wheelchair Curling concentration), and **California** (population scale + multiple adaptive-sport networks). What works in these states should be the basis for replicating Paralympic infrastructure in the southern under-producers.
 
 A real comparison of Paralympic history would require joining this roster with USOPC historical Paralympic team rosters dating back to the 1960s — a dataset upgrade, not something this atlas can resolve on its own.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate XI — Sport family × elevation
+   * Plate VII — Sport family × elevation
    * ───────────────────────────────────────────────────────────────── */
   altitude_olympic: `
 ## The atlas climbs

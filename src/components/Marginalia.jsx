@@ -51,7 +51,7 @@ export default function Marginalia({ totals }) {
           <sup>3</sup> High-school participation uses official 2024-25 NFHS state totals.
           NFHS counts participation slots, not unique students; a multisport student can
           count more than once. The old estimated history table remains legacy support data
-          and is not used for Plate X.
+          and is not used for Plate XI.
         </p>
         <p>
           <sup>4</sup> County-level income is from the Census ACS 5-year, 2022 vintage, weighted by

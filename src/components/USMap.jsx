@@ -950,11 +950,11 @@ function plateCaption(p) {
     case "halos":         return "Plate IV — Reach of the training centers";
     case "distance":      return "Plate V — How far Team USA grew up from a training center";
     case "climate":       return "Plate VI — Sport family × climate";
-    case "per_capita":    return "Plate VII — Profiles per 100k residents";
-    case "colleges":      return "Plate VIII — Profiles per athletic dollar";
-    case "hs_conversion": return "Plate IX — NFHS slot density";
-    case "era":           return "Plate X — How the map moved";
-    case "altitude":      return "Plate XI — Sport family × altitude";
+    case "altitude":      return "Plate VII — Sport family × altitude";
+    case "per_capita":    return "Plate VIII — Profiles per 100k residents";
+    case "colleges":      return "Plate IX — Profiles per athletic dollar";
+    case "hs_conversion": return "Plate X — NFHS slot density";
+    case "era":           return "Plate XI — How the map moved";
     case "you":           return "Plate XII — Your geography, your atlas";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }

@@ -568,11 +568,11 @@ const PLATE_LABEL = {
   halos: "Plate IV — Halos",
   distance: "Plate V — Distance",
   climate: "Plate VI — Climate",
-  per_capita: "Plate VII — Per Capita",
-  colleges: "Plate VIII — Colleges",
-  hs_conversion: "Plate IX — HS Slots",
-  era: "Plate X — Era",
-  altitude: "Plate XI — Altitude",
+  altitude: "Plate VII — Altitude",
+  per_capita: "Plate VIII — Per Capita",
+  colleges: "Plate IX — Colleges",
+  hs_conversion: "Plate X — HS Slots",
+  era: "Plate XI — Era",
   you: "Plate XII — You",
 };
 const METRIC_LABEL = {

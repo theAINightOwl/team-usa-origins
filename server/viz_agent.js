@@ -489,17 +489,45 @@ export async function runVizAgent(userQuestion) {
     });
   }
 
+  function describeError(err) {
+    // undici/fetch wraps the real network failure in err.cause and sometimes
+    // err.cause.cause. Surface all three layers so a "fetch failed" doesn't
+    // hide the actual ECONNRESET / HeadersTimeoutError / etc.
+    const top = err?.message || String(err);
+    const c1 = err?.cause;
+    const c2 = c1?.cause;
+    const code1 = c1?.code || c1?.name;
+    const code2 = c2?.code || c2?.name;
+    const parts = [top];
+    if (code1 || c1?.message) parts.push(`cause=${code1 || ""}${code1 && c1?.message ? ":" : ""}${c1?.message || ""}`);
+    if (code2 || c2?.message) parts.push(`cause.cause=${code2 || ""}${code2 && c2?.message ? ":" : ""}${c2?.message || ""}`);
+    return parts.join(" | ");
+  }
+
   while (turn++ < 10) {
     let resp;
+    const t0 = Date.now();
     try {
       resp = await generateOnce();
     } catch (err) {
+      const elapsed = Date.now() - t0;
       const msg = String(err?.message || err);
       const cause = String(err?.cause?.code || err?.cause?.message || "");
       const isTransport = /fetch failed|HeadersTimeoutError|UND_ERR_/.test(msg + " " + cause);
-      if (!isTransport) throw err;
-      console.warn(`[viz] transport error on turn ${turn}, retrying once: ${msg}`);
-      resp = await generateOnce();
+      if (!isTransport) {
+        console.error(`[viz] non-transport error on turn ${turn} after ${elapsed}ms: ${describeError(err)}`);
+        throw err;
+      }
+      console.warn(`[viz] transport error on turn ${turn} after ${elapsed}ms, retrying once: ${describeError(err)}`);
+      const t1 = Date.now();
+      try {
+        resp = await generateOnce();
+      } catch (err2) {
+        const elapsed2 = Date.now() - t1;
+        console.error(`[viz] retry also failed on turn ${turn} after ${elapsed2}ms: ${describeError(err2)}`);
+        throw err2;
+      }
+      console.warn(`[viz] retry succeeded on turn ${turn} after ${Date.now() - t1}ms`);
     }
 
     if (resp.usageMetadata) {
