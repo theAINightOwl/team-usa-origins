@@ -23,7 +23,7 @@ function getAi() {
   return _ai;
 }
 function getModel() {
-  return process.env.VIZ_MODEL || "gemini-3.1-pro-preview";
+  return process.env.VIZ_MODEL || "gemini-3.1-flash-preview";
 }
 
 // ── SQL tool ────────────────────────────────────────────────────────────

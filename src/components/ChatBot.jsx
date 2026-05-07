@@ -20,14 +20,48 @@ const STARTERS = [
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
+// Persist conversations across reloads. Pattern matches `olympian-roots:profileType`
+// used by App / AppV2.
+const STORAGE_KEY = "olympian-roots:chat:messages";
+
+// When the prompt prefix grows past this, summarize the older half via a
+// one-shot call to the chat model so subsequent turns stay fast.
+const COMPACT_THRESHOLD_CHARS = 80_000;
+const COMPACT_KEEP_RECENT = 8;
+const COMPACT_MIN_MESSAGES = 12;
+
+function loadStoredMessages() {
+  if (typeof localStorage === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+// Highest numeric suffix in any "m-N" id, so the ref counter doesn't restart
+// at 0 after a reload and mint colliding ids.
+function maxIdSuffix(msgs) {
+  let max = 0;
+  for (const m of msgs) {
+    const n = parseInt(String(m?.id || "").replace(/^m-/, ""), 10);
+    if (Number.isFinite(n) && n > max) max = n;
+  }
+  return max;
+}
+
 export default function ChatBot({ profileType = "olympic", onApplyPatch, embedded = false }) {
   const [open, setOpen] = useState(embedded);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(loadStoredMessages);
   const [pendingVoice, setPendingVoice] = useState(null); // { role, text } in-flight voice fragment
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [compacting, setCompacting] = useState(false);
 
-  const idCounter = useRef(0);
+  const idCounter = useRef(maxIdSuffix(messages));
   const nextId = useCallback(() => `m-${++idCounter.current}`, []);
 
   const abortRef = useRef(null);
@@ -149,6 +183,106 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
+  // Persist conversation across reloads. Drop transient `pending` flags so a
+  // restored bubble doesn't appear stuck on a thinking spinner.
+  useEffect(() => {
+    if (typeof localStorage === "undefined") return;
+    try {
+      const safe = messages.map(({ pending: _omit, ...rest }) => rest);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(safe));
+    } catch (err) {
+      console.warn("[chat] failed to persist messages:", err?.message || err);
+    }
+  }, [messages]);
+
+  // ── Auto-compaction ────────────────────────────────────────────────
+  // Estimate prompt size, summarize the older half via a one-shot streamChat
+  // call, and replace those entries in state with a single synthetic "earlier
+  // conversation summary" message.
+  // Returns the post-compaction messages array if compaction ran, or null if
+  // the threshold wasn't crossed / it failed. Caller uses the returned array
+  // synchronously to build the outgoing /api/chat history; React commits the
+  // setMessages call concurrently.
+  const compactHistory = useCallback(async (signal) => {
+    const eligible = messages.filter(
+      (m) => m.kind === "text" || m.kind === "chart" || m.kind === "view_patch"
+    );
+    if (eligible.length < COMPACT_MIN_MESSAGES) return null;
+    const totalChars = eligible.reduce((sum, m) => sum + (m.text?.length || m.narration?.length || 0), 0);
+    if (totalChars < COMPACT_THRESHOLD_CHARS) return null;
+
+    const olderCount = eligible.length - COMPACT_KEEP_RECENT;
+    if (olderCount <= 0) return null;
+    const olderEligible = eligible.slice(0, olderCount);
+    const olderIds = new Set(olderEligible.map((m) => m.id));
+
+    const transcript = olderEligible
+      .map((m) => {
+        if (m.kind === "chart") return `[model — chart drawn] ${m.narration || ""}`;
+        if (m.kind === "view_patch") return `[model — atlas updated] ${JSON.stringify(m.patch || {})}`;
+        return `[${m.role}] ${m.text || ""}`;
+      })
+      .join("\n");
+
+    const synthetic = [{
+      role: "user",
+      text:
+        "Summarize the earlier conversation below in 4–8 bullet points. " +
+        "Preserve named states, sports, charts that were drawn, and atlas filter changes. " +
+        "Output plain text only — no preamble.\n\n" + transcript,
+    }];
+
+    setCompacting(true);
+    let summary = "";
+    try {
+      for await (const evt of streamChat({ messages: synthetic, profileType, signal })) {
+        if (evt.type === "text" && typeof evt.delta === "string") summary += evt.delta;
+        if (evt.type === "error") throw new Error(evt.message || "compaction error");
+        if (evt.type === "done") break;
+      }
+    } catch (err) {
+      console.warn("[chat] compaction failed, proceeding with full history:", err?.message || err);
+      setCompacting(false);
+      return null;
+    }
+    setCompacting(false);
+
+    summary = summary.trim();
+    if (!summary) {
+      console.warn("[chat] compaction returned empty, proceeding with full history");
+      return null;
+    }
+
+    const summaryMsg = {
+      id: nextId(),
+      role: "model",
+      kind: "text",
+      compacted: true,
+      text: "📝 Earlier conversation summary:\n\n" + summary,
+    };
+    const remaining = messages.filter((m) => !olderIds.has(m.id));
+    const next = [summaryMsg, ...remaining];
+    setMessages(next);
+    return next;
+  }, [messages, profileType, nextId]);
+
+  // ── Clear conversation ─────────────────────────────────────────────
+  const handleClear = useCallback(() => {
+    if (!window.confirm("Clear the entire conversation?")) return;
+    abortRef.current?.abort();
+    if (pendingVoiceRef.current) commitPending();
+    if (live.status !== "idle") live.stop();
+    setMessages([]);
+    setPending(null);
+    setInput("");
+    setSending(false);
+    setCompacting(false);
+    idCounter.current = 0;
+    if (typeof localStorage !== "undefined") {
+      try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    }
+  }, [live, commitPending, setPending]);
+
   // ── Send a typed message ───────────────────────────────────────────
   async function send(text) {
     const trimmed = text.trim();
@@ -163,6 +297,20 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
       return;
     }
 
+    setInput("");
+    setSending(true);
+
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+
+    // Compact older context first if we're past the threshold. The returned
+    // array (if any) is the new baseline both for state and for the outgoing
+    // /api/chat history; if compaction is skipped or fails we fall through to
+    // the existing closure-captured `messages`.
+    let baseMessages = messages;
+    const compacted = await compactHistory(ctrl.signal);
+    if (compacted) baseMessages = compacted;
+
     const userMsg = { id: nextId(), role: "user", kind: "text", text: trimmed };
     const modelPlaceholderId = nextId();
     const modelPlaceholder = {
@@ -173,16 +321,11 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
       pending: true,
     };
     setMessages((prev) => [...prev, userMsg, modelPlaceholder]);
-    setInput("");
-    setSending(true);
-
-    const ctrl = new AbortController();
-    abortRef.current = ctrl;
 
     // Build the history sent to the server: every prior text + chart turn,
     // plus this user message. Voice transcript turns participate too — they
     // were committed as kind:text already.
-    const history = [...messages, userMsg]
+    const history = [...baseMessages, userMsg]
       .filter((m) => m.kind === "text" || m.kind === "chart" || m.kind === "view_patch")
       .map((m) => {
         if (m.kind === "chart") return { role: "model", text: `[chart rendered] ${m.narration || ""}` };
@@ -357,11 +500,21 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
                 Type, talk, or <em>chart</em>.
               </h3>
             </div>
-            {!embedded && (
-              <div className="chat-head-actions">
+            <div className="chat-head-actions">
+              {messages.length > 0 && (
+                <button
+                  className="clear-btn"
+                  onClick={handleClear}
+                  disabled={sending || compacting}
+                  title="Clear conversation"
+                >
+                  clear
+                </button>
+              )}
+              {!embedded && (
                 <button className="close-btn" onClick={() => setOpen(false)}>close</button>
-              </div>
-            )}
+              )}
+            </div>
           </header>
 
           {live.error && (
@@ -464,9 +617,11 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
                 ? "opening voice line…"
                 : live.status === "ending"
                   ? "closing voice line…"
-                  : sending
-                    ? "atlas is thinking…"
-                    : "type or tap the mic"}
+                  : compacting
+                    ? "compacting earlier context…"
+                    : sending
+                      ? "atlas is thinking…"
+                      : "type or tap the mic"}
           </p>
         </div>
       )}
@@ -513,7 +668,7 @@ function Message({ m }) {
   }
   return (
     <div
-      className={`chat-msg ${isUser ? "u" : "a"} ${m.error ? "err" : ""} ${m.via === "voice" ? "voice" : ""}`}
+      className={`chat-msg ${isUser ? "u" : "a"} ${m.error ? "err" : ""} ${m.via === "voice" ? "voice" : ""} ${m.compacted ? "compacted" : ""}`}
     >
       {isUser ? (
         <div className="bubble">{m.text}</div>

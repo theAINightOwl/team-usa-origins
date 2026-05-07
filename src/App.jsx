@@ -13,14 +13,37 @@ import USMap, { NAME_TO_ABBR } from "./components/USMap.jsx";
 import Filters from "./components/Filters.jsx";
 import StatePanel from "./components/StatePanel.jsx";
 import AthleteCard from "./components/AthleteCard.jsx";
-import Plates, { PlateStory, LensToggle, PLATE_DEFS } from "./components/Plates.jsx";
+import {
+  PLATE_DEFS,
+  PlateBody,
+  PlateSelector,
+  PlateStory,
+  LensToggle,
+} from "./components/Plates.jsx";
 import ChatBot from "./components/ChatBot.jsx";
 
 const MAP_WIDTH = 975;
 const MAP_HEIGHT = 610;
 
+/*
+ * App — split-panel layout.
+ *
+ *   ┌──────────────────────────────────────────┐
+ *   │ TOP BAR  wordmark · meta · plate index   │
+ *   ├─────────────────────────────┬────────────┤
+ *   │ CONTENT (scrolls)           │ CHAT       │
+ *   │   stage card (lens, map,    │ pinned to  │
+ *   │   filters)                  │ viewport,  │
+ *   │   plate body / story        │ messages   │
+ *   │                             │ scroll,    │
+ *   │                             │ input      │
+ *   │                             │ pinned ▼   │
+ *   └─────────────────────────────┴────────────┘
+ *
+ * Either column can collapse to the side via the edge toggles. When the
+ * chat is hidden a soft-glowing avatar at the bottom-right invites it back.
+ */
 export default function App() {
-  // ── Topology load ────────────────────────────────────────────────
   const [topoState, setTopoState] = useState({ features: null, centroids: {} });
   useEffect(() => {
     let alive = true;
@@ -39,18 +62,15 @@ export default function App() {
         setTopoState({ features, centroids });
       })
       .catch((err) => console.error("[olympian-roots] topology load failed", err));
-    return () => {
-      alive = false;
-    };
+    return () => { alive = false; };
   }, []);
 
-  // ── Projection + path (shared across the whole plate) ────────────
   const { projection, path } = useMemo(() => {
     const proj = geoAlbersUsa().scale(1280).translate([MAP_WIDTH / 2, MAP_HEIGHT / 2 + 10]);
     return { projection: proj, path: geoPath().projection(proj) };
   }, []);
 
-  // ── Filter state ─────────────────────────────────────────────────
+  // ── Filter state ──────────────────────────────────────────────────
   const allFamilies = sportFamiliesData.families;
   const [metric, setMetric] = useState("none");
   const [selectedFamilies, setSelectedFamilies] = useState(() => new Set(allFamilies));
@@ -72,83 +92,13 @@ export default function App() {
   const toggleFamily = (f) => {
     setSelectedFamilies((prev) => {
       const next = new Set(prev);
-      if (next.has(f)) next.delete(f);
-      else next.add(f);
+      if (next.has(f)) next.delete(f); else next.add(f);
       return next;
     });
   };
   const setOverlay = (k, v) => setOverlays((o) => ({ ...o, [k]: v }));
 
-  // ── Atlas patch dispatcher (called by ChatBot when the agent updates view) ─
-  const applyAtlasPatch = useCallback((patch) => {
-    if (!patch || typeof patch !== "object") return;
-
-    if (patch.reset === true) {
-      setSelectedFamilies(new Set(allFamilies));
-      setMedalOnly(false);
-      setEraRange([1896, 2026]);
-      setMetric("none");
-      setOverlays({ dots: true, centers: true, colleges: false });
-      setActivePlate("ref");
-      setSelectedState(null);
-      setSelectedAthleteId(null);
-      // Lens is intentionally preserved on reset.
-    }
-
-    if (patch.families === null) {
-      setSelectedFamilies(new Set(allFamilies));
-    } else if (Array.isArray(patch.families)) {
-      const valid = patch.families.filter((f) => allFamilies.includes(f));
-      if (valid.length) setSelectedFamilies(new Set(valid));
-    }
-
-    if (typeof patch.medalOnly === "boolean") setMedalOnly(patch.medalOnly);
-
-    if (Number.isFinite(patch.eraStart) || Number.isFinite(patch.eraEnd)) {
-      setEraRange(([curStart, curEnd]) => {
-        let s = Number.isFinite(patch.eraStart) ? patch.eraStart : curStart;
-        let e = Number.isFinite(patch.eraEnd)   ? patch.eraEnd   : curEnd;
-        s = Math.max(1896, Math.min(2026, s));
-        e = Math.max(1896, Math.min(2026, e));
-        if (s > e) [s, e] = [e, s];
-        return [s, e];
-      });
-    }
-
-    if (patch.lens === "Olympic") setProfileType("olympic");
-    else if (patch.lens === "Paralympic") setProfileType("paralympic");
-
-    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation","per_capita","hs_per_million","era_swing"];
-    if (typeof patch.metric === "string" && ALLOWED_METRICS.includes(patch.metric)) {
-      setMetric(patch.metric);
-    }
-
-    if (patch.overlays && typeof patch.overlays === "object") {
-      setOverlays((prev) => {
-        const next = { ...prev };
-        for (const k of ["dots", "centers", "colleges"]) {
-          if (typeof patch.overlays[k] === "boolean") next[k] = patch.overlays[k];
-        }
-        return next;
-      });
-    }
-
-    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","era","altitude","you"];
-    if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
-      setActivePlate(patch.plate);
-    }
-
-    if (typeof patch.state === "string") {
-      if (patch.state === "") {
-        setSelectedState(null);
-      } else if (Object.values(NAME_TO_ABBR).includes(patch.state)) {
-        setSelectedAthleteId(null);
-        setSelectedState(patch.state);
-      }
-    }
-  }, [allFamilies]);
-
-  // ── Selection + cross-plate hover state ──────────────────────────
+  // ── Selection + cross-component hover ─────────────────────────────
   const [selectedState, setSelectedState] = useState(null);
   const [selectedAthleteId, setSelectedAthleteId] = useState(null);
   const [activePlate, setActivePlate] = useState("ref");
@@ -168,6 +118,67 @@ export default function App() {
   }, []);
   const [userHome, setUserHome] = useState(null);
 
+  // ── Atlas chat dispatcher (validates patches from the chat agent) ─
+  const applyAtlasPatch = useCallback((patch) => {
+    if (!patch || typeof patch !== "object") return;
+
+    if (patch.reset === true) {
+      setSelectedFamilies(new Set(allFamilies));
+      setMedalOnly(false);
+      setEraRange([1896, 2026]);
+      setMetric("none");
+      setOverlays({ dots: true, centers: true, colleges: false });
+      setActivePlate("ref");
+      setSelectedState(null);
+      setSelectedAthleteId(null);
+    }
+
+    if (patch.families === null) {
+      setSelectedFamilies(new Set(allFamilies));
+    } else if (Array.isArray(patch.families)) {
+      const valid = patch.families.filter((f) => allFamilies.includes(f));
+      if (valid.length) setSelectedFamilies(new Set(valid));
+    }
+    if (typeof patch.medalOnly === "boolean") setMedalOnly(patch.medalOnly);
+    if (Number.isFinite(patch.eraStart) || Number.isFinite(patch.eraEnd)) {
+      setEraRange(([curStart, curEnd]) => {
+        let s = Number.isFinite(patch.eraStart) ? patch.eraStart : curStart;
+        let e = Number.isFinite(patch.eraEnd)   ? patch.eraEnd   : curEnd;
+        s = Math.max(1896, Math.min(2026, s));
+        e = Math.max(1896, Math.min(2026, e));
+        if (s > e) [s, e] = [e, s];
+        return [s, e];
+      });
+    }
+    if (patch.lens === "Olympic") setProfileType("olympic");
+    else if (patch.lens === "Paralympic") setProfileType("paralympic");
+    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation","per_capita","hs_per_million","era_swing"];
+    if (typeof patch.metric === "string" && ALLOWED_METRICS.includes(patch.metric)) {
+      setMetric(patch.metric);
+    }
+    if (patch.overlays && typeof patch.overlays === "object") {
+      setOverlays((prev) => {
+        const next = { ...prev };
+        for (const k of ["dots", "centers", "colleges"]) {
+          if (typeof patch.overlays[k] === "boolean") next[k] = patch.overlays[k];
+        }
+        return next;
+      });
+    }
+    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","era","altitude","you"];
+    if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
+      setActivePlate(patch.plate);
+    }
+    if (typeof patch.state === "string") {
+      if (patch.state === "") setSelectedState(null);
+      else if (Object.values(NAME_TO_ABBR).includes(patch.state)) {
+        setSelectedAthleteId(null);
+        setSelectedState(patch.state);
+      }
+    }
+  }, [allFamilies]);
+
+  // ── Per-plate auto-overlay/metric flips ───────────────────────────
   const PLATE_METRIC = {
     per_capita: "per_capita",
     hs_conversion: "hs_per_million",
@@ -175,6 +186,12 @@ export default function App() {
   };
   const metricLocked = activePlate in PLATE_METRIC;
   useEffect(() => {
+    setOverlays((o) => ({
+      ...o,
+      dots: true,
+      centers: true,
+      colleges: activePlate === "colleges",
+    }));
     if (activePlate in PLATE_METRIC) {
       setMetric(PLATE_METRIC[activePlate]);
     } else {
@@ -194,18 +211,14 @@ export default function App() {
     setSelectedAthleteId((prev) => (prev === id ? null : id));
   };
 
-  // ── Filtered athlete set for the map & panels ────────────────────
+  // ── Derived data ──────────────────────────────────────────────────
   const filteredAthletes = useMemo(() => {
     return athletesData.filter((a) => {
       if ((a.type || "").toLowerCase() !== profileType) return false;
       if (!selectedFamilies.has(a.family)) return false;
       if (medalOnly && !(a.total_medals > 0)) return false;
-      if (a.first != null) {
-        if (a.first > eraRange[1]) return false;
-      }
-      if (a.last != null) {
-        if (a.last < eraRange[0]) return false;
-      }
+      if (a.first != null && a.first > eraRange[1]) return false;
+      if (a.last != null && a.last < eraRange[0]) return false;
       return true;
     });
   }, [profileType, selectedFamilies, medalOnly, eraRange]);
@@ -215,7 +228,7 @@ export default function App() {
       (a) => (a.type || "").toLowerCase() === profileType
     ).length;
     return {
-      athletes: 8526, // total athletes scraped from teamusa.com
+      athletes: 8526,
       geocoded: athletesData.length,
       lensGeocoded: lensTotal,
       filtered: filteredAthletes.length,
@@ -224,9 +237,6 @@ export default function App() {
     };
   }, [filteredAthletes, profileType]);
 
-  // Per-state aggregate filtered ONLY by lens (not by other filters), so the
-  // choropleth + StatePanel reflect the active Olympic/Paralympic view without
-  // jumping around as the user toggles family/era filters.
   const lensStateCounts = useMemo(() => {
     const agg = {};
     for (const a of athletesData) {
@@ -245,131 +255,186 @@ export default function App() {
     [selectedAthleteId]
   );
   const selectedStateObj = selectedState ? statesData[selectedState] : null;
+  const activePlateObj = PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0];
+
+  // ── Panel collapse state ──────────────────────────────────────────
+  // Either 'chat' or 'content' may be hidden, never both at once.
+  const [panelHidden, setPanelHidden] = useState(null);
+  const togglePanel = useCallback((side) => {
+    setPanelHidden((prev) => {
+      if (prev === side) return null;       // already hidden — restore
+      if (prev != null) return null;        // other is hidden — restore that instead
+      return side;                          // hide this one
+    });
+  }, []);
+  const shellClass = [
+    "app-shell",
+    panelHidden === "chat" ? "chat-hidden" : "",
+    panelHidden === "content" ? "content-hidden" : "",
+  ].filter(Boolean).join(" ");
 
   return (
-    <div className="app">
-      <header className="masthead">
-        <div>
-          <div className="dateline">
-            <span>Team USA · Olympic &amp; Paralympic</span>
-            <span className="sep" />
-            <span>1896 — 2026</span>
-          </div>
+    <div className={shellClass}>
+      <header className="app-topbar">
+        <div className="topbar-row">
           <h1 className="wordmark">
             Olympian <em>Roots</em>
           </h1>
-          <p className="subhead">
-            A cartography of hometowns and the support systems — training centers, colleges,
-            high-school pipelines, wages, and weather — behind Team USA profiles.
-          </p>
+          <div className="topbar-meta">
+            <span>Team USA · Olympic &amp; Paralympic</span>
+            <span className="sep">·</span>
+            <span>1896 — 2026</span>
+          </div>
         </div>
-        <div className="plate">
-          Plate <span className="big">{(PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0]).roman}</span>
-          <br />
-          {(PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0]).title}
-        </div>
+        <PlateSelector active={activePlate} setActive={setActivePlate} />
       </header>
 
-      <div className="main">
-        <div className="left-col">
-          <Filters
-            metric={metric}
-            setMetric={setMetric}
-            families={allFamilies}
-            selectedFamilies={selectedFamilies}
-            toggleFamily={toggleFamily}
-            familyColors={sportFamiliesData.colors}
-            familyCounts={sportFamiliesData.counts}
-            medalOnly={medalOnly}
-            setMedalOnly={setMedalOnly}
-            eraRange={eraRange}
-            setEraRange={setEraRange}
-            overlays={overlays}
-            setOverlay={setOverlay}
-            metricLocked={metricLocked}
-          />
-        </div>
+      <button
+        type="button"
+        className="edge-toggle edge-left"
+        onClick={() => togglePanel("content")}
+        title={panelHidden === "content" ? "Show content panel" : "Hide content panel"}
+        aria-label={panelHidden === "content" ? "Show content panel" : "Hide content panel"}
+      >
+        {panelHidden === "content" ? "▶" : "◀"}
+      </button>
+      <button
+        type="button"
+        className="edge-toggle edge-right"
+        onClick={() => togglePanel("chat")}
+        title={panelHidden === "chat" ? "Show chat panel" : "Hide chat panel"}
+        aria-label={panelHidden === "chat" ? "Show chat panel" : "Hide chat panel"}
+      >
+        {panelHidden === "chat" ? "◀" : "▶"}
+      </button>
+      <button
+        type="button"
+        className="chat-avatar"
+        onClick={() => togglePanel("chat")}
+        title="Reopen Ask the Atlas"
+        aria-label="Reopen Ask the Atlas"
+      >
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 5h16v11H8l-4 4V5z" />
+          <g className="dot-cluster">
+            <circle cx="9" cy="11" r="1.1" />
+            <circle cx="12" cy="11" r="1.1" />
+            <circle cx="15" cy="11" r="1.1" />
+          </g>
+        </svg>
+      </button>
 
-        <div className="center-col">
-          <USMap
-            features={topoState.features}
-            path={path}
-            projection={projection}
-            centroids={topoState.centroids}
-            states={statesData}
-            athletes={filteredAthletes}
-            trainingCenters={trainingCentersData}
-            colleges={collegesData}
-            familyColors={sportFamiliesData.colors}
-            metric={metric}
-            selectedState={selectedState}
-            selectedAthlete={selectedAthleteId}
-            showDots={overlays.dots}
-            showCenters={overlays.centers}
-            showColleges={overlays.colleges}
-            onSelectState={handleSelectState}
-            onSelectAthlete={handleSelectAthlete}
-            activePlate={activePlate}
-            factories={(analyticsData[`factories_${profileType}`] || analyticsData.factories)}
-            hoveredFactory={hoveredFactory}
-            onHoverFactory={setHoveredFactory}
-            hover={hover}
-            concentrationData={analyticsData[`concentration_${profileType}`] || analyticsData.concentration}
-            perCapitaData={analyticsData[`per_capita_${profileType}`] || analyticsData.per_capita}
-            hsConversionData={analyticsData[`hs_conversion_${profileType}`] || analyticsData.hs_conversion}
-            eraData={analyticsData[`era_${profileType}`] || analyticsData.era}
-            altitudeData={analyticsData[`elevation_sport_${profileType}`] || analyticsData.elevation_sport}
-            userHome={userHome}
-            profileType={profileType}
-            lensStateCounts={lensStateCounts}
-            stats={[
-              {
-                label: profileType === "paralympic" ? "Paralympians located" : "Olympians located",
-                value: totals.lensGeocoded.toLocaleString(),
-                unit: "geocoded",
-              },
-              { label: "States covered", value: totals.states, unit: "of 51" },
-            ]}
-          />
-          <PlateStory plateKey={activePlate} profileType={profileType} />
-        </div>
-
-        <aside className="right-col">
-          <LensToggle profileType={profileType} setProfileType={setProfileType} />
-          {selectedAthlete ? (
-            <AthleteCard
-              athlete={selectedAthlete}
-              trainingCenters={trainingCentersData}
+      <main className="app-cols">
+        <section className="content-col">
+          <div className="stage">
+            <div className="stage-head">
+              <LensToggle profileType={profileType} setProfileType={setProfileType} />
+            </div>
+            <USMap
+              features={topoState.features}
+              path={path}
+              projection={projection}
+              centroids={topoState.centroids}
               states={statesData}
-              familyColors={sportFamiliesData.colors}
-              onClose={() => setSelectedAthleteId(null)}
-            />
-          ) : selectedStateObj ? (
-            <StatePanel
-              state={selectedStateObj}
+              athletes={filteredAthletes}
+              trainingCenters={trainingCentersData}
               colleges={collegesData}
-              onClose={() => setSelectedState(null)}
-              profileType={profileType}
-              lensStateCounts={lensStateCounts}
-            />
-          ) : (
-            <Plates
+              familyColors={sportFamiliesData.colors}
+              metric={metric}
+              selectedState={selectedState}
+              selectedAthlete={selectedAthleteId}
+              showDots={overlays.dots}
+              showCenters={overlays.centers}
+              showColleges={overlays.colleges}
+              onSelectState={handleSelectState}
+              onSelectAthlete={handleSelectAthlete}
               activePlate={activePlate}
-              setActivePlate={setActivePlate}
-              totals={totals}
+              factories={(analyticsData[`factories_${profileType}`] || analyticsData.factories)}
               hoveredFactory={hoveredFactory}
               onHoverFactory={setHoveredFactory}
               hover={hover}
-              setHoverField={setHoverField}
-              onUserHome={setUserHome}
+              concentrationData={analyticsData[`concentration_${profileType}`] || analyticsData.concentration}
+              perCapitaData={analyticsData[`per_capita_${profileType}`] || analyticsData.per_capita}
+              hsConversionData={analyticsData[`hs_conversion_${profileType}`] || analyticsData.hs_conversion}
+              eraData={analyticsData[`era_${profileType}`] || analyticsData.era}
+              altitudeData={analyticsData[`elevation_sport_${profileType}`] || analyticsData.elevation_sport}
+              userHome={userHome}
               profileType={profileType}
+              lensStateCounts={lensStateCounts}
+              stats={[
+                {
+                  label: profileType === "paralympic" ? "Paralympians located" : "Olympians located",
+                  value: totals.lensGeocoded.toLocaleString(),
+                  unit: "geocoded",
+                },
+                { label: "States covered", value: totals.states, unit: "of 51" },
+              ]}
             />
-          )}
-        </aside>
-      </div>
+            <div className="stage-filters">
+              <Filters
+                metric={metric}
+                setMetric={setMetric}
+                families={allFamilies}
+                selectedFamilies={selectedFamilies}
+                toggleFamily={toggleFamily}
+                setSelectedFamilies={setSelectedFamilies}
+                familyColors={sportFamiliesData.colors}
+                familyCounts={sportFamiliesData.counts}
+                medalOnly={medalOnly}
+                setMedalOnly={setMedalOnly}
+                eraRange={eraRange}
+                setEraRange={setEraRange}
+                overlays={overlays}
+                setOverlay={setOverlay}
+                compact
+                metricLocked={metricLocked}
+              />
+            </div>
+          </div>
 
-      <ChatBot profileType={profileType} onApplyPatch={applyAtlasPatch} />
-      <a className="route-link-floating" href="/v2">try v2 layout →</a>
+          <section className="plate-section">
+            {selectedAthlete ? (
+              <AthleteCard
+                athlete={selectedAthlete}
+                trainingCenters={trainingCentersData}
+                states={statesData}
+                familyColors={sportFamiliesData.colors}
+                onClose={() => setSelectedAthleteId(null)}
+              />
+            ) : selectedStateObj ? (
+              <StatePanel
+                state={selectedStateObj}
+                colleges={collegesData}
+                onClose={() => setSelectedState(null)}
+                profileType={profileType}
+                lensStateCounts={lensStateCounts}
+              />
+            ) : (
+              <>
+                <PlateBody
+                  plate={activePlateObj}
+                  totals={totals}
+                  hoveredFactory={hoveredFactory}
+                  onHoverFactory={setHoveredFactory}
+                  hover={hover}
+                  setHoverField={setHoverField}
+                  onUserHome={setUserHome}
+                  profileType={profileType}
+                />
+                <PlateStory plateKey={activePlate} profileType={profileType} />
+              </>
+            )}
+          </section>
+        </section>
+
+        <aside className="chat-col">
+          <ChatBot
+            profileType={profileType}
+            onApplyPatch={applyAtlasPatch}
+            embedded
+          />
+        </aside>
+      </main>
     </div>
   );
 }
