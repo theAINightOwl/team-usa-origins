@@ -5,7 +5,7 @@ import { useGeminiLive } from "../hooks/useGeminiLive.js";
 import { renderFigure } from "../lib/plotly-render.js";
 
 /*
- * ChatBot — "Ask the Atlas" floating drawer.
+ * ChatBot — "Work with Atlas" floating drawer.
  *
  * One conversation thread. The user types or speaks; the chat agent decides
  * whether to answer in prose or invoke a `request_chart` tool that fans out
@@ -459,7 +459,7 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
         <button
           className="chat-launcher"
           onClick={() => setOpen(true)}
-          aria-label="Open Ask the Atlas"
+          aria-label="Open Work with Atlas"
         >
           <span className="chat-launcher-icon" aria-hidden>
             <svg width="32" height="32" viewBox="0 0 32 32">
@@ -485,17 +485,17 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
             </svg>
           </span>
           <span className="chat-launcher-label">
-            <span className="chat-launcher-eyebrow">Ask the Atlas</span>
+            <span className="chat-launcher-eyebrow">Work with Atlas</span>
             <span className="chat-launcher-sub">type · talk · chart</span>
           </span>
         </button>
       )}
 
       {open && (
-        <div className={`chat-drawer ${embedded ? "embedded" : ""}`} role="dialog" aria-label="Ask the Atlas">
+        <div className={`chat-drawer ${embedded ? "embedded" : ""}`} role="dialog" aria-label="Work with Atlas">
           <header className="chat-head">
             <div>
-              <p className="eyebrow">Ask the Atlas</p>
+              <p className="eyebrow">Work with Atlas</p>
               <h3>
                 Type, talk, or <em>chart</em>.
               </h3>

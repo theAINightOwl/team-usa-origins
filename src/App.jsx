@@ -257,6 +257,18 @@ export default function App() {
   const selectedStateObj = selectedState ? statesData[selectedState] : null;
   const activePlateObj = PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0];
 
+  // ── Welcome screen (first-visit overlay) ──────────────────────────
+  const WELCOME_KEY = "olympian-roots:welcome-seen";
+  const [showWelcome, setShowWelcome] = useState(() => {
+    if (typeof localStorage === "undefined") return false;
+    return localStorage.getItem(WELCOME_KEY) !== "1";
+  });
+  const dismissWelcome = () => {
+    setShowWelcome(false);
+    if (typeof localStorage !== "undefined") localStorage.setItem(WELCOME_KEY, "1");
+  };
+  const reopenWelcome = () => setShowWelcome(true);
+
   // ── Panel collapse state ──────────────────────────────────────────
   // Either 'chat' or 'content' may be hidden, never both at once.
   const [panelHidden, setPanelHidden] = useState(null);
@@ -273,6 +285,115 @@ export default function App() {
     panelHidden === "content" ? "content-hidden" : "",
   ].filter(Boolean).join(" ");
 
+  if (showWelcome) {
+    return (
+      <div className="welcome-page">
+        <header className="welcome-header">
+          <h1 className="wordmark">
+            Olympian <em>Roots</em>
+          </h1>
+          <div className="welcome-meta">
+            <span>Team USA · Olympic &amp; Paralympic</span>
+            <span className="sep">·</span>
+            <span>1896 — 2026</span>
+          </div>
+        </header>
+
+        <main className="welcome-main">
+          <p className="welcome-eyebrow">Welcome</p>
+          <h2 id="welcome-title" className="welcome-title">
+            An atlas you can <em>talk</em> to.
+          </h2>
+          <p className="welcome-lede">
+            Olympian Roots maps the support systems — training centers, colleges,
+            high-school pipelines, wages, and weather — behind 8,500+ Team USA
+            Olympic and Paralympic profiles. The unusual part: it ships with an
+            agent that turns the whole atlas into a conversation.
+          </p>
+
+          <section className="welcome-hero">
+            <p className="hero-eyebrow">★ The standout feature</p>
+            <h3 className="hero-title">
+              Work with <em>Atlas</em>.
+            </h3>
+            <p className="hero-blurb">
+              The chat panel on the right isn't a bolt-on. It can answer in prose,
+              draw live charts on demand, and steer the dashboard for you — three
+              ways to use the same agent:
+            </p>
+
+            <div className="hero-modes">
+              <div className="hero-mode">
+                <span className="mode-label">Type</span>
+                <p className="mode-example">
+                  <em>"Why does Park City, UT produce so many olympians?"</em>
+                </p>
+                <p className="mode-note">Prose answer with citations.</p>
+              </div>
+              <div className="hero-mode">
+                <span className="mode-label">Talk</span>
+                <p className="mode-example">
+                  <em>Tap the mic. Speak. Atlas replies out loud.</em>
+                </p>
+                <p className="mode-note">Live voice, interrupt any time.</p>
+              </div>
+              <div className="hero-mode">
+                <span className="mode-label">Chart</span>
+                <p className="mode-example">
+                  <em>"Bar chart of medals by sport family."</em>
+                </p>
+                <p className="mode-note">A real Plotly figure renders in the chat.</p>
+              </div>
+            </div>
+
+            <div className="hero-aside">
+              <p>
+                <strong>It also drives the dashboard.</strong> Try{" "}
+                <em>"filter to Paralympic only"</em> or{" "}
+                <em>"jump to the per-capita plate, top 10 states"</em> — the lens,
+                filters, plate selector, and map all respond. The agent has
+                read-write hands on the same UI you're looking at.
+              </p>
+            </div>
+          </section>
+
+          <section className="welcome-secondary">
+            <p className="secondary-eyebrow">Or browse it the old way</p>
+            <ul className="secondary-list">
+              <li>
+                <strong>Pick a plate</strong> — 12 editorial stories along the top, from a
+                century of hometowns to your own geography.
+              </li>
+              <li>
+                <strong>Switch lenses</strong> — Olympic / Paralympic toggle inside the
+                stage card re-renders the whole atlas.
+              </li>
+              <li>
+                <strong>Filter the map</strong> — sport family, era window, medal-only,
+                and overlay toggles below the map.
+              </li>
+              <li>
+                <strong>Click anywhere</strong> — a state opens its profile breakdown;
+                an athlete dot opens their card.
+              </li>
+              <li>
+                <strong>Hide a panel</strong> — edge arrows collapse either side; the
+                avatar at the bottom-right brings the chat back when it's hidden.
+              </li>
+            </ul>
+          </section>
+
+          <p className="welcome-foot">
+            You can reopen this guide any time via the <span className="kbd">?</span> in the top bar.
+          </p>
+          <button type="button" className="welcome-cta" onClick={dismissWelcome}>
+            Enter the atlas →
+          </button>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className={shellClass}>
       <header className="app-topbar">
@@ -284,6 +405,15 @@ export default function App() {
             <span>Team USA · Olympic &amp; Paralympic</span>
             <span className="sep">·</span>
             <span>1896 — 2026</span>
+            <button
+              type="button"
+              className="topbar-help"
+              onClick={reopenWelcome}
+              title="What is this? How do I use it?"
+              aria-label="Open the welcome guide"
+            >
+              ?
+            </button>
           </div>
         </div>
         <PlateSelector active={activePlate} setActive={setActivePlate} />
@@ -311,8 +441,8 @@ export default function App() {
         type="button"
         className="chat-avatar"
         onClick={() => togglePanel("chat")}
-        title="Reopen Ask the Atlas"
-        aria-label="Reopen Ask the Atlas"
+        title="Reopen Work with Atlas"
+        aria-label="Reopen Work with Atlas"
       >
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 5h16v11H8l-4 4V5z" />
@@ -435,6 +565,7 @@ export default function App() {
           />
         </aside>
       </main>
+
     </div>
   );
 }
