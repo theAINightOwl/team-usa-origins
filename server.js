@@ -57,7 +57,7 @@ const plateBriefsByLens = {
 
 // ── Gemini setup ────────────────────────────────────────────────────────
 const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite-preview";
 const PORT = Number(process.env.PORT || 5175);
 
 if (!API_KEY) {
