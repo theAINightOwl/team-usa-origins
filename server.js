@@ -176,6 +176,13 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 
+// In production (Cloud Run), serve the Vite-built frontend from dist/. In dev
+// the Vite dev server proxies /api/* here, so this block is a no-op locally.
+const DIST_DIR = join(__dirname, "dist");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(DIST_DIR));
+}
+
 app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
@@ -475,6 +482,14 @@ app.post("/api/viz", async (req, res) => {
     res.status(500).json({ error: err?.message || String(err) });
   }
 });
+
+// SPA fallback — serve the React index.html for any non-API GET when running
+// in production. Must come AFTER all /api/* routes.
+if (process.env.NODE_ENV === "production") {
+  app.get(/^(?!\/api\/).*/, (_req, res) => {
+    res.sendFile(join(DIST_DIR, "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(

@@ -1,0 +1,28 @@
+node_modules
+dist
+.git
+.gitignore
+.env
+*.env
+!.env.example
+.DS_Store
+.cache
+.claude
+.superpowers
+mockups
+docs/superpowers
+reference
+notebooks
+scripts
+live
+
+# data/ is partially needed at runtime (CSVs for the DuckDB viz agent),
+# but exclude the heavy/raw inputs that aren't read at runtime.
+data/team_usa_athletes.csv
+data/.elevation_cache.json
+data/teamusa_hometown_manual.csv
+data/teamusa_hometown_manual_notes.md
+data/school_matches.json
+data/school_multi_matches.json
+*.log
+README.md
