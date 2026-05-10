@@ -12,9 +12,10 @@ export default defineConfig({
         target: "http://localhost:5175",
         changeOrigin: true,
       },
-      // Forward Plate XIII voice WebSocket to the Python live server.
+      // Plate XIII voice WebSocket now co-hosts with the Express api on
+      // the same port; one Cloud Run revision serves both /api/* and /live.
       "/live": {
-        target: "ws://127.0.0.1:8765",
+        target: "ws://127.0.0.1:5175",
         ws: true,
         changeOrigin: true,
       },

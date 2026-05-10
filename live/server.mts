@@ -1,7 +1,13 @@
 // WebSocket bridge from the browser to Gemini Live (Plate XIII).
-// Ported from gemini_live_toy_ts/server.mts and re-pointed at the atlas
-// plate briefs as the system prompt.
+//
+// Two entry shapes:
+//   • Standalone:    `tsx live/server.mts` boots a dedicated http server on
+//                    LIVE_PORT (default 8765). Used by `npm run live`.
+//   • Co-hosted:     `attachLiveWS(httpServer)` mounts the WebSocketServer
+//                    at /live on an existing http.Server (e.g. the Express
+//                    server.js uses on Cloud Run). One process, one URL.
 
+import type { Server as HttpServer } from "node:http";
 import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, join } from "node:path";
@@ -90,28 +96,23 @@ const TOOLS: any[] = [{
 }];
 
 // Warm DuckDB at boot so the first chart turn doesn't pay the load latency.
+// Idempotent — server.js may also warm it; getVizDb() is a singleton.
 import("../server/viz_db.js").then((m) => m.getVizDb()).catch((err) => {
   console.warn("[viz] DuckDB warm failed (will retry on first request):", err?.message || err);
 });
 
-const httpServer = createServer((req, res) => {
-  if (req.url === "/health") {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({
-      ok: true,
-      model: MODEL,
-      voice: VOICE,
-      keyPresent: Boolean(GEMINI_API_KEY),
-    }));
-    return;
-  }
-  res.writeHead(404);
-  res.end();
-});
+/**
+ * Attach the /live WebSocket bridge to an existing http.Server.
+ * Returns the WebSocketServer so the caller can manage shutdown.
+ */
+export function attachLiveWS(httpServer: HttpServer): WebSocketServer {
+  const wss = new WebSocketServer({ server: httpServer, path: "/live" });
+  registerLiveConnections(wss);
+  return wss;
+}
 
-const wss = new WebSocketServer({ server: httpServer, path: "/live" });
-
-wss.on("connection", async (ws) => {
+function registerLiveConnections(wss: WebSocketServer) {
+  wss.on("connection", async (ws) => {
   console.log("[live] client connected");
 
   if (!GEMINI_API_KEY) {
@@ -255,14 +256,41 @@ wss.on("connection", async (ws) => {
     gemini.close();
   });
 });
+}
 
-httpServer.listen(PORT, "127.0.0.1", () => {
-  console.log(
-    `\n🎤  Hometown Atlas live voice on ws://127.0.0.1:${PORT}/live` +
-    `\n    model: ${MODEL}` +
-    `\n    voice: ${VOICE}` +
-    `\n    key:   ${GEMINI_API_KEY ? "loaded ✓" : "missing ✗"}` +
-    "\n",
-  );
-  // logArmorBanner("   🛡  [armor]");   // Model Armor banner (disabled)
-});
+// Standalone entry — only fires when this module is the process entry point.
+// When server.js imports attachLiveWS() to co-host on Cloud Run, this block
+// is skipped so we don't bind a second http server.
+const isStandalone =
+  typeof process.argv[1] === "string" &&
+  fileURLToPath(import.meta.url) === process.argv[1];
+
+if (isStandalone) {
+  const httpServer = createServer((req, res) => {
+    if (req.url === "/health") {
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({
+        ok: true,
+        model: MODEL,
+        voice: VOICE,
+        keyPresent: Boolean(GEMINI_API_KEY),
+      }));
+      return;
+    }
+    res.writeHead(404);
+    res.end();
+  });
+
+  attachLiveWS(httpServer);
+
+  httpServer.listen(PORT, "127.0.0.1", () => {
+    console.log(
+      `\n🎤  Hometown Atlas live voice on ws://127.0.0.1:${PORT}/live` +
+      `\n    model: ${MODEL}` +
+      `\n    voice: ${VOICE}` +
+      `\n    key:   ${GEMINI_API_KEY ? "loaded ✓" : "missing ✗"}` +
+      "\n",
+    );
+    // logArmorBanner("   🛡  [armor]");   // Model Armor banner (disabled)
+  });
+}

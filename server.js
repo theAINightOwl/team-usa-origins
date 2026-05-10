@@ -19,6 +19,7 @@
 
 import "dotenv/config";
 import { readFileSync } from "node:fs";
+import { createServer as createHttpServer } from "node:http";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -40,6 +41,7 @@ setGlobalDispatcher(new Agent({
 import { buildPlateBriefs } from "./server/plate_briefs.js";
 import { runVizAgent } from "./server/viz_agent.js";
 import { UPDATE_ATLAS_DECL, ATLAS_CONTROLS_INSTRUCTIONS } from "./server/atlas_tool.js";
+import { attachLiveWS } from "./live/server.mts";
 // Model Armor (disabled — re-enable by uncommenting here and in /api/chat + app.listen)
 // import { sanitizePrompt, logArmorBanner } from "./server/armor.js";
 
@@ -491,12 +493,19 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => {
+// Wrap the Express app in a raw http.Server so the /live WebSocket bridge can
+// co-host on the same port. In dev that means one process serves both /api/*
+// and /live; in prod Cloud Run gets a single revision for the whole atlas.
+const httpServer = createHttpServer(app);
+attachLiveWS(httpServer);
+
+httpServer.listen(PORT, () => {
   console.log(
     `\n📜  Hometown Atlas chat backend listening on :${PORT}` +
     `\n    model: ${MODEL}` +
     `\n    key:   ${API_KEY ? "loaded ✓" : "missing ✗"}` +
     `\n    plates loaded: 11` +
+    `\n    voice:        co-hosted at ws:/live` +
     "\n"
   );
   // logArmorBanner("   🛡  [armor]");   // Model Armor banner (disabled)

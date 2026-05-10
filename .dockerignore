@@ -14,7 +14,6 @@ docs/superpowers
 reference
 notebooks
 scripts
-live
 
 # data/ is partially needed at runtime (CSVs for the DuckDB viz agent),
 # but exclude the heavy/raw inputs that aren't read at runtime.

@@ -25,6 +25,7 @@ RUN npm ci --legacy-peer-deps --omit=dev
 # Server code + assets the Express app reads from disk at runtime.
 COPY server.js ./server.js
 COPY server ./server
+COPY live ./live
 COPY src/data ./src/data
 
 # CSV inputs the DuckDB viz agent reads at boot (filtered by .dockerignore).
@@ -34,4 +35,5 @@ COPY data ./data
 COPY --from=build /app/dist ./dist
 
 EXPOSE 8080
-CMD ["node", "server.js"]
+# tsx so we can import live/server.mts (TypeScript) from server.js directly.
+CMD ["./node_modules/.bin/tsx", "server.js"]

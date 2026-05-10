@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5174",
-    "server": "node server.js",
-    "server:dev": "nodemon server.js",
+    "server": "tsx server.js",
+    "server:dev": "tsx watch server.js",
     "live": "tsx live/server.mts",
     "live:dev": "tsx watch live/server.mts",
-    "dev:all": "concurrently -k -n vite,api,live -c magenta,cyan,yellow \"npm:dev\" \"npm:server:dev\" \"npm:live:dev\"",
+    "dev:all": "concurrently -k -n vite,api -c magenta,cyan \"npm:dev\" \"npm:server:dev\"",
     "build": "vite build",
     "preview": "vite preview --port 5174"
   },
