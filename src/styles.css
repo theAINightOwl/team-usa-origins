@@ -2740,6 +2740,34 @@ body { margin: 0; overflow: hidden; }
   padding: 22px 28px 80px;
   border-right: 1px solid var(--hair);
 }
+
+/* Scrollbars — blend with the editorial paper aesthetic. The browser
+   default track is white and sticks out against the warm paper bg. */
+.content-col,
+.chat-col .chat-drawer.embedded .chat-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--paper-3) transparent;
+}
+.content-col::-webkit-scrollbar,
+.chat-col .chat-drawer.embedded .chat-body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.content-col::-webkit-scrollbar-track,
+.chat-col .chat-drawer.embedded .chat-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content-col::-webkit-scrollbar-thumb,
+.chat-col .chat-drawer.embedded .chat-body::-webkit-scrollbar-thumb {
+  background-color: var(--paper-3);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.content-col::-webkit-scrollbar-thumb:hover,
+.chat-col .chat-drawer.embedded .chat-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ink);
+}
 .content-col .stage {
   border: 1px solid var(--hair);
   background: var(--paper);
