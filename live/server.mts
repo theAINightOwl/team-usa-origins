@@ -31,7 +31,7 @@ if (!GEMINI_API_KEY) {
 }
 
 const MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
-const VOICE = process.env.GEMINI_LIVE_VOICE ?? "Puck";
+const VOICE = process.env.GEMINI_LIVE_VOICE ?? "Charon";
 const PORT = Number(process.env.LIVE_PORT ?? 8765);
 
 const analytics = JSON.parse(

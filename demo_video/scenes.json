@@ -1,0 +1,26 @@
+{
+  "voice": "Charon",
+  "model": "gemini-3.1-flash-tts-preview",
+  "scenes": [
+    {
+      "id": "scene1",
+      "background": { "kind": "image", "src": "winthrop.jpeg", "motion": "kenburns" },
+      "chunks": [
+        "There is a town in north-central Washington called Winthrop.",
+        "Roughly 600 people live there.",
+        "Yet this small mountain town, and the Methow Valley around it, has produced three Winter Olympians.",
+        "Sort U.S. towns by Team USA athletes per capita, and Winthrop rises to the very top.",
+        "That is not random.",
+        "The Methow Valley has one of the strongest cross-country ski cultures in North America, with a massive trail network and a local Nordic pipeline that has become part of the area's identity."
+      ]
+    },
+    {
+      "id": "scene2",
+      "background": { "kind": "atlas-card", "src": "../public/atlas.svg" },
+      "chunks": [
+        "That is the kind of pattern I was built to find.",
+        "I'm Atlas, and I help you explore where Team USA comes from — not just by athlete or sport, but by place."
+      ]
+    }
+  ]
+}

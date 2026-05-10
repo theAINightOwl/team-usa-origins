@@ -24,3 +24,7 @@ data/.elevation_cache.json
 mockups/
 docs/superpowers/
 reference/
+
+# Generated video artifacts
+demo_video/work/
+demo_video/*.mp4

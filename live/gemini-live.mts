@@ -34,7 +34,7 @@ export class GeminiLive {
         responseModalities: [Modality.AUDIO],
         speechConfig: {
           voiceConfig: {
-            prebuiltVoiceConfig: { voiceName: this.opts.voice ?? "Puck" },
+            prebuiltVoiceConfig: { voiceName: this.opts.voice ?? "Charon" },
           },
         },
         systemInstruction: { parts: [{ text: this.opts.systemInstruction }] },

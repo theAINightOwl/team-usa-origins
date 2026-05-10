@@ -23,7 +23,7 @@ const TRACKED_OPTC_COUNT = analytics.halos?.filter((c) => c.type === "OPTC").len
  */
 
 export const PLATE_DEFS = [
-  { key: "ref", roman: "I", short: "Reference", title: "A century of hometowns" },
+  { key: "ref", roman: "I", short: "Overview", title: "A century of hometowns" },
   { key: "factories", roman: "II", short: "Factories", title: "Tiny towns, big rosters" },
   { key: "concentration", roman: "III", short: "Concentration", title: "Where each sport lives" },
   { key: "halos", roman: "IV", short: "Halos", title: "Reach of the training centers" },
@@ -237,12 +237,15 @@ const FAMILY_COLOR_HINT = {
 function PlateReference({ totals }) {
   return (
     <div className="marginalia">
-      <PlateHeader roman="I" eyebrow="Reference" title="A century of " italic="hometowns." />
+      <PlateHeader roman="I" eyebrow="Overview" title="A century of " italic="hometowns." />
       <p className="drop">
-        This atlas draws from the {totals.athletes.toLocaleString()} athlete profiles currently
-        published on <em>teamusa.com</em> — the official Team USA website — of whom {totals.geocoded.toLocaleString()}
-        list a hometown we could pin on the ground by latitude and longitude. What follows is the
-        geography of American Olympic and Paralympic talent, as Team USA itself describes it.
+        The atlas draws on <strong>{totals.geocoded.toLocaleString()} athletes</strong> with
+        mappable hometowns from <em>teamusa.com</em>'s published roster of{" "}
+        {totals.athletes.toLocaleString()} profiles. Coordinates come from the 2023 U.S. Census
+        Gazetteer, with <strong>346 hand-curated corrections</strong> for the places the
+        gazetteer misses — NYC outer-borough neighborhoods, Michigan charter townships,
+        ski-resort place names, and entries where Team USA's city field already includes a
+        state name, such as "Houston, Texas" with the state field set to TX.
       </p>
       <p>
         Click any state to see who it produced, what sports it sends, and the quiet machinery behind
