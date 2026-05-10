@@ -1,5 +1,5 @@
 /*
- * Olympian Roots chat backend
+ * Hometown Atlas chat backend
  * ---------------------------
  * Tiny Express server that proxies a Gemini-powered chat to the React frontend.
  * The Gemini API key lives in `.env` here — the browser never sees it.
@@ -83,7 +83,7 @@ const BASE_RULES = [
   "5. The current date is April 2026.",
 ].join("\n");
 
-const ATLAS_INTRO = "You are an analytical assistant embedded in **Olympian Roots**, an editorial atlas of Team USA hometowns and the support systems that produce American Olympians and Paralympians.";
+const ATLAS_INTRO = "You are an analytical assistant embedded in **Hometown Atlas**, an editorial atlas of Team USA hometowns and the support systems that produce American Olympians and Paralympians.";
 
 function resolveLens(profileType) {
   return profileType === "paralympic" ? "paralympic" : "olympic";
@@ -493,7 +493,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
   console.log(
-    `\n📜  Olympian Roots chat backend listening on :${PORT}` +
+    `\n📜  Hometown Atlas chat backend listening on :${PORT}` +
     `\n    model: ${MODEL}` +
     `\n    key:   ${API_KEY ? "loaded ✓" : "missing ✗"}` +
     `\n    plates loaded: 11` +

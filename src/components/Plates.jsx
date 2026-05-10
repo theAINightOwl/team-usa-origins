@@ -931,7 +931,7 @@ function PlateAltitude({ slice, roman, profileType, setHover, hover }) {
 
 /* ── Plate XII — Your atlas (personalized fun facts) ──────────────── */
 
-const YOU_STORAGE_KEY = "olympian-roots:you";
+const YOU_STORAGE_KEY = "hometown-atlas:you";
 
 function loadYouState() {
   if (typeof localStorage === "undefined") return null;

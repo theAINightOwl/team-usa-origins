@@ -79,7 +79,7 @@ export default function App() {
   const [eraRange, setEraRange] = useState([1896, 2026]);
   const [overlays, setOverlays] = useState({ dots: true, centers: true, colleges: false });
 
-  const PROFILE_TYPE_KEY = "olympian-roots:profileType";
+  const PROFILE_TYPE_KEY = "hometown-atlas:profileType";
   const [profileType, setProfileTypeState] = useState(() => {
     if (typeof localStorage === "undefined") return "olympic";
     const stored = localStorage.getItem(PROFILE_TYPE_KEY);
@@ -259,7 +259,7 @@ export default function App() {
   const activePlateObj = PLATE_DEFS.find((p) => p.key === activePlate) || PLATE_DEFS[0];
 
   // ── Welcome screen (first-visit overlay) ──────────────────────────
-  const WELCOME_KEY = "olympian-roots:welcome-seen";
+  const WELCOME_KEY = "hometown-atlas:welcome-seen";
   const [showWelcome, setShowWelcome] = useState(() => {
     if (typeof localStorage === "undefined") return false;
     return localStorage.getItem(WELCOME_KEY) !== "1";
@@ -291,7 +291,7 @@ export default function App() {
       <div className="welcome-page">
         <header className="welcome-header">
           <h1 className="wordmark">
-            Olympian <em>Roots</em>
+            Hometown <em>Atlas</em>
           </h1>
           <div className="welcome-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>
@@ -301,12 +301,12 @@ export default function App() {
         </header>
 
         <main className="welcome-main">
-          <p className="welcome-eyebrow">Welcome to Olympian Roots</p>
+          <p className="welcome-eyebrow">Welcome to Hometown Atlas</p>
           <h2 id="welcome-title" className="welcome-title">
             A living dashboard that turns <em>conversation</em> into <em>exploration</em>.
           </h2>
           <p className="welcome-lede">
-            Olympian Roots is an interactive atlas of the people, places, and
+            Hometown Atlas is an interactive atlas of the people, places, and
             support systems behind 8,500+ Team USA Olympic and Paralympic
             profiles, including hometowns, training centers, colleges,
             high-school pipelines, wages, weather, medals, and sport families.
@@ -416,7 +416,7 @@ export default function App() {
       <header className="app-topbar">
         <div className="topbar-row">
           <h1 className="wordmark">
-            Olympian <em>Roots</em>
+            Hometown <em>Atlas</em>
           </h1>
           <div className="topbar-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>

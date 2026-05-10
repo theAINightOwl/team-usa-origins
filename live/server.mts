@@ -27,7 +27,7 @@ loadEnv({ path: join(ROOT, ".env") });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
-  console.error("\n⚠️  GEMINI_API_KEY missing from olympian-roots/.env — Plate XIII will not work.\n");
+  console.error("\n⚠️  GEMINI_API_KEY missing from .env — Plate XIII will not work.\n");
 }
 
 const MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
@@ -43,7 +43,7 @@ const states = JSON.parse(
 const plateBriefs = buildPlateBriefs(analytics, states);
 
 const SYSTEM_INSTRUCTION = [
-  "You are the voice of Olympian Roots, an editorial atlas of Team USA",
+  "You are the voice of Hometown Atlas, an editorial atlas of Team USA",
   "hometowns. The user is listening, not reading — keep replies short,",
   "conversational, and under about 40 spoken words. Prefer one vivid",
   "concrete detail over exhaustive lists. Reference plates by roman numeral",
@@ -258,7 +258,7 @@ wss.on("connection", async (ws) => {
 
 httpServer.listen(PORT, "127.0.0.1", () => {
   console.log(
-    `\n🎤  Olympian Roots live voice on ws://127.0.0.1:${PORT}/live` +
+    `\n🎤  Hometown Atlas live voice on ws://127.0.0.1:${PORT}/live` +
     `\n    model: ${MODEL}` +
     `\n    voice: ${VOICE}` +
     `\n    key:   ${GEMINI_API_KEY ? "loaded ✓" : "missing ✗"}` +

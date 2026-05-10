@@ -4,7 +4,7 @@
  * function tool), then runs Python in Gemini's hosted code-execution sandbox
  * to build a Plotly figure dict. Returns { narration, figures } structured
  * JSON. Adapted from demo-tool-combo/server.mjs but wired to server/viz_db.js
- * and the full 9-table Olympian Roots corpus.
+ * and the full 9-table Hometown Atlas corpus.
  */
 
 import { GoogleGenAI } from "@google/genai";

@@ -30,7 +30,7 @@ export const ATLAS_STATE_ABBRS = [
 export const UPDATE_ATLAS_DECL = {
   name: "update_atlas",
   description:
-    "Drive the Olympian Roots dashboard the user is looking at. Call this whenever the user asks to filter, narrow, broaden, reset, switch lens, change the choropleth metric, toggle an overlay, open a different plate, or zoom to a state. Pass ONLY the keys you intend to change. After the dashboard updates, write ONE short sentence (≤ 20 words) confirming the change in plain English. If the user is just chatting and not asking for a view change, do NOT call this tool — answer in prose instead.",
+    "Drive the Hometown Atlas dashboard the user is looking at. Call this whenever the user asks to filter, narrow, broaden, reset, switch lens, change the choropleth metric, toggle an overlay, open a different plate, or zoom to a state. Pass ONLY the keys you intend to change. After the dashboard updates, write ONE short sentence (≤ 20 words) confirming the change in plain English. If the user is just chatting and not asking for a view change, do NOT call this tool — answer in prose instead.",
   parameters: {
     type: "object",
     properties: {

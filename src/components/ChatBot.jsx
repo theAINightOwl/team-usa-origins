@@ -21,9 +21,9 @@ const STARTERS = [
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 
-// Persist conversations across reloads. Pattern matches `olympian-roots:profileType`
+// Persist conversations across reloads. Pattern matches `hometown-atlas:profileType`
 // used by App / AppV2.
-const STORAGE_KEY = "olympian-roots:chat:messages";
+const STORAGE_KEY = "hometown-atlas:chat:messages";
 
 // When the prompt prefix grows past this, summarize the older half via a
 // one-shot call to the chat model so subsequent turns stay fast.
