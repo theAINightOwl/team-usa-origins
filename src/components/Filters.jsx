@@ -73,7 +73,7 @@ export default function Filters({
               onToggle={(e) => { if (metricLocked) e.currentTarget.removeAttribute("open"); }}
             >
               <summary>
-                <span className="ghead">Choropleth metric</span>
+                <span className="ghead">Choropleth overlays</span>
                 <span className="family-summary">{METRIC_LABELS[metric] || metric}</span>
                 <span className="caret">{metricLocked ? "·" : "▾"}</span>
               </summary>
@@ -100,7 +100,7 @@ export default function Filters({
             </details>
           ) : (
             <>
-              <span className="ghead">Choropleth metric</span>
+              <span className="ghead">Choropleth overlays</span>
               <select
                 className="select"
                 value={metric}
