@@ -198,26 +198,14 @@ function PlateHeader({ roman, eyebrow, title, italic }) {
  * column. Plate bodies no longer render their own story — App owns it.
  */
 export function PlateStory({ plateKey, profileType }) {
-  const [open, setOpen] = useState(false);
   const text =
     (profileType && STORIES[`${plateKey}_${profileType}`]) || STORIES[plateKey];
   if (!text) return null;
   return (
-    <section className={`plate-story ${open ? "open" : ""}`}>
-      <button
-        className="story-toggle"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-      >
-        <span className="dot" />
-        <span className="lab">{open ? "Collapse the story" : "Read the story behind the data"}</span>
-        <span className="caret">{open ? "▴" : "▾"}</span>
-      </button>
-      {open && (
-        <div className="story-body">
-          <Markdown text={text} />
-        </div>
-      )}
+    <section className="plate-story open">
+      <div className="story-body">
+        <Markdown text={text} />
+      </div>
     </section>
   );
 }

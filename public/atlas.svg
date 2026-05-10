@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" fill="none">
+  <defs>
+    <style>
+      .ink{stroke:#241d16;stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
+      .ink2{stroke:#241d16;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .thin{stroke:#9b856b;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:.58}
+      .dash{stroke:#6f604d;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14 16;opacity:.85}
+      .cream{fill:#F4EBDD}
+      .face{fill:#FBF3E8}
+      .tan{fill:#D8C5AA}
+      .red{fill:#D64C2F}
+      .blue{fill:#2E5D70}
+      .eye{fill:#1E1B18}
+    </style>
+    <radialGradient id="softFill" cx="50%" cy="42%" r="62%">
+      <stop offset="0" stop-color="#FFF8EE"/>
+      <stop offset="1" stop-color="#EFE4D5"/>
+    </radialGradient>
+    <radialGradient id="eyeGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#4A4946"/>
+      <stop offset="1" stop-color="#11100F"/>
+    </radialGradient>
+  </defs>
+
+  <!-- side modules -->
+  <g id="side-modules">
+    <path class="cream ink" d="M171 421c-41 0-66 36-66 91s25 91 66 91h44V421h-44z"/>
+    <path class="cream ink" d="M853 421c41 0 66 36 66 91s-25 91-66 91h-44V421h44z"/>
+    <path class="thin" d="M136 462c17 19 38 28 73 31"/>
+    <path class="thin" d="M136 565c17-19 38-28 73-31"/>
+    <path class="thin" d="M888 462c-17 19-38 28-73 31"/>
+    <path class="thin" d="M888 565c-17-19-38-28-73-31"/>
+    <path d="M152 444v136" stroke="#D64C2F" stroke-width="5" stroke-linecap="round"/>
+    <path d="M872 444v136" stroke="#D64C2F" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- main shell -->
+  <path id="head-shell" d="M190 531c0-210 118-356 322-356s322 146 322 356c0 205-118 333-322 333S190 736 190 531z" fill="url(#softFill)" class="ink"/>
+
+  <!-- topographic shell details -->
+  <g id="map-lines" opacity=".75">
+    <path class="thin" d="M252 270c30-34 79-45 131-39"/>
+    <path class="thin" d="M247 296c34-31 78-40 132-32"/>
+    <path class="thin" d="M247 322c38-28 84-32 136-22"/>
+    <path class="thin" d="M667 230c52-9 94 3 120 34"/>
+    <path class="thin" d="M662 258c55-5 94 8 121 38"/>
+    <path class="thin" d="M659 286c55 0 95 17 121 46"/>
+    <path class="dash" d="M263 363c61-61 128-71 201-32"/>
+    <path class="dash" d="M557 329c86-40 153-25 209 40"/>
+    <circle cx="323" cy="333" r="12" class="blue ink2"/>
+    <circle cx="736" cy="326" r="12" class="red ink2"/>
+  </g>
+
+  <!-- compass rose -->
+  <g id="compass" transform="translate(512 257)">
+    <circle r="55" fill="#F4EBDD" class="ink2"/>
+    <path d="M0-82V82M-82 0H82" stroke="#241d16" stroke-width="5" stroke-linecap="round"/>
+    <path d="M0-68 18-5 0 0-18-5z" class="red ink2"/>
+    <path d="M0 68 18 5 0 0-18 5z" fill="#BBA88D" class="ink2"/>
+    <path d="M-68 0-5-18 0 0-5 18z" fill="#EFE4D5" class="ink2"/>
+    <path d="M68 0 5-18 0 0 5 18z" fill="#EFE4D5" class="ink2"/>
+    <circle r="5" fill="#241d16"/>
+  </g>
+
+  <!-- visor frame -->
+  <rect x="251" y="372" width="522" height="396" rx="112" class="tan ink" opacity=".85"/>
+  <rect x="273" y="391" width="478" height="358" rx="91" class="face ink2"/>
+
+  <!-- eyes -->
+  <g id="eyes">
+    <circle cx="395" cy="565" r="51" fill="#FFF8EE" class="ink2"/>
+    <circle cx="395" cy="565" r="36" fill="url(#eyeGrad)"/>
+    <circle cx="408" cy="548" r="13" fill="#fff"/>
+    <circle cx="376" cy="584" r="13" fill="#000" opacity=".22"/>
+    <circle cx="629" cy="565" r="51" fill="#FFF8EE" class="ink2"/>
+    <circle cx="629" cy="565" r="36" fill="url(#eyeGrad)"/>
+    <circle cx="642" cy="548" r="13" fill="#fff"/>
+    <circle cx="610" cy="584" r="13" fill="#000" opacity=".22"/>
+  </g>
+
+  <!-- eyebrows and smile -->
+  <path class="ink2" d="M358 483c22-18 48-18 70 0"/>
+  <path class="ink2" d="M596 483c22-18 48-18 70 0"/>
+  <path class="ink2" d="M470 652c25 30 59 30 84 0"/>
+
+  <!-- lower shell panel -->
+  <path class="ink2" d="M390 819l28-37h188l28 37"/>
+  <circle cx="512" cy="815" r="12" class="red ink2"/>
+  <path class="ink2" d="M283 782l34 35"/>
+  <path class="ink2" d="M741 782l-34 35"/>
+
+  <!-- subtle side details -->
+  <path class="thin" d="M215 614c31 12 68 11 109-1"/>
+  <path class="thin" d="M809 614c-31 12-68 11-109-1"/>
+</svg>

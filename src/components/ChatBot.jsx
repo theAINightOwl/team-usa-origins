@@ -3,6 +3,7 @@ import { streamChat } from "../lib/sse.js";
 import Markdown from "../lib/markdown.jsx";
 import { useGeminiLive } from "../hooks/useGeminiLive.js";
 import { renderFigure } from "../lib/plotly-render.js";
+import AtlasAvatar from "./AtlasAvatar.jsx";
 
 /*
  * ChatBot — "Work with Atlas" floating drawer.
@@ -462,27 +463,7 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
           aria-label="Open Work with Atlas"
         >
           <span className="chat-launcher-icon" aria-hidden>
-            <svg width="32" height="32" viewBox="0 0 32 32">
-              {/* antenna */}
-              <line x1="16" y1="3" x2="16" y2="7" stroke="#1a1410" strokeWidth="1.2" strokeLinecap="round" />
-              <circle cx="16" cy="2.5" r="1.4" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8">
-                <animate attributeName="opacity" values="1;0.4;1" dur="1.6s" repeatCount="indefinite" />
-              </circle>
-              {/* head */}
-              <rect x="5.5" y="7" width="21" height="18" rx="3.5" fill="#f6e8c8" stroke="#1a1410" strokeWidth="1.2" />
-              {/* screen panel */}
-              <rect x="8.5" y="11" width="15" height="8" rx="1.5" fill="#1a1410" />
-              {/* eyes */}
-              <circle cx="12.5" cy="15" r="1.6" fill="#f6e8c8" />
-              <circle cx="19.5" cy="15" r="1.6" fill="#f6e8c8" />
-              <circle cx="12.7" cy="14.7" r="0.5" fill="#1a1410" />
-              <circle cx="19.7" cy="14.7" r="0.5" fill="#1a1410" />
-              {/* smile */}
-              <path d="M12.5 22 Q16 23.6 19.5 22" fill="none" stroke="#1a1410" strokeWidth="1.1" strokeLinecap="round" />
-              {/* ear bolts */}
-              <circle cx="5" cy="16" r="1.1" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8" />
-              <circle cx="27" cy="16" r="1.1" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.8" />
-            </svg>
+            <AtlasAvatar size={32} />
           </span>
           <span className="chat-launcher-label">
             <span className="chat-launcher-eyebrow">Work with Atlas</span>
@@ -494,11 +475,14 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
       {open && (
         <div className={`chat-drawer ${embedded ? "embedded" : ""}`} role="dialog" aria-label="Work with Atlas">
           <header className="chat-head">
-            <div>
-              <p className="eyebrow">Work with Atlas</p>
-              <h3>
-                Type, talk, or <em>chart</em>.
-              </h3>
+            <div className="chat-head-title">
+              <AtlasAvatar size={56} className="chat-head-avatar" title="Atlas" />
+              <div>
+                <p className="eyebrow">Work with Atlas</p>
+                <h3>
+                  Type, talk, or <em>chart</em>.
+                </h3>
+              </div>
             </div>
             <div className="chat-head-actions">
               {messages.length > 0 && (
@@ -659,6 +643,7 @@ function Message({ m }) {
   if (isPatch) {
     return (
       <div className="chat-msg a patch">
+        <AtlasAvatar size={28} className="msg-avatar" />
         <div className="patch-bubble">
           <span className="patch-eyebrow">atlas updated</span>
           <PatchSummary patch={m.patch} />
@@ -673,6 +658,8 @@ function Message({ m }) {
       {isUser ? (
         <div className="bubble">{m.text}</div>
       ) : (
+        <>
+        <AtlasAvatar size={28} className="msg-avatar" />
         <div className="bubble">
           {isChart && m.figures && m.figures.length > 0 && (
             <div className="viz-stack">
@@ -709,6 +696,7 @@ function Message({ m }) {
             </div>
           )}
         </div>
+        </>
       )}
     </div>
   );

@@ -22,3 +22,5 @@ data/.elevation_cache.json
 .claude/
 .superpowers/
 mockups/
+docs/superpowers/
+reference/

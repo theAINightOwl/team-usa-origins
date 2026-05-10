@@ -887,7 +887,22 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .plate-chip.on .t { color: var(--paper); }
 
-.plate-head { margin-bottom: 10px; }
+.plate-head { margin-bottom: 14px; }
+.plate-head h3 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 4px 0 0;
+  font-variation-settings: "opsz" 60;
+  color: var(--ink);
+}
+.plate-head h3 em {
+  font-style: italic;
+  color: var(--rust);
+  font-weight: 500;
+}
 .plate-lede {
   font-family: var(--serif);
   font-style: italic;
@@ -2732,6 +2747,11 @@ body { margin: 0; overflow: hidden; }
   margin-bottom: 24px;
   position: relative;
 }
+.content-col .stage .map-figure {
+  max-width: min(100%, 560px);
+  margin-left: auto;
+  margin-right: auto;
+}
 .content-col .stage-head {
   display: flex;
   align-items: center;
@@ -2840,8 +2860,7 @@ body { margin: 0; overflow: hidden; }
   padding: 0;
   animation: chat-pulse 2.4s ease-in-out infinite;
 }
-.chat-avatar svg { width: 26px; height: 26px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
-.chat-avatar .dot-cluster circle { fill: var(--rust); stroke: none; }
+.chat-avatar .atlas-avatar { display: grid; place-items: center; }
 .app-shell.chat-hidden .chat-avatar { display: grid; }
 @keyframes chat-pulse {
   0%, 100% {
@@ -2854,9 +2873,7 @@ body { margin: 0; overflow: hidden; }
                 0 2px 8px rgba(26, 20, 16, 0.16);
   }
 }
-.chat-avatar:hover { background: var(--ink); color: var(--paper); }
-.chat-avatar:hover svg { stroke: var(--paper); }
-.chat-avatar:hover .dot-cluster circle { fill: var(--paper); }
+.chat-avatar:hover { background: var(--ink-2, #2a2520); }
 
 /* Topbar help button — opens the welcome guide */
 .topbar-help {
@@ -2973,6 +2990,10 @@ body { margin: 0; overflow: hidden; }
 }
 .welcome-hero::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
 .welcome-hero::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.welcome-hero-avatar {
+  display: block;
+  margin: 0 auto 14px;
+}
 .hero-eyebrow {
   font-family: var(--mono);
   font-size: 10px;
@@ -3003,6 +3024,13 @@ body { margin: 0; overflow: hidden; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin: 0 0 22px;
+}
+.hero-modes.hero-modes-2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.welcome-lede.welcome-lede-2 {
+  font-style: italic;
+  color: var(--ink-2);
 }
 .hero-mode {
   background: var(--paper-2);
@@ -3136,4 +3164,38 @@ body { margin: 0; overflow: hidden; }
 .welcome-cta:hover {
   background: var(--rust);
   border-color: var(--rust);
+}
+
+/* ── Atlas avatar — shared face of the chat agent ───────────────── */
+.atlas-avatar {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.atlas-avatar svg,
+.atlas-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Chat header: avatar sits to the left of the title block */
+.chat-head-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.chat-head-avatar { margin-top: 2px; }
+
+/* Agent messages: small avatar to the left of the bubble */
+.chat-msg.a, .chat-msg.patch {
+  align-items: flex-start;
+  gap: 8px;
+}
+.chat-msg .msg-avatar { margin-top: 4px; }
+.chat-msg.a .bubble, .chat-msg.patch .patch-bubble {
+  max-width: calc(85% - 30px);
 }

@@ -21,6 +21,7 @@ import {
   LensToggle,
 } from "./components/Plates.jsx";
 import ChatBot from "./components/ChatBot.jsx";
+import AtlasAvatar from "./components/AtlasAvatar.jsx";
 
 const MAP_WIDTH = 975;
 const MAP_HEIGHT = 610;
@@ -300,91 +301,107 @@ export default function App() {
         </header>
 
         <main className="welcome-main">
-          <p className="welcome-eyebrow">Welcome</p>
+          <p className="welcome-eyebrow">Welcome to Olympian Roots</p>
           <h2 id="welcome-title" className="welcome-title">
-            An atlas you can <em>talk</em> to.
+            A living dashboard that turns <em>conversation</em> into <em>exploration</em>.
           </h2>
           <p className="welcome-lede">
-            Olympian Roots maps the support systems — training centers, colleges,
-            high-school pipelines, wages, and weather — behind 8,500+ Team USA
-            Olympic and Paralympic profiles. The unusual part: it ships with an
-            agent that turns the whole atlas into a conversation.
+            Olympian Roots is an interactive atlas of the people, places, and
+            support systems behind 8,500+ Team USA Olympic and Paralympic
+            profiles, including hometowns, training centers, colleges,
+            high-school pipelines, wages, weather, medals, and sport families.
+          </p>
+          <p className="welcome-lede">
+            At the center of the experience are <strong>12 editorial story
+            plates</strong>. Each plate gives you a focused way to explore the
+            data, from hometown patterns and per-capita strength to medal
+            concentration, regional clusters, college pipelines, and training
+            hubs. These plates are the main storytelling layer of the dashboard.
+          </p>
+          <p className="welcome-lede">
+            The other key layer is <strong>Atlas</strong>, your conversational
+            guide. Atlas can help you move through the story plates, answer
+            questions, generate charts, change filters, jump between views,
+            and reshape the dashboard in real time.
+          </p>
+          <p className="welcome-lede">
+            Atlas is also equipped with <strong>web search</strong>, so you
+            can go beyond the dashboard and deep dive into any question that
+            comes up while exploring.
           </p>
 
           <section className="welcome-hero">
-            <p className="hero-eyebrow">★ The standout feature</p>
+            <AtlasAvatar size={96} className="welcome-hero-avatar" title="Atlas" />
+            <p className="hero-eyebrow">★ What you can do with Atlas</p>
             <h3 className="hero-title">
-              Work with <em>Atlas</em>.
+              Ask, jump, visualize, or <em>steer</em>.
             </h3>
-            <p className="hero-blurb">
-              The chat panel on the right isn't a bolt-on. It can answer in prose,
-              draw live charts on demand, and steer the dashboard for you — three
-              ways to use the same agent:
-            </p>
 
-            <div className="hero-modes">
+            <div className="hero-modes hero-modes-2col">
               <div className="hero-mode">
-                <span className="mode-label">Type</span>
+                <span className="mode-label">Ask questions</span>
                 <p className="mode-example">
-                  <em>"Why does Park City, UT produce so many olympians?"</em>
+                  <em>"Why does Park City, UT produce so many Olympians?"</em>
                 </p>
-                <p className="mode-note">Prose answer with citations.</p>
               </div>
               <div className="hero-mode">
-                <span className="mode-label">Talk</span>
+                <span className="mode-label">Jump around the dashboard</span>
                 <p className="mode-example">
-                  <em>Tap the mic. Speak. Atlas replies out loud.</em>
+                  <em>"Take me to the per-capita plate and show the top 10 states."</em>
                 </p>
-                <p className="mode-note">Live voice, interrupt any time.</p>
               </div>
               <div className="hero-mode">
-                <span className="mode-label">Chart</span>
+                <span className="mode-label">Generate visuals</span>
                 <p className="mode-example">
-                  <em>"Bar chart of medals by sport family."</em>
+                  <em>"Show me a bar chart of medals by sport family."</em>
                 </p>
-                <p className="mode-note">A real Plotly figure renders in the chat.</p>
+              </div>
+              <div className="hero-mode">
+                <span className="mode-label">Control the view</span>
+                <p className="mode-example">
+                  <em>"Filter to Paralympic only."</em>
+                  <br />
+                  <em>"Show medalists from winter sports since 2000."</em>
+                </p>
               </div>
             </div>
 
             <div className="hero-aside">
               <p>
-                <strong>It also drives the dashboard.</strong> Try{" "}
-                <em>"filter to Paralympic only"</em> or{" "}
-                <em>"jump to the per-capita plate, top 10 states"</em> — the lens,
-                filters, plate selector, and map all respond. The agent has
-                read-write hands on the same UI you're looking at.
+                You can also <strong>tap the mic and speak naturally</strong>.
+                Atlas can reply by voice, and you can interrupt at any time.
               </p>
             </div>
           </section>
 
           <section className="welcome-secondary">
-            <p className="secondary-eyebrow">Or browse it the old way</p>
+            <p className="secondary-eyebrow">Explore manually</p>
             <ul className="secondary-list">
               <li>
-                <strong>Pick a plate</strong> — 12 editorial stories along the top, from a
-                century of hometowns to your own geography.
+                <strong>Pick a story plate</strong> to explore one of the 12
+                editorial views.
               </li>
               <li>
-                <strong>Switch lenses</strong> — Olympic / Paralympic toggle inside the
-                stage card re-renders the whole atlas.
+                <strong>Switch lenses</strong> between Olympic and Paralympic.
               </li>
               <li>
-                <strong>Filter the map</strong> — sport family, era window, medal-only,
-                and overlay toggles below the map.
+                <strong>Filter the map</strong> by sport family, era,
+                medal-only, and overlays.
               </li>
               <li>
-                <strong>Click anywhere</strong> — a state opens its profile breakdown;
-                an athlete dot opens their card.
+                <strong>Click a state or athlete dot</strong> to open deeper
+                profile details.
               </li>
               <li>
-                <strong>Hide a panel</strong> — edge arrows collapse either side; the
-                avatar at the bottom-right brings the chat back when it's hidden.
+                <strong>Hide or reopen panels</strong> using the edge arrows,
+                or bring Atlas back with the avatar in the bottom-right.
               </li>
             </ul>
           </section>
 
           <p className="welcome-foot">
-            You can reopen this guide any time via the <span className="kbd">?</span> in the top bar.
+            You can reopen this guide any time by clicking the{" "}
+            <span className="kbd">?</span> in the top bar.
           </p>
           <button type="button" className="welcome-cta" onClick={dismissWelcome}>
             Enter the atlas →
@@ -444,14 +461,7 @@ export default function App() {
         title="Reopen Work with Atlas"
         aria-label="Reopen Work with Atlas"
       >
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 5h16v11H8l-4 4V5z" />
-          <g className="dot-cluster">
-            <circle cx="9" cy="11" r="1.1" />
-            <circle cx="12" cy="11" r="1.1" />
-            <circle cx="15" cy="11" r="1.1" />
-          </g>
-        </svg>
+        <AtlasAvatar size={32} />
       </button>
 
       <main className="app-cols">
