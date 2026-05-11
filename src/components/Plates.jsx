@@ -32,7 +32,7 @@ export const PLATE_DEFS = [
   { key: "altitude", roman: "VI", short: "Altitude", title: "Sport family × altitude" },
   { key: "halos", roman: "VII", short: "Halos", title: "Reach of the training centers" },
   { key: "distance", roman: "VIII", short: "Distance", title: "How far from a center?" },
-  { key: "per_capita", roman: "IX", short: "Per Capita", title: "Profiles per 100k residents" },
+  { key: "per_capita", roman: "IX", short: "Per State Capita", title: "Profiles per 100k residents" },
   { key: "you", roman: "X", short: "You", title: "Your geography, your facts" },
 ];
 

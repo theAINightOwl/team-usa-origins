@@ -148,7 +148,7 @@ function plateVI(d, lens) {
 }
 
 function plateVII(rows, lens) {
-  if (!rows?.length) return `## Plate IX — Per Capita (${lens})\n(no data)`;
+  if (!rows?.length) return `## Plate IX — Per State Capita (${lens})\n(no data)`;
   const top = rows.slice(0, 12);
   const totalProfiles = rows.reduce((s, r) => s + (r.profiles || 0), 0);
   const totalPop = rows.reduce((s, r) => s + (r.population || 0), 0);

@@ -706,7 +706,7 @@ const PLATE_LABEL = {
   distance: "Plate V — Distance",
   climate: "Plate VI — Climate",
   altitude: "Plate VII — Altitude",
-  per_capita: "Plate VIII — Per Capita",
+  per_capita: "Plate IX — Per State Capita",
   colleges: "Plate IX — Colleges",
   hs_conversion: "Plate X — HS Slots",
   era: "Plate XI — Era",
