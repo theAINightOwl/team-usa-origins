@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useRef, useEffect } from "react";
 
 /*
  * USMap — a hand-rendered SVG atlas plate.
@@ -66,13 +66,16 @@ function haversineMi(a, b) {
 }
 
 // Categorical climate-zone palette — desaturated atlas tones.
+// Keys must match the zone strings in data/states.json and
+// analytics.climate_sport_*. Insertion order drives legend order.
 const CLIMATE_COLORS = {
-  "Cold":              "#7d96b3",
-  "Continental":       "#9bb09a",
-  "Mild":              "#d6c277",
-  "Humid Subtropical": "#c89370",
-  "Arid":              "#c8a06c",
-  "Tropical":          "#a36a4f",
+  "Cold":         "#7d96b3",
+  "Continental":  "#9bb09a",
+  "Mild":         "#d6c277",
+  "Warm Humid":   "#c8a980",
+  "Hot Humid":    "#c89370",
+  "Subtropical":  "#b97a5a",
+  "Hot Dry":      "#a87850",
 };
 function climateFill(zone) {
   return CLIMATE_COLORS[zone] || "rgb(236,226,204)";
@@ -136,8 +139,149 @@ export default function USMap({
   profileType,
   lensStateCounts,
   stats,
+  // Plate III sport picker callback — when set, the map cap renders a
+  // dropdown that pins the focused sport.
+  onSelectFocusSport,
 }) {
   const [tooltip, setTooltip] = useState(null);
+
+  // ── Map zoom & pan ────────────────────────────────────────────────
+  // Hand-rolled (no d3-zoom dep). Wheel zooms toward the cursor; drag
+  // pans (only when zoomed in); double-click resets. The state-path /
+  // athlete-dot onClicks check wasDraggingRef so a pan doesn't trigger
+  // a selection at mouse-up.
+  const svgRef = useRef(null);
+  const [zoom, setZoom] = useState({ k: 1, x: 0, y: 0 });
+  const dragStart = useRef(null);   // { mx, my, zx, zy } in client coords
+  const wasDraggingRef = useRef(false);
+  const ZOOM_MIN = 1;
+  const ZOOM_MAX = 8;
+
+  const clampZoom = useCallback((z) => {
+    const k = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z.k));
+    // Pin the map inside the viewBox: at k=1 offset is exactly 0; at k=8
+    // the map can pan up to (k-1) × dimension into the negative direction.
+    const xMin = -WIDTH * (k - 1);
+    const yMin = -HEIGHT * (k - 1);
+    return {
+      k,
+      x: Math.max(xMin, Math.min(0, z.x)),
+      y: Math.max(yMin, Math.min(0, z.y)),
+    };
+  }, []);
+
+  const svgPoint = useCallback((evt) => {
+    const svg = svgRef.current;
+    if (!svg) return { x: 0, y: 0 };
+    const pt = svg.createSVGPoint();
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+    const ctm = svg.getScreenCTM();
+    if (!ctm) return { x: 0, y: 0 };
+    return pt.matrixTransform(ctm.inverse());
+  }, []);
+
+  const handleWheel = useCallback((e) => {
+    e.preventDefault();
+    const pt = svgPoint(e);
+    const factor = e.deltaY > 0 ? 0.8 : 1.25;
+    setZoom((z) => {
+      const newK = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z.k * factor));
+      if (newK === z.k) return z;
+      // Keep the pixel under the cursor stationary across the zoom.
+      const ratio = newK / z.k;
+      return clampZoom({
+        k: newK,
+        x: pt.x - (pt.x - z.x) * ratio,
+        y: pt.y - (pt.y - z.y) * ratio,
+      });
+    });
+  }, [svgPoint, clampZoom]);
+
+  const handleMouseDown = useCallback((e) => {
+    // Only middle / left button. Let right-click pass through.
+    if (e.button !== 0) return;
+    dragStart.current = {
+      mx: e.clientX,
+      my: e.clientY,
+      zx: zoom.x,
+      zy: zoom.y,
+      k: zoom.k,
+    };
+    wasDraggingRef.current = false;
+  }, [zoom]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!dragStart.current) return;
+    const dx = e.clientX - dragStart.current.mx;
+    const dy = e.clientY - dragStart.current.my;
+    if (!wasDraggingRef.current && Math.hypot(dx, dy) > 3) {
+      wasDraggingRef.current = true;
+    }
+    if (!wasDraggingRef.current) return;
+    const svg = svgRef.current;
+    const ctm = svg?.getScreenCTM();
+    if (!ctm) return;
+    // Convert client-px delta to svg-units delta.
+    const sx = 1 / ctm.a;
+    const sy = 1 / ctm.d;
+    setZoom(clampZoom({
+      k: dragStart.current.k,
+      x: dragStart.current.zx + dx * sx,
+      y: dragStart.current.zy + dy * sy,
+    }));
+  }, [clampZoom]);
+
+  const handleMouseUp = useCallback(() => {
+    dragStart.current = null;
+    // Keep wasDraggingRef true until end of microtask so the click event
+    // that follows mouseup on a state-path / athlete-dot can read it and
+    // skip the selection. A 0ms timeout is enough.
+    setTimeout(() => { wasDraggingRef.current = false; }, 0);
+  }, []);
+
+  const handleDoubleClick = useCallback((e) => {
+    // Reset zoom on dblclick in empty map space; let dblclick on overlays
+    // pass through to their own handlers (none of our overlays handle it).
+    e.preventDefault();
+    setZoom({ k: 1, x: 0, y: 0 });
+  }, []);
+
+  const zoomBy = useCallback((factor) => {
+    setZoom((z) => {
+      const newK = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z.k * factor));
+      if (newK === z.k) return z;
+      const ratio = newK / z.k;
+      const cx = WIDTH / 2;
+      const cy = HEIGHT / 2;
+      return clampZoom({
+        k: newK,
+        x: cx - (cx - z.x) * ratio,
+        y: cy - (cy - z.y) * ratio,
+      });
+    });
+  }, [clampZoom]);
+
+  const resetZoom = useCallback(() => setZoom({ k: 1, x: 0, y: 0 }), []);
+
+  // Reset zoom whenever the user switches plates — each plate is its
+  // own context and the zoom shouldn't bleed across them.
+  useEffect(() => {
+    setZoom({ k: 1, x: 0, y: 0 });
+  }, [activePlate]);
+
+  // Wrap selection handlers so a drag-then-mouseup doesn't accidentally
+  // select a state / athlete the cursor happened to end up on.
+  const safeSelectState = useCallback((abbr) => {
+    if (wasDraggingRef.current) return;
+    onSelectState?.(abbr);
+  }, [onSelectState]);
+  const safeSelectAthlete = useCallback((id) => {
+    if (wasDraggingRef.current) return;
+    onSelectAthlete?.(id);
+  }, [onSelectAthlete]);
+
+  const zoomTransform = `translate(${zoom.x} ${zoom.y}) scale(${zoom.k})`;
 
   // Build a fast index of analytics data keyed by state — used by extractMetric
   // for the new per_capita / hs_per_million metrics so the existing
@@ -304,13 +448,18 @@ export default function USMap({
       .filter(Boolean);
   }, [trainingCenters, projection, activePlate]);
 
-  // Plate III — Concentration: focus on the active sport (hovered or top
-  // by HHI) and surface its top-3 states with rank numerals.
+  // Plate III — Concentration: focus on the user's pinned sport (set via
+  // click in the right column) and surface its top-3 states with rank
+  // numerals. If the pinned sport doesn't exist in the active lens's slice
+  // (e.g. "Curling" exists in Olympic but not Paralympic — that lens has
+  // "Wheelchair Curling" instead), fall back to the top-HHI row of the new
+  // lens rather than rendering nothing.
   const concentrationFocus = useMemo(() => {
     if (activePlate !== "concentration" || !concentrationData?.length) return null;
-    const sport = hover.sport
+    const pinned = hover.sport
       ? concentrationData.find((r) => r.sport === hover.sport)
-      : concentrationData[0];
+      : null;
+    const sport = pinned || concentrationData[0];
     if (!sport) return null;
     return {
       sport,
@@ -469,16 +618,95 @@ export default function USMap({
     <div className="map-wrap" onMouseMove={handleMove} onMouseLeave={() => setTooltip(null)}>
       <div className="map-cap">
         <span className="title">{plateCaption(activePlate)}</span>
+        {activePlate === "concentration" && concentrationFocus && onSelectFocusSport && (
+          <details
+            className="sport-picker"
+            onClick={(e) => {
+              // Let summary's default toggle behavior fire, but stop bubbling
+              // so the map's drag handlers (which sit on the svg below) stay
+              // untouched.
+              e.stopPropagation();
+            }}
+          >
+            <summary>
+              <span className="sp-eyebrow">Showing</span>
+              <span
+                className="sp-dot"
+                style={{ background: familyColors?.[concentrationFocus.sport.family] || "#555" }}
+              />
+              <span className="sp-name">{concentrationFocus.sport.sport}</span>
+              <span className="sp-hhi">HHI {concentrationFocus.sport.hhi.toFixed(2)}</span>
+              <span className="sp-states">
+                {(concentrationFocus.sport.top_states || []).slice(0, 3).map((t, i) => (
+                  <span key={t.state}>
+                    {i > 0 && " · "}
+                    <b>{t.state}</b> {Math.round(t.share * 100)}%
+                  </span>
+                ))}
+              </span>
+              <span className="sp-caret">▾</span>
+            </summary>
+            <div className="sp-body">
+              <ul className="sp-list">
+                {(concentrationData || []).filter((r) => r.n_athletes >= 7).slice(0, 24).map((r) => (
+                  <li key={r.sport}>
+                    <button
+                      type="button"
+                      className={`sp-row ${concentrationFocus.sport.sport === r.sport ? "on" : ""}`}
+                      onClick={(e) => {
+                        onSelectFocusSport(r.sport);
+                        e.currentTarget.closest("details")?.removeAttribute("open");
+                      }}
+                    >
+                      <span
+                        className="sp-row-dot"
+                        style={{ background: familyColors?.[r.family] || "#555" }}
+                      />
+                      <span className="sp-row-name">{r.sport}</span>
+                      <span className="sp-row-bar">
+                        <span className="sp-row-bar-fg" style={{ width: `${Math.min(100, r.hhi * 100)}%` }} />
+                      </span>
+                      <span className="sp-row-hhi">{r.hhi.toFixed(2)}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <p className="sp-foot">Sorted by concentration. Tap any sport to map it.</p>
+            </div>
+          </details>
+        )}
       </div>
 
       <div className="map-figure">
-        <svg className="map-svg" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} preserveAspectRatio="xMidYMid meet">
+        <div className="map-zoom-controls">
+          <button type="button" onClick={() => zoomBy(1.5)} disabled={zoom.k >= ZOOM_MAX} aria-label="Zoom in" title="Zoom in">+</button>
+          <button type="button" onClick={() => zoomBy(1 / 1.5)} disabled={zoom.k <= ZOOM_MIN} aria-label="Zoom out" title="Zoom out">−</button>
+          <button type="button" onClick={resetZoom} disabled={zoom.k === 1 && zoom.x === 0 && zoom.y === 0} aria-label="Reset zoom" title="Reset zoom">⟲</button>
+        </div>
+        <svg
+          ref={svgRef}
+          className={`map-svg ${dragStart.current ? "panning" : ""}`}
+          viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+          preserveAspectRatio="xMidYMid meet"
+          onWheel={handleWheel}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onDoubleClick={handleDoubleClick}
+        >
           <defs>
             <pattern id="graticule" width="40" height="40" patternUnits="userSpaceOnUse">
               <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(26,20,16,0.045)" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width={WIDTH} height={HEIGHT} fill="url(#graticule)" />
+
+          {/* Everything that should scale + pan with the user's zoom goes
+              inside this group. The graticule backdrop above and the
+              compass rose below are intentionally outside so they stay
+              fixed in viewport coords. */}
+          <g className="zoom-layer" transform={zoomTransform}>
 
           {/* State fills + borders */}
           <g>
@@ -510,7 +738,7 @@ export default function USMap({
                   className={`state-path ${isSelected ? "selected" : ""} ${dim ? "dim" : ""}`}
                   d={path(feat)}
                   fill={fill}
-                  onClick={() => onSelectState(abbr)}
+                  onClick={() => safeSelectState(abbr)}
                   onMouseEnter={() =>
                     setTooltip({
                       kind: "state",
@@ -550,7 +778,7 @@ export default function USMap({
                     opacity={isSelected ? 1 : (dim ? 0.18 : 0.78)}
                     onClick={(e) => {
                       e.stopPropagation();
-                      onSelectAthlete(a.id);
+                      safeSelectAthlete(a.id);
                     }}
                     onMouseEnter={() =>
                       setTooltip({ kind: "athlete", data: a, cx: 0, cy: 0 })
@@ -720,7 +948,9 @@ export default function USMap({
           )}
 
           {/* Plate III — Concentration: rank circles on the focused sport's
-              top-3 states. */}
+              top-3 states. The accompanying "focus card" lives outside the
+              SVG (rendered below as an HTML overlay) so it can use editorial
+              typography and stay legible across the room. */}
           {activePlate === "concentration" && concentrationFocus && (
             <g className="concentration-layer">
               {concentrationFocus.states.map((s) => (
@@ -738,17 +968,6 @@ export default function USMap({
                   </text>
                 </g>
               ))}
-              <text
-                x={WIDTH / 2}
-                y={HEIGHT - 16}
-                textAnchor="middle"
-                fontFamily="JetBrains Mono"
-                fontSize="10"
-                fill="#1a1410"
-                letterSpacing="1.5"
-              >
-                {`TOP STATES · ${concentrationFocus.sport.sport.toUpperCase()} (HHI ${concentrationFocus.sport.hhi.toFixed(2)})`}
-              </text>
             </g>
           )}
 
@@ -833,7 +1052,10 @@ export default function USMap({
             </g>
           )}
 
-          {/* Compass rose (top-right corner decoration) */}
+          </g>{/* /zoom-layer */}
+
+          {/* Compass rose (top-right corner decoration) — stays fixed in
+              viewport coords regardless of zoom. */}
           <g transform={`translate(${WIDTH - 52} 48)`} opacity="0.7">
             <circle r="18" fill="none" stroke="#1a1410" strokeWidth="0.5" />
             <path d="M0,-18 L3,0 L0,18 L-3,0 Z" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.4" />

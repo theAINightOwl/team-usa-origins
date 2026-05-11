@@ -507,6 +507,7 @@ export default function App() {
               onHoverFactory={setHoveredFactory}
               hover={hover}
               concentrationData={analyticsData[`concentration_${profileType}`] || analyticsData.concentration}
+              onSelectFocusSport={(sport) => setHoverField("sport", hover.sport === sport ? null : sport)}
               perCapitaData={analyticsData[`per_capita_${profileType}`] || analyticsData.per_capita}
               hsConversionData={analyticsData[`hs_conversion_${profileType}`] || analyticsData.hs_conversion}
               homeStatesData={analyticsData[`centroids_${profileType}`] || analyticsData.centroids}

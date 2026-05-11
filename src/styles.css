@@ -476,11 +476,65 @@ input[type="range"]::-moz-range-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
 }
+
+/* Zoom controls over the map (top-right, opposite the in-svg compass). */
+.map-zoom-controls {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+.map-zoom-controls button {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--hair);
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.map-zoom-controls button:hover:not(:disabled) {
+  background: var(--paper);
+  border-color: var(--ink-2);
+  color: var(--rust);
+}
+.map-zoom-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.map-zoom-controls button:focus-visible {
+  outline: 1.5px solid var(--rust);
+  outline-offset: 1px;
+}
+
 .map-svg {
   width: 100%;
   height: 100%;
-  overflow: visible;
+  /* hidden (vs visible) keeps the zoom layer clipped to the map frame so
+     panned content doesn't leak past the figure boundary. The compass
+     rose still sits inside the viewBox so nothing visible is lost. */
+  overflow: hidden;
   cursor: default;
+  touch-action: none; /* prevent the browser from scrolling on wheel-zoom */
+}
+.map-svg.panning {
+  cursor: grabbing;
+}
+.map-svg .zoom-layer {
+  /* Smooth out small wheel-zoom jumps; skip during active pan so the
+     drag tracks the cursor 1:1. */
+  transition: transform 0.04s linear;
 }
 .state-path {
   stroke: var(--ink);
@@ -769,6 +823,138 @@ input[type="range"]::-moz-range-thumb {
   margin-top: 14px;
 }
 .marginalia .footnote sup { color: var(--rust); }
+
+/* Plate I — Overview scale rail (headline numbers) */
+.marginalia .overview-rail {
+  margin: 14px 0 4px;
+  padding: 10px 0 4px;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+.marginalia .overview-rail > div { display: flex; flex-direction: column; }
+.marginalia .overview-rail dt {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 2px;
+}
+.marginalia .overview-rail dd {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.marginalia .overview-rail dd span {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 400;
+  color: var(--ink-4);
+  letter-spacing: 0.02em;
+}
+.marginalia .overview-rail dd sup { color: var(--rust); }
+
+/* Plate I — Read the map (mini legend) */
+.marginalia .read-map {
+  margin: 18px 0 0;
+}
+.marginalia .read-map h4.ghead,
+.marginalia .plate-index h4.ghead {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.marginalia .read-map ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.marginalia .read-map li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.marginalia .read-map .rm-glyph {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+.marginalia .read-map li strong {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Plate I — Plate index */
+.marginalia .plate-index {
+  margin: 18px 0 0;
+}
+.marginalia .plate-index ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.marginalia .plate-index li {
+  display: grid;
+  grid-template-columns: 32px 80px 1fr;
+  gap: 6px 10px;
+  align-items: baseline;
+  padding: 6px 0;
+  border-top: 1px dashed var(--hair);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.marginalia .plate-index li:first-child { border-top: none; }
+.marginalia .plate-index .pi-roman {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--rust);
+  font-weight: 600;
+}
+.marginalia .plate-index .pi-short {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+}
+.marginalia .plate-index .pi-blurb {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+/* Plate I — closing coda paragraph */
+.marginalia .overview-coda {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: var(--paper-2);
+  border-left: 2px solid var(--rust);
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
 
 /* Sport-family taxonomy disclosure (Plate I reference) */
 .marginalia details.taxonomy {
@@ -1138,6 +1324,237 @@ input[type="range"]::-moz-range-thumb {
   background: var(--rust);
 }
 .rank-row .rv .num { font-family: var(--mono); font-size: 11px; color: var(--ink); }
+
+/* ── Plate III — click-to-pin picker (scoped to concentration list) ──
+ * Rows on Plate III are the picker for which sport the map renders.
+ * Click toggles a sticky pin; the active row stands out from a normal
+ * hover with a rust left border so the user can see at a glance which
+ * row is driving the map. cursor: pointer is *scoped* to this list so
+ * other plates' hover-only lists stay unchanged. */
+.concentration-list .rank-row { cursor: pointer; }
+.concentration-list .rank-row.pinned {
+  background: rgba(198, 61, 47, 0.06);
+  border-left: 2px solid var(--rust);
+  padding-left: 6px;
+}
+.concentration-list .rank-row.pinned:hover {
+  background: rgba(198, 61, 47, 0.10);
+}
+
+/* Plate III — single-line focus caption above the picker. */
+.focus-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 10px;
+  padding: 8px 10px;
+  background: var(--paper-2);
+  border-left: 2px solid var(--rust);
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.focus-caption .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0.5px solid var(--ink);
+  flex-shrink: 0;
+}
+.focus-caption strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.focus-caption .hint {
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+/* Plate III — "Pick a sport" eyebrow above the rank list. */
+.picker-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 8px 0 4px;
+}
+
+/* Plate III — sport picker dropdown that lives inside .map-cap (the
+ * caption strip above the map). Replaces the obscuring on-map overlay
+ * card; sits next to the plate caption, opens to a scrollable list of
+ * sports ranked by HHI. Closes after selection. */
+.map-cap details.sport-picker {
+  margin-left: auto;
+  position: relative;
+}
+.map-cap details.sport-picker > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
+  border-left: 2px solid var(--rust);
+  border-radius: 2px;
+  font-family: var(--serif);
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.2;
+  user-select: none;
+  transition: background 0.12s, border-color 0.12s;
+}
+.map-cap details.sport-picker > summary::-webkit-details-marker { display: none; }
+.map-cap details.sport-picker > summary:hover {
+  background: var(--paper);
+  border-color: var(--ink-3);
+}
+.map-cap details.sport-picker .sp-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-right: 2px;
+}
+.map-cap details.sport-picker .sp-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0.5px solid var(--ink);
+  flex-shrink: 0;
+}
+.map-cap details.sport-picker .sp-name {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.005em;
+}
+.map-cap details.sport-picker .sp-hhi {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--rust);
+  letter-spacing: 0.04em;
+  margin-left: 2px;
+}
+.map-cap details.sport-picker .sp-states {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  margin-left: 4px;
+}
+.map-cap details.sport-picker .sp-states b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.map-cap details.sport-picker .sp-caret {
+  color: var(--ink-3);
+  font-size: 11px;
+  margin-left: 2px;
+  transition: transform 0.18s ease;
+}
+.map-cap details.sport-picker[open] > summary .sp-caret { transform: rotate(180deg); }
+
+/* Popover body — anchored under the summary, opens downward over the
+ * map's top edge (overlapping is fine: the picker is the active
+ * surface while open). */
+.map-cap details.sport-picker .sp-body {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 340px;
+  max-height: 360px;
+  overflow-y: auto;
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  padding: 6px 0 0;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(26, 20, 16, 0.08);
+}
+.map-cap details.sport-picker .sp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.map-cap details.sport-picker .sp-row {
+  display: grid;
+  grid-template-columns: 14px 1fr 60px 36px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--hair-soft);
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  font-family: var(--serif);
+  font-size: 12.5px;
+  color: var(--ink);
+  transition: background 0.1s ease;
+}
+.map-cap details.sport-picker .sp-list li:first-child .sp-row { border-top: none; }
+.map-cap details.sport-picker .sp-row:hover { background: rgba(200, 152, 55, 0.13); }
+.map-cap details.sport-picker .sp-row.on {
+  background: rgba(198, 61, 47, 0.07);
+  border-left: 2px solid var(--rust);
+  padding-left: 10px;
+}
+.map-cap details.sport-picker .sp-row-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0.5px solid var(--ink);
+}
+.map-cap details.sport-picker .sp-row-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variation-settings: "opsz" 16;
+}
+.map-cap details.sport-picker .sp-row-bar {
+  display: inline-block;
+  height: 5px;
+  background: var(--paper-3);
+  border: 1px solid var(--hair);
+  position: relative;
+}
+.map-cap details.sport-picker .sp-row-bar-fg {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--rust);
+}
+.map-cap details.sport-picker .sp-row-hhi {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.map-cap details.sport-picker .sp-foot {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink-4);
+  letter-spacing: 0.04em;
+  border-top: 1px dashed var(--hair);
+  padding: 6px 12px;
+  margin: 4px 0 0;
+}
+
+/* Make .map-cap a flex row so the picker can sit to the right of the
+ * plate title. */
+.map-cap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 /* ── Plate IV — Halos ────────────────────────────────────────────── */
 .halo-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }

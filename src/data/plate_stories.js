@@ -12,15 +12,7 @@
  */
 
 export const STORIES = {
-  ref: `
-## A century of hometowns, in one map
-
-The atlas draws on **5,201 athletes** with mappable hometowns from teamusa.com's published roster of 8,526 profiles. Coordinates come from the 2023 U.S. Census Gazetteer, with **346 hand-curated corrections** for the places the gazetteer misses — NYC outer-borough neighborhoods, Michigan charter townships, ski-resort place names, and entries where Team USA's city field already includes a state name, such as "Houston, Texas" with the state field set to TX.
-
-The app bundle is name-stripped in keeping with NIL norms: first and last names stay out of the shipped data. It still keeps the geography and analytic fields needed for the atlas — sport, hometown coordinates, school where available, medal counts, athlete type, and era. That's enough to draw the country's Olympic and Paralympic geography in surprisingly sharp lines, as the next ten analytical plates show.
-
-Use the **Olympic / Paralympic lens toggle** at the top of the right column to flip every chart and story between the two audiences. Most plates tell a noticeably different story under each lens — the Paralympic geography is its own map, not a smaller copy of the Olympic one.
-`,
+  ref: ``,
 
   /* ─────────────────────────────────────────────────────────────────
    * Plate II — Tiny towns, big rosters
@@ -40,9 +32,9 @@ The Olympic-lens table is overwhelmingly winter: **27 of the top 50 factory town
 
 ## Where to look next
 
-Read the same list and ask which towns are most narrowly specialized in a single sport. **Sixteen of the 50 Olympic factory towns get at least 80% of their Olympians from one sport** — and most are under 5,000 residents. Curling, Freestyle Skiing, Cross-Country Skiing, and Luge are the most-repeated motifs.
+One angle could be to re-read the list through the lens of single-sport specialization. **Sixteen of the 50 Olympic factory towns get at least 80% of their Olympians from one sport** — and most are under 5,000 residents. Curling, Freestyle Skiing, Cross-Country Skiing, and Luge are the most-repeated motifs.
 
-For scouts and federations, the recipe is portable: look for small communities sitting on top of dedicated infrastructure for a single Olympic discipline — a 200km nordic trail network, a curling club going back generations, a ski-jumping hill the town built itself. The next Mapleton or Winthrop is more likely to be discovered by walking into one of those settings than by combing through a national talent database.
+For scouts and federations, the pattern that *might* travel is small communities sitting on top of dedicated infrastructure for a single Olympic discipline — a 200km nordic trail network, a curling club going back generations, a ski-jumping hill the town built itself. Walking into one of those settings could help find the next Mapleton or Winthrop more readily than combing through a national talent database.
 `,
 
   factories_paralympic: `
@@ -60,9 +52,9 @@ The dominant top family across the 50 Paralympic factory towns is actually **Tea
 
 ## Where to look next
 
-For Paralympic scouting, the actionable signature is different from Olympic factories: instead of looking for towns with deep civic sports culture, look for towns that host a **specific adaptive-sport residency program or anchor club** — Move United chapters, BlazeSports affiliates, university-based wheelchair basketball or wheelchair rugby programs, VA-linked adaptive sport facilities.
+For Paralympic scouting, the signature here appears to differ from Olympic factories: rather than civic sports culture, towns hosting a **specific adaptive-sport residency program or anchor club** — Move United chapters, BlazeSports affiliates, university-based wheelchair basketball or wheelchair rugby programs, VA-linked adaptive sport facilities — could be the more useful set to surface.
 
-Only 5 of the top 50 Paralympic factory towns concentrate ≥80% of their athletes in a single sport, compared to 16 of 50 on the Olympic side — Paralympic athletes scatter across more disciplines per town. That makes the **anchor-program pattern** more useful than per-capita counting for finding the next Winter Park or Gig Harbor.
+Only 5 of the top 50 Paralympic factory towns concentrate ≥80% of their athletes in a single sport, compared to 16 of 50 on the Olympic side — Paralympic athletes seem to scatter across more disciplines per town. That suggests the **anchor-program pattern** could help find the next Winter Park or Gig Harbor more readily than per-capita counting alone.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -91,11 +83,11 @@ The Olympic sports that *do* spread widely are the universal ones — track and 
 
 ## Where to look next
 
-The chart reads two ways. **A high score shows scouts which states already hold the Olympic pipeline. A low score makes absence easier to notice** — when a sport should be everywhere, the empty states stand out.
+The chart can be read two ways. **A high score may point at which states already hold the Olympic pipeline. A low score can make absence easier to notice** — when a sport tends to be everywhere, the empty states stand out.
 
-**Diving** is one of those genuinely spread-out sports: 199 Olympians across 27 states, with no single state holding more than 18%. And yet **Minnesota and Wisconsin have zero Olympic divers in this roster** — both states sit in the top 15 nationally for overall Team USA output. **Soccer** has the same hole.
+**Diving** is one of those genuinely spread-out sports: 199 Olympians across 27 states, with no single state holding more than 18%. And yet **Minnesota and Wisconsin have zero Olympic divers in this roster** — both states sit in the top 15 nationally for overall Team USA output. **Soccer** shows the same gap.
 
-Treat those as state-level white-space clues, not proof of missing infrastructure. They flag places with population and broader athletic culture where this Olympic slice shows no hometown signal for a sport that's otherwise spread across the country.
+Those reads are best treated as state-level white-space clues rather than proof of missing infrastructure. They could help find places with population and broader athletic culture where this Olympic slice shows no hometown signal for a sport that otherwise spreads across the country.
 `,
 
   concentration_paralympic: `
@@ -117,9 +109,9 @@ The biggest single Paralympic state cluster is Colorado for **Para Alpine Skiing
 
 ## Where to look next
 
-For Paralympic scouting, the concentration chart is less of a recruiting map than the Olympic version because nothing approaches single-state dominance. The **actionable read is the opposite direction**: which Paralympic sports have the broadest geographic reach, and what does the empty-cell pattern look like?
+For Paralympic scouting, the concentration chart may be less of a recruiting map than the Olympic version because nothing approaches single-state dominance. One **possible read points the opposite direction**: which Paralympic sports have the broadest geographic reach, and what does the empty-cell pattern look like?
 
-Most Paralympic sports show concentration scores under **0.20**, meaning national-team athletes come from many states. That's good news for federation reach but also a signal that **classification, club-pathway, and travel-cost barriers may be the binding constraint**, not geographic scarcity. The next analytical question is whether the dispersed Paralympic athlete map matches the actual geography of disability and adaptive-sport infrastructure — or whether some states are systematically under-converting.
+Most Paralympic sports show concentration scores under **0.20**, suggesting national-team athletes come from many states. That could be good news for federation reach, and it may also hint that **classification, club-pathway, and travel-cost barriers are part of the binding constraint** rather than geographic scarcity. A next analytical question could be whether the dispersed Paralympic athlete map lines up with the actual geography of disability and adaptive-sport infrastructure — or whether some states are systematically under-converting.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -140,9 +132,9 @@ Start with the biggest raw number. **290 Olympians live within 200 miles of the 
 
 Most of the country isn't near a USOPC center. About **half of the Olympians in this roster live more than 300 miles from any tracked training site.** Texas alone holds a large share, with **Houston the biggest single distant metro.**
 
-That's the gap. It is **not** an automatic recommendation to drop a new center in Houston — Houston's distant Olympians are spread across many different sports, and a multi-sport campus only pays off when enough nearby athletes do sports that campus can actually train.
+That's the gap. It probably **isn't** an automatic case for dropping a new center in Houston — Houston's distant Olympians are spread across many different sports, and a multi-sport campus may only pay off when enough nearby athletes do sports that campus can actually train.
 
-The cheaper, more practical move is a **single-sport satellite**: find a city with a real concentration of one discipline — enough swimmers, wrestlers, or gymnasts to anchor a focused facility — and build for that one sport. It lines up with how Olympic athletes already cluster, instead of chasing raw headcount.
+A cheaper, more practical angle could be a **single-sport satellite**: a city with a real concentration of one discipline — enough swimmers, wrestlers, or gymnasts to anchor a focused facility — might be a better candidate than a generalist campus. That approach could line up with how Olympic athletes already cluster, instead of chasing raw headcount.
 `,
 
   halos_paralympic: `
@@ -163,9 +155,9 @@ The Paralympic sport-served counts elsewhere are similarly small:
 
 ## Where to look next
 
-For the USOPC and the national federations, this plate makes a concrete case: **the existing tracked-facility map is not the Paralympic talent infrastructure.** Most of the Paralympic athletes who reach elite competition do so through programs that aren't on this map.
+For the USOPC and the national federations, this plate may suggest that **the existing tracked-facility map isn't really the Paralympic talent infrastructure.** Most of the Paralympic athletes who reach elite competition appear to do so through programs that aren't on this map.
 
-The actionable extension of this atlas is to **map the adaptive-sport infrastructure separately** — university wheelchair basketball programs, Move United chapters, VA adaptive-sport facilities, NSCD-style residency centers — and use that as the basis for Paralympic siting and scouting decisions, rather than the Olympic-built OPTC roster. A Paralympic athlete near Pettit Ice Center may grow up far from the right facility for their sport even when the dot on the map looks close.
+One natural extension of this atlas could be to **map the adaptive-sport infrastructure separately** — university wheelchair basketball programs, Move United chapters, VA adaptive-sport facilities, NSCD-style residency centers — and use that as the basis for Paralympic siting and scouting decisions rather than the Olympic-built OPTC roster. A Paralympic athlete near Pettit Ice Center may grow up far from the right facility for their sport even when the dot on the map looks close.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -186,9 +178,9 @@ This doesn't mean the centers don't matter. Olympic athletes move to train, and 
 
 ## Where to look next
 
-This plate flips the usual assumption that "more centers near more athletes = more Olympians." **Roughly two-thirds of the Olympians in this roster grew up more than 800 miles from any sport-serving training center.**
+This plate complicates the usual assumption that "more centers near more athletes = more Olympians." **Roughly two-thirds of the Olympians in this roster grew up more than 800 miles from any sport-serving training center.**
 
-For the USOPC and the national federations, the actionable lever may not be **building** more centers but **strengthening the distributed pipeline** that's already producing: fund club partnerships, deepen college relationships, and recruit in the regions where future Olympians already live. The center comes later, after an athlete is already on a path. For scouts, the practical move is to look in the home community, not from the center.
+For the USOPC and the national federations, the more useful lever may not be **building** more centers but **strengthening the distributed pipeline** that already appears to be producing: club partnerships, college relationships, and recruiting in the regions where future Olympians already live could help find leverage the center map doesn't reveal. The center may matter later, after an athlete is already on a path. For scouts, the home community could be a more practical place to look than the area around any single center.
 `,
 
   distance_paralympic: `
@@ -208,9 +200,9 @@ For all other families — Aquatic, Other (mostly Para Athletics), Team Ball —
 
 ## Where to look next
 
-The training-center roster wasn't built around Paralympic geography, and the distance numbers reflect that. **Roughly 7 in 10 Paralympic athletes grew up more than 800 miles from any tracked sport-serving center**, and the close-band share is smaller than for Olympic athletes.
+The training-center roster wasn't built around Paralympic geography, and the distance numbers seem to reflect that. **Roughly 7 in 10 Paralympic athletes grew up more than 800 miles from any tracked sport-serving center**, and the close-band share is smaller than for Olympic athletes.
 
-For Paralympic recruiting, the practical takeaway is the same as the Olympic version, with one extra wrinkle: **don't filter Paralympic prospects by training-center proximity at all.** The most useful next analysis is to map adaptive-sport clubs, university programs (Whitewater, Central Oklahoma, UCCS), VA adaptive facilities, and Move United chapters — then ask the distance question against *that* layer. Most of the Paralympic pipeline doesn't run through the OPTC map at all.
+For Paralympic recruiting, the takeaway may echo the Olympic version with one extra wrinkle: training-center proximity may be the wrong filter to lean on for Paralympic prospects. A useful next analysis could be to map adaptive-sport clubs, university programs (Whitewater, Central Oklahoma, UCCS), VA adaptive facilities, and Move United chapters — then ask the distance question against *that* layer. Most of the Paralympic pipeline appears not to run through the OPTC map at all.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -232,9 +224,9 @@ The columns are the most interesting part: some Olympic sport families have esca
 
 ## Where to look next
 
-For Olympic federations cultivating a sport in a non-traditional climate, **Wellington is the playbook**: concentrate prize money, venues, and the calendar in one place, and climate stops mattering. The **counter-climate cells** — Equestrian in Hot Humid, Racket in Mild, Team Ball in Mild — are where to scout beyond the obvious geography. They're rarer, harder to find, and disproportionately driven by one or two anchor institutions that can be visited in person.
+For Olympic federations cultivating a sport in a non-traditional climate, **Wellington could offer a model**: when prize money, venues, and the calendar concentrate in one place, climate appears to matter less. The **counter-climate cells** — Equestrian in Hot Humid, Racket in Mild, Team Ball in Mild — may help surface scouting leads beyond the obvious geography. They tend to be rarer and disproportionately driven by one or two anchor institutions that could be visited in person.
 
-For scouts, the diagonal of this matrix already tells you where the obvious Olympic pipeline runs. The off-diagonal cells with surprising volume are the leads worth chasing.
+For scouts, the diagonal of this matrix probably reflects where the obvious Olympic pipeline runs. The off-diagonal cells with surprising volume could be the more useful leads to chase.
 `,
 
   climate_paralympic: `
@@ -254,9 +246,9 @@ The Paralympic-Equestrian / Olympic-Equestrian contrast is the most striking fin
 
 ## Where to look next
 
-For Paralympic federations, the climate matrix points at the same insight as Plate IV: **the existing Paralympic geography is rooted in where adaptive-sport programs were historically founded**, not where the climate or population would predict they should be. That's a planning opportunity. Para sports that don't depend on outdoor weather (Wheelchair Basketball, Wheelchair Rugby, Goalball, Para Powerlifting, Para Judo) could in principle be cultivated anywhere — and the chart shows they're disproportionately Continental-cluster today, which is more about institutional history than logistics.
+For Paralympic federations, the climate matrix may hint at the same insight as Plate IV: **the existing Paralympic geography appears rooted in where adaptive-sport programs were historically founded**, rather than where the climate or population would predict. That could open a planning angle. Para sports that don't depend on outdoor weather (Wheelchair Basketball, Wheelchair Rugby, Goalball, Para Powerlifting, Para Judo) could in principle be cultivated anywhere — and the chart shows them disproportionately Continental-clustered today, which may have more to do with institutional history than logistics.
 
-The actionable read is to identify states where the climate is permissive but the Paralympic numbers are low, then ask why no adaptive-sport organization has taken root.
+One possible read: identifying states where the climate is permissive but the Paralympic numbers are low could help find the places worth asking why no adaptive-sport organization has taken root.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -285,9 +277,9 @@ California, which dominates raw Olympic counts, falls to **mid-pack** at roughly
 
 ## Where to look next
 
-The under-producers stand out when you compare each state to its climate peers. **West Virginia** sits well below the Continental-zone average. Among states with at least a million residents, the next biggest gaps are **Maine, New Hampshire, Montana, and Iowa** — all in winter-friendly geography but producing far fewer Olympians than their climate peers.
+The apparent under-producers may stand out when each state is compared to its climate peers. **West Virginia** sits well below the Continental-zone average. Among states with at least a million residents, the next biggest gaps appear to be **Maine, New Hampshire, Montana, and Iowa** — all in winter-friendly geography but producing fewer Olympians than their climate peers.
 
-For federations, that's a recruiting and cultivating opportunity hiding in plain sight: the climate is right, the population is there, but the Olympic pipeline isn't converting. The high end of the list (Vermont, Alaska, Colorado) is the model worth studying — what specifically do those states have that the under-producers don't?
+For federations, that could read as a recruiting and cultivating opportunity hiding in plain sight: the climate is right, the population is there, yet the Olympic pipeline appears not to be converting. The high end of the list (Vermont, Alaska, Colorado) could be worth studying — what those states have that the under-producers don't may be the more useful question to chase.
 `,
 
   per_capita_paralympic: `
@@ -303,9 +295,9 @@ A note on a metric we considered and rejected: **Paralympic *share* of Olympic+P
 
 ## Where to look next
 
-The leaders are concentrated in the northern half of the country and the mountain west — places with year-round outdoor culture, established adaptive-sport organizations, and Paralympic team residency programs. **Colorado at 0.89 per 100k is the model worth dissecting**: what specifically is happening there that produces Paralympians at four times the national rate, and how much of it is portable to other states?
+The leaders cluster in the northern half of the country and the mountain west — places with year-round outdoor culture, established adaptive-sport organizations, and Paralympic team residency programs. **Colorado at 0.89 per 100k could be the most useful case to dissect**: what's happening there that produces Paralympians at four times the national rate, and how much of it might be portable to other states?
 
-For the USOPC and the national federations, the actionable opportunity is the bottom of the list — large states like **Texas, Tennessee, Ohio, Louisiana, and South Carolina** that produce Paralympic athletes at less than half the national rate. Those states have the residents, the disabled population, and (in Texas's case) the high-school participation base. What they appear to lack is the connective tissue: visible adaptive-sport clubs at the youth level, college programs that recruit Paralympic prospects, classification pathways accessible without travel, and a federation presence that scouts those communities.
+For the USOPC and the national federations, one possible opportunity sits at the bottom of the list — large states like **Texas, Tennessee, Ohio, Louisiana, and South Carolina** that produce Paralympic athletes at less than half the national rate. Those states have the residents, the disabled population, and (in Texas's case) the high-school participation base. What they appear to lack is the connective tissue: visible adaptive-sport clubs at the youth level, college programs that recruit Paralympic prospects, classification pathways accessible without travel, and a federation presence that scouts those communities.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -329,9 +321,9 @@ Compare to the Ivies. **Princeton** ($42M budget, ~30 Olympians, 0.7/$M) and **H
 
 ## Where to look next
 
-Filter the same scatter for **small athletic budgets with real Olympic output** and you get a concrete partnership shortlist of NAIA, NJCAA, and Division III programs whose budgets are under $15M and whose alumni show up disproportionately on Team USA. Each is a candidate for a focused federation partnership — winter at Westminster / Colorado Mountain / Salt Lake CC, and so on.
+Filtering the same scatter for **small athletic budgets with real Olympic output** could surface a partnership shortlist of NAIA, NJCAA, and Division III programs whose budgets are under $15M and whose alumni appear disproportionately on Team USA. Each may be a candidate for a focused federation partnership — winter at Westminster / Colorado Mountain / Salt Lake CC, and so on.
 
-Scaling these high-efficiency Olympic programs is much cheaper than competing for a Stanford or Princeton athlete, and the alignment to a specific Olympic discipline is already built in. The match list is a lead, not a hand-audited alumni ledger — but it's a short, walkable target list of programs that are already producing.
+Scaling these apparently high-efficiency Olympic programs could be cheaper than competing for a Stanford or Princeton athlete, and the alignment to a specific Olympic discipline may already be built in. The match list is a lead rather than a hand-audited alumni ledger — but it could help find a short, walkable target list of programs that are already producing.
 `,
 
   colleges_paralympic: `
@@ -350,9 +342,9 @@ Compare to the Ivies again. **Princeton** has effectively zero Paralympic alumni
 
 ## Where to look next
 
-The Paralympic college-efficiency shortlist is concrete and small: **Wisconsin-Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois, and a handful of NCAA D-III adaptive-sport programs.** That's the entire visible Paralympic college pipeline in this dataset.
+The Paralympic college-efficiency shortlist looks small: **Wisconsin-Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois, and a handful of NCAA D-III adaptive-sport programs.** That appears to be most of the visible Paralympic college pipeline in this dataset.
 
-For Paralympic federations, that's both an opportunity and a warning: the existing pipeline is concentrated in fewer than ten institutions. Scaling Paralympic recruiting means either deepening partnerships with the existing programs or **investing in new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate IX per-capita gap is largest.
+For Paralympic federations, that could read as both an opportunity and a warning: the existing pipeline seems concentrated in fewer than ten institutions. Scaling Paralympic recruiting might mean either deepening partnerships with the existing programs or **seeding new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate IX per-capita gap appears largest.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -379,9 +371,9 @@ The opposite end is also a lead list. Among states with at least **200,000 offic
 
 ## Where to look next
 
-States with massive high-school participation but low Olympic conversion are talent reservoirs leaking somewhere between high school and Team USA. **Texas is the biggest gap: 122 Olympians from 879,000 NFHS slots**, well below the large-state median.
+States with massive high-school participation but low Olympic conversion may be talent reservoirs leaking somewhere between high school and Team USA. **Texas appears to be the biggest gap: 122 Olympians from 879,000 NFHS slots**, well below the large-state median.
 
-The actionable question is what's happening to all those high-school athletes. Are they choosing collegiate sports outside the Olympic pathway (especially football and basketball in the South)? Aging out before national-team scouting picks them up? Hitting bottlenecks in club or post-collegiate development? Each answer points at a different federation lever.
+One useful question could be what's happening to those high-school athletes. Are they choosing collegiate sports outside the Olympic pathway (especially football and basketball in the South)? Aging out before national-team scouting picks them up? Hitting bottlenecks in club or post-collegiate development? Each possibility could point at a different federation lever.
 `,
 
   hs_conversion_paralympic: `
@@ -405,14 +397,14 @@ The bottom of the chart for Paralympic-per-NFHS shows the same southern under-pr
 
 ## Where to look next
 
-The actionable takeaway here is the same as Plate IX (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator is the wrong baseline entirely.** A more useful future analysis would divide Paralympic athletes by:
+The takeaway here may echo Plate IX (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator looks like a poor baseline.** A more useful future analysis could divide Paralympic athletes by:
 
 - The **disabled-population** of each state (Census ACS)
 - The number of **Move United / BlazeSports chapter members** per state
 - **VA-eligible population** by state (relevant because a meaningful fraction of Paralympic athletes are veterans)
 - **University adaptive-athletics enrollment** counts
 
-Until that data layer exists in this atlas, treat this chart as a directional indicator: the leaders (CO, VT, AK, WA, UT) have working Paralympic ecosystems, and the under-producers at the bottom of the list have visible gaps to investigate.
+Until that data layer exists in this atlas, this chart could serve as a directional indicator: the leaders (CO, VT, AK, WA, UT) appear to have working Paralympic ecosystems, and the under-producers at the bottom of the list may have visible gaps worth investigating.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -474,9 +466,9 @@ The most telling outlier is **Boulder, Colorado at 5,270 ft, where Endurance is 
 
 ## Where to look next
 
-The honest read is that altitude doesn't *cause* Olympic production for most sports. The two families with a real elevation signal — Winter and Endurance — are signal because of **deliberate facility geography**: ski jumps and biathlon ranges go where snow stays long, and altitude camps go where the air thins. Everything else is incidental. A sea-level kid in Florida still has a better statistical chance of making the Olympic roster (per capita) than a kid born above 5,000 ft, simply because that's where the population is.
+One honest read is that altitude probably doesn't *cause* Olympic production for most sports. The two families with a real elevation signal — Winter and Endurance — appear to track **deliberate facility geography**: ski jumps and biathlon ranges go where snow stays long, and altitude camps go where the air thins. Everything else looks incidental. A sea-level kid in Florida still has a better statistical chance of making the Olympic roster (per capita) than a kid born above 5,000 ft, simply because that's where the population is.
 
-What altitude *is* useful for is identifying **where the federations have voted with their dollars**. Colorado Springs, Park City, and Lake Placid are altitude-and-mountain legacies of past Games and the residency programs that followed. The under-tapped question is whether any non-Colorado high-elevation region — northern New Mexico, eastern Oregon, the Sierra spine — could anchor a fourth such cluster. The current data says no comparable pipeline exists outside the Rockies. The map says there's room for one.
+Where altitude *could* help is in identifying **where the federations have voted with their dollars**. Colorado Springs, Park City, and Lake Placid look like altitude-and-mountain legacies of past Games and the residency programs that followed. An under-tapped question could be whether any non-Colorado high-elevation region — northern New Mexico, eastern Oregon, the Sierra spine — might anchor a fourth such cluster. The current data shows no comparable pipeline outside the Rockies, but the map may leave room for one.
 `,
 
   altitude_paralympic: `
@@ -494,8 +486,8 @@ The lens-filtered high-elevation hometown list is short and almost entirely Fron
 
 ## Where to look next
 
-The actionable read for Paralympic federations is the inverse of the Olympic story. **Most Paralympic athletes still come from sea-level and lowland hometowns** — Wheelchair Basketball, Para Athletics, Para Swimming, Para Cycling are coastal and inland-suburban sports. The high-altitude column is small but disproportionate in winter medals.
+One read for Paralympic federations runs inverse to the Olympic story. **Most Paralympic athletes still appear to come from sea-level and lowland hometowns** — Wheelchair Basketball, Para Athletics, Para Swimming, Para Cycling look like coastal and inland-suburban sports. The high-altitude column is small but disproportionate in winter medals.
 
-The risk in this picture is **single-program fragility**. The Paralympic high-altitude pipeline doesn't have the institutional redundancy the Olympic version has — lose NSCD or the OTC's Para programs and most of the high-altitude Paralympic column in this atlas thins out, because no comparable second program exists at altitude. The Olympic side leans on at least four anchored institutions (USOPC OTC, Park City U.S. Ski & Snowboard, Steamboat Springs Winter Sports Club, Lake Placid). Building a second high-altitude Paralympic anchor — at a site with comparable lift access and trained adaptive coaches — would be the single most resilient move available to the Paralympic winter program.
+One risk worth flagging is **single-program fragility**. The Paralympic high-altitude pipeline may not have the institutional redundancy the Olympic version has — lose NSCD or the OTC's Para programs and most of the high-altitude Paralympic column in this atlas could thin out, because no comparable second program appears to exist at altitude. The Olympic side leans on at least four anchored institutions (USOPC OTC, Park City U.S. Ski & Snowboard, Steamboat Springs Winter Sports Club, Lake Placid). A second high-altitude Paralympic anchor — at a site with comparable lift access and trained adaptive coaches — could be one of the more resilient moves available to the Paralympic winter program.
 `,
 };

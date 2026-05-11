@@ -24,7 +24,7 @@ const TRACKED_OPTC_COUNT = analytics.halos?.filter((c) => c.type === "OPTC").len
  */
 
 export const PLATE_DEFS = [
-  { key: "ref", roman: "I", short: "Overview", title: "A century of hometowns" },
+  { key: "ref", roman: "I", short: "Overview", title: "A century of hometowns, in one map" },
   { key: "factories", roman: "II", short: "Factories", title: "Tiny towns, big rosters" },
   { key: "concentration", roman: "III", short: "Concentration", title: "How concentrated each sport is" },
   { key: "home_states", roman: "IV", short: "Home States", title: "Sport family × states" },
@@ -227,28 +227,106 @@ const FAMILY_COLOR_HINT = {
 
 /* ── Plate I — Reference (was Marginalia) ──────────────────────────── */
 
-function PlateReference({ totals }) {
+const OVERVIEW_PLATE_BLURBS = {
+  factories:     "Tiny towns punching far above their roster weight.",
+  concentration: "Which sports cluster in just one or two states.",
+  home_states:   "Sport family × state, side-by-side rankings.",
+  climate:       "Which families lean Cold, Mild, Hot Humid.",
+  altitude:      "Sea level to thin air, by family.",
+  halos:         "How far each training center's reach actually extends.",
+  distance:      "How far the typical athlete lives from a center.",
+  per_capita:    "Profiles per 100k residents, adjusted for climate.",
+  you:           "Drop your hometown — see your geography on this map.",
+};
+
+function PlateReference() {
+  const families = sportFamiliesData.families?.length ?? 12;
   return (
     <div className="marginalia">
-      <PlateHeader roman="I" eyebrow="Overview" title="A century of " italic="hometowns." />
+      <PlateHeader roman="I" eyebrow="Overview" title="A century of hometowns, in one " italic="map." />
+
       <p className="drop">
-        The atlas draws on <strong>{totals.geocoded.toLocaleString()} athletes</strong> with
-        mappable hometowns from <em>teamusa.com</em>'s published roster of{" "}
-        {totals.athletes.toLocaleString()} profiles. Coordinates come from the 2023 U.S. Census
-        Gazetteer, with <strong>346 hand-curated corrections</strong> for the places the
-        gazetteer misses — NYC outer-borough neighborhoods, Michigan charter townships,
-        ski-resort place names, and entries where Team USA's city field already includes a
-        state name, such as "Houston, Texas" with the state field set to TX.
+        Every dot on the map is a Team USA Olympic or Paralympic profile, pinned to the
+        hometown the athlete listed. Click a dot to read who lives there; click a state
+        to read what it produces. Switch <strong>plates</strong> in the index above to
+        read the country a different way — per capita, by climate, by tracked-facility
+        proximity, decade by decade. Flip the <strong>lens</strong> beside the title to
+        swap between the Olympic and Paralympic rosters.
       </p>
-      <p>
-        Click any state to see who it produced, what sports it sends, and the quiet machinery behind
-        that production. Click any plate at the top of this column to read the country a different way —
-        per capita, by climate, by tracked-facility proximity, decade by decade.
+
+      <dl className="overview-rail">
+        <div>
+          <dt>States covered</dt>
+          <dd>51<span>50 states + DC</span></dd>
+        </div>
+        <div>
+          <dt>Sport families</dt>
+          <dd>{families}<span>editorial taxonomy<sup>5</sup></span></dd>
+        </div>
+        <div>
+          <dt>Tracked facilities</dt>
+          <dd>{TRACKED_FACILITY_COUNT}<span>OPTC + NGB + partner sites<sup>3</sup></span></dd>
+        </div>
+        <div>
+          <dt>Span</dt>
+          <dd>1896–2026<span>Athens to Milan-Cortina</span></dd>
+        </div>
+      </dl>
+
+      <section className="read-map">
+        <h4 className="ghead">Read the map</h4>
+        <ul>
+          <li>
+            <svg className="rm-glyph" viewBox="-10 -10 20 20" aria-hidden="true">
+              <circle r="5" fill="#c63d2f" stroke="#1a1410" strokeWidth="0.6" />
+            </svg>
+            <div><strong>Athletes.</strong> One dot per profile, colored by sport family. The active lens (Olympic / Paralympic) decides which dots appear; the filter bar trims them further.</div>
+          </li>
+          <li>
+            <svg className="rm-glyph" viewBox="-10 -10 20 20" aria-hidden="true">
+              <path d="M0,-6 L5,4 L-5,4 Z" fill="#1a1410" />
+            </svg>
+            <div><strong>Training facilities.</strong> Olympic & Paralympic Training Centers, sport-NGB centers, and partner sites curated from each facility's own pages.</div>
+          </li>
+          <li>
+            <svg className="rm-glyph" viewBox="-10 -10 20 20" aria-hidden="true">
+              <rect x="-6" y="-6" width="12" height="12" fill="#c89837" opacity="0.55" stroke="#1a1410" strokeWidth="0.6" />
+            </svg>
+            <div><strong>State fill.</strong> Whichever metric you pick in the filter bar paints the choropleth. Grey means "no data for this state."</div>
+          </li>
+          <li>
+            <svg className="rm-glyph" viewBox="-10 -10 20 20" aria-hidden="true">
+              <circle r="7" fill="none" stroke="#c63d2f" strokeWidth="1" opacity="0.7" />
+              <circle r="1.6" fill="#c63d2f" />
+            </svg>
+            <div><strong>Halos.</strong> Soft rings around training centers showing the hometowns inside each center's travel reach. Most visible on Plate VII.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section className="plate-index">
+        <h4 className="ghead">The plates</h4>
+        <ol>
+          {PLATE_DEFS.filter((p) => p.key !== "ref").map((p) => (
+            <li key={p.key}>
+              <span className="pi-roman">{p.roman}</span>
+              <span className="pi-short">{p.short}</span>
+              <span className="pi-blurb">{OVERVIEW_PLATE_BLURBS[p.key] || p.title}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <p className="overview-coda">
+        Want a number that isn't on a plate? Ask <strong>Atlas</strong> in the chat
+        column — it can rank, filter, and chart from the same data the plates draw on.
       </p>
+
       <SportFamilyTaxonomy />
+
       <div className="footnote">
-        <p><sup>1</sup> Athlete roster scraped from teamusa.com; hometowns, sports, medals, and other analytic fields come from the Team USA profile payload. The shipped app bundle strips first and last names.</p>
-        <p><sup>2</sup> Hometown coordinates from the 2023 U.S. Census Gazetteer, augmented by hand-curated entries.</p>
+        <p><sup>1</sup> Athlete roster scraped from teamusa.com. The shipped app bundle strips first and last names.</p>
+        <p><sup>2</sup> Hometown coordinates from the 2023 U.S. Census Gazetteer, augmented by 346 hand-curated entries for places the gazetteer misses — NYC outer-borough neighborhoods, Michigan charter townships, ski-resort place names, and Team USA fields like "Houston, Texas" with the state already set to TX.</p>
         <p><sup>3</sup> Training-facility roster is curated from official facility pages.</p>
         <p><sup>4</sup> Place population for the per-capita plates from the U.S. Census Population Estimates Program (2023).</p>
         <p><sup>5</sup> Sport-family taxonomy is a project-defined hand mapping of each Team USA sport string into one of twelve buckets; the full table is in the disclosure above.</p>
@@ -359,6 +437,15 @@ function PlateFactories({ onHoverFactory, hoveredFactory, slice, roman, profileT
 function PlateConcentration({ slice, roman, profileType, setHover, hover }) {
   const data = slice || analytics.concentration;
   const rows = data.filter((r) => r.n_athletes >= 7).slice(0, 24);
+  // hover.sport is the user's pinned sport (click-to-pin model). When unset,
+  // we fall back to the top-HHI row so the right column always agrees with
+  // what the map is drawing.
+  const pinnedSport = hover?.sport;
+  const focusedRow = rows.find((r) => r.sport === pinnedSport) || rows[0];
+  const togglePin = (sport) => {
+    if (!setHover) return;
+    setHover("sport", pinnedSport === sport ? null : sport);
+  };
   return (
     <>
       <PlateHeader roman={roman || "III"} eyebrow={lensEyebrow("Geography", profileType)} title="How concentrated each " italic="sport is." />
@@ -366,15 +453,24 @@ function PlateConcentration({ slice, roman, profileType, setHover, hover }) {
         How concentrated each sport's hometowns are. A score of{" "}
         <span className="num">1.00</span> means every Team USA profile comes from a single state;
         <span className="num"> 0.05</span> means the sport is spread evenly across the country.
-        Hover a row to see its top three states glow on the map.
       </p>
-      <ul className="rank-list">
+      {focusedRow && (
+        <div className="focus-caption">
+          <span className="dot" style={{ background: FAMILY_COLOR_HINT[focusedRow.family] || "#555" }} />
+          <span className="lead">
+            Showing <strong>{focusedRow.sport}</strong>
+            {" — "}
+            <span className="hint">tap another sport below to swap</span>
+          </span>
+        </div>
+      )}
+      <p className="picker-eyebrow">Pick a sport</p>
+      <ul className="rank-list concentration-list">
         {rows.map((r) => (
           <li
             key={r.sport}
-            className={`rank-row tall ${hover?.sport === r.sport ? "hover" : ""}`}
-            onMouseEnter={() => setHover && setHover("sport", r.sport)}
-            onMouseLeave={() => setHover && setHover("sport", null)}
+            className={`rank-row tall ${focusedRow?.sport === r.sport ? "pinned" : ""}`}
+            onClick={() => togglePin(r.sport)}
           >
             <span className="rk dot" style={{ background: FAMILY_COLOR_HINT[r.family] || "#555" }} />
             <span className="rb">
