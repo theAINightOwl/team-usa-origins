@@ -350,10 +350,13 @@ app.post("/api/chat", async (req, res) => {
           code: vizResult.code || "",
         });
 
+        // The chart bubble already renders narration to the user from the
+        // SSE `chart` event above — do NOT pass it back to the chat agent
+        // here, or the agent will dutifully echo it again and the user
+        // sees the same paragraph twice.
         functionResponseResult = {
           rendered: true,
           figure_count: (vizResult.figures || []).length,
-          narration: vizResult.text || "",
         };
       } else if (fc.name === "update_atlas") {
         // Send the patch to the client; it validates and applies it locally.

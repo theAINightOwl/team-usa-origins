@@ -677,12 +677,6 @@ function Message({ m }) {
               <span /><span /><span />
             </span>
           ) : null}
-          {isChart && m.code && (
-            <details className="viz-code">
-              <summary>Show generated Python</summary>
-              <pre>{m.code}</pre>
-            </details>
-          )}
           {m.sources && m.sources.length > 0 && (
             <div className="srcs">
               <div className="srcs-h">Sources</div>
