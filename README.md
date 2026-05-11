@@ -28,8 +28,7 @@ endpoints and the voice WebSocket. Both AI paths talk to the Gemini API
 │   ├── plate_briefs.js     Markdown summaries of each plate (chat context)
 │   ├── atlas_tool.js       update_atlas function-call schema for the agent
 │   ├── viz_agent.js        SQL + code-execution loop that renders charts
-│   ├── viz_db.js           DuckDB warm-load over the same data files
-│   └── armor.js            Model Armor wrapper (optional, disabled by default)
+│   └── viz_db.js           DuckDB warm-load over the same data files
 │
 ├── live/                   Gemini Live voice bridge (TypeScript)
 │   ├── server.mts          Exports attachLiveWS(httpServer); server.js mounts it
@@ -118,25 +117,7 @@ the `.mts` voice module without a compile step.
 | `GEMINI_LIVE_VOICE` | no | `Charon` | Prebuilt voice name for Gemini Live. |
 | `PORT` | no | `5175` (dev), `8080` (Cloud Run) | Express listen port. |
 | `LIVE_PORT` | no | `8765` | Only used by the standalone `npm run live` entry. |
-| `MODEL_ARMOR_PROJECT` / `_LOCATION` / `_TEMPLATE` | no | — | Optional Model Armor pre-screen on prompts. Leave any of the three blank to disable. |
 
 `.env` is read by `dotenv` at server boot. On Cloud Run, `GEMINI_API_KEY`
 is mounted from Secret Manager and the rest are set as environment
 variables on the service.
-
-## Optional: Model Armor pre-screen
-
-Both chat paths can route prompts through
-[Google Cloud Model Armor](https://docs.cloud.google.com/model-armor/overview)
-before they reach Gemini. Catches prompt-injection / jailbreak attempts,
-RAI policy violations, sensitive data, and malicious URLs. Filter
-thresholds live in a GCP template and are editable without redeploying
-the app.
-
-The feature is **opt-in** and currently commented out in `server.js`
-and `live/server.mts`. To enable: provision a template (see Google's
-docs), set `MODEL_ARMOR_PROJECT` / `_LOCATION` / `_TEMPLATE` in `.env`,
-and uncomment the import + call sites at the top of each file.
-Transport failures fail open — if Armor is unreachable the chat
-continues. The system-prompt NIL / medal-level rules stay in force
-either way.
