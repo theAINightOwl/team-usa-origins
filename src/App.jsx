@@ -153,7 +153,7 @@ export default function App() {
     }
     if (patch.lens === "Olympic") setProfileType("olympic");
     else if (patch.lens === "Paralympic") setProfileType("paralympic");
-    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation","per_capita","hs_per_million","era_swing"];
+    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation","per_capita","hs_per_million"];
     if (typeof patch.metric === "string" && ALLOWED_METRICS.includes(patch.metric)) {
       setMetric(patch.metric);
     }
@@ -166,7 +166,7 @@ export default function App() {
         return next;
       });
     }
-    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","era","altitude","you"];
+    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","centroids","altitude","you"];
     if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
       setActivePlate(patch.plate);
     }
@@ -183,21 +183,24 @@ export default function App() {
   const PLATE_METRIC = {
     per_capita: "per_capita",
     hs_conversion: "hs_per_million",
-    era: "era_swing",
   };
   const metricLocked = activePlate in PLATE_METRIC;
   useEffect(() => {
     setOverlays((o) => ({
       ...o,
-      dots: true,
+      // Hide athlete dots on Plate XI so the 12 centroid markers read cleanly.
+      dots: activePlate === "centroids" ? false : true,
       centers: true,
       colleges: activePlate === "colleges",
     }));
     if (activePlate in PLATE_METRIC) {
       setMetric(PLATE_METRIC[activePlate]);
+    } else if (activePlate === "centroids") {
+      // No choropleth competes with the centroid dots.
+      setMetric("none");
     } else {
       setMetric((m) => (
-        m === "per_capita" || m === "hs_per_million" || m === "era_swing" ? "none" : m
+        m === "per_capita" || m === "hs_per_million" ? "none" : m
       ));
     }
     setHover({});
@@ -496,7 +499,7 @@ export default function App() {
               concentrationData={analyticsData[`concentration_${profileType}`] || analyticsData.concentration}
               perCapitaData={analyticsData[`per_capita_${profileType}`] || analyticsData.per_capita}
               hsConversionData={analyticsData[`hs_conversion_${profileType}`] || analyticsData.hs_conversion}
-              eraData={analyticsData[`era_${profileType}`] || analyticsData.era}
+              centroidData={analyticsData[`centroids_${profileType}`] || analyticsData.centroids}
               altitudeData={analyticsData[`elevation_sport_${profileType}`] || analyticsData.elevation_sport}
               userHome={userHome}
               profileType={profileType}

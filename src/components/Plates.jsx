@@ -33,7 +33,7 @@ export const PLATE_DEFS = [
   { key: "per_capita", roman: "VIII", short: "Per Capita", title: "Profiles per 100k residents" },
   { key: "colleges", roman: "IX", short: "Colleges", title: "Profiles per athletic dollar" },
   { key: "hs_conversion", roman: "X", short: "NFHS Slots", title: "Profiles per high-school slot" },
-  { key: "era", roman: "XI", short: "Era", title: "Roster presence by decade" },
+  { key: "centroids", roman: "XI", short: "Centroids", title: "The center of gravity" },
   { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
 ];
 
@@ -46,7 +46,7 @@ const TOGGLE_AWARE = new Set([
   "per_capita",
   "colleges",
   "hs_conversion",
-  "era",
+  "centroids",
   "altitude",
 ]);
 
@@ -61,7 +61,7 @@ function lensSlice(key, profileType) {
     per_capita: "per_capita",
     colleges: "college_efficiency",
     hs_conversion: "hs_conversion",
-    era: "era",
+    centroids: "centroids",
     altitude: "elevation_sport",
   };
   const base = ANALYTICS_KEY[key];
@@ -173,7 +173,7 @@ export function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, hover
     case "colleges":      return <PlateColleges setHover={setHover} hover={hover} {...sliceProps} />;
     case "per_capita":    return <PlatePerCapita setHover={setHover} hover={hover} {...sliceProps} />;
     case "hs_conversion": return <PlateHSConversion setHover={setHover} hover={hover} {...sliceProps} />;
-    case "era":           return <PlateEra setHover={setHover} hover={hover} {...sliceProps} />;
+    case "centroids":     return <PlateCentroids setHover={setHover} hover={hover} {...sliceProps} />;
     case "altitude":      return <PlateAltitude setHover={setHover} hover={hover} {...sliceProps} />;
     case "you":           return <PlateYou profileType={profileType} onUserHome={onUserHome} />;
     default:              return null;
@@ -734,87 +734,67 @@ function PlateHSConversion({ slice, roman, profileType, setHover, hover }) {
   );
 }
 
-/* ── Plate XI — Era Presence ───────────────────────────────────────── */
+/* ── Plate XI — Sport-family centroids ────────────────────────────── */
 
-function PlateEra({ slice, roman, profileType, setHover, hover }) {
-  const data = slice || analytics.era;
-  const { decades, per_state, national, scope = {}, swing_metric = {} } = data;
-  const minTotal = profileType === "paralympic" ? 5 : 30;
-  // Recompute the ranking client-side so we can use a lens-appropriate threshold
-  // (Paralympic totals are smaller than Olympic, so the upstream min_total=30 cuts too much).
-  const ranked = Object.entries(per_state)
-    .map(([st, counts]) => {
-      const early = counts[0] + counts[1];
-      const late = counts[3] + counts[4];
-      const total = counts.reduce((a, b) => a + b, 0);
-      const swing = (late + 1) / (early + 1);
-      return { state: st, counts, total, swing };
-    })
-    .filter((r) => r.total >= minTotal)
-    .sort((a, b) => b.swing - a.swing)
-    .slice(0, 14)
-    .map((r) => ({ st: r.state, counts: r.counts, total: r.total, swing: r.swing }));
-  const colMax = decades.map((_, i) => Math.max(...ranked.map((r) => r.counts[i]), 1));
+function fmtLatLng(lat, lng) {
+  const ns = lat >= 0 ? "N" : "S";
+  const ew = lng >= 0 ? "E" : "W";
+  return `${Math.abs(lat).toFixed(1)}°${ns} · ${Math.abs(lng).toFixed(1)}°${ew}`;
+}
+
+function PlateCentroids({ slice, roman, profileType, setHover, hover }) {
+  const rows = Array.isArray(slice) ? slice : [];
+  // Sort north-to-south by centroid latitude — tells a "where each family
+  // sits" story you can scan top to bottom.
+  const sorted = [...rows].sort((a, b) => (b.lat || 0) - (a.lat || 0));
   return (
     <>
-      <PlateHeader roman={roman || "XI"} eyebrow={lensEyebrow("Time", profileType)} title="Era presence " italic="by decade." />
+      <PlateHeader
+        roman={roman || "XI"}
+        eyebrow={lensEyebrow("Gravity", profileType)}
+        title="The center of "
+        italic="gravity."
+      />
       <p className="plate-lede">
-        Team USA profiles with parsed active years, counted in every overlapping decade.
-        Sorted by {swing_metric.label || "(2010s + 2020s + 1) / (1980s + 1990s + 1)"};
-        legacy Midwest/Northeast states and mountain states dominate this roster slice.
+        For each sport family, the geographic centroid of its current roster —
+        the mean latitude and longitude of every athlete's hometown. Reveals
+        each sport's <em>center of gravity</em> at a glance: Winter and
+        Endurance pull northwest into the Rockies; Equestrian drifts south to
+        the horse belt; most other families settle in the heartland because
+        their pipelines are spread broadly across the country. Hover a row to
+        find its dot on the map.
       </p>
-      <table className="era-grid">
-        <thead>
-          <tr>
-            <th></th>
-            {decades.map((d) => (
-              <th
-                key={d.label}
-                className={`era-col ${hover?.decade === d.label ? "hover" : ""}`}
-                onMouseEnter={() => setHover && setHover("decade", d.label)}
-                onMouseLeave={() => setHover && setHover("decade", null)}
-              >
-                {d.label}
-              </th>
-            ))}
-            <th className="swing">×</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ranked.map((r) => (
-            <tr
-              key={r.st}
-              className={hover?.state === r.st ? "hover" : ""}
-              onMouseEnter={() => setHover && setHover("state", r.st)}
-              onMouseLeave={() => setHover && setHover("state", null)}
+      <ul className="rank-list">
+        {sorted.map((r) => {
+          const top = r.top_states && r.top_states[0];
+          return (
+            <li
+              key={r.family}
+              className={`rank-row ${hover?.family === r.family ? "hover" : ""}`}
+              onMouseEnter={() => setHover && setHover("family", r.family)}
+              onMouseLeave={() => setHover && setHover("family", null)}
             >
-              <th>{r.st}</th>
-              {r.counts.map((n, i) => {
-                const intensity = colMax[i] ? n / colMax[i] : 0;
-                const bg = n === 0 ? "transparent" : `rgba(74, 93, 126, ${Math.min(1, 0.15 + intensity * 0.8)})`;
-                return (
-                  <td key={i} style={{ background: bg }}>{n || ""}</td>
-                );
-              })}
-              <td className="swing num">{r.swing.toFixed(1)}</td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>USA</th>
-            {national.map((n, i) => (
-              <td key={i} className="natl num">{n}</td>
-            ))}
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
+              <span className="rk dot" style={{ background: FAMILY_COLOR_HINT[r.family] || "#555" }} />
+              <span className="rb">
+                <span className="city">{r.family}</span>
+                <span className="sub">
+                  {fmtLatLng(r.lat, r.lng)}
+                  {top ? <> · top {top.state} {fmt(top.n)} ({top.pct}%)</> : null}
+                </span>
+              </span>
+              <span className="rv">
+                <b>{fmt(r.n)}</b>
+                <span className="u">athletes</span>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
       <p className="plate-foot">
-        Scope: {(scope.included_profiles_with_parsed_year || 0).toLocaleString()} profiles included;
-        {" "}
-        {(scope.excluded_no_parsed_year || 0).toLocaleString()} geocoded profiles have no parsed year and are excluded.
-        Current-profile roster bias means this is not a complete historical census.
+        Centroid is the arithmetic mean of athlete lat/lng — a planar
+        approximation that's accurate to within ~1° at CONUS scale. Small
+        families (Strength, Equestrian) carry more sampling noise than the
+        large ones.
       </p>
     </>
   );

@@ -28,7 +28,7 @@ export function buildPlateBriefs(analytics, states, profileType = "olympic") {
     plateVII(pick(analytics, "per_capita", profileType), lensLabel),
     plateVIII(pick(analytics, "college_efficiency", profileType), lensLabel),
     plateIX(pick(analytics, "hs_conversion", profileType), analytics.meta?.hs_conversion, lensLabel),
-    plateX(pick(analytics, "era", profileType), lensLabel),
+    plateX(pick(analytics, "centroids", profileType), lensLabel),
   ];
   return sections.join("\n\n");
 }
@@ -194,34 +194,19 @@ function plateIX(rows, _meta = {}, lens) {
 }
 
 function plateX(d, lens) {
-  if (!d?.per_state) return `## Plate X — Era (${lens})\n(no data)`;
-  const decades = d.decades.map((x) => x.label);
-  const minTotal = lens === "Paralympic" ? 5 : 30;
-  const ranked = Object.entries(d.per_state)
-    .map(([st, counts]) => {
-      const early = counts[0] + counts[1];
-      const late = counts[3] + counts[4];
-      const total = counts.reduce((a, b) => a + b, 0);
-      const swing = (late + 1) / (early + 1);
-      return { state: st, counts, total, swing };
-    })
-    .filter((r) => r.total >= minTotal)
-    .sort((a, b) => b.swing - a.swing)
-    .slice(0, 10);
-  const scope = d.scope || {};
+  if (!Array.isArray(d) || !d.length) return `## Plate XI — Centroids (${lens})\n(no data)`;
+  // Sort N → S so the brief reads like a top-down sweep of where each family sits.
+  const sorted = [...d].sort((a, b) => (b.lat || 0) - (a.lat || 0));
   return [
-    `## Plate X — Era Presence (${lens})`,
-    `${lens} athletes with parsed active years, counted in each overlapping decade (${decades.join(" / ")}). Sorted by late-vs-early swing: (2010s + 2020s + 1) / (1980s + 1990s + 1).`,
-    scope.included_profiles_with_parsed_year != null
-      ? `Scope: ${scope.included_profiles_with_parsed_year.toLocaleString()} ${lens.toLowerCase()} profiles included; ${(scope.excluded_no_parsed_year || 0).toLocaleString()} excluded with no parsed year.`
-      : "",
-    lens === "Paralympic"
-      ? "**Caveat:** the Paralympic Games started in 1960 (Summer) / 1976 (Winter), and teamusa.com's Paralympic coverage skews to currently-active athletes — early decades are often empty or near-empty by roster artifact."
-      : "Caveat: the Team USA roster skews to currently-active profiles, so this is not a complete historical census.",
+    `## Plate XI — Center of gravity (${lens})`,
+    `For each sport family, the geographic centroid (mean lat/lng) of its ${lens.toLowerCase()} hometown roster. Reveals which families sit in the mountains, the heartland, the coasts, or the South.`,
+    "Centroid is an arithmetic mean of athlete coordinates — a planar approximation accurate to ~1° at CONUS scale. Small families (Strength, Equestrian) carry more sampling noise.",
     "",
-    "**Biggest late-vs-early swing states:**",
-    ...ranked.map((r) => `- **${r.state}** — counts ${r.counts.join("/")}, swing ×${r.swing.toFixed(1)}`),
-    "",
-    `National row: ${d.national.join(" / ")}`,
+    "**Families ranked north-to-south by centroid latitude:**",
+    ...sorted.map((r) => {
+      const top = r.top_states && r.top_states[0];
+      const topStr = top ? ` · top state ${top.state} (${top.n}, ${top.pct}%)` : "";
+      return `- **${r.family}** — n=${r.n}, lat ${r.lat.toFixed(1)}°, lng ${r.lng.toFixed(1)}°${topStr}`;
+    }),
   ].filter(Boolean).join("\n");
 }

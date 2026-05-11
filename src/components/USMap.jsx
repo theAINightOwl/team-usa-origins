@@ -99,14 +99,6 @@ function tierForElevation(ft) {
   return ELEVATION_TIERS.find((t) => ft <= t.max);
 }
 
-const ERA_DECADES = [
-  { label: "1980s", lo: 1980, hi: 1989 },
-  { label: "1990s", lo: 1990, hi: 1999 },
-  { label: "2000s", lo: 2000, hi: 2009 },
-  { label: "2010s", lo: 2010, hi: 2019 },
-  { label: "2020s", lo: 2020, hi: 2029 },
-];
-
 export default function USMap({
   features,
   path,
@@ -136,7 +128,7 @@ export default function USMap({
   concentrationData,
   perCapitaData,
   hsConversionData,
-  eraData,
+  centroidData,
   altitudeData,
   // YOU plate user marker
   userHome,
@@ -160,26 +152,15 @@ export default function USMap({
     for (const r of hsConversionData || []) m[r.state] = r;
     return m;
   }, [hsConversionData]);
-  const eraSwingByState = useMemo(() => {
-    const m = {};
-    const ps = eraData?.per_state || {};
-    for (const [st, counts] of Object.entries(ps)) {
-      const early = (counts[0] || 0) + (counts[1] || 0);
-      const late  = (counts[3] || 0) + (counts[4] || 0);
-      m[st] = (late + 1) / (early + 1);
-    }
-    return m;
-  }, [eraData]);
-
   const [metricMin, metricMax] = useMemo(() => {
     const vs = Object.keys(states)
       .map((abbr) => extractMetric(states[abbr], metric, lensStateCounts, {
-        perCapitaByState, hsByState, eraSwingByState, abbr,
+        perCapitaByState, hsByState, abbr,
       }))
       .filter((v) => v != null && !isNaN(v) && v > 0);
     if (!vs.length) return [0, 1];
     return [Math.min(...vs), Math.max(...vs)];
-  }, [states, metric, lensStateCounts, perCapitaByState, hsByState, eraSwingByState]);
+  }, [states, metric, lensStateCounts, perCapitaByState, hsByState]);
 
   // Pre-project athlete coordinates once per filter change.
   const athleteDots = useMemo(() => {
@@ -266,6 +247,22 @@ export default function USMap({
       return { ...f, rank: i + 1, x: p[0], y: p[1] };
     }).filter(Boolean);
   }, [factories, projection, activePlate]);
+
+  // Plate XI — sport-family centroids. Project each family's centroid to
+  // SVG coords and scale the dot area by sqrt(n) so a 4× larger family
+  // gets a 2× radius dot.
+  const centroidPins = useMemo(() => {
+    if (!projection || !centroidData?.length || activePlate !== "centroids") return [];
+    const maxN = Math.max(...centroidData.map((r) => r.n || 1));
+    return centroidData
+      .map((r) => {
+        const p = projection([r.lng, r.lat]);
+        if (!p) return null;
+        const scale = Math.sqrt((r.n || 1) / maxN);
+        return { ...r, x: p[0], y: p[1], radius: 6 + 10 * scale };
+      })
+      .filter(Boolean);
+  }, [centroidData, projection, activePlate]);
 
   // Pre-project training center halos (for Plate IV).
   const haloCenters = useMemo(() => {
@@ -397,14 +394,6 @@ export default function USMap({
         && hover.family) {
       return a.family !== hover.family;
     }
-    if (activePlate === "era" && hover.decade) {
-      const dec = ERA_DECADES.find((d) => d.label === hover.decade);
-      if (dec) {
-        const first = a.first ?? -Infinity;
-        const last  = a.last  ?? Infinity;
-        return last < dec.lo || first > dec.hi;
-      }
-    }
     return false;
   }
 
@@ -476,7 +465,7 @@ export default function USMap({
               const abbr = NAME_TO_ABBR[name];
               const st = states[abbr];
               const value = extractMetric(st, metric, lensStateCounts, {
-                perCapitaByState, hsByState, eraSwingByState, abbr,
+                perCapitaByState, hsByState, abbr,
               });
               const lens = lensStateCounts && lensStateCounts[abbr];
               const fill = fillForState(abbr, st, value);
@@ -627,6 +616,51 @@ export default function USMap({
                   strokeWidth={0.8}
                 />
               ))}
+            </g>
+          )}
+
+          {/* Plate XI — sport-family centroids: one colored dot per family at the geographic mean of its athletes' hometowns. */}
+          {activePlate === "centroids" && (
+            <g className="centroid-layer">
+              {centroidPins.map((c) => {
+                const isHover = hover?.family === c.family;
+                const fill = familyColors[c.family] || "#555";
+                return (
+                  <g
+                    key={`centroid-${c.family}`}
+                    transform={`translate(${c.x} ${c.y})`}
+                    className={`centroid-pin ${isHover ? "hover" : ""}`}
+                    onMouseEnter={() => {
+                      setTooltip({
+                        kind: "centroid",
+                        family: c.family,
+                        n: c.n,
+                        top: c.top_states && c.top_states[0],
+                        cx: 0, cy: 0,
+                      });
+                    }}
+                    onMouseLeave={() => setTooltip(null)}
+                  >
+                    <circle
+                      r={isHover ? c.radius + 4 : c.radius}
+                      fill={fill}
+                      fillOpacity={isHover ? 0.95 : 0.8}
+                      stroke="#1a1410"
+                      strokeWidth={1}
+                    />
+                    <text
+                      x={c.radius + 6}
+                      dy="0.36em"
+                      fontFamily="JetBrains Mono"
+                      fontSize="10"
+                      fontWeight={isHover ? 700 : 500}
+                      fill="#1a1410"
+                    >
+                      {c.family}
+                    </text>
+                  </g>
+                );
+              })}
             </g>
           )}
 
@@ -898,6 +932,17 @@ function Tooltip({ t, familyColors }) {
       </div>
     );
   }
+  if (t.kind === "centroid") {
+    return (
+      <div className="tooltip" style={style}>
+        <div className="t-name" style={{ color: familyColors[t.family] || "#1a1410" }}>{t.family}</div>
+        <div className="t-line"><b>{t.n.toLocaleString()}</b> athletes</div>
+        {t.top && (
+          <div className="t-line">top state: <b>{t.top.state}</b> ({t.top.n}, {t.top.pct}%)</div>
+        )}
+      </div>
+    );
+  }
   if (t.kind === "college") {
     const b = t.data;
     return (
@@ -923,7 +968,6 @@ function extractMetric(st, metric, lensStateCounts, ctx = {}) {
     case "elevation":      return st.elevation?.mean_ft;
     case "per_capita":     return ctx.perCapitaByState?.[ctx.abbr]?.per_100k;
     case "hs_per_million": return ctx.hsByState?.[ctx.abbr]?.per_million_hs;
-    case "era_swing":      return ctx.eraSwingByState?.[ctx.abbr];
     default:               return lens ? lens.count : 0;
   }
 }
@@ -939,7 +983,6 @@ export function metricLabel(m) {
     elevation:      "mean hometown elevation",
     per_capita:     "Team USA per 100k residents",
     hs_per_million: "Team USA per 1M NFHS slots",
-    era_swing:      "decade swing (recent ÷ early)",
   }[m] || m;
 }
 
@@ -954,7 +997,7 @@ function plateCaption(p) {
     case "per_capita":    return "Plate VIII — Profiles per 100k residents";
     case "colleges":      return "Plate IX — Profiles per athletic dollar";
     case "hs_conversion": return "Plate X — NFHS slot density";
-    case "era":           return "Plate XI — How the map moved";
+    case "centroids":     return "Plate XI — The center of gravity";
     case "you":           return "Plate XII — Your geography, your atlas";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }
@@ -968,7 +1011,6 @@ function fmtMetric(v, m) {
   if (m === "elevation") return `${Math.round(v).toLocaleString()} ft`;
   if (m === "per_capita") return `${v.toFixed(2)} / 100k`;
   if (m === "hs_per_million") return `${Math.round(v).toLocaleString()} / 1M`;
-  if (m === "era_swing") return `${v.toFixed(2)}×`;
   return v.toLocaleString();
 }
 

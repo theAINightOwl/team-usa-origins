@@ -416,54 +416,44 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate XI — Era presence by decade
+   * Plate XI — Sport-family centroids
    * ───────────────────────────────────────────────────────────────── */
-  era_olympic: `
-## Olympic presence by decade
+  centroids_olympic: `
+## The center of gravity
 
-The decade-by-decade table includes only Olympic athletes with a parsed active-era year, counted in every decade overlapping their parsed first/last active years.
+For each sport family, the **centroid** is the arithmetic mean of its athletes' hometown coordinates — one dot on the map at the place where the roster, on average, lives. It's a quiet way to read where a sport actually grew up in America, untouched by who medals or which states win.
 
-The national row mostly reflects the current-profile bias in teamusa.com, not a complete historical census of who competed in each decade. What *is* useful is the **swing column** as a within-roster comparison: **(2010s + 2020s + 1) / (1980s + 1990s + 1)**.
+A few patterns jump out on the Olympic lens:
 
-Topping the swing rankings: **Michigan ×70, New York ×59, Colorado ×48, Pennsylvania ×47, Minnesota ×45, Massachusetts ×35.5, Vermont ×31, Missouri ×30, North Carolina ×29, Utah ×29.**
+- **Winter** sits the furthest northwest, around the Mountain West / upper Midwest seam — Colorado pulls hardest, with Minnesota, Utah, and Vermont anchoring the rest of the cold belt.
+- **Endurance** drifts the same direction but higher and dryer — its centroid lands near the Rockies, the legacy of a roster heavy on distance runners, triathletes, and cyclists from altitude-training hubs.
+- **Equestrian** is the only family that pulls clearly **south**, hauled down by Florida and the southern horse country.
+- **Aquatic**, **Track & Field**, and **Team Ball** all settle near the geographic center of the country — not because no place specializes, but because their pipelines are broad enough that one big state (usually California) is balanced by the rest.
 
-That top tier mixes **legacy Midwest/Northeast states** (Michigan, New York, Pennsylvania, Massachusetts, Missouri) with **mountain-state winter Olympic profiles** (Colorado, Utah, Vermont). Texas, Arizona, and the Sun Belt are not at the top — this is more a story of older industrial regions plus the mountain-west winter ecosystem than a Sun Belt narrative.
+## What it doesn't say
 
-The table does not prove migration, training residence, or infrastructure causality. It only says that, inside this current Olympic profile bundle, late-era roster presence is much higher than early-era roster presence for those states.
+The centroid is a single point, so it doesn't tell you how *spread out* a family is — a tight cluster around one state and a coast-to-coast scatter can produce the same dot. That's what Plate III (sport concentration, by HHI) is for. Read the two together: Plate III tells you *how* concentrated, Plate XI tells you *where*.
 
-## Where to look next
-
-The states gaining the most Olympic representation over the last two decades are doing something right that's worth studying. For federations, those are the places where the *current* Olympic pipeline visibly works.
-
-The action is to ask what specifically changed in each state — a new club, a new college program, a generational coach, a state-level investment — and whether any of those changes is portable. Replicating something that's already producing is a more practical path than building a pipeline from scratch in a state that has never had one. The roster bias means this isn't a complete historical census, but the upward signal is real.
+Small families (Strength, Equestrian, Gymnastics) sit on smaller samples and so are noisier — a handful of athletes shifts their dot perceptibly. Treat the top half (Team Ball, Winter, Aquatic, Track & Field) as the firmer signal, and the bottom half as suggestive rather than definitive.
 `,
 
-  era_paralympic: `
-## Paralympic presence by decade
+  centroids_paralympic: `
+## The Paralympic center of gravity
 
-The Paralympic-lens era table is dominated by **a single fact: almost every Paralympic athlete in this roster competed in the 2000s, 2010s, or 2020s.** The Paralympic Games themselves are younger than the Olympic Games (the modern Summer Paralympics began in 1960, Winter in 1976), and teamusa.com's Paralympic coverage is heavily concentrated on athletes still active or recently active.
+The Paralympic roster is smaller and more institutional than the Olympic one — many families have under 30 athletes — which means the centroid moves around more freely as one or two athletes shift state. Read this plate as a sketch, not a fingerprint.
 
-That's why the **swing ratios** at the top of the Paralympic era table are higher than the Olympic ones — for many states, the early-era count is literally zero, so any modern presence drives a large ratio.
+That said, the patterns are real:
 
-Top Paralympic swing rankings:
+- **Winter** anchors at Colorado, like the Olympic lens, but the pull is sharper — the **National Sports Center for the Disabled** at Winter Park is so dominant in Para Alpine that the family's centroid drifts north of where it would sit on the Olympic side.
+- **Endurance** is the most northwesterly Paralympic family, just as on the Olympic side, but the underlying roster is much smaller.
+- **Combat** and **Track & Field** centroids both lean toward Colorado Springs and the upper-Midwest adaptive-sports cluster (Whitewater, etc.) — these are families where the residency-and-camp model concentrates athletes near specific programs.
+- Most other Paralympic families settle near the center of the country because the underlying populations are too small for any one state to dominate.
 
-- **Colorado ×60.0** — counts: 0 / 0 / 9 / 35 / 24
-- **Washington ×37.0** — 0 / 0 / 7 / 18 / 18
-- **Illinois ×36.0** — 0 / 0 / 4 / 14 / 21
-- **Michigan ×30.0** — 0 / 0 / 6 / 17 / 12
-- **Wisconsin ×28.0** — 0 / 0 / 4 / 12 / 15
-- **Florida ×19.5** — 0 / 1 / 3 / 17 / 21
-- **California ×16.4** — 2 / 2 / 12 / 36 / 45
+## How to read this carefully
 
-The interesting non-finding: even in the top Paralympic-growth states, the 1980s and 1990s columns are mostly zero or near-zero. That's a roster-coverage artifact, not an absence of historical Paralympic activity. Paralympic athletes from earlier decades exist but aren't well-represented in the current teamusa.com profile inventory.
+The Paralympic roster's centroid story is mostly a **program story**, not a hometown story: where the active national-team residency / camp programs live, the centroid follows. A few specific institutions (NSCD, UCCS, the University of Illinois adaptive program, Wisconsin–Whitewater) account for a disproportionate share of each family's pull.
 
-## Where to look next
-
-For Paralympic federations, the era table works less as a historical comparison and more as a **current-pipeline signal**. The states with the largest 2010s + 2020s columns — California, Colorado, Florida, Illinois, New York — are where the modern Paralympic infrastructure visibly works.
-
-The actionable extension is to study those states' Paralympic ecosystems alongside the Plate VIII per-capita and Plate IX college-efficiency findings: **Colorado** (NSCD + UCCS + Para residency programs), **Illinois** (University of Illinois adaptive-sport program, the longest-running in the country), **Wisconsin** (Whitewater, plus Wheelchair Curling concentration), and **California** (population scale + multiple adaptive-sport networks). What works in these states should be the basis for replicating Paralympic infrastructure in the southern under-producers.
-
-A real comparison of Paralympic history would require joining this roster with USOPC historical Paralympic team rosters dating back to the 1960s — a dataset upgrade, not something this atlas can resolve on its own.
+Strength, Equestrian, and Track & Field on the Paralympic side have so few athletes that a single name moves their dot 100+ miles. The exact coordinates are not the headline; the **family-level pattern** of "where Para programs cluster" is.
 `,
 
   /* ─────────────────────────────────────────────────────────────────

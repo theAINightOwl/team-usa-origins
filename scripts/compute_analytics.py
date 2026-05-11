@@ -977,85 +977,62 @@ def plate_hs_conversion(states_data, profile_type=None):
     return rows
 
 
-def plate_era(athletes):
-    """#11 — era presence: Team USA profiles per state per decade."""
-    decades = [(1980, 1989), (1990, 1999), (2000, 2009), (2010, 2019), (2020, 2029)]
-    out = {"decades": [], "per_state": {}}
-    for lo, hi in decades:
-        label = f"{lo}s"
-        out["decades"].append({"label": label, "lo": lo, "hi": hi})
+def plate_centroids(athletes, families):
+    """#11 — sport-family centroids: geographic center of each family's roster.
 
-    state_decade_counts = defaultdict(lambda: [0] * len(decades))
-    included_type_counts = Counter()
-    excluded_no_year_type_counts = Counter()
-    excluded_no_state_type_counts = Counter()
+    For each family, compute the arithmetic mean of athlete (lat, lng) — the
+    same planar approximation other plates use — plus the top three source
+    states for context. Athletes with missing coordinates or family are
+    skipped.
+    """
+    by_family_coords = defaultdict(list)
+    by_family_states = defaultdict(Counter)
+    skipped_no_coords = 0
+    skipped_no_family = 0
     for a in athletes:
-        first = a.get("first")
-        last = a.get("last") or first
+        fam = a.get("family")
+        lat = a.get("lat")
+        lng = a.get("lng")
+        if not fam:
+            skipped_no_family += 1
+            continue
+        if lat is None or lng is None:
+            skipped_no_coords += 1
+            continue
+        by_family_coords[fam].append((lat, lng))
         st = a.get("state")
-        profile_type = a.get("type") or "Unknown"
-        if not st:
-            excluded_no_state_type_counts[profile_type] += 1
-            continue
-        if not first:
-            excluded_no_year_type_counts[profile_type] += 1
-            continue
-        included_type_counts[profile_type] += 1
-        for i, (lo, hi) in enumerate(decades):
-            if first <= hi and last >= lo:
-                state_decade_counts[st][i] += 1
+        if st:
+            by_family_states[fam][st] += 1
 
-    included_profiles = sum(included_type_counts.values())
-    excluded_no_year = sum(excluded_no_year_type_counts.values())
-    excluded_no_state = sum(excluded_no_state_type_counts.values())
-    out["scope"] = {
-        "total_geocoded_profiles": len(athletes),
-        "included_profiles_with_parsed_year": included_profiles,
-        "excluded_no_parsed_year": excluded_no_year,
-        "excluded_no_state": excluded_no_state,
-        "included_profile_type_counts": dict(included_type_counts),
-        "excluded_no_year_profile_type_counts": dict(excluded_no_year_type_counts),
-        "excluded_no_state_profile_type_counts": dict(excluded_no_state_type_counts),
-        "included_profile_types": sorted(included_type_counts),
-        "decade_count_method": (
-            "Profiles are counted in every decade that overlaps their parsed first/last active years."
-        ),
-        "bias_note": (
-            "The Team USA roster is current-profile biased; decade counts are not a complete historical census."
-        ),
-    }
-
-    for st, counts in state_decade_counts.items():
-        out["per_state"][st] = counts
-    # also a national totals row
-    out["national"] = [
-        sum(state_decade_counts[st][i] for st in state_decade_counts)
-        for i in range(len(decades))
-    ]
-    out["swing_metric"] = {
-        "label": "(2010s + 2020s + 1) / (1980s + 1990s + 1)",
-        "early_decades": ["1980s", "1990s"],
-        "late_decades": ["2010s", "2020s"],
-        "min_total": 30,
-    }
-    out["swing_rankings"] = []
-    for st, counts in state_decade_counts.items():
-        early = counts[0] + counts[1]
-        late = counts[3] + counts[4]
-        total = sum(counts)
-        if total < out["swing_metric"]["min_total"]:
+    rows = []
+    family_order = families.get("families") or sorted(by_family_coords.keys())
+    for fam in family_order:
+        coords = by_family_coords.get(fam) or []
+        n = len(coords)
+        if n == 0:
             continue
-        out["swing_rankings"].append({
-            "state": st,
-            "counts": counts,
-            "total": total,
-            "early": early,
-            "late": late,
-            "swing": round((late + 1) / (early + 1), 3),
+        lat_mean = sum(c[0] for c in coords) / n
+        lng_mean = sum(c[1] for c in coords) / n
+        top_states = []
+        for st, cnt in by_family_states.get(fam, Counter()).most_common(3):
+            top_states.append({"state": st, "n": cnt, "pct": round(100.0 * cnt / n, 1)})
+        rows.append({
+            "family": fam,
+            "lat": round(lat_mean, 4),
+            "lng": round(lng_mean, 4),
+            "n": n,
+            "top_states": top_states,
         })
-    out["swing_rankings"].sort(key=lambda r: -r["swing"])
-    print(f"  era: {len(decades)} decades, {len(state_decade_counts)} states with athletes")
-    return out
+    print(
+        f"  centroids: {len(rows)} families "
+        f"(skipped {skipped_no_coords} no-coords, {skipped_no_family} no-family)"
+    )
+    if rows:
+        print(
+            f"    largest: {rows and max(rows, key=lambda r: r['n'])['family']}, "
+            f"northernmost: {rows and max(rows, key=lambda r: r['lat'])['family']}"
+        )
+    return rows
 
 
 def median(values):
@@ -1271,7 +1248,7 @@ def main():
         "college_efficiency": plate_college_efficiency(colleges),
         "per_capita": plate_per_capita(states, state_pop),
         "hs_conversion": plate_hs_conversion(states),
-        "era": plate_era(athletes),
+        "centroids": plate_centroids(athletes, families),
     }
     out["meta"] = build_meta(out)
 
@@ -1293,7 +1270,7 @@ def main():
         out[f"per_capita{suffix}"] = plate_per_capita(states, state_pop, profile_type=lens)
         out[f"college_efficiency{suffix}"] = plate_college_efficiency(colleges, profile_type=lens)
         out[f"hs_conversion{suffix}"] = plate_hs_conversion(states, profile_type=lens)
-        out[f"era{suffix}"] = plate_era(ath_lens)
+        out[f"centroids{suffix}"] = plate_centroids(ath_lens, families)
 
     OUT.write_text(json.dumps(out, separators=(",", ":")))
     print(f"\nWrote analytics.json ({OUT.stat().st_size:,} bytes)")
