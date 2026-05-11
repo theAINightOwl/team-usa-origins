@@ -2,6 +2,7 @@
   "name": "hometown-atlas",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite --port 5174",
