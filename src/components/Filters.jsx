@@ -165,7 +165,13 @@ export default function Filters({
 
         <div className={`group ${compact ? "era-row" : ""}`} style={{ marginBottom: 16 }}>
           <span className="ghead">Era <span className="era-bounds">{eraRange[0]}–{eraRange[1]}</span></span>
-          <div className="range-wrap">
+          <div
+            className="range-wrap"
+            style={{
+              "--era-start": `${((eraRange[0] - 1896) / (2026 - 1896)) * 100}%`,
+              "--era-end":   `${((eraRange[1] - 1896) / (2026 - 1896)) * 100}%`,
+            }}
+          >
             <input
               type="range"
               min={1896}

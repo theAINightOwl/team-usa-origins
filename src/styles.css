@@ -365,6 +365,21 @@ aside.panel {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  /* Two-thumb range fill: paint a 3px bar that's hair outside the selected
+     range and rust between the thumbs. The thumb positions are passed in as
+     CSS custom properties from Filters.jsx (eraRange → percentages). */
+  background-image: linear-gradient(
+    to right,
+    var(--hair) 0%,
+    var(--hair) var(--era-start, 0%),
+    var(--rust) var(--era-start, 0%),
+    var(--rust) var(--era-end, 100%),
+    var(--hair) var(--era-end, 100%),
+    var(--hair) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 3px;
+  background-position: 0 calc(50% - 0px);
 }
 .range-wrap .labels {
   display: flex;
@@ -380,14 +395,18 @@ input[type="range"] {
   background: transparent;
   cursor: pointer;
 }
+/* Track is painted by the parent .range-wrap as a gradient between the two
+   thumbs (see .range-wrap rule). The native track on each input stays
+   transparent so we don't double-paint or extend the rust outside the
+   selected range. */
 input[type="range"]::-webkit-slider-runnable-track {
   height: 3px;
-  background: var(--rust);
+  background: transparent;
   border-radius: 2px;
 }
 input[type="range"]::-moz-range-track {
   height: 3px;
-  background: var(--rust);
+  background: transparent;
   border-radius: 2px;
 }
 input[type="range"]::-webkit-slider-thumb {
