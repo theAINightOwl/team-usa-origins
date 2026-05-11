@@ -166,7 +166,7 @@ export default function App() {
         return next;
       });
     }
-    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","home_states","altitude","you"];
+    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","home_states","altitude","you"];
     if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
       setActivePlate(patch.plate);
     }
@@ -182,7 +182,6 @@ export default function App() {
   // ── Per-plate auto-overlay/metric flips ───────────────────────────
   const PLATE_METRIC = {
     per_capita: "per_capita",
-    hs_conversion: "hs_per_million",
   };
   const metricLocked = activePlate in PLATE_METRIC;
   useEffect(() => {
@@ -200,8 +199,9 @@ export default function App() {
       setMetric("none");
     } else {
       // Reset any plate-specific or retired metrics back to "none" when
-      // moving off their plate. `era_swing` is kept for migration: users
-      // who had the old Plate XI open before the rename get cleared.
+      // moving off their plate. `hs_per_million` and `era_swing` are
+      // retired plate metrics kept here for migration so stale React
+      // state from an earlier session clears cleanly.
       setMetric((m) => (
         m === "per_capita" || m === "hs_per_million" || m === "era_swing" ? "none" : m
       ));
@@ -314,18 +314,18 @@ export default function App() {
         </header>
 
         <main className="welcome-main">
-          <p className="welcome-eyebrow">Welcome to Hometown <em>Atlas</em></p>
+          <p className="welcome-eyebrow">Welcome to Hometown Atlas</p>
           <h2 id="welcome-title" className="welcome-title">
             A living dashboard that turns <em>conversation</em> into <em>exploration</em>.
           </h2>
           <p className="welcome-lede">
-            Hometown <em>Atlas</em> is an interactive atlas of the people, places, and
+            Hometown Atlas is an interactive atlas of the people, places, and
             support systems behind 8,500+ Team USA Olympic and Paralympic
             profiles, including hometowns, training centers, colleges,
             high-school pipelines, wages, weather, medals, and sport families.
           </p>
           <p className="welcome-lede">
-            At the center of the experience are <strong>12 editorial story
+            At the center of the experience are <strong>10 editorial story
             plates</strong>. Each plate gives you a focused way to explore the
             data, from hometown patterns and per-capita strength to medal
             concentration, regional clusters, college pipelines, and training

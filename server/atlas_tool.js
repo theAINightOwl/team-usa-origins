@@ -17,7 +17,7 @@ export const ATLAS_METRICS = [
 
 export const ATLAS_PLATES = [
   "ref", "factories", "concentration", "halos", "distance", "climate",
-  "per_capita", "colleges", "hs_conversion", "home_states", "altitude", "you",
+  "per_capita", "home_states", "altitude", "you",
 ];
 
 export const ATLAS_STATE_ABBRS = [

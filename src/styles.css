@@ -2744,7 +2744,7 @@ body { margin: 0; overflow: hidden; }
 .app-topbar .plate-nav-label { display: none; }
 .app-topbar .plate-nav-list {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 6px;
 }
 

@@ -32,9 +32,7 @@ export const PLATE_DEFS = [
   { key: "halos", roman: "VII", short: "Halos", title: "Reach of the training centers" },
   { key: "distance", roman: "VIII", short: "Distance", title: "How far from a center?" },
   { key: "per_capita", roman: "IX", short: "Per Capita", title: "Profiles per 100k residents" },
-  { key: "colleges", roman: "X", short: "Colleges", title: "Profiles per athletic dollar" },
-  { key: "hs_conversion", roman: "XI", short: "NFHS Slots", title: "Profiles per high-school slot" },
-  { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
+  { key: "you", roman: "X", short: "You", title: "Your geography, your facts" },
 ];
 
 const TOGGLE_AWARE = new Set([
@@ -44,8 +42,6 @@ const TOGGLE_AWARE = new Set([
   "distance",
   "climate",
   "per_capita",
-  "colleges",
-  "hs_conversion",
   "home_states",
   "altitude",
 ]);
@@ -59,8 +55,6 @@ function lensSlice(key, profileType) {
     distance: "distance",
     climate: "climate_sport",
     per_capita: "per_capita",
-    colleges: "college_efficiency",
-    hs_conversion: "hs_conversion",
     home_states: "centroids",
     altitude: "elevation_sport",
   };
@@ -170,9 +164,7 @@ export function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, hover
     case "halos":         return <PlateHalos setHover={setHover} hover={hover} {...sliceProps} />;
     case "climate":       return <PlateClimate setHover={setHover} hover={hover} {...sliceProps} />;
     case "distance":      return <PlateDistance setHover={setHover} hover={hover} {...sliceProps} />;
-    case "colleges":      return <PlateColleges setHover={setHover} hover={hover} {...sliceProps} />;
     case "per_capita":    return <PlatePerCapita setHover={setHover} hover={hover} {...sliceProps} />;
-    case "hs_conversion": return <PlateHSConversion setHover={setHover} hover={hover} {...sliceProps} />;
     case "home_states":   return <PlateHomeStates setHover={setHover} hover={hover} {...sliceProps} />;
     case "altitude":      return <PlateAltitude setHover={setHover} hover={hover} {...sliceProps} />;
     case "you":           return <PlateYou profileType={profileType} onUserHome={onUserHome} />;
@@ -1046,7 +1038,7 @@ function PlateYou({ profileType = "olympic", onUserHome }) {
 
   return (
     <>
-      <PlateHeader roman="XII" eyebrow="For You" title="Your " italic="atlas." />
+      <PlateHeader roman="X" eyebrow="For You" title="Your " italic="atlas." />
       <p className="plate-lede">
         Tell the atlas where you grew up and where you live now. It will
         thread the same data behind the other 11 plates around your
