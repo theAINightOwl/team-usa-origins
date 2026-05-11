@@ -66,7 +66,7 @@ Only 5 of the top 50 Paralympic factory towns concentrate ≥80% of their athlet
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate III — Where each sport lives
+   * Plate III — How concentrated each sport is
    * ───────────────────────────────────────────────────────────────── */
   concentration_olympic: `
 ## Where each Olympic sport lives
@@ -416,7 +416,7 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate IV — Where each sport calls home (top-3 source states)
+   * Plate IV — Each family's top three states
    * ───────────────────────────────────────────────────────────────── */
   home_states_olympic: `
 ## Where each sport calls home

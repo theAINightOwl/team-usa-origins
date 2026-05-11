@@ -1003,8 +1003,8 @@ export function metricLabel(m) {
 function plateCaption(p) {
   switch (p) {
     case "factories":     return "Plate II — Tiny towns, big rosters";
-    case "concentration": return "Plate III — Where each sport lives";
-    case "home_states":   return "Plate IV — Where each sport calls home";
+    case "concentration": return "Plate III — How concentrated each sport is";
+    case "home_states":   return "Plate IV — Each family's top three states";
     case "halos":         return "Plate V — Reach of the training centers";
     case "distance":      return "Plate VI — How far Team USA grew up from a training center";
     case "climate":       return "Plate VII — Sport family × climate";

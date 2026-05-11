@@ -61,7 +61,7 @@ function plateIII(rows, lens) {
   if (!rows?.length) return `## Plate III — Concentration (${lens})\n(no data)`;
   const filt = rows.filter((r) => r.n_athletes >= 5).slice(0, 10);
   return [
-    `## Plate III — Sport Geographic Concentration (${lens})`,
+    `## Plate III — How concentrated each sport is (${lens})`,
     `Herfindahl index per ${lens} sport: sum of squared state shares across hometowns. 1.0 = single state, 0.02 = perfectly spread.`,
     "",
     "**Most concentrated sports:**",
@@ -194,11 +194,11 @@ function plateIX(rows, _meta = {}, lens) {
 }
 
 function plateX(d, lens) {
-  if (!Array.isArray(d) || !d.length) return `## Plate IV — Home states (${lens})\n(no data)`;
+  if (!Array.isArray(d) || !d.length) return `## Plate IV — Each family's top three states (${lens})\n(no data)`;
   // Largest families first — those are the editorial leads.
   const sorted = [...d].sort((a, b) => (b.n || 0) - (a.n || 0));
   return [
-    `## Plate IV — Where each sport calls home (${lens})`,
+    `## Plate IV — Each family's top three states (${lens})`,
     `For each sport family, the top three source states for its ${lens.toLowerCase()} hometown roster. California is #1 for most families simply because of population scale; the interesting reads are the families where another state overtakes it.`,
     "Counts are athletes' published hometowns; share is rounded to one decimal of the family's total. Small families (Strength, Equestrian, Track & Field on the Paralympic side) carry more sampling noise.",
     "",

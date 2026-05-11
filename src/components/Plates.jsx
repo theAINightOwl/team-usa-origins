@@ -25,8 +25,8 @@ const TRACKED_OPTC_COUNT = analytics.halos?.filter((c) => c.type === "OPTC").len
 export const PLATE_DEFS = [
   { key: "ref", roman: "I", short: "Overview", title: "A century of hometowns" },
   { key: "factories", roman: "II", short: "Factories", title: "Tiny towns, big rosters" },
-  { key: "concentration", roman: "III", short: "Concentration", title: "Where each sport lives" },
-  { key: "home_states", roman: "IV", short: "Home States", title: "Where each sport calls home" },
+  { key: "concentration", roman: "III", short: "Concentration", title: "How concentrated each sport is" },
+  { key: "home_states", roman: "IV", short: "Home States", title: "Each family's top three states" },
   { key: "halos", roman: "V", short: "Halos", title: "Reach of the training centers" },
   { key: "distance", roman: "VI", short: "Distance", title: "How far from a center?" },
   { key: "climate", roman: "VII", short: "Climate", title: "Sport family × climate" },
@@ -309,7 +309,7 @@ function PlateConcentration({ slice, roman, profileType, setHover, hover }) {
   const rows = data.filter((r) => r.n_athletes >= 7).slice(0, 24);
   return (
     <>
-      <PlateHeader roman={roman || "III"} eyebrow={lensEyebrow("Geography", profileType)} title="Where each sport " italic="lives." />
+      <PlateHeader roman={roman || "III"} eyebrow={lensEyebrow("Geography", profileType)} title="How concentrated each " italic="sport is." />
       <p className="plate-lede">
         How concentrated each sport's hometowns are. A score of{" "}
         <span className="num">1.00</span> means every Team USA profile comes from a single state;
@@ -745,8 +745,8 @@ function PlateHomeStates({ slice, roman, profileType, setHover, hover }) {
       <PlateHeader
         roman={roman || "IV"}
         eyebrow={lensEyebrow("Home", profileType)}
-        title="Where each sport "
-        italic="calls home."
+        title="Each family's top "
+        italic="three states."
       />
       <p className="plate-lede">
         The top three source states for each sport family — where its
