@@ -48,7 +48,7 @@ The Paralympic-lens table is anchored by a single institution: the **National Sp
 
 But the Paralympic factory pattern isn't only winter. **Gig Harbor, Washington** (pop. **12,604**) appears for Wheelchair Basketball; **Crystal Lake, IL** for Para Judo; **Salem, MA** for Para Swimming. The per-capita rates are smaller (these are bigger towns), but the signature is the same: a town with a single visible adaptive-sport club or program that funnels athletes into one Paralympic discipline.
 
-The dominant top family across the 50 Paralympic factory towns is actually **Team Ball** (14 of 50, mostly Wheelchair Basketball), followed by Winter (10), Other (9, mostly Para Athletics and Para Swimming), and Aquatic (8). The Paralympic version of "culture density" runs through specific clubs and adaptive-sport organizations, not through the broader civic infrastructure that produces Olympic skiers and curlers.
+The dominant top family across the 50 Paralympic factory towns is actually **Team Ball** (14 of 50, mostly Wheelchair Basketball), tied between Winter (10) and Track & Field (10, mostly Para Athletics), with Aquatic (8) close behind. The Paralympic version of "culture density" runs through specific clubs and adaptive-sport organizations, not through the broader civic infrastructure that produces Olympic skiers and curlers.
 
 ## Where to look next
 
@@ -128,6 +128,8 @@ Start with the biggest raw number. **290 Olympians live within 200 miles of the 
 
 **Colorado Springs**, the original USOPC training center [built in 1978](https://krdo.com/olympic-city-usa/2024/02/14/why-the-usopc-moved-to-colorado-springs-in-the-late-70s/) on the former Ent Air Force Base, anchors the system at altitude (6,035 feet). Roughly 15,000 athletes pass through annually, and the co-located USA Swimming National Training Center is folded into the same geography on this map.
 
+One of the ten tracked geographies — **Lakeshore Foundation** in Homewood, AL — exists for Paralympic sport, not Olympic. It still registers here (30 of the 81 Olympians within 200 miles do a sport Lakeshore lists, mostly Track & Field), but the meaningful story for Lakeshore is on the Paralympic lens.
+
 ## Where to look next
 
 Most of the country isn't near a USOPC center. About **half of the Olympians in this roster live more than 300 miles from any tracked training site.** Texas alone holds a large share, with **Houston the biggest single distant metro.**
@@ -140,24 +142,24 @@ A cheaper, more practical angle could be a **single-sport satellite**: a city wi
   halos_paralympic: `
 ## Reach of the training centers (Paralympic)
 
-Looking at the same training-center map under the Paralympic lens reveals something stark: **the existing Olympic infrastructure barely serves the Paralympic athlete pool.**
+Looking at the same training-center map under the Paralympic lens reveals something stark: **the tracked facility roster is still mostly Olympic infrastructure, with one explicit Paralympic hub on it.**
 
-The biggest Paralympic halo (athletes within 200 miles) belongs to the **Pettit National Ice Center in Milwaukee, with 58 nearby Paralympians** — but **zero of them are in a sport this site trains.** That gap is the headline. Pettit is a long-track speed-skating facility; almost no Paralympians compete in long-track speed skating in this roster. Geographic proximity is real; functional service is zero.
+The biggest raw Paralympic halo (athletes within 200 miles) belongs to the **Pettit National Ice Center in Milwaukee, with 58 nearby Paralympians** — and **zero of them are in a sport this site trains.** Pettit is a long-track speed-skating facility; almost no Paralympians compete in long-track speed skating in this roster. Geographic proximity is real; functional service is zero. That gap is the headline this lens keeps producing.
 
-The Paralympic sport-served counts elsewhere are similarly small:
+The functional-service standout on the Paralympic side is **Lakeshore Foundation** in Homewood, Alabama — the one tracked site whose entire program is built around Paralympic sport. The raw halo is small: only **22 Paralympic athletes** live within 200 miles, in a thinly populated stretch of the South. But **15 of those 22 are in a sport Lakeshore actually trains** — wheelchair rugby, goalball, sitting volleyball, wheelchair basketball, para powerlifting, para athletics, paratriathlon. That's a **68% sport-served rate, the highest of any tracked center on this lens.** The catchment is small, but for the athletes inside it, the match is almost always real.
 
-- **Chula Vista** — 41 Paralympians within 200 miles, **22 sport-served** (the highest Paralympic sport-served count, driven by Para Track & Field).
-- **Colorado Springs** — 53 nearby, **14 sport-served**, with Para Cycling and a few other USOPC-supported disciplines.
+The rest of the network is bigger but blunter:
+
+- **Chula Vista** — 41 Paralympians within 200 miles, **22 sport-served** (still the highest absolute count, driven by Para Track & Field and Sitting Volleyball folded into existing Olympic programs).
+- **Colorado Springs** — 53 nearby, **14 sport-served** through Para Cycling and the few other USOPC-supported disciplines that share the OPTC campus.
 - **Lake Placid** — 37 nearby, **6 sport-served** (sled hockey, Para Nordic).
 - **Anaheim Volleyball** — 43 nearby, **1 sport-served**.
 
-**The tracked OPTC and federation-facility roster was built around Olympic disciplines.** Paralympic residency programs — Winter Park / NSCD for Para Alpine, Bridger Bowl and other adaptive-sport ecosystems for Para Nordic, BlazeSports / Move United chapters for adaptive ball sports — don't appear in this roster. That's why the Paralympic halo numbers look so empty.
-
 ## Where to look next
 
-For the USOPC and the national federations, this plate may suggest that **the existing tracked-facility map isn't really the Paralympic talent infrastructure.** Most of the Paralympic athletes who reach elite competition appear to do so through programs that aren't on this map.
+Even with Lakeshore on the map, the tracked roster is small and clustered in three regions — the desert Southwest, the Front Range, and the Lake Placid pocket — with a single southern outlier. Many Paralympic disciplines still have **no Para-specific tracked hub anywhere**: Wheelchair Curling, Wheelchair Tennis, Wheelchair Fencing, Para Alpine Skiing, Para-Equestrian, Sailing. Athletes in those sports show up as "unserved" no matter where they live.
 
-One natural extension of this atlas could be to **map the adaptive-sport infrastructure separately** — university wheelchair basketball programs, Move United chapters, VA adaptive-sport facilities, NSCD-style residency centers — and use that as the basis for Paralympic siting and scouting decisions rather than the Olympic-built OPTC roster. A Paralympic athlete near Pettit Ice Center may grow up far from the right facility for their sport even when the dot on the map looks close.
+For the USOPC and the national federations, the practical question this plate raises isn't whether to copy Lakeshore — it's whether the tracked-facility map is the right frame at all for Paralympic siting and scouting decisions. Mapping the adaptive-sport ecosystem separately — NSCD-style residency centers, BlazeSports / Move United chapters, VA adaptive facilities, university adaptive programs — would likely tell a more honest story about where Paralympic talent actually trains.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -166,19 +168,19 @@ One natural extension of this atlas could be to **map the adaptive-sport infrast
   distance_olympic: `
 ## How far from a training center? (Olympic)
 
-For each of the **1,834 Olympic athletes** in this lens whose sport is represented in the tracked facility roster, we measured how far their hometown is from the nearest training site that actually trains their sport. The result is striking: **most Olympians grew up nowhere near any tracked center.**
+For each of the **1,855 Olympic athletes** in this lens whose sport is represented in the tracked facility roster, we measured how far their hometown is from the nearest training site that actually trains their sport. The result is striking: **most Olympians grew up nowhere near any tracked center.**
 
-Across all sport families combined, only about **14% lived within 200 miles** of a sport-serving training site, **22% lived 200–800 miles away**, and roughly **64% lived more than 800 miles away.** The existing training-center geography is largely decoupled from where U.S. Olympic talent actually grows up.
+Across all sport families combined, only about **16% lived within 200 miles** of a sport-serving training site, **38% lived 200–800 miles away**, and roughly **47% lived more than 800 miles away.** Put differently: **more than 8 in 10 Olympians grew up more than 200 miles from any sport-serving facility.** The existing training-center geography is largely decoupled from where U.S. Olympic talent actually grows up.
 
-Two families break the pattern. **Endurance** (about 28% within 200 miles) is anchored by clusters around Lake Placid (biathlon) and Park City (cross-country / nordic combined). **Winter** also leans regional — about 21% within 200 miles, 53% in the 200–800 band. For everyone else — Aquatic, Combat, Gymnastics, Track & Field, Racket — the close-and-mid-distance shares are small and the >800 share dominates.
+Two families break the pattern. **Endurance** (about 33% within 200 miles) is anchored by clusters around Lake Placid (biathlon) and Park City (cross-country / nordic combined). **Winter** also leans regional — about 21% within 200 miles, with another 53% in the 200–800 band. For everyone else — Aquatic, Combat, Gymnastics, Track & Field, Racket — the close-band shares are small and the >800 share dominates.
 
 This doesn't mean the centers don't matter. Olympic athletes move to train, and elite competition happens at the centers regardless of where they started. What it means is that the existing training-center map is **not** the pipeline that produces most U.S. Olympic athletes — the pipeline runs through clubs, schools, and college programs scattered across the country.
 
-(Note on scope: this analysis is restricted to the Olympic athletes whose sport is represented in the tracked facility roster. Sports like basketball, table tennis, sailing, softball, triathlon, and equestrian don't have a tracked facility and are excluded.)
+(Note on scope: this analysis is restricted to the Olympic athletes whose sport is represented in the tracked facility roster. Sports like basketball, table tennis, sailing, softball, and equestrian don't have a tracked facility and are excluded.)
 
 ## Where to look next
 
-This plate complicates the usual assumption that "more centers near more athletes = more Olympians." **Roughly two-thirds of the Olympians in this roster grew up more than 800 miles from any sport-serving training center.**
+This plate complicates the usual assumption that "more centers near more athletes = more Olympians." **Roughly half of the Olympians in this roster grew up more than 800 miles from any sport-serving training center, and another third grew up in the 200–800 mile band.**
 
 For the USOPC and the national federations, the more useful lever may not be **building** more centers but **strengthening the distributed pipeline** that already appears to be producing: club partnerships, college relationships, and recruiting in the regions where future Olympians already live could help find leverage the center map doesn't reveal. The center may matter later, after an athlete is already on a path. For scouts, the home community could be a more practical place to look than the area around any single center.
 `,
@@ -186,23 +188,25 @@ For the USOPC and the national federations, the more useful lever may not be **b
   distance_paralympic: `
 ## How far from a training center? (Paralympic)
 
-For the **472 Paralympic athletes** in this lens whose sport is represented in the tracked facility roster, the same question shows a similar but slightly different pattern: **most Paralympians also grew up far from the tracked centers, but the distance distribution is more compact, especially for Endurance and Winter.**
+For the **571 Paralympic athletes** in this lens whose sport is represented in the tracked facility roster, the same question shows a familiar but reshaped pattern: **most Paralympians still grew up far from any tracked center, but the new Lakeshore Foundation row and the inclusion of more Para-served sports has shifted weight out of the far band and into the middle.**
 
-Across all families combined under the Paralympic lens, roughly **11% lived within 200 miles** of a sport-serving training site, **19% lived 200–800 miles away**, and about **70% lived more than 800 miles away.** That's broadly similar to the Olympic numbers but with a larger far-from-center share, partly because the tracked facility roster is poorly matched to Paralympic disciplines (Plate IV).
+Across all families combined under the Paralympic lens, roughly **12% lived within 200 miles** of a sport-serving training site, **46% lived 200–800 miles away**, and about **42% lived more than 800 miles away.** The close-band share is still smaller than Olympic, but the mid band now dominates — most Paralympic athletes are within reasonable travel of *some* serving facility, even if they didn't grow up in its immediate orbit.
 
-The pattern-breaking families:
+A few family patterns stand out:
 
-- **Endurance** (n=59) — **15%** within 200, **63%** mid-distance, only **22%** far. Driven by Para Nordic and Para Cycling clustering around Park City, Bridger Bowl, and the Colorado Front Range.
-- **Winter** (n=90) — **13%** within 200, **36%** mid-distance, **51%** far. Less anchored than Olympic Winter because Para Alpine residency at Winter Park (Plate II) sits between the close and mid bands.
+- **Endurance** (n=59) — **15%** within 200, **63%** mid-distance, only **22%** far. Driven by Para Nordic and Para Cycling clustering around Park City and the Colorado Front Range.
+- **Winter** (n=90) — **13%** within 200, **36%** mid-distance, **51%** far. Less anchored than Olympic Winter because Para Alpine residency at Winter Park sits off this map.
 - **Combat** (n=15) — small sample, but **20%** within 200 (mostly LA-area Para Judo and Para Taekwondo).
+- **Track & Field** (n=144, dominated by Para Athletics now that it's classified correctly) — **12%** within 200, **60%** mid-distance, **27%** far. Chula Vista and Lakeshore between them catch a much larger share than the Olympic-only roster did.
+- **Team Ball** (n=136) — **9%** within 200, **57%** mid-distance, **34%** far. Lakeshore's adaptive ball-sport programs (Wheelchair Basketball, Wheelchair Rugby, Sitting Volleyball) materially lifted this family out of the far band.
 
-For all other families — Aquatic, Other (mostly Para Athletics), Team Ball — over **70%** of Paralympic athletes grew up more than 800 miles from any tracked sport-serving facility.
+The remaining far-band heaviness sits in **Aquatic** (75% far) and **Winter** (51% far) — disciplines where the tracked roster still doesn't reach into much of the country.
 
 ## Where to look next
 
-The training-center roster wasn't built around Paralympic geography, and the distance numbers seem to reflect that. **Roughly 7 in 10 Paralympic athletes grew up more than 800 miles from any tracked sport-serving center**, and the close-band share is smaller than for Olympic athletes.
+The headline has softened: adding Lakeshore and folding adaptive sports into the existing roster moves roughly **3 in 10 Paralympic athletes out of the far band and into the mid band.** That's a real reframing — the tracked map isn't as decoupled from the Paralympic pipeline as the pre-Lakeshore numbers suggested.
 
-For Paralympic recruiting, the takeaway may echo the Olympic version with one extra wrinkle: training-center proximity may be the wrong filter to lean on for Paralympic prospects. A useful next analysis could be to map adaptive-sport clubs, university programs (Whitewater, Central Oklahoma, UCCS), VA adaptive facilities, and Move United chapters — then ask the distance question against *that* layer. Most of the Paralympic pipeline appears not to run through the OPTC map at all.
+It still isn't the whole map. Many Paralympic disciplines — Wheelchair Curling, Wheelchair Tennis, Wheelchair Fencing, Para Alpine, Para-Equestrian, Sailing — have no tracked facility anywhere and don't appear in this plate at all. A useful next analysis would be to map the adaptive-sport ecosystem separately (NSCD-style residency centers, BlazeSports / Move United chapters, VA adaptive facilities, university adaptive programs) and ask the distance question against *that* layer. The Paralympic pipeline that runs through the tracked-facility map is now more visible than before; the parts that don't are the next thing to make visible.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
@@ -437,13 +441,13 @@ The Paralympic roster is smaller (and more institutional) than the Olympic one, 
 
 - **Winter** is anchored by Colorado — driven almost entirely by the **National Sports Center for the Disabled** at Winter Park, which has been the Para Alpine team's de-facto residency program for decades. California and Washington round out the top-3 on a much smaller base.
 - **Team Ball** (mostly Wheelchair Basketball and Wheelchair Rugby) leans toward states with large university adaptive-sport programs — **Illinois** (the University of Illinois adaptive-sport program, the longest-running in the country) and **Wisconsin** (UW-Whitewater) consistently show up.
-- **Other** (which includes Para Athletics and Para Swimming) is California-led but with a long tail of smaller states.
+- **Track & Field** (dominated by Para Athletics) is California-led but with a long tail of smaller states — its top-3 is the most population-driven of the Paralympic families.
 
 The Paralympic top-3 is best read as a **program map**, not a population map: where active national-team residency / camp programs live, the top-3 follows. Replicating those programs is the closest thing to a portable playbook for Paralympic federations.
 
 ## Caveats
 
-Small families on the Paralympic side (**Strength**, **Equestrian**, **Track & Field**) have under 25 athletes each, which means a single name can move a state in or out of the top-3. Read those rows as suggestive rather than definitive.
+Small families on the Paralympic side (**Strength**, **Equestrian**, **Combat**) have under 25 athletes each, which means a single name can move a state in or out of the top-3. Read those rows as suggestive rather than definitive.
 
 Gymnastics is missing entirely from this lens — there are no Paralympic Gymnastics events, so the family has zero athletes under the Paralympic toggle.
 `,

@@ -15,10 +15,10 @@
   },
   "counts": {
     "Team Ball": 972,
-    "Winter": 913,
+    "Winter": 963,
     "Aquatic": 887,
-    "Other": 808,
-    "Track & Field": 478,
+    "Track & Field": 630,
+    "Other": 606,
     "Combat": 446,
     "Endurance": 252,
     "Precision": 154,
@@ -429,8 +429,20 @@
       "is_paralympic": true
     },
     "Para Track and Field": {
-      "family": "Other",
+      "family": "Track & Field",
       "is_paralympic": true
+    },
+    "Para Athletics": {
+      "family": "Track & Field",
+      "is_paralympic": true
+    },
+    "Speedskating": {
+      "family": "Winter",
+      "is_paralympic": false
+    },
+    "Short Track Speedskating": {
+      "family": "Winter",
+      "is_paralympic": false
     },
     "Para-Cycling": {
       "family": "Endurance",

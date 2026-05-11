@@ -100,6 +100,9 @@ Para Swimming,Aquatic,True,Swimming
 Para Table Tennis,Racket,True,Table Tennis
 Para Taekwondo,Combat,True,Taekwondo
 Para Track and Field,Track & Field,True,Athletics
+Para Athletics,Track & Field,True,Athletics
+Speedskating,Winter,False,Speed Skating
+Short Track Speedskating,Winter,False,Short Track Speed Skating
 Para-Cycling,Endurance,True,Cycling
 Para-Equestrian,Equestrian,True,Equestrian
 Para-Rowing,Aquatic,True,Rowing

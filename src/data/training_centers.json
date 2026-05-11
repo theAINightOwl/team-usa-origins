@@ -108,5 +108,16 @@
     "sports_served": "Volleyball;Beach Volleyball",
     "year_opened": 2003,
     "paralympic": true
+  },
+  {
+    "name": "Lakeshore Foundation",
+    "type": "Training Site",
+    "city": "Homewood",
+    "state": "AL",
+    "lat": 33.4683,
+    "lng": -86.796,
+    "sports_served": "Goalball;Wheelchair Basketball;Wheelchair Rugby;Sitting Volleyball;Para Powerlifting;Para Athletics;Paratriathlon",
+    "year_opened": 2003,
+    "paralympic": true
   }
 ]
