@@ -770,6 +770,101 @@ input[type="range"]::-moz-range-thumb {
 }
 .marginalia .footnote sup { color: var(--rust); }
 
+/* Sport-family taxonomy disclosure (Plate I reference) */
+.marginalia details.taxonomy {
+  margin-top: 18px;
+  border-top: 1px solid var(--hair);
+  padding-top: 14px;
+}
+.marginalia details.taxonomy > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0;
+}
+.marginalia details.taxonomy > summary::-webkit-details-marker { display: none; }
+.marginalia details.taxonomy > summary .ghead {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.marginalia details.taxonomy > summary .taxonomy-summary {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-3);
+  font-size: 13px;
+  flex: 1;
+}
+.marginalia details.taxonomy > summary .caret {
+  color: var(--ink-3);
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+.marginalia details.taxonomy[open] > summary .caret { transform: rotate(180deg); }
+.marginalia .taxonomy-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-3);
+  font-size: 13px;
+  margin: 10px 0 14px;
+}
+.marginalia .taxonomy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.marginalia .taxonomy-family {
+  border-top: 1px dashed var(--hair);
+  padding-top: 10px;
+}
+.marginalia .taxonomy-family:first-child { border-top: none; padding-top: 0; }
+.marginalia .taxonomy-family-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.marginalia .taxonomy-family-head .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.marginalia .taxonomy-family-head strong {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink);
+}
+.marginalia .taxonomy-count {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.marginalia .taxonomy-sports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+.marginalia .taxonomy-sport {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-2);
+  padding: 2px 7px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: var(--paper-2);
+  white-space: nowrap;
+}
+
 /* ── Close button ──────────────────────────────────────────────── */
 .close-btn {
   font-family: var(--mono);

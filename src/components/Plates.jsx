@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import analytics from "../data/analytics.json";
 import trainingCentersData from "../data/training_centers.json";
+import sportFamiliesData from "../data/sport_families.json";
 import { STORIES } from "../data/plate_stories.js";
 import Markdown from "../lib/markdown.jsx";
 import { streamPersonal } from "../lib/sse.js";
@@ -244,13 +245,72 @@ function PlateReference({ totals }) {
         that production. Click any plate at the top of this column to read the country a different way —
         per capita, by climate, by tracked-facility proximity, decade by decade.
       </p>
+      <SportFamilyTaxonomy />
       <div className="footnote">
         <p><sup>1</sup> Athlete roster scraped from teamusa.com; hometowns, sports, medals, and other analytic fields come from the Team USA profile payload. The shipped app bundle strips first and last names.</p>
         <p><sup>2</sup> Hometown coordinates from the 2023 U.S. Census Gazetteer, augmented by hand-curated entries.</p>
-        <p><sup>3</sup> Training-facility roster is curated from official facility pages. Feeder-college counts use conservative multi-school matches against the EADA public dataset (2023).</p>
+        <p><sup>3</sup> Training-facility roster is curated from official facility pages.</p>
         <p><sup>4</sup> Place population for the per-capita plates from the U.S. Census Population Estimates Program (2023).</p>
+        <p><sup>5</sup> Sport-family taxonomy is a project-defined hand mapping of each Team USA sport string into one of twelve buckets; the full table is in the disclosure above.</p>
       </div>
     </div>
+  );
+}
+
+/* ── Sport-family taxonomy disclosure ───────────────────────────────
+ * Reference table that groups every Team USA sport string under its
+ * family bucket. Collapsed by default; opens to 12 family blocks each
+ * listing its sports as small chips. Data shape:
+ *   sportFamiliesData.sports = { "<sport>": { family, is_paralympic } }
+ */
+function SportFamilyTaxonomy() {
+  const { sports, colors, counts, families } = sportFamiliesData;
+  // Build family → sports[]; ignore short uppercase codes ("ARC", "ATH") that
+  // exist as aliases for the longer-named entries to keep the chips human-
+  // readable.
+  const byFamily = {};
+  for (const fam of families) byFamily[fam] = [];
+  for (const [sport, info] of Object.entries(sports || {})) {
+    if (!info?.family) continue;
+    if (sport.length <= 3 && sport === sport.toUpperCase()) continue;
+    if (byFamily[info.family]) byFamily[info.family].push(sport);
+  }
+  // Order families by athlete count descending — the editorial leads first.
+  const ordered = [...families].sort((a, b) => (counts[b] || 0) - (counts[a] || 0));
+  return (
+    <details className="taxonomy">
+      <summary>
+        <span className="ghead">Sport-family taxonomy</span>
+        <span className="taxonomy-summary">{families.length} families · {Object.keys(sports || {}).length} sport entries</span>
+        <span className="caret">▾</span>
+      </summary>
+      <p className="taxonomy-lede">
+        Each Team USA sport string is hand-mapped into one of twelve family
+        buckets — the same buckets used as filter chips and dot colours
+        throughout the atlas. No external taxonomy; the groupings are
+        editorial.
+      </p>
+      <ul className="taxonomy-list">
+        {ordered.map((fam) => {
+          const sportsInFamily = byFamily[fam] || [];
+          if (!sportsInFamily.length) return null;
+          return (
+            <li key={fam} className="taxonomy-family">
+              <div className="taxonomy-family-head">
+                <span className="dot" style={{ background: colors[fam] || "#555" }} />
+                <strong>{fam}</strong>
+                <span className="taxonomy-count">{(counts[fam] || 0).toLocaleString()} athletes · {sportsInFamily.length} sport{sportsInFamily.length === 1 ? "" : "s"}</span>
+              </div>
+              <div className="taxonomy-sports">
+                {sportsInFamily.sort((a, b) => a.localeCompare(b)).map((s) => (
+                  <span key={s} className="taxonomy-sport">{s}</span>
+                ))}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </details>
   );
 }
 

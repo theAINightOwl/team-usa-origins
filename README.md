@@ -124,46 +124,6 @@ the `.mts` voice module without a compile step.
 is mounted from Secret Manager and the rest are set as environment
 variables on the service.
 
-## Deploying to Cloud Run
-
-The repo ships a multi-stage `Dockerfile` and a `.dockerignore` tuned
-for a single Cloud Run service. From scratch:
-
-```bash
-# One-time: pick a GCP project, link billing, enable APIs
-gcloud config set project <YOUR_PROJECT_ID>
-gcloud services enable \
-  run.googleapis.com \
-  cloudbuild.googleapis.com \
-  artifactregistry.googleapis.com \
-  secretmanager.googleapis.com
-
-# One-time: store the Gemini key in Secret Manager
-gcloud secrets create gemini-api-key --replication-policy=automatic
-echo -n "<YOUR_GEMINI_KEY>" | gcloud secrets versions add gemini-api-key --data-file=-
-
-# Grant Cloud Run's default runtime SA access to the secret
-PROJECT_NUMBER=$(gcloud projects describe <YOUR_PROJECT_ID> --format='value(projectNumber)')
-gcloud secrets add-iam-policy-binding gemini-api-key \
-  --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
-  --role="roles/secretmanager.secretAccessor"
-
-# Build + deploy from local source (Cloud Build picks up the Dockerfile)
-gcloud run deploy hometown-atlas \
-  --source . \
-  --region us-central1 \
-  --allow-unauthenticated \
-  --set-secrets=GEMINI_API_KEY=gemini-api-key:latest \
-  --memory 1Gi \
-  --cpu 1 \
-  --port 8080
-```
-
-Cloud Run injects `$PORT`; `server.js` honors it. The same
-`gcloud run deploy --source .` command also redeploys on subsequent
-pushes once a [continuous-deploy trigger](https://cloud.google.com/run/docs/continuous-deployment-with-cloud-build)
-is wired up via the Cloud Run console.
-
 ## Optional: Model Armor pre-screen
 
 Both chat paths can route prompts through
