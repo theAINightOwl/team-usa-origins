@@ -26,11 +26,11 @@ export const PLATE_DEFS = [
   { key: "ref", roman: "I", short: "Overview", title: "A century of hometowns" },
   { key: "factories", roman: "II", short: "Factories", title: "Tiny towns, big rosters" },
   { key: "concentration", roman: "III", short: "Concentration", title: "How concentrated each sport is" },
-  { key: "home_states", roman: "IV", short: "Home States", title: "Each family's top three states" },
-  { key: "halos", roman: "V", short: "Halos", title: "Reach of the training centers" },
-  { key: "distance", roman: "VI", short: "Distance", title: "How far from a center?" },
-  { key: "climate", roman: "VII", short: "Climate", title: "Sport family × climate" },
-  { key: "altitude", roman: "VIII", short: "Altitude", title: "Sport family × altitude" },
+  { key: "home_states", roman: "IV", short: "Home States", title: "Sport family × states" },
+  { key: "climate", roman: "V", short: "Climate", title: "Sport family × climate" },
+  { key: "altitude", roman: "VI", short: "Altitude", title: "Sport family × altitude" },
+  { key: "halos", roman: "VII", short: "Halos", title: "Reach of the training centers" },
+  { key: "distance", roman: "VIII", short: "Distance", title: "How far from a center?" },
   { key: "per_capita", roman: "IX", short: "Per Capita", title: "Profiles per 100k residents" },
   { key: "colleges", roman: "X", short: "Colleges", title: "Profiles per athletic dollar" },
   { key: "hs_conversion", roman: "XI", short: "NFHS Slots", title: "Profiles per high-school slot" },
@@ -362,7 +362,7 @@ function PlateHalos({ slice, roman, profileType, setHover, hover }) {
   const maxCum = Math.max(...rows.map((r) => r.cumulative[r.cumulative.length - 1]));
   return (
     <>
-      <PlateHeader roman={roman || "V"} eyebrow={lensEyebrow("Influence", profileType)} title="Reach of the " italic="training centers." />
+      <PlateHeader roman={roman || "VII"} eyebrow={lensEyebrow("Influence", profileType)} title="Reach of the " italic="training centers." />
       <p className="plate-lede">
         How many Team USA athletes live within{" "}
         <span className="num">25 / 50 / 100 / 200</span> miles of each tracked training site.
@@ -438,7 +438,7 @@ function PlateDistance({ slice, roman, profileType, setHover, hover }) {
   const grandFar = rows.reduce((s, r) => s + r.far, 0);
   return (
     <>
-      <PlateHeader roman={roman || "VI"} eyebrow={lensEyebrow("Hometowns", profileType)} title="How far from a " italic="training center?" />
+      <PlateHeader roman={roman || "VIII"} eyebrow={lensEyebrow("Hometowns", profileType)} title="How far from a " italic="training center?" />
       <p className="plate-lede">
         For each Olympic and Paralympic athlete, the distance from their hometown to the nearest
         tracked training site that actually serves their sport, grouped by sport family. Sports with
@@ -537,7 +537,7 @@ function PlateClimate({ slice, roman, profileType, setHover, hover }) {
   // For each family row, pick the dominant zone to highlight
   return (
     <>
-      <PlateHeader roman={roman || "VII"} eyebrow={lensEyebrow("Atmosphere", profileType)} title="Sport family × " italic="climate." />
+      <PlateHeader roman={roman || "V"} eyebrow={lensEyebrow("Atmosphere", profileType)} title="Sport family × " italic="climate." />
       <p className="plate-lede">
         Share of each sport family's Team USA profiles from each state-level climate zone.
         Cell darkness = share; residuals compare each cell to the all-roster climate mix.
@@ -745,8 +745,8 @@ function PlateHomeStates({ slice, roman, profileType, setHover, hover }) {
       <PlateHeader
         roman={roman || "IV"}
         eyebrow={lensEyebrow("Home", profileType)}
-        title="Each family's top "
-        italic="three states."
+        title="Sport family × "
+        italic="states."
       />
       <p className="plate-lede">
         The top three source states for each sport family — where its
@@ -808,7 +808,7 @@ function PlateAltitude({ slice, roman, profileType, setHover, hover }) {
   return (
     <>
       <PlateHeader
-        roman={roman || "VIII"}
+        roman={roman || "VI"}
         eyebrow={lensEyebrow("Altitude", profileType)}
         title="Sport family × "
         italic="altitude."

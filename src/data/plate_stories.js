@@ -123,7 +123,7 @@ Most Paralympic sports show concentration scores under **0.20**, meaning nationa
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate V — Reach of the training centers
+   * Plate VII — Reach of the training centers
    * ───────────────────────────────────────────────────────────────── */
   halos_olympic: `
 ## Reach of the training centers (Olympic)
@@ -169,7 +169,7 @@ The actionable extension of this atlas is to **map the adaptive-sport infrastruc
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VI — How far from a training center
+   * Plate VIII — How far from a training center
    * ───────────────────────────────────────────────────────────────── */
   distance_olympic: `
 ## How far from a training center? (Olympic)
@@ -214,7 +214,7 @@ For Paralympic recruiting, the practical takeaway is the same as the Olympic ver
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VII — Climate × sport family
+   * Plate V — Climate × sport family
    * ───────────────────────────────────────────────────────────────── */
   climate_olympic: `
 ## Climate × Olympic sport family
@@ -416,7 +416,7 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate IV — Each family's top three states
+   * Plate IV — Sport family × states
    * ───────────────────────────────────────────────────────────────── */
   home_states_olympic: `
 ## Where each sport calls home
@@ -457,7 +457,7 @@ Gymnastics is missing entirely from this lens — there are no Paralympic Gymnas
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VIII — Sport family × elevation
+   * Plate VI — Sport family × elevation
    * ───────────────────────────────────────────────────────────────── */
   altitude_olympic: `
 ## The atlas climbs

@@ -1004,11 +1004,11 @@ function plateCaption(p) {
   switch (p) {
     case "factories":     return "Plate II — Tiny towns, big rosters";
     case "concentration": return "Plate III — How concentrated each sport is";
-    case "home_states":   return "Plate IV — Each family's top three states";
-    case "halos":         return "Plate V — Reach of the training centers";
-    case "distance":      return "Plate VI — How far Team USA grew up from a training center";
-    case "climate":       return "Plate VII — Sport family × climate";
-    case "altitude":      return "Plate VIII — Sport family × altitude";
+    case "home_states":   return "Plate IV — Sport family × states";
+    case "climate":       return "Plate V — Sport family × climate";
+    case "altitude":      return "Plate VI — Sport family × altitude";
+    case "halos":         return "Plate VII — Reach of the training centers";
+    case "distance":      return "Plate VIII — How far Team USA grew up from a training center";
     case "per_capita":    return "Plate IX — Profiles per 100k residents";
     case "colleges":      return "Plate X — Profiles per athletic dollar";
     case "hs_conversion": return "Plate XI — NFHS slot density";

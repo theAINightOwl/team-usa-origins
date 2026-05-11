@@ -480,7 +480,7 @@ export default function ChatBot({ profileType = "olympic", onApplyPatch, embedde
               <div>
                 <p className="eyebrow">Work with Atlas</p>
                 <h3>
-                  Type, talk, or <em>chart</em>.
+                  Control, Deep Dive, or <em>Chart</em>.
                 </h3>
               </div>
             </div>
