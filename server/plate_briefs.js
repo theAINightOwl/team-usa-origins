@@ -22,13 +22,13 @@ export function buildPlateBriefs(analytics, states, profileType = "olympic") {
     plateI(lensLabel),
     plateII(pick(analytics, "factories", profileType), lensLabel),
     plateIII(pick(analytics, "concentration", profileType), lensLabel),
-    plateIV(pick(analytics, "halos", profileType), analytics.training_gap, lensLabel),
-    plateV(pick(analytics, "distance", profileType), lensLabel),
-    plateVI(pick(analytics, "climate_sport", profileType), lensLabel),
-    plateVII(pick(analytics, "per_capita", profileType), lensLabel),
-    plateVIII(pick(analytics, "college_efficiency", profileType), lensLabel),
-    plateIX(pick(analytics, "hs_conversion", profileType), analytics.meta?.hs_conversion, lensLabel),
-    plateX(pick(analytics, "centroids", profileType), lensLabel),
+    plateX(pick(analytics, "centroids", profileType), lensLabel),     // UI Plate IV (Home states)
+    plateIV(pick(analytics, "halos", profileType), analytics.training_gap, lensLabel),   // UI Plate V
+    plateV(pick(analytics, "distance", profileType), lensLabel),       // UI Plate VI
+    plateVI(pick(analytics, "climate_sport", profileType), lensLabel), // UI Plate VII
+    plateVII(pick(analytics, "per_capita", profileType), lensLabel),   // UI Plate IX
+    plateVIII(pick(analytics, "college_efficiency", profileType), lensLabel), // UI Plate X
+    plateIX(pick(analytics, "hs_conversion", profileType), analytics.meta?.hs_conversion, lensLabel), // UI Plate XI
   ];
   return sections.join("\n\n");
 }
@@ -73,12 +73,12 @@ function plateIII(rows, lens) {
 }
 
 function plateIV(rows, gap, lens) {
-  if (!rows?.length) return `## Plate IV — Halos (${lens})\n(no data)`;
+  if (!rows?.length) return `## Plate V — Halos (${lens})\n(no data)`;
   const top = [...rows].sort((a, b) => (b.cumulative.at(-1) ?? 0) - (a.cumulative.at(-1) ?? 0)).slice(0, 6);
   const trackedFacilities = rows.reduce((s, r) => s + (r.facility_count || 1), 0);
   const optcs = rows.filter((r) => r.type === "OPTC").length;
   return [
-    `## Plate IV — Training-Center Halos (${lens})`,
+    `## Plate V — Training-Center Halos (${lens})`,
     `${lens} athletes within 25/50/100/200 mi of each curated training-facility geography. Cumulative — wider rings include closer ones. ${trackedFacilities} tracked facilities collapse to ${rows.length} map locations; ${optcs} are USOPC-operated OPTCs.`,
     `Direct sport-served counts use each facility's sports_served field. Note: the tracked facility roster was built around Olympic disciplines, so direct sport-served counts are typically smaller under the Paralympic lens.`,
     gap
@@ -96,14 +96,14 @@ function plateIV(rows, gap, lens) {
 }
 
 function plateV(d, lens) {
-  if (!d?.families) return `## Plate V — Distance (${lens})\n(no data)`;
+  if (!d?.families) return `## Plate VI — Distance (${lens})\n(no data)`;
   const fams = Object.entries(d.families)
     .map(([fam, x]) => ({ fam, ...x, total: (x.n_med || 0) + (x.n_non || 0) }))
     .sort((a, b) => b.total - a.total)
     .slice(0, 8);
   const scope = d.scope || {};
   return [
-    `## Plate V — Distance to Nearest Sport-Serving Facility (${lens})`,
+    `## Plate VI — Distance to Nearest Sport-Serving Facility (${lens})`,
     `Buckets: ≤25, ≤50, ≤100, ≤200, ≤400, ≤800, >800 miles. Distance from each ${lens} athlete's hometown to the nearest tracked training site that lists their sport.`,
     scope.included_profiles
       ? `Scope: ${scope.included_profiles.toLocaleString()} ${lens} athletes included; ${(scope.unserved_profiles || 0).toLocaleString()} excluded because their sport has no tracked sport-serving facility.`
@@ -120,10 +120,10 @@ function plateV(d, lens) {
 }
 
 function plateVI(d, lens) {
-  if (!d?.matrix?.length) return `## Plate VI — Climate × Sport (${lens})\n(no data)`;
+  if (!d?.matrix?.length) return `## Plate VII — Climate × Sport (${lens})\n(no data)`;
   const scope = d.scope || {};
   const lines = [
-    `## Plate VI — Climate × Sport Family (${lens})`,
+    `## Plate VII — Climate × Sport Family (${lens})`,
     `Share of each ${lens} sport family's hometowns from state-level climate-zone labels in data/hometown_climate.csv.`,
     scope.included_profiles
       ? `Scope: ${scope.included_profiles.toLocaleString()} ${lens} athletes.`
@@ -147,14 +147,14 @@ function plateVI(d, lens) {
 }
 
 function plateVII(rows, lens) {
-  if (!rows?.length) return `## Plate VII — Per Capita (${lens})\n(no data)`;
+  if (!rows?.length) return `## Plate IX — Per Capita (${lens})\n(no data)`;
   const top = rows.slice(0, 12);
   const totalProfiles = rows.reduce((s, r) => s + (r.profiles || 0), 0);
   const totalPop = rows.reduce((s, r) => s + (r.population || 0), 0);
   const natl = totalPop ? (totalProfiles / totalPop) * 100_000 : 0;
   const lensWord = lens === "Paralympic" ? "Paralympians" : "Olympians";
   return [
-    `## Plate VII — ${lensWord} per 100k Residents`,
+    `## Plate IX — ${lensWord} per 100k Residents`,
     `National average ≈ ${natl.toFixed(2)} ${lensWord.toLowerCase()} per 100k. Population from Census PEP 2023.`,
     "Reorders the country: big states sink, mountain & northeastern states rise.",
     "",
@@ -164,10 +164,10 @@ function plateVII(rows, lens) {
 }
 
 function plateVIII(d, lens) {
-  if (!d?.points?.length) return `## Plate VIII — Colleges (${lens})\n(no data)`;
+  if (!d?.points?.length) return `## Plate X — Colleges (${lens})\n(no data)`;
   const top = d.points.filter((p) => p.matched_profiles >= 2).slice(0, 10);
   return [
-    `## Plate VIII — College Efficiency (${lens} matches per Athletic $M)`,
+    `## Plate X — College Efficiency (${lens} matches per Athletic $M)`,
     `College programs ranked by matched ${lens} athletes ÷ athletic budget ($M). Filter: ≥ 2 matched ${lens} profiles.`,
     `Under the Paralympic lens this surfaces dedicated adaptive-athletics programs (Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois). Under the Olympic lens it surfaces sport-specific NCAA / NAIA / NJCAA pipelines.`,
     "",
@@ -177,12 +177,12 @@ function plateVIII(d, lens) {
 }
 
 function plateIX(rows, _meta = {}, lens) {
-  if (!rows?.length) return `## Plate IX — NFHS Slot Density (${lens})\n(no data)`;
+  if (!rows?.length) return `## Plate XI — NFHS Slot Density (${lens})\n(no data)`;
   const top = rows
     .filter((r) => (r.nfhs_participation_slots ?? r.nfhs) >= 5000)
     .slice(0, 12);
   return [
-    `## Plate IX — ${lens} Athletes per NFHS Participation Slot`,
+    `## Plate XI — ${lens} Athletes per NFHS Participation Slot`,
     `${lens} athletes per 1,000,000 NFHS participation slots in the state. Uses 2024-25 official NFHS state totals; participation slots are not unique students.`,
     lens === "Paralympic"
       ? "**Caveat:** the NFHS denominator is built around Olympic-pathway sports, so the Paralympic version of this chart is conceptually mismatched — most Paralympic disciplines have no high-school pipeline. Treat as directional only."
@@ -194,11 +194,11 @@ function plateIX(rows, _meta = {}, lens) {
 }
 
 function plateX(d, lens) {
-  if (!Array.isArray(d) || !d.length) return `## Plate XI — Home states (${lens})\n(no data)`;
+  if (!Array.isArray(d) || !d.length) return `## Plate IV — Home states (${lens})\n(no data)`;
   // Largest families first — those are the editorial leads.
   const sorted = [...d].sort((a, b) => (b.n || 0) - (a.n || 0));
   return [
-    `## Plate XI — Where each sport calls home (${lens})`,
+    `## Plate IV — Where each sport calls home (${lens})`,
     `For each sport family, the top three source states for its ${lens.toLowerCase()} hometown roster. California is #1 for most families simply because of population scale; the interesting reads are the families where another state overtakes it.`,
     "Counts are athletes' published hometowns; share is rounded to one decimal of the family's total. Small families (Strength, Equestrian, Track & Field on the Paralympic side) carry more sampling noise.",
     "",

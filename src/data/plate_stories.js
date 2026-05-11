@@ -123,7 +123,7 @@ Most Paralympic sports show concentration scores under **0.20**, meaning nationa
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate IV — Reach of the training centers
+   * Plate V — Reach of the training centers
    * ───────────────────────────────────────────────────────────────── */
   halos_olympic: `
 ## Reach of the training centers (Olympic)
@@ -169,7 +169,7 @@ The actionable extension of this atlas is to **map the adaptive-sport infrastruc
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate V — How far from a training center
+   * Plate VI — How far from a training center
    * ───────────────────────────────────────────────────────────────── */
   distance_olympic: `
 ## How far from a training center? (Olympic)
@@ -214,7 +214,7 @@ For Paralympic recruiting, the practical takeaway is the same as the Olympic ver
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VI — Climate × sport family
+   * Plate VII — Climate × sport family
    * ───────────────────────────────────────────────────────────────── */
   climate_olympic: `
 ## Climate × Olympic sport family
@@ -260,7 +260,7 @@ The actionable read is to identify states where the climate is permissive but th
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VIII — Profiles per 100k residents (merged)
+   * Plate IX — Profiles per 100k residents (merged)
    * ───────────────────────────────────────────────────────────────── */
   per_capita_olympic: `
 ## Olympians per 100k residents
@@ -309,7 +309,7 @@ For the USOPC and the national federations, the actionable opportunity is the bo
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate IX — Profiles per athletic dollar
+   * Plate X — Profiles per athletic dollar
    * ───────────────────────────────────────────────────────────────── */
   colleges_olympic: `
 ## Olympic profiles per athletic dollar
@@ -352,11 +352,11 @@ Compare to the Ivies again. **Princeton** has effectively zero Paralympic alumni
 
 The Paralympic college-efficiency shortlist is concrete and small: **Wisconsin-Whitewater, Central Oklahoma, UCCS, Texas-Arlington, Illinois, and a handful of NCAA D-III adaptive-sport programs.** That's the entire visible Paralympic college pipeline in this dataset.
 
-For Paralympic federations, that's both an opportunity and a warning: the existing pipeline is concentrated in fewer than ten institutions. Scaling Paralympic recruiting means either deepening partnerships with the existing programs or **investing in new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate VIII per-capita gap is largest.
+For Paralympic federations, that's both an opportunity and a warning: the existing pipeline is concentrated in fewer than ten institutions. Scaling Paralympic recruiting means either deepening partnerships with the existing programs or **investing in new adaptive-sport programs at currently-non-producing universities** — particularly in the southern states (Texas outside of UTA, Florida, Georgia, North Carolina) where the Plate IX per-capita gap is largest.
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate X — Profiles per high-school slot
+   * Plate XI — Profiles per high-school slot
    * ───────────────────────────────────────────────────────────────── */
   hs_conversion_olympic: `
 ## Olympians per NFHS slot
@@ -399,13 +399,13 @@ That said, the resulting ranking is still informative as a relative measure:
 | 4 | Washington | 177 |
 | 5 | Utah | 144 |
 
-Colorado leads, consistent with the Plate VIII per-capita finding. Vermont and Alaska remain near the top. The pattern is that states already producing Paralympic athletes at high rates per resident also produce them at high rates per high-school slot — which makes sense, because NFHS slots scale with state population and high-school participation.
+Colorado leads, consistent with the Plate IX per-capita finding. Vermont and Alaska remain near the top. The pattern is that states already producing Paralympic athletes at high rates per resident also produce them at high rates per high-school slot — which makes sense, because NFHS slots scale with state population and high-school participation.
 
 The bottom of the chart for Paralympic-per-NFHS shows the same southern under-producers as the per-capita plate: Tennessee, Louisiana, South Carolina, Texas, and Ohio.
 
 ## Where to look next
 
-The actionable takeaway here is the same as Plate VIII (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator is the wrong baseline entirely.** A more useful future analysis would divide Paralympic athletes by:
+The actionable takeaway here is the same as Plate IX (per-capita), filtered through a different denominator. **For Paralympic recruiting, the NFHS denominator is the wrong baseline entirely.** A more useful future analysis would divide Paralympic athletes by:
 
 - The **disabled-population** of each state (Census ACS)
 - The number of **Move United / BlazeSports chapter members** per state
@@ -416,7 +416,7 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate XI — Where each sport calls home (top-3 source states)
+   * Plate IV — Where each sport calls home (top-3 source states)
    * ───────────────────────────────────────────────────────────────── */
   home_states_olympic: `
 ## Where each sport calls home
@@ -457,7 +457,7 @@ Gymnastics is missing entirely from this lens — there are no Paralympic Gymnas
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate VII — Sport family × elevation
+   * Plate VIII — Sport family × elevation
    * ───────────────────────────────────────────────────────────────── */
   altitude_olympic: `
 ## The atlas climbs
