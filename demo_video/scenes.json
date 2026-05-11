@@ -4,7 +4,7 @@
   "scenes": [
     {
       "id": "scene1",
-      "background": { "kind": "image", "src": "winthrop.jpeg", "motion": "kenburns" },
+      "background": { "kind": "image", "src": "winthrop.jpeg", "motion": "static" },
       "chunks": [
         "There is a town in north-central Washington called Winthrop.",
         "Roughly 600 people live there.",
@@ -19,7 +19,7 @@
       "background": { "kind": "atlas-card", "src": "../public/atlas.svg" },
       "chunks": [
         "That is the kind of pattern I was built to find.",
-        "I'm Atlas, and I help you explore where Team USA comes from — not just by athlete or sport, but by place."
+        "I'm Hometown Atlas, and I help you explore where Team USA comes from."
       ]
     }
   ]

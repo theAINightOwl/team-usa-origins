@@ -146,25 +146,26 @@ async function renderScene1Bg(srcImage, outPng) {
   ]);
 }
 
+const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+
 async function renderScene2Bg(svgPath, outPng) {
-  // Prefer a user-supplied avatar PNG (drop one at demo_video/atlas.png for a
-  // clean transparent background). Fall back to rasterizing the SVG via
-  // QuickLook if it's not there.
-  const userAvatar = path.join(ROOT, 'atlas.png');
-  let atlasPng;
-  if (fs.existsSync(userAvatar)) {
-    atlasPng = userAvatar;
-    console.log(`  using ${path.relative(process.cwd(), userAvatar)}`);
-  } else {
-    await run('qlmanage', ['-t', '-s', '900', '-o', WORK, svgPath]);
-    const qlOut = path.join(WORK, path.basename(svgPath) + '.png');
-    atlasPng = path.join(WORK, 'atlas.png');
-    await fsp.rename(qlOut, atlasPng);
-    console.log(`  rasterized SVG via qlmanage (drop demo_video/atlas.png to override)`);
-  }
+  // Headless Chrome rasterizes the SVG with a real transparent backdrop.
+  // (qlmanage adds a white backdrop; ImageMagick's MSVG renderer mangles
+  // gradients. Chrome handles both gradients and transparency correctly.)
+  const atlasPng = path.join(WORK, 'atlas.png');
+  await run(CHROME, [
+    '--headless=new',
+    '--disable-gpu',
+    '--hide-scrollbars',
+    '--default-background-color=00000000',
+    '--window-size=1100,1100',
+    `--screenshot=${atlasPng}`,
+    `file://${svgPath}`,
+  ]);
+  // Composite the transparent PNG onto the dark scene background, centered.
   await run('magick', [
     '-size', `${W}x${H}`, `xc:${BG_SCENE2}`,
-    '(', atlasPng, '-resize', '720x720', ')',
+    '(', atlasPng, '-trim', '+repage', '-resize', '720x720', ')',
     '-gravity', 'center', '-composite',
     outPng,
   ]);
