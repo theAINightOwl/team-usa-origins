@@ -304,7 +304,7 @@ export default function App() {
       <div className="welcome-page">
         <header className="welcome-header">
           <h1 className="wordmark">
-            Hometown <em>Atlas</em>
+            Hometown Atlas
           </h1>
           <div className="welcome-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>
@@ -316,7 +316,7 @@ export default function App() {
         <main className="welcome-main">
           <p className="welcome-eyebrow">Welcome to Hometown Atlas</p>
           <h2 id="welcome-title" className="welcome-title">
-            A living dashboard that turns <em>conversation</em> into <em>exploration</em>.
+            A living dashboard that turns conversation into exploration.
           </h2>
           <p className="welcome-lede">
             Hometown Atlas is an interactive atlas of the people, places, and
@@ -347,7 +347,7 @@ export default function App() {
             <AtlasAvatar size={96} className="welcome-hero-avatar" title="Atlas" />
             <p className="hero-eyebrow">★ What you can do with Atlas</p>
             <h3 className="hero-title">
-              Ask, jump, visualize, or <em>steer</em>.
+              Ask, jump, visualize, or steer.
             </h3>
 
             <div className="hero-modes hero-modes-2col">
@@ -429,7 +429,7 @@ export default function App() {
       <header className="app-topbar">
         <div className="topbar-row">
           <h1 className="wordmark">
-            Hometown <em>Atlas</em>
+            Hometown Atlas
           </h1>
           <div className="topbar-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>
