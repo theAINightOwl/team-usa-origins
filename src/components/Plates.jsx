@@ -33,7 +33,7 @@ export const PLATE_DEFS = [
   { key: "per_capita", roman: "VIII", short: "Per Capita", title: "Profiles per 100k residents" },
   { key: "colleges", roman: "IX", short: "Colleges", title: "Profiles per athletic dollar" },
   { key: "hs_conversion", roman: "X", short: "NFHS Slots", title: "Profiles per high-school slot" },
-  { key: "centroids", roman: "XI", short: "Centroids", title: "The center of gravity" },
+  { key: "home_states", roman: "XI", short: "Home States", title: "Where each sport calls home" },
   { key: "you", roman: "XII", short: "You", title: "Your geography, your facts" },
 ];
 
@@ -46,7 +46,7 @@ const TOGGLE_AWARE = new Set([
   "per_capita",
   "colleges",
   "hs_conversion",
-  "centroids",
+  "home_states",
   "altitude",
 ]);
 
@@ -61,7 +61,7 @@ function lensSlice(key, profileType) {
     per_capita: "per_capita",
     colleges: "college_efficiency",
     hs_conversion: "hs_conversion",
-    centroids: "centroids",
+    home_states: "centroids",
     altitude: "elevation_sport",
   };
   const base = ANALYTICS_KEY[key];
@@ -173,7 +173,7 @@ export function PlateBody({ plate, totals, onHoverFactory, hoveredFactory, hover
     case "colleges":      return <PlateColleges setHover={setHover} hover={hover} {...sliceProps} />;
     case "per_capita":    return <PlatePerCapita setHover={setHover} hover={hover} {...sliceProps} />;
     case "hs_conversion": return <PlateHSConversion setHover={setHover} hover={hover} {...sliceProps} />;
-    case "centroids":     return <PlateCentroids setHover={setHover} hover={hover} {...sliceProps} />;
+    case "home_states":   return <PlateHomeStates setHover={setHover} hover={hover} {...sliceProps} />;
     case "altitude":      return <PlateAltitude setHover={setHover} hover={hover} {...sliceProps} />;
     case "you":           return <PlateYou profileType={profileType} onUserHome={onUserHome} />;
     default:              return null;
@@ -734,52 +734,49 @@ function PlateHSConversion({ slice, roman, profileType, setHover, hover }) {
   );
 }
 
-/* ── Plate XI — Sport-family centroids ────────────────────────────── */
+/* ── Plate XI — Home States (top-3 source states per family) ──────── */
 
-function fmtLatLng(lat, lng) {
-  const ns = lat >= 0 ? "N" : "S";
-  const ew = lng >= 0 ? "E" : "W";
-  return `${Math.abs(lat).toFixed(1)}°${ns} · ${Math.abs(lng).toFixed(1)}°${ew}`;
-}
-
-function PlateCentroids({ slice, roman, profileType, setHover, hover }) {
+function PlateHomeStates({ slice, roman, profileType, setHover, hover }) {
   const rows = Array.isArray(slice) ? slice : [];
-  // Sort north-to-south by centroid latitude — tells a "where each family
-  // sits" story you can scan top to bottom.
-  const sorted = [...rows].sort((a, b) => (b.lat || 0) - (a.lat || 0));
+  // Largest families first — those are the editorial leads.
+  const sorted = [...rows].sort((a, b) => (b.n || 0) - (a.n || 0));
   return (
     <>
       <PlateHeader
         roman={roman || "XI"}
-        eyebrow={lensEyebrow("Gravity", profileType)}
-        title="The center of "
-        italic="gravity."
+        eyebrow={lensEyebrow("Home", profileType)}
+        title="Where each sport "
+        italic="calls home."
       />
       <p className="plate-lede">
-        For each sport family, the geographic centroid of its current roster —
-        the mean latitude and longitude of every athlete's hometown. Reveals
-        each sport's <em>center of gravity</em> at a glance: Winter and
-        Endurance pull northwest into the Rockies; Equestrian drifts south to
-        the horse belt; most other families settle in the heartland because
-        their pipelines are spread broadly across the country. Hover a row to
-        find its dot on the map.
+        The top three source states for each sport family — where its
+        athletes actually come from, ranked by share of the family's roster.
+        California is #1 for most families simply because of its population;
+        the interesting reads are the families where another state overtakes
+        it (Colorado for Winter, Florida for Equestrian). Hover a row to find
+        its three states on the map.
       </p>
       <ul className="rank-list">
         {sorted.map((r) => {
-          const top = r.top_states && r.top_states[0];
+          const states = r.top_states || [];
           return (
             <li
               key={r.family}
-              className={`rank-row ${hover?.family === r.family ? "hover" : ""}`}
+              className={`rank-row tall ${hover?.family === r.family ? "hover" : ""}`}
               onMouseEnter={() => setHover && setHover("family", r.family)}
               onMouseLeave={() => setHover && setHover("family", null)}
             >
               <span className="rk dot" style={{ background: FAMILY_COLOR_HINT[r.family] || "#555" }} />
               <span className="rb">
                 <span className="city">{r.family}</span>
-                <span className="sub">
-                  {fmtLatLng(r.lat, r.lng)}
-                  {top ? <> · top {top.state} {fmt(top.n)} ({top.pct}%)</> : null}
+                <span className="sub home-states-row">
+                  {states.map((s, i) => (
+                    <span key={s.state} className="home-state-chip">
+                      <span className="rank-num">{i + 1}.</span>{" "}
+                      <b>{s.state}</b>{" "}
+                      <span className="n-pct">{fmt(s.n)} ({s.pct}%)</span>
+                    </span>
+                  ))}
                 </span>
               </span>
               <span className="rv">
@@ -791,10 +788,9 @@ function PlateCentroids({ slice, roman, profileType, setHover, hover }) {
         })}
       </ul>
       <p className="plate-foot">
-        Centroid is the arithmetic mean of athlete lat/lng — a planar
-        approximation that's accurate to within ~1° at CONUS scale. Small
-        families (Strength, Equestrian) carry more sampling noise than the
-        large ones.
+        Counts are athletes' published hometowns; share is rounded to one
+        decimal of the family's total. Small families (Strength, Equestrian)
+        carry more sampling noise than the large ones.
       </p>
     </>
   );

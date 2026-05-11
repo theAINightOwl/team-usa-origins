@@ -128,7 +128,7 @@ export default function USMap({
   concentrationData,
   perCapitaData,
   hsConversionData,
-  centroidData,
+  homeStatesData,
   altitudeData,
   // YOU plate user marker
   userHome,
@@ -140,7 +140,7 @@ export default function USMap({
   const [tooltip, setTooltip] = useState(null);
 
   // Build a fast index of analytics data keyed by state — used by extractMetric
-  // for the new per_capita / hs_per_million / era_swing metrics so the existing
+  // for the new per_capita / hs_per_million metrics so the existing
   // choropleth machinery can color states without bespoke render code.
   const perCapitaByState = useMemo(() => {
     const m = {};
@@ -248,21 +248,43 @@ export default function USMap({
     }).filter(Boolean);
   }, [factories, projection, activePlate]);
 
-  // Plate XI — sport-family centroids. Project each family's centroid to
-  // SVG coords and scale the dot area by sqrt(n) so a 4× larger family
-  // gets a 2× radius dot.
-  const centroidPins = useMemo(() => {
-    if (!projection || !centroidData?.length || activePlate !== "centroids") return [];
-    const maxN = Math.max(...centroidData.map((r) => r.n || 1));
-    return centroidData
-      .map((r) => {
-        const p = projection([r.lng, r.lat]);
-        if (!p) return null;
-        const scale = Math.sqrt((r.n || 1) / maxN);
-        return { ...r, x: p[0], y: p[1], radius: 6 + 10 * scale };
-      })
-      .filter(Boolean);
-  }, [centroidData, projection, activePlate]);
+  // Plate XI — top-3 source states per family. For each (family, rank), look
+  // up the state centroid from the projected `centroids` map, offset by a
+  // fixed angle keyed off the family's alphabetical index so multiple
+  // families on the same state (CA, NY, FL) don't fully stack.
+  const homeStatePins = useMemo(() => {
+    if (!projection || !homeStatesData?.length || activePlate !== "home_states") return [];
+    const familyNames = homeStatesData.map((f) => f.family).sort();
+    const offsetFor = (fam) => {
+      const i = familyNames.indexOf(fam);
+      const n = Math.max(familyNames.length, 1);
+      const angle = (i / n) * Math.PI * 2;
+      return [Math.cos(angle) * 8, Math.sin(angle) * 8];
+    };
+    const out = [];
+    for (const fam of homeStatesData) {
+      const states = fam.top_states || [];
+      const [dx, dy] = offsetFor(fam.family);
+      for (let rank = 0; rank < states.length; rank++) {
+        const s = states[rank];
+        const c = centroids[s.state];
+        if (!c) continue;
+        const proj = projection(c);
+        if (!proj) continue;
+        out.push({
+          family: fam.family,
+          state: s.state,
+          rank: rank + 1,
+          pct: s.pct,
+          n: s.n,
+          x: proj[0] + dx,
+          y: proj[1] + dy,
+          radius: rank === 0 ? 9 : rank === 1 ? 7 : 5,
+        });
+      }
+    }
+    return out;
+  }, [homeStatesData, projection, activePlate, centroids]);
 
   // Pre-project training center halos (for Plate IV).
   const haloCenters = useMemo(() => {
@@ -619,45 +641,39 @@ export default function USMap({
             </g>
           )}
 
-          {/* Plate XI — sport-family centroids: one colored dot per family at the geographic mean of its athletes' hometowns. */}
-          {activePlate === "centroids" && (
-            <g className="centroid-layer">
-              {centroidPins.map((c) => {
-                const isHover = hover?.family === c.family;
-                const fill = familyColors[c.family] || "#555";
+          {/* Plate XI — top-3 source states per family: 36 dots colored by family, sized by rank (1 > 2 > 3). Hover focuses one family. */}
+          {activePlate === "home_states" && (
+            <g className="home-states-layer">
+              {homeStatePins.map((p) => {
+                const fill = familyColors[p.family] || "#555";
+                const focused = hover?.family === p.family;
+                const dimmed = hover?.family && hover.family !== p.family;
+                const opacity = focused ? 1 : dimmed ? 0.15 : 0.75;
                 return (
                   <g
-                    key={`centroid-${c.family}`}
-                    transform={`translate(${c.x} ${c.y})`}
-                    className={`centroid-pin ${isHover ? "hover" : ""}`}
+                    key={`hs-${p.family}-${p.state}-${p.rank}`}
+                    transform={`translate(${p.x} ${p.y})`}
+                    className={`home-state-pin rank-${p.rank} ${focused ? "hover" : ""}`}
+                    opacity={opacity}
                     onMouseEnter={() => {
                       setTooltip({
-                        kind: "centroid",
-                        family: c.family,
-                        n: c.n,
-                        top: c.top_states && c.top_states[0],
+                        kind: "home_state",
+                        family: p.family,
+                        state: p.state,
+                        rank: p.rank,
+                        n: p.n,
+                        pct: p.pct,
                         cx: 0, cy: 0,
                       });
                     }}
                     onMouseLeave={() => setTooltip(null)}
                   >
                     <circle
-                      r={isHover ? c.radius + 4 : c.radius}
+                      r={focused ? p.radius + 2 : p.radius}
                       fill={fill}
-                      fillOpacity={isHover ? 0.95 : 0.8}
                       stroke="#1a1410"
-                      strokeWidth={1}
+                      strokeWidth={0.8}
                     />
-                    <text
-                      x={c.radius + 6}
-                      dy="0.36em"
-                      fontFamily="JetBrains Mono"
-                      fontSize="10"
-                      fontWeight={isHover ? 700 : 500}
-                      fill="#1a1410"
-                    >
-                      {c.family}
-                    </text>
                   </g>
                 );
               })}
@@ -932,14 +948,12 @@ function Tooltip({ t, familyColors }) {
       </div>
     );
   }
-  if (t.kind === "centroid") {
+  if (t.kind === "home_state") {
     return (
       <div className="tooltip" style={style}>
         <div className="t-name" style={{ color: familyColors[t.family] || "#1a1410" }}>{t.family}</div>
-        <div className="t-line"><b>{t.n.toLocaleString()}</b> athletes</div>
-        {t.top && (
-          <div className="t-line">top state: <b>{t.top.state}</b> ({t.top.n}, {t.top.pct}%)</div>
-        )}
+        <div className="t-line">#{t.rank} state: <b>{t.state}</b></div>
+        <div className="t-line"><b>{t.n.toLocaleString()}</b> athletes ({t.pct}% of family)</div>
       </div>
     );
   }
@@ -997,7 +1011,7 @@ function plateCaption(p) {
     case "per_capita":    return "Plate VIII — Profiles per 100k residents";
     case "colleges":      return "Plate IX — Profiles per athletic dollar";
     case "hs_conversion": return "Plate X — NFHS slot density";
-    case "centroids":     return "Plate XI — The center of gravity";
+    case "home_states":   return "Plate XI — Where each sport calls home";
     case "you":           return "Plate XII — Your geography, your atlas";
     default:              return "Plate I — Hometowns of Team USA, 1896–2026";
   }

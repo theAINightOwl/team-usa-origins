@@ -416,44 +416,44 @@ Until that data layer exists in this atlas, treat this chart as a directional in
 `,
 
   /* ─────────────────────────────────────────────────────────────────
-   * Plate XI — Sport-family centroids
+   * Plate XI — Where each sport calls home (top-3 source states)
    * ───────────────────────────────────────────────────────────────── */
-  centroids_olympic: `
-## The center of gravity
+  home_states_olympic: `
+## Where each sport calls home
 
-For each sport family, the **centroid** is the arithmetic mean of its athletes' hometown coordinates — one dot on the map at the place where the roster, on average, lives. It's a quiet way to read where a sport actually grew up in America, untouched by who medals or which states win.
+For every sport family, the three states that supply the most athletes to its current Olympic roster. The map paints the top-3 directly — rank-1 dots are the largest, rank-3 the smallest, all colored by family — so you can read each family's "home" at a glance.
 
-A few patterns jump out on the Olympic lens:
+**California is the default #1** for most families just because of population scale. Forty million people produces a lot of athletes in every direction. The interesting reads are the families where another state actually overtakes California:
 
-- **Winter** sits the furthest northwest, around the Mountain West / upper Midwest seam — Colorado pulls hardest, with Minnesota, Utah, and Vermont anchoring the rest of the cold belt.
-- **Endurance** drifts the same direction but higher and dryer — its centroid lands near the Rockies, the legacy of a roster heavy on distance runners, triathletes, and cyclists from altitude-training hubs.
-- **Equestrian** is the only family that pulls clearly **south**, hauled down by Florida and the southern horse country.
-- **Aquatic**, **Track & Field**, and **Team Ball** all settle near the geographic center of the country — not because no place specializes, but because their pipelines are broad enough that one big state (usually California) is balanced by the rest.
+- **Winter** — Colorado is #1, then Utah, then Minnesota. The cold-belt geography is so concentrated that even California, with its Tahoe / Mammoth pipeline, drops to #4 or #5.
+- **Equestrian** — Florida is #1, followed by Texas and California. The horse-country South pulls hard enough to lead a family.
+- **Endurance** — California is still #1, but Colorado is unusually close behind for a small-population state, propped up by Boulder / Colorado Springs altitude training.
 
-## What it doesn't say
+Across the rest of the table the pattern is the same shape: **California leads, then a regional state or two anchored by infrastructure** — Texas for sun-belt swimming and team sports, New York for combat and racket sports, Florida for sailing and aquatic.
 
-The centroid is a single point, so it doesn't tell you how *spread out* a family is — a tight cluster around one state and a coast-to-coast scatter can produce the same dot. That's what Plate III (sport concentration, by HHI) is for. Read the two together: Plate III tells you *how* concentrated, Plate XI tells you *where*.
+## What this plate is and isn't
 
-Small families (Strength, Equestrian, Gymnastics) sit on smaller samples and so are noisier — a handful of athletes shifts their dot perceptibly. Treat the top half (Team Ball, Winter, Aquatic, Track & Field) as the firmer signal, and the bottom half as suggestive rather than definitive.
+This is a snapshot of the *current* Team USA roster's hometowns, not a historical census of where every Olympian ever came from. A state appearing in a family's top-3 means it's currently producing meaningfully more athletes per family than its peers, not that it's the historical hub.
+
+For a state's full sport-by-sport identity, click the state on the map — the StatePanel breaks out its top sports. For *how concentrated* a sport's geography is (versus just *where* it concentrates), see Plate III.
 `,
 
-  centroids_paralympic: `
-## The Paralympic center of gravity
+  home_states_paralympic: `
+## Where each Paralympic sport calls home
 
-The Paralympic roster is smaller and more institutional than the Olympic one — many families have under 30 athletes — which means the centroid moves around more freely as one or two athletes shift state. Read this plate as a sketch, not a fingerprint.
+The Paralympic roster is smaller (and more institutional) than the Olympic one, which means the top-3 source states are dominated less by population scale and more by **specific programs and residencies**.
 
-That said, the patterns are real:
+- **Winter** is anchored by Colorado — driven almost entirely by the **National Sports Center for the Disabled** at Winter Park, which has been the Para Alpine team's de-facto residency program for decades. California and Washington round out the top-3 on a much smaller base.
+- **Team Ball** (mostly Wheelchair Basketball and Wheelchair Rugby) leans toward states with large university adaptive-sport programs — **Illinois** (the University of Illinois adaptive-sport program, the longest-running in the country) and **Wisconsin** (UW-Whitewater) consistently show up.
+- **Other** (which includes Para Athletics and Para Swimming) is California-led but with a long tail of smaller states.
 
-- **Winter** anchors at Colorado, like the Olympic lens, but the pull is sharper — the **National Sports Center for the Disabled** at Winter Park is so dominant in Para Alpine that the family's centroid drifts north of where it would sit on the Olympic side.
-- **Endurance** is the most northwesterly Paralympic family, just as on the Olympic side, but the underlying roster is much smaller.
-- **Combat** and **Track & Field** centroids both lean toward Colorado Springs and the upper-Midwest adaptive-sports cluster (Whitewater, etc.) — these are families where the residency-and-camp model concentrates athletes near specific programs.
-- Most other Paralympic families settle near the center of the country because the underlying populations are too small for any one state to dominate.
+The Paralympic top-3 is best read as a **program map**, not a population map: where active national-team residency / camp programs live, the top-3 follows. Replicating those programs is the closest thing to a portable playbook for Paralympic federations.
 
-## How to read this carefully
+## Caveats
 
-The Paralympic roster's centroid story is mostly a **program story**, not a hometown story: where the active national-team residency / camp programs live, the centroid follows. A few specific institutions (NSCD, UCCS, the University of Illinois adaptive program, Wisconsin–Whitewater) account for a disproportionate share of each family's pull.
+Small families on the Paralympic side (**Strength**, **Equestrian**, **Track & Field**) have under 25 athletes each, which means a single name can move a state in or out of the top-3. Read those rows as suggestive rather than definitive.
 
-Strength, Equestrian, and Track & Field on the Paralympic side have so few athletes that a single name moves their dot 100+ miles. The exact coordinates are not the headline; the **family-level pattern** of "where Para programs cluster" is.
+Gymnastics is missing entirely from this lens — there are no Paralympic Gymnastics events, so the family has zero athletes under the Paralympic toggle.
 `,
 
   /* ─────────────────────────────────────────────────────────────────

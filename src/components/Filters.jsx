@@ -14,7 +14,6 @@ const METRICS = [
   { value: "elevation",      label: "Average hometown elevation" },
   { value: "per_capita",     label: "Profiles per 100k residents" },
   { value: "hs_per_million", label: "Profiles per 1M NFHS slots" },
-  { value: "era_swing",      label: "Decade swing (recent ÷ early)" },
 ];
 
 const METRIC_LABELS = Object.fromEntries(METRICS.map((m) => [m.value, m.label]));

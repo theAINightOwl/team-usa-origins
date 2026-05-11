@@ -166,7 +166,7 @@ export default function App() {
         return next;
       });
     }
-    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","centroids","altitude","you"];
+    const ALLOWED_PLATES = ["ref","factories","concentration","halos","distance","climate","per_capita","colleges","hs_conversion","home_states","altitude","you"];
     if (typeof patch.plate === "string" && ALLOWED_PLATES.includes(patch.plate)) {
       setActivePlate(patch.plate);
     }
@@ -188,23 +188,33 @@ export default function App() {
   useEffect(() => {
     setOverlays((o) => ({
       ...o,
-      // Hide athlete dots on Plate XI so the 12 centroid markers read cleanly.
-      dots: activePlate === "centroids" ? false : true,
+      // Hide athlete dots on Plate XI so the family pins read cleanly.
+      dots: activePlate === "home_states" ? false : true,
       centers: true,
       colleges: activePlate === "colleges",
     }));
     if (activePlate in PLATE_METRIC) {
       setMetric(PLATE_METRIC[activePlate]);
-    } else if (activePlate === "centroids") {
-      // No choropleth competes with the centroid dots.
+    } else if (activePlate === "home_states") {
+      // No choropleth competes with the family dots.
       setMetric("none");
     } else {
+      // Reset any plate-specific or retired metrics back to "none" when
+      // moving off their plate. `era_swing` is kept for migration: users
+      // who had the old Plate XI open before the rename get cleared.
       setMetric((m) => (
-        m === "per_capita" || m === "hs_per_million" ? "none" : m
+        m === "per_capita" || m === "hs_per_million" || m === "era_swing" ? "none" : m
       ));
     }
     setHover({});
   }, [activePlate]);
+
+  // One-time migration: any user who had `metric: "era_swing"` persisted in
+  // React state from the old Plate XI gets cleared on mount.
+  useEffect(() => {
+    if (metric === "era_swing") setMetric("none");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSelectState = (abbr) => {
     setSelectedAthleteId(null);
@@ -499,7 +509,7 @@ export default function App() {
               concentrationData={analyticsData[`concentration_${profileType}`] || analyticsData.concentration}
               perCapitaData={analyticsData[`per_capita_${profileType}`] || analyticsData.per_capita}
               hsConversionData={analyticsData[`hs_conversion_${profileType}`] || analyticsData.hs_conversion}
-              centroidData={analyticsData[`centroids_${profileType}`] || analyticsData.centroids}
+              homeStatesData={analyticsData[`centroids_${profileType}`] || analyticsData.centroids}
               altitudeData={analyticsData[`elevation_sport_${profileType}`] || analyticsData.elevation_sport}
               userHome={userHome}
               profileType={profileType}

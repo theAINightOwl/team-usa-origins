@@ -194,19 +194,20 @@ function plateIX(rows, _meta = {}, lens) {
 }
 
 function plateX(d, lens) {
-  if (!Array.isArray(d) || !d.length) return `## Plate XI — Centroids (${lens})\n(no data)`;
-  // Sort N → S so the brief reads like a top-down sweep of where each family sits.
-  const sorted = [...d].sort((a, b) => (b.lat || 0) - (a.lat || 0));
+  if (!Array.isArray(d) || !d.length) return `## Plate XI — Home states (${lens})\n(no data)`;
+  // Largest families first — those are the editorial leads.
+  const sorted = [...d].sort((a, b) => (b.n || 0) - (a.n || 0));
   return [
-    `## Plate XI — Center of gravity (${lens})`,
-    `For each sport family, the geographic centroid (mean lat/lng) of its ${lens.toLowerCase()} hometown roster. Reveals which families sit in the mountains, the heartland, the coasts, or the South.`,
-    "Centroid is an arithmetic mean of athlete coordinates — a planar approximation accurate to ~1° at CONUS scale. Small families (Strength, Equestrian) carry more sampling noise.",
+    `## Plate XI — Where each sport calls home (${lens})`,
+    `For each sport family, the top three source states for its ${lens.toLowerCase()} hometown roster. California is #1 for most families simply because of population scale; the interesting reads are the families where another state overtakes it.`,
+    "Counts are athletes' published hometowns; share is rounded to one decimal of the family's total. Small families (Strength, Equestrian, Track & Field on the Paralympic side) carry more sampling noise.",
     "",
-    "**Families ranked north-to-south by centroid latitude:**",
+    "**Families by roster size, with top-3 source states:**",
     ...sorted.map((r) => {
-      const top = r.top_states && r.top_states[0];
-      const topStr = top ? ` · top state ${top.state} (${top.n}, ${top.pct}%)` : "";
-      return `- **${r.family}** — n=${r.n}, lat ${r.lat.toFixed(1)}°, lng ${r.lng.toFixed(1)}°${topStr}`;
+      const top = (r.top_states || [])
+        .map((s, i) => `${i + 1}. ${s.state} (${s.n}, ${s.pct}%)`)
+        .join(" · ");
+      return `- **${r.family}** — ${r.n} athletes — ${top}`;
     }),
   ].filter(Boolean).join("\n");
 }

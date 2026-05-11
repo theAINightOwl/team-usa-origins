@@ -17,7 +17,7 @@ export const ATLAS_METRICS = [
 
 export const ATLAS_PLATES = [
   "ref", "factories", "concentration", "halos", "distance", "climate",
-  "per_capita", "colleges", "hs_conversion", "centroids", "altitude", "you",
+  "per_capita", "colleges", "hs_conversion", "home_states", "altitude", "you",
 ];
 
 export const ATLAS_STATE_ABBRS = [
@@ -84,7 +84,7 @@ export const ATLAS_CONTROLS_INSTRUCTIONS = [
   '- *"show only winter sports"* → `{ families: ["Winter"] }`',
   '- *"paralympic since 2010"* → `{ lens: "Paralympic", eraStart: 2010 }`',
   '- *"shade states by elevation"* → `{ metric: "elevation" }`',
-  '- *"open Plate XI"* / *"show me the centroids"* → `{ plate: "centroids" }`',
+  '- *"open Plate XI"* / *"where do home states cluster?"* → `{ plate: "home_states" }`',
   '- *"zoom to Colorado"* → `{ state: "CO" }`',
   '- *"hide the training centers"* → `{ overlays: { centers: false } }`',
   '- *"reset everything"* → `{ reset: true }`',
