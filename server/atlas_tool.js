@@ -12,7 +12,7 @@ export const ATLAS_FAMILIES = [
 ];
 
 export const ATLAS_METRICS = [
-  "none", "olympians", "medals", "income", "nfhs", "temp", "snow", "elevation",
+  "none", "olympians", "medals", "temp", "snow", "elevation", "per_capita",
 ];
 
 export const ATLAS_PLATES = [

@@ -153,7 +153,7 @@ export default function App() {
     }
     if (patch.lens === "Olympic") setProfileType("olympic");
     else if (patch.lens === "Paralympic") setProfileType("paralympic");
-    const ALLOWED_METRICS = ["none","olympians","medals","income","nfhs","temp","snow","elevation","per_capita","hs_per_million"];
+    const ALLOWED_METRICS = ["none","olympians","medals","temp","snow","elevation","per_capita"];
     if (typeof patch.metric === "string" && ALLOWED_METRICS.includes(patch.metric)) {
       setMetric(patch.metric);
     }

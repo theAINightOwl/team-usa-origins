@@ -7,13 +7,10 @@ const METRICS = [
   { value: "none",           label: "None (no state shading)" },
   { value: "olympians",      label: "Team USA profiles" },
   { value: "medals",         label: "Total medals won" },
-  { value: "income",         label: "Median household income" },
-  { value: "nfhs",           label: "HS participation slots" },
   { value: "temp",           label: "Average annual temperature" },
   { value: "snow",           label: "Average annual snowfall" },
   { value: "elevation",      label: "Average hometown elevation" },
   { value: "per_capita",     label: "Profiles per 100k residents" },
-  { value: "hs_per_million", label: "Profiles per 1M NFHS slots" },
 ];
 
 const METRIC_LABELS = Object.fromEntries(METRICS.map((m) => [m.value, m.label]));

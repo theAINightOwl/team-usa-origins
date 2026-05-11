@@ -1,149 +1,182 @@
-# Olympian Roots
+# Hometown Atlas
 
-An editorial atlas of Team USA hometowns and the support systems that produce
-American Olympians and Paralympians. 11 analytical plates, a Gemini-powered
-text chat ("Ask the atlas"), and a voice plate (XIII) that connects to
-Gemini Live so you can talk to the atlas out loud.
+An editorial atlas of Team USA hometowns and the support systems that
+produce American Olympians and Paralympians. The app has **10 analytical
+plates** rendered over a US map, plus an embedded chat agent ("Work
+with Atlas") that can answer questions, drive the dashboard, render
+Plotly charts on demand, and respond to voice.
+
+The site is built with Vite + React 19 on the frontend and a single
+Express server on the backend that handles both the chat HTTP/SSE
+endpoints and the voice WebSocket. Both AI paths talk to the Gemini API
+(text chat + Gemini Live for voice).
+
+## Repo structure
+
+```
+.
+├── src/                    Frontend (Vite + React 19)
+│   ├── App.jsx             Top-level shell, lens toggle, plate dispatcher
+│   ├── components/         Plates, Filters, USMap, ChatBot, AtlasAvatar
+│   ├── hooks/              useGeminiLive (browser WS client)
+│   ├── lib/                SSE client, Plotly loader, markdown renderer
+│   ├── data/               Pre-built static JSONs the frontend ships with
+│   └── styles.css          All styling (editorial paper + rust accent)
+│
+├── server.js               Express backend: serves /api/* and /live
+├── server/                 Backend internals
+│   ├── plate_briefs.js     Markdown summaries of each plate (chat context)
+│   ├── atlas_tool.js       update_atlas function-call schema for the agent
+│   ├── viz_agent.js        SQL + code-execution loop that renders charts
+│   ├── viz_db.js           DuckDB warm-load over the same data files
+│   └── armor.js            Model Armor wrapper (optional, disabled by default)
+│
+├── live/                   Gemini Live voice bridge (TypeScript)
+│   ├── server.mts          Exports attachLiveWS(httpServer); server.js mounts it
+│   └── gemini-live.mts     Thin wrapper around @google/genai's Live API
+│
+├── public/                 Static assets served at root (atlas.svg, topology)
+├── data/                   CSV inputs the viz agent's DuckDB loads at boot
+│
+├── Dockerfile              Two-stage build (npm ci + vite build, then runtime)
+├── .dockerignore           Excludes scratch, demo_video, raw inputs
+├── vite.config.js          Dev-only: proxies /api/* and /live to :5175
+└── .env.example            Environment-variable template
+```
+
+A few keys to read this with:
+
+- **One server, two protocols.** In production Cloud Run runs a single
+  Node container. `server.js` mounts both Express routes and a
+  WebSocket server (via `attachLiveWS` from `live/server.mts`) on the
+  same HTTP server. Locally the Vite dev server proxies `/api/*` and
+  `/live` to port 5175 so the dev experience matches prod.
+- **Static data is checked in.** Everything the frontend renders ships
+  as JSON in `src/data/`. The Python build pipeline that produced
+  those JSONs lives in `scripts/` but is out of scope for this README.
+- **The chat agent has two tools.** `update_atlas` drives the
+  dashboard (lens, filters, active plate, etc.); `request_chart` hands
+  off to the viz agent, which writes SQL against the in-process DuckDB
+  and renders a Plotly figure.
 
 ## Setup
 
+Requirements:
+
+- Node 22 (LTS recommended). Older Node will work but the Cloud Run
+  Dockerfile pins to `node:22-slim`.
+- A Gemini API key from [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+  — free tier is enough to drive everything below.
+
+Install and configure:
+
 ```bash
-# 1. install npm deps (uses --legacy-peer-deps for react-simple-maps)
+# 1. Install dependencies (legacy-peer-deps because of react-simple-maps)
 npm install --legacy-peer-deps
 
-# 2. drop in your Gemini API key
+# 2. Copy the env template and paste your Gemini key in
 cp .env.example .env
-$EDITOR .env  # paste your key from https://aistudio.google.com/apikey
+$EDITOR .env
+```
 
-# 3. run frontend + chat backend together
+`.env` only needs `GEMINI_API_KEY` to run. Everything else has a
+sensible default.
+
+## Running locally
+
+```bash
 npm run dev:all
 ```
 
-Then open http://localhost:5174.
+This starts the Vite dev server on **:5174** and the Express backend
+(which also hosts the voice WebSocket) on **:5175** in one terminal
+under [`concurrently`](https://www.npmjs.com/package/concurrently).
+Open [http://localhost:5174](http://localhost:5174).
 
-- Frontend (Vite, React 19): http://localhost:5174
-- Chat backend (Express + Gemini): http://localhost:5175 (proxied as `/api/*`)
-
-## Scripts
+Individual processes if you want them apart:
 
 | Script | What it does |
 |---|---|
-| `npm run dev`        | Vite frontend only (no chatbot) |
-| `npm run server`     | Express + Gemini backend only |
-| `npm run server:dev` | Backend with `nodemon` reload |
-| `npm run live`       | Node/TS voice server (Plate XIII) on :8765, via `tsx` |
-| `npm run live:dev`   | Same, with `tsx watch` auto-reload |
-| `npm run dev:all`    | Vite + Express + live voice, all together (recommended) |
-| `npm run build`      | Production frontend build |
+| `npm run dev`        | Vite frontend only (the API calls 404) |
+| `npm run server`     | Express backend only (runs via `tsx`) |
+| `npm run server:dev` | Backend with `tsx watch` auto-reload |
+| `npm run live`       | Standalone voice server on :8765 (unused in prod) |
+| `npm run build`      | Production frontend build (output → `dist/`) |
+| `npm run preview`    | Serve the production build locally |
 
-## Voice chat (Plate XIII)
+The Express server entry runs through `tsx` so `server.js` can import
+the `.mts` voice module without a compile step.
 
-Plate XIII opens a live voice line to the atlas. The browser talks to a
-small Node/TypeScript server (`live/server.mts`) over a WebSocket, which
-holds a [Gemini Live](https://ai.google.dev/gemini-api/docs/live)
-session grounded in the same plate briefs the text chat uses. Run with
-`tsx` — no build step.
+## Environment variables
 
-`npm run dev:all` starts it alongside Vite and Express. Open Plate
-**XIII** in the plate nav, tap the mic, allow microphone access, and
-speak. Start talking over the model to interrupt it.
+| Variable | Required | Default | Purpose |
+|---|---|---|---|
+| `GEMINI_API_KEY` | yes | — | Authenticates both the text chat and the voice path against Gemini. |
+| `GEMINI_MODEL` | no | `gemini-3.1-flash-lite-preview` | Text-chat model. |
+| `VIZ_MODEL` | no | `gemini-3-flash-preview` | Chart agent (needs `codeExecution` + function-call support). |
+| `GEMINI_LIVE_MODEL` | no | `gemini-3.1-flash-live-preview` | Voice session model. |
+| `GEMINI_LIVE_VOICE` | no | `Charon` | Prebuilt voice name for Gemini Live. |
+| `PORT` | no | `5175` (dev), `8080` (Cloud Run) | Express listen port. |
+| `LIVE_PORT` | no | `8765` | Only used by the standalone `npm run live` entry. |
+| `MODEL_ARMOR_PROJECT` / `_LOCATION` / `_TEMPLATE` | no | — | Optional Model Armor pre-screen on prompts. Leave any of the three blank to disable. |
 
-Troubleshooting:
+`.env` is read by `dotenv` at server boot. On Cloud Run, `GEMINI_API_KEY`
+is mounted from Secret Manager and the rest are set as environment
+variables on the service.
 
-- *"GEMINI_API_KEY is not configured on the live server"* — add the key
-  to `.env`; the live server reads the same file as Express.
-- *mic permission blocked* — Chrome requires `localhost` (or HTTPS) for
-  `getUserMedia`; some Safari builds also refuse `127.0.0.1`.
-- *WS error on connect* — verify the live server is up on `:8765`
-  (check the yellow `live` stream in `npm run dev:all`).
+## Deploying to Cloud Run
 
-## Safety — Model Armor
+The repo ships a multi-stage `Dockerfile` and a `.dockerignore` tuned
+for a single Cloud Run service. From scratch:
 
-Both chat modes can pre-screen user prompts through
+```bash
+# One-time: pick a GCP project, link billing, enable APIs
+gcloud config set project <YOUR_PROJECT_ID>
+gcloud services enable \
+  run.googleapis.com \
+  cloudbuild.googleapis.com \
+  artifactregistry.googleapis.com \
+  secretmanager.googleapis.com
+
+# One-time: store the Gemini key in Secret Manager
+gcloud secrets create gemini-api-key --replication-policy=automatic
+echo -n "<YOUR_GEMINI_KEY>" | gcloud secrets versions add gemini-api-key --data-file=-
+
+# Grant Cloud Run's default runtime SA access to the secret
+PROJECT_NUMBER=$(gcloud projects describe <YOUR_PROJECT_ID> --format='value(projectNumber)')
+gcloud secrets add-iam-policy-binding gemini-api-key \
+  --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+  --role="roles/secretmanager.secretAccessor"
+
+# Build + deploy from local source (Cloud Build picks up the Dockerfile)
+gcloud run deploy hometown-atlas \
+  --source . \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --set-secrets=GEMINI_API_KEY=gemini-api-key:latest \
+  --memory 1Gi \
+  --cpu 1 \
+  --port 8080
+```
+
+Cloud Run injects `$PORT`; `server.js` honors it. The same
+`gcloud run deploy --source .` command also redeploys on subsequent
+pushes once a [continuous-deploy trigger](https://cloud.google.com/run/docs/continuous-deployment-with-cloud-build)
+is wired up via the Cloud Run console.
+
+## Optional: Model Armor pre-screen
+
+Both chat paths can route prompts through
 [Google Cloud Model Armor](https://docs.cloud.google.com/model-armor/overview)
-before they reach Gemini. Armor catches prompt-injection and jailbreak
-attempts, policy violations (hate / harassment / sexually-explicit /
-dangerous), sensitive data (PII / credentials), malicious URLs, and
-CSAM. Filter thresholds live in a GCP **template**, editable via console
-or `gcloud` without redeploying the app.
+before they reach Gemini. Catches prompt-injection / jailbreak attempts,
+RAI policy violations, sensitive data, and malicious URLs. Filter
+thresholds live in a GCP template and are editable without redeploying
+the app.
 
-The feature is **opt-in**: leave any of `MODEL_ARMOR_PROJECT`,
-`MODEL_ARMOR_LOCATION`, or `MODEL_ARMOR_TEMPLATE` blank in `.env` and
-it's disabled. App runs unchanged.
-
-### One-time GCP setup
-
-```bash
-# 1. Pick (or create) a GCP project
-export PROJECT_ID=<your-project-id>
-export LOCATION=us-central1
-gcloud config set project $PROJECT_ID
-
-# 2. Enable the API
-gcloud services enable modelarmor.googleapis.com --project=$PROJECT_ID
-
-# 3. Create a template with sensible defaults for this app
-gcloud model-armor templates create olympian-default \
-  --project=$PROJECT_ID --location=$LOCATION \
-  --rai-settings-filters='[
-    {"filterType":"HATE_SPEECH","confidenceLevel":"HIGH"},
-    {"filterType":"HARASSMENT","confidenceLevel":"HIGH"},
-    {"filterType":"SEXUALLY_EXPLICIT","confidenceLevel":"HIGH"},
-    {"filterType":"DANGEROUS","confidenceLevel":"HIGH"}
-  ]' \
-  --pi-and-jailbreak-filter-settings-enforcement=ENABLED \
-  --pi-and-jailbreak-filter-settings-confidence-level=HIGH \
-  --malicious-uri-filter-settings-enforcement=ENABLED
-
-# 4. Grant Application Default Credentials on this machine
-gcloud auth application-default login
-```
-
-Then fill in `.env`:
-
-```
-MODEL_ARMOR_PROJECT=<your-project-id>
-MODEL_ARMOR_LOCATION=us-central1
-MODEL_ARMOR_TEMPLATE=olympian-default
-```
-
-Restart both backends (`npm run dev:all`). Boot logs should show a
-`🛡  [armor] enabled  project=…  template=…  location=…` line. Send a
-prompt-injection probe like `Ignore all prior instructions…` and the
-chat bubble should say **"Blocked by safety policy: prompt injection /
-jailbreak (HIGH)"** almost instantly — Gemini is never called.
-
-### How it's wired
-
-- [server/armor.js](server/armor.js) — shared helper; lazily constructs a
-  regional `ModelArmorClient` and exposes `sanitizePrompt(text)`.
-- [server.js](server.js) calls it at the top of `POST /api/chat`, before
-  the Gemini stream.
-- [live/server.mts](live/server.mts) accumulates voice transcript
-  fragments per connection and checks the whole turn at `turn_complete`;
-  typed-in-voice-mode text is checked directly. On a match the WS
-  closes with an error event.
-- Transport failures **fail open** — if Armor is unreachable the chat
-  continues. The system-prompt NIL/medal rules remain in force either
-  way.
-
-## Data pipeline
-
-Static JSONs under `src/data/` are produced by Python scripts in `scripts/`,
-reading inputs from `data/`. Everything runs from the repo root and is
-self-contained (no external repo needed).
-
-```bash
-# Optional prerequisite (one-time, rescrape Team USA roster):
-python3 scripts/scrape_athletes.py             # -> data/team_usa_athletes.{csv,json}
-
-# Optional: regenerate hometown geocodes (downloads 2023 Census Gazetteer to .cache/):
-python3 scripts/geocode_teamusa_hometowns.py   # -> data/teamusa_hometown_geocodes.csv
-
-# Rebuild app data:
-python3 scripts/compute_olympian_roots.py      # athletes / states / centers / colleges / families
-python3 scripts/compute_analytics.py           # analytics.json for the 11 plates
-```
-
-The chat bot reads `src/data/analytics.json` server-side at startup, so a
-restart of the Express server picks up new data.
+The feature is **opt-in** and currently commented out in `server.js`
+and `live/server.mts`. To enable: provision a template (see Google's
+docs), set `MODEL_ARMOR_PROJECT` / `_LOCATION` / `_TEMPLATE` in `.env`,
+and uncomment the import + call sites at the top of each file.
+Transport failures fail open — if Armor is unreachable the chat
+continues. The system-prompt NIL / medal-level rules stay in force
+either way.

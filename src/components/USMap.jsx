@@ -975,13 +975,10 @@ function extractMetric(st, metric, lensStateCounts, ctx = {}) {
   switch (metric) {
     case "olympians":      return lens ? lens.count : 0;
     case "medals":         return lens ? lens.medals : 0;
-    case "income":         return st.median_income;
-    case "nfhs":           return st.nfhs_total;
     case "temp":           return st.climate?.temp_f;
     case "snow":           return st.climate?.snow_in;
     case "elevation":      return st.elevation?.mean_ft;
     case "per_capita":     return ctx.perCapitaByState?.[ctx.abbr]?.per_100k;
-    case "hs_per_million": return ctx.hsByState?.[ctx.abbr]?.per_million_hs;
     default:               return lens ? lens.count : 0;
   }
 }
@@ -990,13 +987,10 @@ export function metricLabel(m) {
   return {
     olympians:      "Team USA profiles",
     medals:         "total medals",
-    income:         "median household income",
-    nfhs:           "HS participation slots",
     temp:           "avg annual temp °F",
     snow:           "avg annual snow in.",
     elevation:      "mean hometown elevation",
     per_capita:     "Team USA per 100k residents",
-    hs_per_million: "Team USA per 1M NFHS slots",
   }[m] || m;
 }
 
@@ -1017,12 +1011,10 @@ function plateCaption(p) {
 
 function fmtMetric(v, m) {
   if (v == null) return "—";
-  if (m === "income") return `$${v.toLocaleString()}`;
   if (m === "temp") return `${v.toFixed(1)}°F`;
   if (m === "snow") return `${v.toFixed(1)}″`;
   if (m === "elevation") return `${Math.round(v).toLocaleString()} ft`;
   if (m === "per_capita") return `${v.toFixed(2)} / 100k`;
-  if (m === "hs_per_million") return `${Math.round(v).toLocaleString()} / 1M`;
   return v.toLocaleString();
 }
 
