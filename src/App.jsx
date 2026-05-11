@@ -304,7 +304,7 @@ export default function App() {
       <div className="welcome-page">
         <header className="welcome-header">
           <h1 className="wordmark">
-            Hometown Atlas
+            Hometown <em>Atlas</em>
           </h1>
           <div className="welcome-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>
@@ -314,12 +314,12 @@ export default function App() {
         </header>
 
         <main className="welcome-main">
-          <p className="welcome-eyebrow">Welcome to Hometown Atlas</p>
+          <p className="welcome-eyebrow">Welcome to Hometown <em>Atlas</em></p>
           <h2 id="welcome-title" className="welcome-title">
-            A living dashboard that turns conversation into exploration.
+            A living dashboard that turns <em>conversation</em> into <em>exploration</em>.
           </h2>
           <p className="welcome-lede">
-            Hometown Atlas is an interactive atlas of the people, places, and
+            Hometown <em>Atlas</em> is an interactive atlas of the people, places, and
             support systems behind 8,500+ Team USA Olympic and Paralympic
             profiles, including hometowns, training centers, colleges,
             high-school pipelines, wages, weather, medals, and sport families.
@@ -347,7 +347,7 @@ export default function App() {
             <AtlasAvatar size={96} className="welcome-hero-avatar" title="Atlas" />
             <p className="hero-eyebrow">★ What you can do with Atlas</p>
             <h3 className="hero-title">
-              Ask, jump, visualize, or steer.
+              Ask, jump, visualize, or <em>steer</em>.
             </h3>
 
             <div className="hero-modes hero-modes-2col">
@@ -429,7 +429,7 @@ export default function App() {
       <header className="app-topbar">
         <div className="topbar-row">
           <h1 className="wordmark">
-            Hometown Atlas
+            Hometown <em>Atlas</em>
           </h1>
           <div className="topbar-meta">
             <span>Team USA · Olympic &amp; Paralympic</span>

@@ -103,7 +103,7 @@ h1.wordmark {
   color: var(--ink);
 }
 h1.wordmark em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
   color: var(--rust);
   font-variation-settings: "opsz" 144, "SOFT" 100;
@@ -642,7 +642,7 @@ input[type="range"]::-moz-range-thumb {
   letter-spacing: -0.018em;
   font-variation-settings: "opsz" 72;
 }
-.detail h3 em { font-style: italic; color: var(--rust); }
+.detail h3 em { font-style: normal; color: var(--rust); }
 .detail .loc {
   font-family: var(--serif);
   font-style: italic;
@@ -931,7 +931,7 @@ input[type="range"]::-moz-range-thumb {
   color: var(--ink);
 }
 .plate-head h3 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--rust);
   font-weight: 500;
 }
@@ -1713,7 +1713,7 @@ input[type="range"]::-moz-range-thumb {
   font-variation-settings: "opsz" 36;
   line-height: 1;
 }
-.chat-head h3 em { font-style: italic; color: var(--rust); }
+.chat-head h3 em { font-style: normal; color: var(--rust); }
 .chat-head-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
 .chat-body {
@@ -2725,7 +2725,7 @@ body { margin: 0; overflow: hidden; }
   margin: 0;
   font-variation-settings: "opsz" 96;
 }
-.app-topbar .wordmark em { font-style: italic; color: var(--rust); font-weight: 400; }
+.app-topbar .wordmark em { font-style: normal; color: var(--rust); font-weight: 400; }
 .app-topbar .topbar-meta {
   display: flex;
   gap: 14px;
@@ -2984,7 +2984,7 @@ body { margin: 0; overflow: hidden; }
   font-variation-settings: "opsz" 96;
   letter-spacing: -0.01em;
 }
-.welcome-header .wordmark em { font-style: italic; color: var(--rust); font-weight: 400; }
+.welcome-header .wordmark em { font-style: normal; color: var(--rust); font-weight: 400; }
 .welcome-meta {
   display: flex;
   gap: 14px;
@@ -3019,7 +3019,7 @@ body { margin: 0; overflow: hidden; }
   letter-spacing: -0.01em;
 }
 .welcome-title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--rust);
   font-weight: 400;
 }
@@ -3071,7 +3071,7 @@ body { margin: 0; overflow: hidden; }
   font-variation-settings: "opsz" 60;
   color: var(--ink);
 }
-.hero-title em { font-style: italic; color: var(--rust); font-weight: 400; }
+.hero-title em { font-style: normal; color: var(--rust); font-weight: 400; }
 .hero-blurb {
   font-family: var(--serif);
   font-size: 14px;

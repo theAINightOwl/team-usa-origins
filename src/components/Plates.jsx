@@ -186,7 +186,7 @@ function PlateHeader({ roman, eyebrow, title, italic }) {
   return (
     <header className="plate-head">
       <p className="eyebrow">Plate {roman} · {eyebrow}</p>
-      <h3>{title}{italic}</h3>
+      <h3>{title}{italic && <em>{italic}</em>}</h3>
     </header>
   );
 }
