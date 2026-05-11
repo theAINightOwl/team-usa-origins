@@ -23,7 +23,12 @@ function getAi() {
   return _ai;
 }
 function getModel() {
-  return process.env.VIZ_MODEL || "gemini-3.1-flash-preview";
+  // `gemini-3.1-flash-preview` (the prior default) is not published on the
+  // v1beta endpoint and 404s. `gemini-3-flash-preview` is the closest live
+  // sibling and is the cheapest model that supports the SQL function tool +
+  // built-in code execution combo we use here (gated behind toolConfig.
+  // includeServerSideToolInvocations: true — see TOOL_CONFIG above).
+  return process.env.VIZ_MODEL || "gemini-3-flash-preview";
 }
 
 // ── SQL tool ────────────────────────────────────────────────────────────
@@ -440,6 +445,42 @@ function normalizeTrace(trace) {
   return out;
 }
 
+// Plotly's modern shape uses objects everywhere: `title: { text: "…" }`,
+// `xaxis: { title: { text: "…" } }`. The model occasionally emits one of
+// several older / shorthand forms that silently survive the deep-merge
+// below and then crash Plotly ("Cannot create property 'anchor' on
+// string '…'"). Coerce all of them back to the modern shape before merging:
+//
+//   layout.title         = "Foo"            →  { text: "Foo" }
+//   layout.xaxis         = "Foo"            →  { title: { text: "Foo" } }
+//   layout.xaxis.title   = "Foo"            →  { text: "Foo" }
+//   layout.xaxis_title   = "Foo"            →  moved into layout.xaxis.title
+function normalizeTitle(t) {
+  if (typeof t === "string") return { text: t };
+  return t;
+}
+function normalizeAxis(a) {
+  if (typeof a === "string") return { title: { text: a } };
+  if (!a || typeof a !== "object") return a;
+  if (a.title !== undefined) return { ...a, title: normalizeTitle(a.title) };
+  return a;
+}
+function normalizeLayout(layout) {
+  if (!layout || typeof layout !== "object") return layout;
+  const out = { ...layout };
+  if (out.title !== undefined) out.title = normalizeTitle(out.title);
+  for (const ax of ["xaxis", "yaxis", "xaxis2", "yaxis2"]) {
+    if (out[ax] !== undefined) out[ax] = normalizeAxis(out[ax]);
+    const shorthand = out[`${ax}_title`];
+    if (shorthand !== undefined) {
+      const existing = (out[ax] && typeof out[ax] === "object") ? out[ax] : {};
+      out[ax] = { ...existing, title: normalizeTitle(shorthand) };
+      delete out[`${ax}_title`];
+    }
+  }
+  return out;
+}
+
 function applyEditorialStyle(figure) {
   if (!figure || typeof figure !== "object") return figure;
 
@@ -447,10 +488,11 @@ function applyEditorialStyle(figure) {
     ? figure.data.map((trace) => mergeStyle(TRACE_DEFAULTS_BY_TYPE[trace?.type] || {}, normalizeTrace(trace)))
     : figure.data;
 
+  const normalizedLayout = normalizeLayout(figure.layout || {});
   const axisDefaults = pickAxisDefaults(figure);
   const baseLayout = { ...LAYOUT_DEFAULTS, ...axisDefaults };
-  if (figure?.layout?.title) baseLayout.title = TITLE_DEFAULTS;
-  const layout = mergeStyle(baseLayout, figure.layout || {});
+  if (normalizedLayout?.title) baseLayout.title = TITLE_DEFAULTS;
+  const layout = mergeStyle(baseLayout, normalizedLayout);
 
   return { ...figure, data, layout };
 }
@@ -555,9 +597,21 @@ export async function runVizAgent(userQuestion) {
           figures: [],
         };
       }
-      const figures = Array.isArray(parsed.figures)
-        ? parsed.figures.map(stripNulls).map(applyEditorialStyle)
-        : [];
+      const rawFigures = Array.isArray(parsed.figures) ? parsed.figures.map(stripNulls) : [];
+      // One-line debug so we can see when the model emits a string at a slot
+      // Plotly expects to be an object (axis, title, axis.title).
+      for (const f of rawFigures) {
+        const layout = f?.layout || {};
+        const oddities = [];
+        if (typeof layout.title === "string") oddities.push(`title:string`);
+        for (const ax of ["xaxis", "yaxis"]) {
+          if (typeof layout[ax] === "string") oddities.push(`${ax}:string`);
+          else if (layout[ax] && typeof layout[ax].title === "string") oddities.push(`${ax}.title:string`);
+          if (layout[`${ax}_title`] !== undefined) oddities.push(`${ax}_title:shorthand`);
+        }
+        if (oddities.length) console.log(`[viz] layout oddities normalized: ${oddities.join(", ")}`);
+      }
+      const figures = rawFigures.map(applyEditorialStyle);
       return {
         text: (parsed.narration || "").trim(),
         code: accumulatedCode,
