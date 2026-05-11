@@ -15,9 +15,9 @@ import AtlasAvatar from "./AtlasAvatar.jsx";
  */
 
 const STARTERS = [
-  "Why does Park City UT produce so many olympians?",
+  "Why does Park City UT produce so many Olympians?",
   "Bar chart of medals by sport family.",
-  "Which states have the highest paralympic share?",
+  "Which states have the highest Paralympic share?",
   "Plot Team USA profiles per 100k by state, top 10.",
 ];
 

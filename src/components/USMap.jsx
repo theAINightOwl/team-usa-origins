@@ -836,7 +836,7 @@ function Tooltip({ t, familyColors }) {
     // Skip the third metric line entirely when no choropleth is set, or when
     // it'd just repeat the olympians/medals counts already printed above.
     const metricRedundant = !t.metric || t.metric === "none" || t.metric === "olympians" || t.metric === "medals";
-    const lensWord = t.profileType === "paralympic" ? "paralympians" : "olympians";
+    const lensWord = t.profileType === "paralympic" ? "Paralympians" : "Olympians";
     return (
       <div className="tooltip" style={style}>
         <div className="t-name">{t.name}</div>
